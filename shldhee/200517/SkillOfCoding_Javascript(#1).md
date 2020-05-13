@@ -98,6 +98,8 @@ function getLowestPrice(item) {
 
 - 위와 같이 `var`를 `let`으로 변경하면 `if (item.salePrice)` 안에서 할당받은 `let` 변수들은 블록 범위에서만 존재하므로 블록 밖에 있는 `let price = item.price; // 아이템 정상가`를 사용할 수 있다.
 
+- `var`의 단점에 대한 포스팅 참조 : <https://www.daleseo.com/js-var-issues/>
+
 ## 블록 유효 범위 변수로 정보를 격리하라(TIP3)
 
 - **블록 유효 범위 변수**를 선언하면 블록 안에서만 접급이 되고 밖에서는 접근 불가다.
@@ -192,6 +194,7 @@ function generateLink(image, width) {
 
 - 위와 같이 ?, =, & 기호를 넣고 + 로 연결하면서 복잡해집니다.
 - 템플릿 리터럴을 이용하면 아래와 같이 깔끔해집니다.
+- 템플릿 리터럴을 일반 문자열(`'`,`"`)과 다른 (**`**) 백틱을 사용한다. 헷갈리지 않게 주의!
 
 ``` javascript
 function generateLink(image, width) {
