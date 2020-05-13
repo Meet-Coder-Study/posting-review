@@ -88,7 +88,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static Answer InputRestart(){
+    public static Answer inputRestart(){
         OutputView.isStartGuide();
         String isRestart = scanner.nextLine();
         
@@ -96,7 +96,7 @@ public class InputView {
             return Answer.of(isRestart);
         }catch (NoSuchElementException e){
             System.out.println(e.getMessage());
-            InputRestart();
+            inputRestart();
         }
         
         throw new IllegalStateException("너무 많이 호출하셨습니다.");
