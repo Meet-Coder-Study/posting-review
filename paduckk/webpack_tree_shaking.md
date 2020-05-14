@@ -8,7 +8,7 @@
 
 `minify`는 내가 작성한 소스 코드의 의미를 알아 볼 수 없지만 동작은 동일하게 하도록 바꾸어 줍니다.
 
-`webpack`에서는 기본적으로 production mode로 번들링하게 되면 `[terser](https://github.com/terser/terser)` 를 이용하여 압축합니다
+`webpack`에서는 기본적으로 production mode로 번들링하게 되면 [terser](https://github.com/terser/terser) 를 이용하여 압축합니다
 
 어떻게 `terser`플러그인이 소스 코드를 최적화 하는지 아래 예시를 통해 확인 할 수 있습니다.
 
