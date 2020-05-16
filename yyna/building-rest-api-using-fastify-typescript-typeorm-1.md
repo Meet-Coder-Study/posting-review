@@ -2,8 +2,6 @@
 
 ## 뭘 만드나
 
----
-
 월요일부터 출근한 새 직장에서 fastify.js 와 PostgreSQL 를 사용하고 있어서 공부를 위해 간단한 프로젝트를 만들어보려 합니다. 🤓
 
 인증된 사용자만 메모를 Create, Read, Update, Delete 할 수 있고 메모를 Create 한 사용자만 해당 메모를 Read, Update, Delete 하는 RESTful API 를 작성해봅시다.
@@ -13,8 +11,6 @@
 프로젝트에 사용된 코드는 [github](https://github.com/yyna/fastify-typescript-typeorm) 에서 확인 가능합니다.
 
 ## 만들어 봅시다
-
----
 
 ### 프로젝트 설정
 
