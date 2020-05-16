@@ -212,7 +212,7 @@ server.listen(+PORT, '0.0.0.0', (err) => {
    npm start 를 통해 다시 서버를 실행합니다. localhost 에서 실행중인 PostgreSQL에 memo 라는 테이블이 생겼습니다. 성공적으로 작동하네요. 👏👏👏
    ![memo table](./image/building-rest-api-using-fastify-typescript-typeorm-1/2.png 'memo table')
 
-5. User 모델 생성하기
+5. User 모델 생성하기  
    위의 Memo 모델에는 Memo 를 소유한 사용자 정보가 없습니다. 사용자 모델을 추가해봅시다.
 
    ```typescript
