@@ -40,16 +40,16 @@
 
    위 명령어를 입력하면 tsconfig.json 이라는 파일이 생깁니다. Model 작성을 위해 아래 표시된 두 옵션만 변경해줍니다.
 
+   ```JSON
+   {
+       "strictPropertyInitialization": false,
+       "experimentalDecorators": true
+   }
+   ```
+
    - experimentalDecorators: ES7 에서 추가된 decorator 를 사용하기 위해 true 로 변경해줍니다.  
      [ES7 decorator 에 관해 참조할만한 블로그](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
    - strictPropertyInitialization: 모델 클래스에선 property에 값을 초기화하지 않기 때문에 false 로 변경해줍니다.
-
-   ```JSON
-   {
-        "strictPropertyInitialization": false,
-        "experimentalDecorators": true
-   }
-   ```
 
 4. package.json 에 start script 추가하기
 
