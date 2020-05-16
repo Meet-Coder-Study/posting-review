@@ -38,7 +38,11 @@
    npx tsc --init
    ```
 
-   위 명령어를 입력하면 tsconfig.json 이라는 파일이 생깁니다. 아래 표시된 두 옵션만 변경해줍니다.
+   위 명령어를 입력하면 tsconfig.json 이라는 파일이 생깁니다. Model 작성을 위해 아래 표시된 두 옵션만 변경해줍니다.
+
+   - experimentalDecorators: ES7 에서 추가된 decorator 를 사용하기 위해 true 로 변경해줍니다.  
+     [ES7 decorator 에 관해 참조할만한 블로그](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
+   - strictPropertyInitialization: 모델 클래스에선 property에 값을 초기화하지 않기 때문에 false 로 변경해줍니다.
 
    ```JSON
    {
@@ -110,10 +114,10 @@ npm start 를 통해 src/index.ts 를 실행 후 브라우저로 localhost:3000 
      content: string;
 
      @CreateDateColumn()
-     created_at: string;
+     created_at: Date;
 
      @UpdateDateColumn()
-     updated_at: string;
+     updated_at: Date;
    }
    ```
 
@@ -297,10 +301,10 @@ server.listen(+PORT, '0.0.0.0', (err) => {
      user: User; // 추가된 부분 ✨
 
      @CreateDateColumn()
-     created_at: string;
+     created_at: Date;
 
      @UpdateDateColumn()
-     updated_at: string;
+     updated_at: Date;
    }
    ```
 
