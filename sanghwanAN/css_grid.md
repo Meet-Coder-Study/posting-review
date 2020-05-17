@@ -136,11 +136,13 @@ display: grid를 처음 접하는 사람들에게 쉽게 이해를 할 수 있�
 ````
 ![gird,float을 적용한 리스트 화면(동일한 결과)](./images/grid03.jpg)    
 
-소스 코드펜에서 확인 하기: [https://codepen.io/sanghwanAN/pen/BaoqGqz](https://codepen.io/sanghwanAN/pen/BaoqGqz){: target="_blank"}  
+아래 링크를 통해서 codepen에서도 확인 가능 합니다.  
+[https://codepen.io/sanghwanAN/pen/BaoqGqz](https://codepen.io/sanghwanAN/pen/BaoqGqz)
 
 지금 포스팅하는 내용은 그리드의 장점중 grid를 사용하면 편한 것에 중점을 두고 포스팅을 하였습니다.
-좀 더 자세한 정보는 아래의 글에서 확인 할 수 있습니다.
+좀 더 자세한 정보는 아래의 글에서 확인 할 수 있습니다.  
 
-[css-그리드-레이아웃을-지금-사용해도-정말-괜찮을까요](https://webactually.com/2017/11/css-%EA%B7%B8%EB%A6%AC%EB%93%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%EC%9D%84-%EC%A7%80%EA%B8%88-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%8F%84-%EC%A0%95%EB%A7%90-%EA%B4%9C%EC%B0%AE%EC%9D%84%EA%B9%8C%EC%9A%94/){: target="_blank"}
+
+[css-그리드-레이아웃을-지금-사용해도-정말-괜찮을까요](https://webactually.com/2017/11/css-%EA%B7%B8%EB%A6%AC%EB%93%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%EC%9D%84-%EC%A7%80%EA%B8%88-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%8F%84-%EC%A0%95%EB%A7%90-%EA%B4%9C%EC%B0%AE%EC%9D%84%EA%B9%8C%EC%9A%94/)
 
 저도 아직 grid의 속성 및 사용법에 대해서 다 숙지를 하지 못한 상태인데 grid에 대해서 하나씩 하나씩 포스팅을 하면서 grid를 숙달 할 계획 입니다.
