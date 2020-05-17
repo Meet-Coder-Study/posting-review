@@ -131,7 +131,8 @@ gird에 대한 속성들은 다음 포스팅에 할 예정이기 때문에 grid 
 ````
 ![gird,float을 적용한 리스트 화면(동일한 결과)](./images/grid03.jpg)    
 
-코드펜 소스 : [코드펜 에서 확인 해보세요](https://codepen.io/sanghwanAN/pen/BaoqGqz)
+코드펜 소스 : [코드펜 에서 확인 해보세요](https://codepen.io/sanghwanAN/pen/BaoqGqz)  
+
 지금 포스팅하는 내용은 그리드의 장점중 grid를 사용하면 편한 것에 중점을 두고 포스팅을 하였습니다.
 좀 더 자세한 정보는 아래의 글에서 확인 할 수 있습니다.
 
