@@ -29,7 +29,7 @@
    - typeorm
    - bcrypt: 회원가입/로그인 기능 구현 시 비밀번호 암호화에 사용합니다.
    ```
-   npm install --save-dev @types/bcrypt @types/node typescript
+   npm install --save-dev @types/bcrypt @types/node typescript ts-node
    ```
    - typescript 사용을 위한 패키지 설치
 3. 타입스크립트 설정 파일 생성
