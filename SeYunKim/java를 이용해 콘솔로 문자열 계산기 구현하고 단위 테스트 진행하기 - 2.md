@@ -150,7 +150,6 @@ class AnswerTest {
 package calculator.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.NoSuchElementException;
 
@@ -174,13 +173,52 @@ class OperationTest {
     void inCorrectOfTest() {
         assertThatThrownBy(() ->Operation.of("=")).isInstanceOf(NoSuchElementException.class);
     }
+
+    @DisplayName("더하기 테스트")
+    @Test
+    void plusTest() {
+        Number one = new Number(1);
+        Number two = new Number(2);
+        Number result = Operation.PLUS.calculate(one, two);
+        assertThat(result.getNumber()).isEqualTo(3);
+    }
+
+    @DisplayName("빼기 테스트")
+    @Test
+    void minusTest() {
+        Number one = new Number(1);
+        Number two = new Number(2);
+        Number result = Operation.MINUS.calculate(two, one);
+        assertThat(result.getNumber()).isEqualTo(1);
+    }
+
+    @DisplayName("곱하기 테스트")
+    @Test
+    void multiplicationTestMULTIPLICATIONTest() {
+        Number one = new Number(1);
+        Number two = new Number(2);
+        Number result = Operation.MULTIPLICATION.calculate(one, two);
+        assertThat(result.getNumber()).isEqualTo(2);
+    }
+
+    @DisplayName("나누기 테스트")
+    @Test
+    void divisionTest() {
+        Number one = new Number(1);
+        Number two = new Number(2);
+        Number result = Operation.DIVISION.calculate(two, one);
+        assertThat(result.getNumber()).isEqualTo(2);
+    }
 }
 ```
 - 위와 동일하게 제대로된 값이 들어왔는지, 또한 제대로 된 값이 아닌 경우 예외를 확인하는 테스트를 작성하였습니다.
+- 추가로 각 연산자에 대한 테스트를 진행하였습니다.
 ![테스트 확인 이미지](images/calculator2-2.PNG)
 
+
 ## 정리 
-- 한번더 강조하지만, 여기서 가장 배워야 할점은 전략패턴 방식인 다형성을 이용한 enum 구현입니다.
+- 한번더 강조 하지만, 여기서 가장 배워야 할점은 전략패턴 방식인 다형성을 이용한 enum 구현입니다.
 - 사칙연산에 따라서 각각의 패턴을 가지고 있고 그에 맞춰 전략을 구현합니다.
 - 손쉽게 단위 테스트를 할 수 있는 예제인 것 같습니다.
 - 아직 설계에 대해서나, 테스트에 대해서 부족한 부분이 많지만 계속 배워갈 예정입니다.
+- TDD를 익히기 전에 한 번 해보시면 좋으실꺼 같습니다!
