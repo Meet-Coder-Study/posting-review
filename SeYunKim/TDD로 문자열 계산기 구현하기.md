@@ -33,34 +33,34 @@ public class Number {
 - [참고링크](https://www.slipp.net/questions/566)
 
 ```java
-package domain;
+package calculator.domain;
 
 import java.util.function.BiFunction;
 
 public enum Operation {
 	PLUS("+",
-		(operator, operand) -> new Number(operator.getNumber() + operand.getNumber())),
+		(operand1, operand2) -> new calculator.domain.Number(operand1.getNumber() + operand2.getNumber())),
 	MINUS("-",
-		(operator, operand) -> new Number(operator.getNumber() - operand.getNumber())),
+		(operand1, operand2) -> new calculator.domain.Number(operand1.getNumber() - operand2.getNumber())),
 	MULTIPLICATION("*",
-		(operator, operand) -> new Number(operator.getNumber() * operand.getNumber())),
+		(operand1, operand2) -> new calculator.domain.Number(operand1.getNumber() * operand2.getNumber())),
 	DIVISION("/",
-		(operator, operand) -> new Number(operator.getNumber() / operand.getNumber()));
+		(operand1, operand2) -> new calculator.domain.Number(operand1.getNumber() / operand2.getNumber()));
 
 	private String symbol;
-	private BiFunction<Number, Number, Number> calculator;
+	private BiFunction<calculator.domain.Number, calculator.domain.Number, calculator.domain.Number> calculator;
 
-	Operation(String symbol, BiFunction<Number, Number, Number> calculator) {
+	Operation(String symbol, BiFunction<calculator.domain.Number, calculator.domain.Number, calculator.domain.Number> calculator) {
 		this.symbol = symbol;
 		this.calculator = calculator;
 	}
 
-	public Number calculate(Number operator, Number operand) {
-		return calculator.apply(operator, operand);
-	}
-
 	public String getSymbol() {
 		return symbol;
+	}
+
+	public calculator.domain.Number calculate(calculator.domain.Number operator, calculator.domain.Number operand) {
+		return calculator.apply(operator, operand);
 	}
 }
 ```
@@ -68,9 +68,10 @@ public enum Operation {
 ## InputView Class
 
 - 콘솔에서 입력을 받기 위해서 InputView를 구현했습니다.
-- 사실 View와 Controller 통신은 `DTO`로 하는 것이 좋지만, 콘솔이면서 간단한 문자열 계산기 이기 떄문에 String을 바로 리턴하겠습니다.
+- 사실 View와 Controller 통신은 `DTO`로 하는 것이 좋지만, 콘솔이면서 간단한 문자열 계산기 이기 때문에 String을 바로 리턴하겠습니다.
 - 여기서 잠시, inputRestart 메서드는 `y`와 `n`이라는 값만 들어와야 합니다.
 - 따라서 Validation을 해줘야 할텐데, 그 부분은 `enum`으로 관리한다면 쉽게 할 수 있습니다.
+- `enum`으로 YES(y)와 NO(n)을 가지고 있다면 그 값 외에 다른 값이 들어오면 예외를 던지도록 하면 Validation이 가능합니다.
 
 ````java
 package calculator.view;
@@ -139,6 +140,11 @@ public enum Answer {
     }
 }
 ````
+
+- `of()` 메서드에서 사용한 Stream에 대해서만 간단하게 설명하도록 하겠습니다.
+- filter를 이용해 Answer에 있는 값과 입력값과 비교해 찾습니다.(toLowerCase()를 준 이유는 대소문자 구분 없이 입력을 받기 위함입니다.)
+- findFirst()는 찾은 값 중에 첫번쨰 값을 반환한다는 의미입니다. 이때 주의해야 할 것은 `Optional`이 나온다는 점입니다.
+- 따라서 `orElesThrow()`를 이용해 값이 없다면 예외를 던집니다.
 
 ## OutPutView Class
 - 계산식을 입력을 안내하는 메서드
