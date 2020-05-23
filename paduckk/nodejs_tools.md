@@ -67,7 +67,7 @@ img태그에 src속성에 이미지 리소스 URL이 있고 이미지 태그들�
 ```jsx
 const puppeteer = require("puppeteer");
 
-(async () => {
+const monjaCrawler = async () => {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: { width: 1100, height: 1500 },
@@ -82,7 +82,9 @@ const puppeteer = require("puppeteer");
   );
 
   console.log(urls);
-})();
+}
+
+mongjaCrawler()
 ```
 
 DOM을 선택후 url만 빼내는 코드를 추가하였습니다
@@ -107,11 +109,26 @@ DOM을 선택후 url만 빼내는 코드를 추가하였습니다
 하단의 함수를 추가하여 url로 해당 사진을 내 컴퓨터로 다운 받을 수 있습니다.
 
 ```jsx
-for (const url of urls) {
+const monjaCrawler = async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: { width: 1100, height: 1500 },
+  });
+  const page = await browser.newPage();
+  await page.goto("https://www.instagram.com/mongja0408/", {
+    waitUntil: "networkidle2",
+  });
+
+  const urls = await page.$$eval(".FFVAD", (nodes) =>
+    nodes.slice(0, 10).map((n) => n.src)
+  );
+
+  for (const url of urls) {
     const viewSource = await page.goto(url);
     const buffer = await viewSource.buffer();
     fs.writeFileSync(`./monja_${new Date().getTime()}.png`, buffer);
-}
+  }
+};
 ```
 
 ![images/untitled_2.png](images/untitled_2.png)
@@ -160,7 +177,7 @@ cron syntax의 설명입니다. cron syntax는 6자리 또는 5자리(초가 제
 - 12월 중 13,14,15일만 15시에 실행
 
 ```jsx
-0 0 15 13-15 12 0
+0 0 15 13-15 12 *
 ```
 
 cron syntax를 알았다면 `cron` 라이브러리를 사용 할 준비가 끝났습니다.
