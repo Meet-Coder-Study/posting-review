@@ -160,7 +160,7 @@ const isNotYellowColorFruits = removeItem(fruits, 'banana') // ['melon']
 // fruits도 ['melon']
 ```
 
-- 원본 `fruits` 배열이 변경 된다. `const`를 사용해 만들어서 변경되지 않을거라고 생각되었지만 항상 그렇지는 않다.
+- 원본 `fruits` 배열이 변경 된다. `const`를 사용해 만들어서 변경되지 않을거라고 생각되었지만 항상 그렇지 않다.
 - `slice`를 사용해보자. 원본 배열을 변경하지 않고 배열의 일부를 반환한다.
 
 
