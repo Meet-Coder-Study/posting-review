@@ -146,12 +146,10 @@ display: grid를 처음 접하는 사람들에게 쉽게 이해를 할 수 있�
 
 ![gird,float를 브라우저 창을 줄였을때 모습 비교](./images/grid04.gif)
 
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sanghwanAN" data-slug-hash="BaoqGqz" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="float으로 만든 리스트 와 grid로 만드 리스트 css 비교">
-  <span>See the Pen <a href="https://codepen.io/sanghwanAN/pen/BaoqGqz">
-  float으로 만든 리스트 와 grid로 만드 리스트 css 비교</a> by sanghwanAN (<a href="https://codepen.io/sanghwanAN">@sanghwanAN</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<iframe height="323" style="width: 100%;" scrolling="no" title="float으로 만든 리스트 와 grid로 만드 리스트 css 비교" src="https://codepen.io/sanghwanAN/embed/BaoqGqz?height=323&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/sanghwanAN/pen/BaoqGqz'>float으로 만든 리스트 와 grid로 만드 리스트 css 비교</a> by sanghwanAN
+  (<a href='https://codepen.io/sanghwanAN'>@sanghwanAN</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 아래 링크를 통해서 codepen에서도 확인 가능 합니다.  
 [https://codepen.io/sanghwanAN/pen/BaoqGqz](https://codepen.io/sanghwanAN/pen/BaoqGqz)
