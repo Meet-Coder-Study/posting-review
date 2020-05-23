@@ -36,7 +36,8 @@ npm install puppeteer
 ```jsx
 const puppeteer = require("puppeteer");
 
-const browser = await puppeteer.launch({
+const monjaCrawler = async () => {
+  const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: { width: 1100, height: 1500 },
   });
@@ -44,7 +45,9 @@ const browser = await puppeteer.launch({
   await page.goto("https://www.instagram.com/mongja0408/", {
     waitUntil: "networkidle2",
   });
-})();
+}
+
+mongjaCrawler()
 ```
 
 `puppeteer.launch` 브라우저 객체를 반환 하는 함수 입니다. 인자로 설정값을 넣어 줄 수 있습니다. `headless`는 옵션은 `false`로 지정하고 `viewport` 사이즈를 지정하는 등 여러가지 옵션을 지정 할 수 있습니다. 
