@@ -20,6 +20,10 @@ alphabetizeTeam(team);(3) // ["Kim", "Lee", "Son"]
 ```
 
 - `map(), filter(), reduce()`등의 배열 메서드를 이용하면 코드 한줄로 정보를 변경하거나 갱신할 수 있다.
+  - map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환합니다.
+  - filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환합니다.
+  - reduce() 메서드는 배열의 각 요소에 대해 주어진 리듀서(reducer) 함수를 실행하고, 하나의 결과값을 반환합니다.
+  
 ****
 ``` javascript
 const staff = [{
@@ -62,20 +66,26 @@ for (let i = 0;  i < stats.length; i++) {
     total[stat] = game1[stat] + game2[stat]
   }
 }
+
+consoel.log(total
+// {goal: 3, pass: 306, errors: 1}
 ```
 
 - 배열에 이터러블(`iterable`)이 내장되어 있다. 간단히 말해 컬렉션의 현재 위치를 알고 있는 상태에서 컬렉션의 항목을 한 번에 하나씩 처리하는 방법이다. (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols)
 - 배열을 특별한 컬렉션으로 쉽게 변환하거나 다시 배열로 만들 수 있다.
-- 다음 코드는 객체를 키-값 쌍을 모은 배열로 바꿨다. 실제로 키-값 쌍을 사용해 맵 객체와 배열간의 데이터를 변화 한다.(`Object.entries()` - (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/entries))
+- 키-값 저장소와 동일한 개념을 2차원 배열로 설명할 수 있다. 내부의 배열은 두 가지 항목만 갖는다. 첫번째 항목은 키, 두번째 항목은 값이다.
 
 ``` javascript
 const dog = {
   name: 'Binhee',
   color: 'brown',
 };
-
 dog.name; // Binhee
+```
 
+- 다음 코드는 객체를 키-값 쌍을 모은 배열로 바꿨다. 실제로 키-값 쌍을 사용해 맵 객체와 배열간의 데이터를 변화 한다.(`Object.entries()` - (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/entries))
+
+``` javascript
 const dogPair = [['name','Binhee'],['color','brown']];
 function getName(dog) {
   return dog.find(attribute => {
@@ -92,7 +102,7 @@ function getName(dog) {
 const sections = ['shipping'];
 
 function displayShipping(sections) {
-  if (sections.indexOf('shipping')) { // 0 를 빤환하므로 false로 실행된다.
+  if (sections.indexOf('shipping')) { // 0 를 반환하므로 false로 실행된다.
     return true;
   }
   return false;
@@ -183,7 +193,7 @@ function removeItem(items, removable) {
 
 - 위에 코드보다 간결하고 재사용할 수 있으며 예측이 가능하다.(전 비슷한듯....)
 - 또한 펼침 연산자를 사용하면 배열의 항목을 쉽게 꺼내 인수 목록을 쉽게 사용이 가능하다.
-- 인수, 인자 차이(https://amagrammer91.tistory.com/9)
+- [인수, 인자 차이](https://amagrammer91.tistory.com/9)
 
 ``` javascript
 const book = ['Reasons and Persons', 'Derek Parfit', 19.99];
@@ -368,7 +378,11 @@ const sortByName = (a, b) => {
 }
 ```
 
-- `sort()` 메서드에 관한 내용은 문서(https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 살펴보기
+- [`sort()` 메서드에 관한 내용은 문서](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+  - compareFunction(a, b)이 0보다 작은 경우 a를 b보다 낮은 색인으로 정렬합니다. 즉, a가 먼저옵니다.
+  - compareFunction(a, b)이 0을 반환하면 a와 b를 서로에 대해 변경하지 않고 모든 다른 요소에 대해 정렬합니다. 참고 : ECMAscript 표준은 이러한 동작을 보장하지 않으므로 모든 브라우저(예 : Mozilla 버전은 적어도 2003 년 이후 버전 임)가 이를 존중하지는 않습니다.
+  - compareFunction(a, b)이 0보다 큰 경우, b를 a보다 낮은 인덱스로 소트합니다.
+  - compareFunction(a, b)은 요소 a와 b의 특정 쌍이 두 개의 인수로 주어질 때 항상 동일한 값을 반환해야합니다. 일치하지 않는 결과가 반환되면 정렬 순서는 정의되지 않습니다.
 
 - 맨 처음 정렬을 근속 연수로 했을 경우이다.
 
