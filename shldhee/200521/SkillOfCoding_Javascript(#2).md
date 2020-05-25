@@ -422,4 +422,3 @@ staff.sort(sortByYears);
 
 //   {name: "Thoe", years: 5} {name: "Joe", years: 10} {name: "Dyan", years: 10}
 ```
-
