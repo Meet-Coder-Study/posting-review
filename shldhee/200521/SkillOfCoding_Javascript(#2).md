@@ -183,7 +183,7 @@ function removeItem(items, removable) {
 
 - 위에 코드보다 간결하고 재사용할 수 있으며 예측이 가능하다.(전 비슷한듯....)
 - 또한 펼침 연산자를 사용하면 배열의 항목을 쉽게 꺼내 인수 목록을 쉽게 사용이 가능하다.
-- 인수, 인자 차이(https://amagrammer91.tistory.com/9)
+- [인수, 인자 차이](https://amagrammer91.tistory.com/9)
 
 ``` javascript
 const book = ['Reasons and Persons', 'Derek Parfit', 19.99];
@@ -408,4 +408,3 @@ staff.sort(sortByYears);
 
 //   {name: "Thoe", years: 5} {name: "Joe", years: 10} {name: "Dyan", years: 10}
 ```
-
