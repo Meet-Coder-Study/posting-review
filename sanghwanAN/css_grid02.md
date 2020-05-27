@@ -4,7 +4,7 @@
 
 grid 속성에 대한 포스팅에 앞서 CSS 그리드 레이아웃은 2017년 3월에 크롬, 파이어폭스, 오페라, 사파리에 탑재되었습니다.
 
-참고 site : <https://webactually.com/2017/11/css-%EA%B7%B8%EB%A6%AC%EB%93%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%EC%9D%84-%EC%A7%80%EA%B8%88-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%8F%84-%EC%A0%95%EB%A7%90-%EA%B4%9C%EC%B0%AE%EC%9D%84%EA%B9%8C%EC%9A%94/>
+참고 site : <https://webactually.com/2017/11/css-그리드-레이아웃을-지금-사용해도-정말-괜찮을까요/>
 
 그리고 번외로 **flex**와 **grid** 둘 중에 **어떤게 먼저** 나왔는지 궁금해 하시는 분들도 있을것 같아서 **www.w3.org**에 확인을 해봤는데 자세한 내용은 아래와 같습니다.
 
