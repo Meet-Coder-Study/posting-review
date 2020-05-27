@@ -19,9 +19,9 @@ WIT블로그(**W3C 표준화 제정 단계 보는 법**) : <https://wit.nts-corp
 ## 03.grid 브라우저 지원
 
 브라우저 지원은 can i use에서 확인을 해보면 **지금 포스팅을 하는 시점**에서는
-다음과 같습니다.(주요 브라우저만 캡쳐 하였고 더 자세히 알고 싶으시면
+다음과 같습니다.  
+(주요 브라우저만 캡쳐 하였고 더 자세히 알고 싶으시면 **can i use** : <https://caniuse.com/#search=grid/> 에서 확인 할 수 있습니다.)
 
-**can i use** : <https://caniuse.com/#search=grid/> 에서 확인 할 수 있습니다.)
 ![그리드 예시 이미지02](./images/grid06_caniuse.jpg)
 
 css Grid Layout(level1)은 ie10, ie11 브라우저에서도 사용 가능 하다고 나오네요,
