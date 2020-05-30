@@ -37,14 +37,13 @@ css Grid Layout(level1)은 ie10, ie11 브라우저에서도 사용 가능 하다
 
 윗 글에서 can i use 캡쳐 화면 중에 Subgrid 지원 브라우저 캡쳐 화면이 있는데, Subgrid가 무엇인지 몰라서 검색을 해 봤습니다. 몰랐던 분들도 이번기회에 grid 관련 용어를 알고 있어도 좋을 것 같습니다.
 
-아래의 사이트 내용을 정리 하였습니다.
-
-저는 subgrid에 대해서 직관적으로 읽으면 바로 이해 할수 있도록 정리를 하였지만 css 레벨(버젼)에 대한 정보나 subgrid에 대한 기능과 추가 자세한 정보를 확인 하시려면 아래에 사이트를 추천 합니다.
+저는 subgrid에 대해서 직관적으로 읽으면 바로 이해 하는 것에 목적을 두고 포스팅을 하겠습니다.  
+추가적으로 css 레벨(버젼)에 대한 정보나 subgrid에 대한 기능과 자세한 정보를 확인 하시려면 아래에 사이트를 추천 합니다.
 
 **Subgrid 참고 사이트1 - CSS 그리드 레벨2: 서브그리드** : <https://webactually.com/2018/08/css-그리드-레벨2-서브그리드-2/>  
 **Subgrid 참고 사이트2 - MDN** : <https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column/>
 
-요점만 말하면 Subgrid는 grid에 새로운 기능 입니다.
+**요점**만 말하면 **Subgrid는 grid에 새로운 기능** 입니다.
 
 현재 웹브라우저에서 사용 할 수 있는 그리드 기능은 CSS **그리드 명세 레벨1** : <https://www.w3.org/TR/css-grid-1/#intro>에 기반 합니다.
 
