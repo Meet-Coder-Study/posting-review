@@ -82,6 +82,527 @@
 
 - - -
 
+### 변화에 유연한 코드를 작성하는 연습 (오브젝트 저서 참고)
+ 간단하게 마켓에서 물건을 구입하면 회원의 등급에 따라 포인트를 적립해주는 기능을 구현해보겠습니다.
+ 회원의 등급은 PLATINUM, GOLD, SILVER 등급이 있습니다.  
+ * PLATINUM 적립률 : 20%
+ * GOLD 적립률 : 10%
+ * SILVER 적립률 : 5%
+ 
+우선 금액을 계산하기 위한 Money 클래스를 아래와 같이 작성했습니다. 편의상 사용자의 포인트와 같이 사용하도록 구현하려고 합니다.
+#### Money.class
+
+```java
+public class Money {
+
+    public static final Money ZERO = Money.wons(0);
+
+    private int amount;
+
+    private Money(int amount) {
+        this.amount = amount;
+    }
+
+    public static Money wons(int amount) {
+        return new Money(amount);
+    }
+
+    public Money plus(Money money) {
+        return new Money(this.amount + money.amount);
+    }
+
+    public Money minus(Money money) {
+        return new Money(this.amount - money.amount);
+    }
+
+    public Money times(double percent) {
+        return new Money((int) (this.amount * percent));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Money)) {
+            return false;
+        }
+
+        Money other = (Money) obj;
+        return this.amount == other.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + amount;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{ amount : %d }", amount);
+    }
+}
+```
+
+<br/>
+
+ 다음은 고객의 등급을 나타내는 Rank 클래스이며, Enum Type 으로 작성하였습니다.
+
+#### Rank.class
+```java
+public enum Rank {
+    PLATINUM, GOLD, SILVER
+}
+```
+
+<br/>
+
+ 고객을 나타내는 Customer 클래스입니다.
+ 
+#### Customer.class
+```java
+public class Customer {
+
+    private String name;
+    private Rank rank;
+    private Money point;
+
+    public Customer(String name, Rank rank) {
+        this.name = name;
+        this.rank = rank;
+        this.point = Money.ZERO;
+    }
+
+    public Customer(String name, Rank rank, Money point) {
+        this.name = name;
+        this.rank = rank;
+        this.point = point;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void savePoint(Money point) {
+        this.point = this.point.plus(point);
+    }
+}
+```
+
+<br/>
+
+ 제품을 나타내는 Product 클래스이며 간단하게 제품명, 가격만 속성을 갖습니다.
+ 
+#### Product.class
+```java
+public class Product {
+
+    private String name;
+    private Money price;
+
+    public Product(String name, Money price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public Money calculatePrice(int quantity) {
+        return price.times(quantity);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+}
+```
+
+<br/>
+
+ 물건을 구매하고 받는 영수증을 나타내는 Receipt 클래스입니다.
+
+#### Receipt.class
+```java
+public class Receipt {
+
+    private final String buyerName;
+    private final String productName;
+    private final Money price;
+    private final int purchaseQuantity;
+    private final Money totalPrice;
+    private final Money savedPoint;
+    private final LocalDateTime purchaseDateTime;
+
+    public Receipt(String buyerName,
+                   String productName,
+                   Money price,
+                   int purchaseQuantity,
+                   Money totalPrice,
+                   Money savedPoint) {
+        this.buyerName = buyerName;
+        this.productName = productName;
+        this.price = price;
+        this.purchaseQuantity = purchaseQuantity;
+        this.totalPrice = totalPrice;
+        this.savedPoint = savedPoint;
+        this.purchaseDateTime = LocalDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Receipt)) {
+            return false;
+        }
+
+        Receipt other = (Receipt) obj;
+
+        return buyerName.equals(other.buyerName)
+                && productName.equals(other.productName)
+                && price == other.price
+                && purchaseQuantity == other.purchaseQuantity
+                && totalPrice.equals(other.totalPrice)
+                && savedPoint.equals(other.savedPoint)
+                && purchaseDateTime.equals(other.purchaseDateTime);
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public int getPurchaseQuantity() {
+        return purchaseQuantity;
+    }
+
+    public Money getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Money getSavedPoint() {
+        return savedPoint;
+    }
+
+    public LocalDateTime getPurchaseDateTime() {
+        return purchaseDateTime;
+    }
+}
+```
+
+<br/>
+
+ 물건을 구입할 수 있도록 도와주는 Market 에 대한 클래스입니다. 리턴 값으로 영수증을 나타내는 Receipt 클래스를 반환합니다.
+
+#### Market.class
+```java
+public class Market {
+    public Receipt buy(Product product, Customer customer, int quantity) {
+        Money totalPrice = product.calculatePrice(quantity);
+        Money savedPoint = calculateSavingPoint(customer, totalPrice);
+        customer.savePoint(savedPoint);
+
+        return new Receipt(
+                customer.getName(),
+                product.getName(),
+                product.getPrice(),
+                quantity,
+                totalPrice,
+                savedPoint
+        );
+    }
+
+    private Money calculateSavingPoint(Customer customer, Money totalPrice) {
+        Rank customerRank = customer.getRank();
+
+        if (Rank.PLATINUM.equals(customerRank)) {
+            return totalPrice.times(0.2);
+        } else if (Rank.GOLD.equals(customerRank)) {
+            return totalPrice.times(0.1);
+        } else {
+            return totalPrice.times(0.05);
+        }
+    }
+}
+```
+
+ 여기서 주목해야할 부분은 Market 클래스에서 수행되는 calculateSavingPoint() 클래스입니다. 해당 메서드를 보면 if, else if 조건 분기를 통해 회원에게 
+ 적립할 포인트를 계산하고 있습니다. 이렇게 여러 조건문을 통해 분기하는 로직이 들어가면 하나의 클래스가 너무 많은 책임을 수행하고 있지는 않은지 의심해 보아야합니다. 
+ 현재 구현된 내용은 Market 클래스가 적립금에 대해 **어떻게** 계산되는지에 대해 구체적인 내용을 알고 있습니다. 이는 변경사항에 대해 취약한 구조가 될 수 있습니다.  
+ 만약 새로운 정책이 추가되어 주말에는 추가로 500원의 적립금을 적립해준다는 변경사항이 생겼다고 해보겠습니다. 이러한 변경사항을 수용하기 위해서는 Market 클래스에 수정이 이루어져야 합니다.
+ 
+ <br/>
+ 
+ #### OCP 원칙 (Open-Closed Principal)
+ 기능의 확장에는 열려있고, 변경에는 닫혀있어야 한다는 객체지향 원칙.  
+ OCP 원칙에 따라 변하는 개념과 변하지 않는 개념을 분리하면 Market 클래스는 적립금 계산에 대해 조금 더 자유로워 질 수 있습니다.
+ 
+<br/>
+ 
+* 변하지 않는 부분 : Market 에서 구입한 물건의 가격에 대해 적립금을 계산한다.
+* 변하는 부분 : 구입 금액에 대한 적립금을 계산하는 방법
+
+ 행위를 기반을 객체의 책임과 역할을 구별하고, 적절한 책임을 수행할 수 있는 정보 전문가(객체)에게 자신이 원하는 동작을 수행해줄 것을 요청(위임)해야합니다.  
+ 이제 Market 클래스가 수행하고 있는 역할(적립금을 계산하는 방법)을 분리해보겠습니다.
+ 
+<br/>
+
+#### SavingPointPolicy
+```java
+public interface SavingPointPolicy {
+
+    Money calculateSavingPoint(Money totalPrice, Customer customer);
+}
+```
+ SavingPointPolicy 인터페이스는 적립금을 계산하는 역할을 수행합니다. 이 인터페이스를 구현하는 클래스는 적립금을 어떻게 계산할지에 대해 알고 있습니다.  
+ 아래는 SavingPointPolicy 인터페이스를 구현하였고, 회원의 등급에 따라 적립금을 계산하는 책임을 가지고 있습니다.
+ 
+<br/>
+
+#### RankBasedSavingPolicy
+```java
+public class RankBasedSavingPointPolicy implements SavingPointPolicy {
+
+    @Override
+    public Money calculateSavingPoint(Money totalPrice, Customer customer) {
+
+        double savingRate = getCustomerSavingPointRate(customer);
+
+        return totalPrice.times(savingRate);
+    }
+
+    private double getCustomerSavingPointRate(Customer customer) {
+        return Arrays.stream(Rank.values())
+                .filter(customer::isSatisfiedRank)
+                .findFirst()
+                .orElseThrow(RuntimeException::new)
+                .getSavingRate();
+    }
+}
+```
+
+ 부가적으로 if else 문을 제거하기 위해 Rank Enum 타입에서 각 등급이 얼마만큼의 적립률을 가지고 있는지 알고 있도록 rate: double 속성을 추가하였습니다.
+<br/>
+
+#### Rank
+
+```java
+public enum Rank {
+    PLATINUM(0.2),
+    GOLD(0.1),
+    SILVER(0.05);
+
+    private double rate;
+
+    Rank(double rate) {
+        this.rate = rate;
+    }
+
+    public double getSavingRate() {
+        return rate;
+    }
+}
+```
+
+ 이제 이렇게 변경된 클래스들을 기반으로 변경된 Market 클래스를 보겠습니다.
+ 
+<br/>
+
+#### Market
+
+```java
+public class Market {
+
+    private SavingPointPolicy savingPointPolicy;
+
+    public Market(SavingPointPolicy savingPointPolicy) {
+        this.savingPointPolicy = savingPointPolicy;
+    }
+
+    public Receipt buy(Product product, Customer customer, int quantity) {
+        Money totalPrice = product.calculatePrice(quantity);
+        Money savedPoint = calculateSavingPoint(totalPrice, customer);
+        customer.savePoint(savedPoint);
+
+        return new Receipt(
+                customer.getName(),
+                product.getName(),
+                product.getPrice(),
+                quantity,
+                totalPrice,
+                savedPoint
+        );
+    }
+
+    private Money calculateSavingPoint(Money totalPrice, Customer customer) {
+        return savingPointPolicy.calculateSavingPoint(totalPrice, customer);
+    }
+}
+```
+
+ Market 클래스를 보면 프로퍼티로 SavingPointPolicy 인터페이스를 가지고 있고, 생성자 주입을 통해 인스턴스를 주입받습니다.  
+ 아까와는 다르게 calculateSavingPoint() 메서드는 더이상 적립률에 대해 알고있지 않고, 적립금을 계산할 것을 SavingPointPolicy 인터페이스에게 위임하고 있습니다. 
+ 이제 Market 클래스는 적립금을 계산하는 방법에 대해서 관여하지 않기 때문에 적립금을 계산하는 방법에 대해 얼마든지 수정할 수 있게 되었습니다. 다음은 테스트 코드입니다.
+ 
+<br/>
+
+```java
+class MarketTest {
+
+    @Test
+    @DisplayName("등급별 포인트 적립")
+    public void rankBasedSavePointTest() {
+        //given
+        Customer customer = new Customer("leafy", Rank.PLATINUM);
+        Product product = new Product("고무오리", Money.wons(1000));
+        Market market = new Market(new RankBasedSavingPointPolicy());
+
+        //when
+        Receipt receipt = market.buy(product, customer, 10);
+
+        //then
+        assertEquals(Money.wons(2000), receipt.getSavedPoint());
+    }
+}
+```
+ 위의 테스트를 통해 원하는 정책을 수행하는 클래스를 생성자 주입하였고, 원하는대로 동작이 수행됨을 확인할 수 있습니다.
+
+<br/>
+
+#### 새로운 정책 추가..
+ 이제 새로운 정책을 추가하여, 기존의 등급별 적립금 계산 정책에서 주말에 구매하는 고객에 대해 500원의 추가 적립금을 더 적립해주는 정책이 생겼다고 가정해보겠습니다.  
+ 여기서는 RankBasedSavingPolicy 클래스를 상속하여 접근할 수도 있지만 이는 부모 클래스에 대해 강한 결합이 생기게 되므로 합성 관계를 통해 문제를 해결하는 코드를 작성해보겠습니다.  
+ 추가된 변경 사항은 기존의 정책에 수행된 이후에 후처리하는 정책이므로 이를 수행하는 또다른 역할의 객체를 작성합니다.
+ 
+<br/>
+
+#### SavingPointAfterPolicy
+```java
+public abstract class SavingPointAfterPolicy implements SavingPointPolicy {
+
+    private SavingPointPolicy prev;
+
+    public SavingPointAfterPolicy(SavingPointPolicy prev) {
+        this.prev = prev;
+    }
+
+    @Override
+    public Money calculateSavingPoint(Money totalPrice, Customer customer) {
+        Money point = prev.calculateSavingPoint(totalPrice, customer);
+        Money afterAddedPoint = afterPointProcess(totalPrice);
+
+        return point.plus(afterAddedPoint);
+    }
+
+    abstract protected Money afterPointProcess(Money totalPrice);
+}
+```
+
+ 위의 추상 클래스는 적립금을 계산하는 정책을 그대로 수행하고, 그 이후에 후처리로 적립금을 계산하는 정책을 수행합니다. 후처리 정책은 추상화하여 방법에 대해서는 서브타입이 구체적으로 구현하도록 하였습니다.
+ 
+<br/>
+
+#### WeekSavingPointAfterPolicy
+```java
+public class WeekSavingPointAfterPolicy extends SavingPointAfterPolicy {
+
+    public WeekSavingPointAfterPolicy(SavingPointPolicy prev) {
+        super(prev);
+    }
+
+    @Override
+    protected Money afterPointProcess(Money totalPrice) {
+        if (todayIsWeekend()) {
+            return Money.wons(500);
+        }
+
+        return Money.ZERO;
+    }
+
+    private boolean todayIsWeekend() {
+        LocalDate currentDate = LocalDate.now();
+
+        DayOfWeek today = currentDate.getDayOfWeek();
+
+        return today.equals(DayOfWeek.SATURDAY) || today.equals(DayOfWeek.SUNDAY);
+    }
+}
+```
+
+ SavingPointAfterPolicy 추상 클래스를 상속하는 구체 클래스입니다. 해당 클래스는 오늘이 주말인지 확인하고 주말이라면 500 원의 추가 적립금을, 아니라면 0원을 반환합니다.
+ 
+<br/>
+
+```java
+class MarketTest {
+
+    @Test
+    @DisplayName("등급별 포인트 적립")
+    public void rankBasedSavePointTest() {
+        //given
+        Customer customer = new Customer("leafy", Rank.PLATINUM);
+        Product product = new Product("고무오리", Money.wons(1000));
+        Market market = new Market(new RankBasedSavingPointPolicy());
+
+        //when
+        Receipt receipt = market.buy(product, customer, 10);
+
+        //then
+        assertEquals(Money.wons(2000), receipt.getSavedPoint());
+    }
+
+    @Test
+    @DisplayName("추가 포인트 적립 테스트")
+    public void afterProcessTest() {
+        //given
+        Customer customer = new Customer("leafy", Rank.PLATINUM);
+        Product product = new Product("고무오리", Money.wons(1000));
+        Market market = new Market(
+                new WeekSavingPointAfterPolicy(
+                        new RankBasedSavingPointPolicy()
+                )
+        );
+
+        //when
+        Receipt receipt = market.buy(product, customer, 10);
+
+        //then
+        assertEquals(Money.wons(2500), receipt.getSavedPoint());
+    }
+}
+```
+ 추가적으로 작성한 테스트 코드를 보면 정책들을 연쇄적으로 수행할 수 있게 되었고, 원하는대로 동작을 수행하고 있음을 확인할 수 있습니다.
+ 
+<br/>
+
+### 주의 사항!
+ 위 테스트 코드는 WeekSavingPointAfterPolicy 에서 수행되는 아래의 코드에 포함된 "LocalDate.now()"로 인해 현재 날짜가 주말인 경우에만 테스트를 통과합니다.
+ 
+```java
+    private boolean todayIsWeekend() {
+        LocalDate currentDate = LocalDate.now();
+
+        DayOfWeek today = currentDate.getDayOfWeek();
+
+        return today.equals(DayOfWeek.SATURDAY) || today.equals(DayOfWeek.SUNDAY);
+    }
+```
+
+ 즉, 평일에 수행될 때와 주말에 수행될 때의 테스트 결과가 다르게 나타나게 됩니다. 테스트 코드는 언제 수행하든 같은 결과를 만들어내는 것이 좋다고 합니다.  
+ 이를 개선하기 위해서는 WeekSavingPointAfterPolicy 에서 구현하고 있는 인터페이스의 메서드에서 구매에 대한 정보를 가진 객체를 설계하고 인자로 받도록 하여 메서드를 작성하는 방법을 생각해볼 수 있을 것 같습니다.
+
+- - -
+
 #### 참고자료
 
 ![Clean Architecture](./images/clean_architecture.jpg)
