@@ -10,6 +10,9 @@ grid 속성에 대한 포스팅에 앞서 CSS 그리드 레이아웃은 2017년 
 
 ![grid, felx 의 Recommendation 비교 ](./images/grid05_recommendation.jpg)
 
+**w3c-플렉스 :** <https://www.w3.org/TR/css-flexbox-1/>  
+**w3c-그리드 :** <https://www.w3.org/TR/css-grid-1/>
+
 **grid**가 flex 보다 먼저 **Recommendation을 공개** 하였네요.
 
 W3C 표준화 제정 단계 보는 법은 아래의 블로그를 참고 바랍니다.
