@@ -459,32 +459,273 @@ filters.entries();
 
 - 이터레이터는 키-값 쌍을 넘겨준다.
 - `entries()`는 키-값 쌍으로 묶은 맵이터레이터를 반환한다.
-- 
-
-
-
-``` javascript
-
-``` 
+- 이제 `for`문을 이용해서 키-값을 문자열로 변환하는 메서드로 돌아가자. 
+- 맵은 직접 순회 가능하므로 키를 먼저 꺼낼 필요가 없고, 해체 할당 문법으로 즉시 변수로 할당 할 수 있다.
 
 
 ``` javascript
+function getAppliedFilters(filters) {
+  const applied = [];
+  for ( const [key, value] of filters ) {
+    applied.push(`${key}:${value}`);
+  }
+  return `선택한 조건은 ${applied.join(', ')} 입니다.`;
+}
+
+getAppliedFilters(filters);
 ``` 
+
+- 앞선 경험한 정렬 문제가 여기서도 발생한다.
+- 좋은 점은 맵이 순서를 저장해 항상 맵의 첫 번째 항목을 첫 번째로 받는다.
+- 나쁜 점은 배열 메서드처럼 `sort()` 메서드가 없다.
+- 이 문제는 맵에도 배열과 동일하게 사용할 수 있는 펼침연산자를 통해 해결할 수 있다.
+
 ``` javascript
-``` 
+[...filters];
+// [["색상", "검정색"], ["견종", "래브라도리트리버"]]
+```
+
+- 위 코드를 통해 배열의 배열을 정렬하면 됩니다. 그럼, 아래와 같은 코드로 작성했을 가능성이 큽니다.
+
 ``` javascript
+function sortByKey(a, b) {
+  return a[0] > b[0] ? 1 : -1;
+}
+
+function getSortedAppliedFilters(filters) {
+  const applied = [];
+  for (const [key, value] of [...filters].sort(sortByKey)) {
+    applied.push(`${key}:${value}`);
+  }
+  return `선택한 조건은 ${applied.join(', ')} 입니다.`;
+}
+
+getSortedAppliedFilters(filters);
+// "선택한 조건은 견종:래브라도리트리버, 색상:검정색 입니다."
 ``` 
+
+- 위 코드에 사소한 문제점은 맵으로 시작했지만 실제 `for`문이 실제로 순회하는 것은 맵이 아닌 새로운 배열이다.(큰 문제는 아님)
+- 이걸로 맵을 배열로 변환해 함수를 단순하게 만들었다. 맵을 배열로 변환함으로써 배열 메서드도 사용이 가능하다.
+- 앞에서 맵 객체를 이용한 함수 대신 배열 메서드를 사용해 작성해보자.
+
 ``` javascript
+function getAppliedFilters(filters) {
+  const applied = [...filters].map(([key, value]) => {
+    return `${key}:${value}`;
+  });
+  return `선택한 조건은 ${applied.join(', ')} 입니다.`;
+}
+// "선택한 조건은 색상:검정색, 견종:래브라도리트리버 입니다."
 ``` 
+
+- 이제 모든 것이 배열이므로 체이닝을 이용해서 완성해보자.
+
 ``` javascript
-``` 
+function getAppliedFilters(filters) {
+  const applied = [...filters]
+    .sort(sortByKey)
+    .map(([key, value]) => {
+      return `${key}:${value}`;
+    })
+    .join(', ');
+  return `선택한 조건은 ${applied} 입니다.`;
+}
+// "선택한 조건은 견종:래브라도리트리버, 색상:검정색 입니다."
+```
+
+## 맵 생성 시 부수 효과를 피하라(TIP15)
+
+- 맵의 인스턴스를 이용해 작업하면 몇가지 문제점이 있다.
+- 맵의 사본은 어떻게 생성할까? 부수 효과를 피하면서 맵을 변경하려면 어떻게 해야 할까?
+- 우선 복사, 조작 문제를 혼합한 예제를 살펴보자.
+- 앞에 살펴봤던 반려견 입양 사이트 예제 코드에서 사용자가 필터링 조건을 선택했는데, 아마 필터링의 기본값도 필요할 것이다.
+- 즉, 사용자가 명시적으로 설정하지 않는 조건에 대해서는 기본값을 적용, 추가로 사용자가 적용하는 필터링 조건은 기본값을 덮어 쓴다.
+
 ``` javascript
+const defaults = new Map()
+  .set('색상','갈색')
+  .set('견종','비글')
+  .set('지역','캔자스')
+
+const filters = new Map()
+  .set('색상', '검정색')
 ``` 
+
+- 위와 같이 기본값과 추가 필터링 조건을 합칠려면 어떻게 해야될까?
+- 부수 효과를 신경쓰지 않으면 `has`메서드를 사용해 키를 체크해 설정한다.
+
 ``` javascript
+function applyDefaults(map, defaults) {
+  for (const [key,value] of defaults) {
+    if (!map.has(key)) {
+      map.set(key, value); // 여기서 filters를 조작한다.
+    }
+  }
+}
+
+console.log(filters);
+// Map(3) {"색상" => "검정색", "견종" => "비글", "지역" => "캔자스"}
+export { applyDefaults }
 ``` 
+
+- 기본값, 사용자 데이터를 병합하는 것이 목적이라면 성공!
+- 필터링 조건 객체에 대한 사용을 위해서는 생각이 필요하다.
+  - 데이터에 필터링 조건을 적용하는데 사용
+  - 사용자가 선택한 조건을 알려주는데 사용(이전 팁에서 문자로 보여주기)
+- 위와 같은 경우에는 사용자가 선택한 조건에 기본값도 모두 노출 된다.
+- 해결 방법은 사본을 만드는 것이다.(`entries`, 펼침연산자 사용) 아래 코드로 살펴보자.
+
 ``` javascript
+function applyDefaults(map, defaults) {
+  const copy = new Map([...map]);
+  for (const [key,value] of defaults) {
+    if (!copy.has(key)) {
+      copy.set(key, value); // 여기서 filters를 조작한다.
+    }
+  }
+  return copy;
+}
 ``` 
+
+- 여러가지 키의 존재 여부를 일일이 확인하고 있다.
+- 맵은 객체와 마찬가지로 하나의 키를 한 번만 사용할 수 있다.
+- 따라서, 새로운 키로 맵을 생성하면 어떤 값이든 해당 키에 마지막으로 선언한 값을 사용한다. 즉, 값을 설정하는 대신 갱신한다.
+
 ``` javascript
+const filters = new Map()
+  .set('color', 'black')
+  .set('color', 'brown')
+filters.get('color');
+// 'brown'
 ``` 
+
+- 이러한 특징을 이용해 맵 2개를 병합하는 코드를 한줄로 작성이 가능하다.
+
 ``` javascript
+let filters = new Map()
+  .set('색상','검정색');
+let filters2 = new Map()
+  .set('색상','갈색');
+let update = new Map([...filters, ...filters2]);
+update.get('색상');
+// 갈색
 ``` 
+
+- 최종 개선 코드
+
+``` javascript
+function applyDefaults(map, defaults) {
+  return new Map([...defaults, ...map]);
+}
+```
+
+## 세트를 이용해 고윳값을 관리하라(TIP16)
+
+- 이번에는 세트(Set)를 이용해 배열에서 고유 항목만 분류하는 방법을 살펴보자.
+- 앞에서 만들었던 필터링 조건으로 돌아가자.
+- 사용자가 선택할 수 있는 조건을 알려면 선택할 수 있는 모든 값을 수집해야 한다.
+- 아래는 강아지에 대한 정보가 담긴 배열이다.
+
+``` javascript
+const dogs = [
+  {
+    이름 : '맥스',
+    크기: '소형견',
+    견종: '보스턴테리어',
+    색상: '검정색',
+  },
+  {
+    이름 : '도니',
+    크기: '대형견',
+    견종: '래브라도레트리버',
+    색상: '검정색',
+  },
+  {
+    이름 : '섀도',
+    크기: '중형견',
+    견종: '래브라도레트리버',
+    색상: '갈색',
+  },
+]
+``` 
+
+- 색상 조건을 수집하려면 어떻게 할까?
+- 배열 메서드 `map()`을 활용하자.
+
+``` javascript
+function getColors(dogs) {
+  return dogs.map(dog => dog['색상']);
+}
+getColors(dogs);
+//  ["검정색", "검정색", "갈색"]
+```
+
+- 이제 중복된 값을 없애 보자.
+- `for`문과 `reduce()` 메서드를 쓸 수 있다.
+- `for`문을 사용해보자.
+
+``` javascript
+function getUnique(attributes) {
+  const unique = [];
+  for (const attribute of attributes) {
+    if (!unique.includes(attribute)) {
+      unique.push(attribute);
+    }
+  }
+  return unique;
+}
+
+const colors = getColors(dogs);
+getUnique(colors);
+// ['검정색','갈색']
+```
+
+- 위에 코드는 잘 작동한다. 하지만 많은 코드를 쓰지 않고 세트객체를 사용해서 고윳값만 분류해낼 수 있다.
+- 세트는 중첩하지 않은 배열을 인수로 받는다.
+
+``` javascript
+const colors = ['검정색', '검정색', '갈색'];
+const unique = new Set(colors)
+// Set {'검정색', '갈색'}
+```
+
+- 하지만 우리가 필요한건 set가 아니라, 고유 속성만 담긴 배열이다.
+- 바로 펼침 연산자를 사용해보자.
+
+``` javascript
+function getUnique(attributes) {
+  return [...new Set(attributes)];
+}
+```
+
+- 위와 같은 코드는 색상 배열을 만들려면 처음에 강아지 정보가 담긴 배열을 한 차례 순회해야 한다.
+- 귀찮으니 한번에 처리해보자.
+- 아래와 같이 하나씩 추가한면 이미 존재하는 값이 있으면 새로운 값은 추가되지 않는다.
+
+``` javascript
+let names = new Set();
+names.add('joe')
+// Set {'joe'}
+names.add('bea');
+// Set {'joe','bea'}
+names.add('joe')
+// Set {'joe','bea'}
+``` 
+
+``` javascript
+function getUniqueColors(dogs) {
+  const unique = new Set();
+  for (const dog of dogs) {
+    unique.add(dog.색상);
+  }
+  return [...unique];
+}
+```
+
+- `reduce()`를 사용하면 한줄로 가능하다.
+
+``` javascript
+[...dogs.reduce((colors, { 색상 }) => colors.add(색상), new Set())];
+```
+
+## 결론
