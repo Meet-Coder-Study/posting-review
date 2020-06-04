@@ -222,4 +222,6 @@ public class Main {
 
 [오브젝트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158391409&orderClick=LAG&Kc=) <<조용호 지음>>
 
+[객체지향의 사실과 오해](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788998139766&orderClick=LEa&Kc=) <<조영호 지음>>
+
 [Java 8 in action](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788968481796&orderClick=LAG&Kc=) Java 8 in action <<라울-게이브리얼 우르마, 마리오 푸스코, 앨런 마이크로 소프트 지음, 우정은 옮김>>
