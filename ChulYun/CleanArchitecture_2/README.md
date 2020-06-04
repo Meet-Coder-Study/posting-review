@@ -265,20 +265,11 @@ public class Main {
  삭제가 전혀 발생하지 않으므로 동시 업데이트 문제 또한 일어나지 않습니다.
  
 - - -
-![Clean Architecture](./images/clean_architecture.jpg)
 
-클린 아키텍처 <<로버트C. 마틴 지음>>
+#### 참고자료
 
-<br/>
-<br/>
+[Clean Architecture](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788966262472&orderClick=LAG&Kc=) <<로버트C. 마틴 지음>>
 
-![오브젝트](./images/object.png)
+[오브젝트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158391409&orderClick=LAG&Kc=) <<조용호 지음>>
 
-오브젝트 <<조용호 지음>>
-
-<br/>
-<br/>
-
-![Java 8 in action](./images/java8inaction.jpg)
-
-Java 8 in action <<라울-게이브리얼 우르마, 마리오 푸스코, 앨런 마이크로 소프트 지음, 우정은 옮김>>
+[Java 8 in action](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788968481796&orderClick=LAG&Kc=) Java 8 in action <<라울-게이브리얼 우르마, 마리오 푸스코, 앨런 마이크로 소프트 지음, 우정은 옮김>>
