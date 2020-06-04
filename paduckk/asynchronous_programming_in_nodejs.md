@@ -55,7 +55,7 @@ IO는 Input, Output을 의미합니다.  프로그램에서 IO의 의미는
 
 이 수도 코드를 Blocking IO로 제어 할 때와 NonBlocking IO로 제어 할 때의 예시를 살펴 보겠습니다.
 
-```jsx
+```java
 import java.io.FileOutputStream;
 import java.io.IOException;
 
