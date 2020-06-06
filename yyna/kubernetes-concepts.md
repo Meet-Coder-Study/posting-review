@@ -58,7 +58,7 @@ kubectl rolling-update my-web-server --rollback
 
 - Node (Minion): Kubernetes가 설치된 물리 또는 가상머신, 컨테이너가 배포될 곳, Worker Node 라고도 한다.
 - Cluster: Node 그룹, 한 노드가 죽어도 다른 노드에 접근할 수 있도록 한다. Node가 많으면 로드를 분산할 수 있음, 위 그림이 하나의 클러스터라고 볼 수 있음
-- Master: Kubernetest가 설치된 노드 중 하나이나 마스터로 설정된 노드이다. 다른 노드들을 모니터링하고 Worket Node들을 오케스트레이션 하는 일을 담당한다.
+- Master: Kubernest가 설치된 노드 중 하나이나 마스터로 설정된 노드이다. 다른 노드들을 모니터링하고 Worker Node들을 오케스트레이션 하는 일을 담당한다.
 
 ## 쿠버네티스를 구성하고 있는 것들
 
