@@ -10,14 +10,15 @@ grid 속성에 대한 포스팅에 앞서 CSS 그리드 레이아웃은 2017년 
 
 ![grid, felx 의 Recommendation 비교 ](./images/grid05_recommendation.jpg)
 
-**w3c-플렉스 :** <https://www.w3.org/TR/css-flexbox-1/>  
-**w3c-그리드 :** <https://www.w3.org/TR/css-grid-1/>
+[w3c-플렉스](https://www.w3.org/TR/css-flexbox-1/)  
+
+[w3c-그리드](https://www.w3.org/TR/css-grid-1/)  
 
 **grid**가 flex 보다 먼저 **Recommendation을 공개** 하였네요.
 
 W3C 표준화 제정 단계 보는 법은 아래의 블로그를 참고 바랍니다.
 
-WIT블로그(**W3C 표준화 제정 단계 보는 법**) : <https://wit.nts-corp.com/2013/10/16/280/>
+[WIT블로그-W3C 표준화 제정 단계 보는 법](https://wit.nts-corp.com/2013/10/16/280)  
 
 ## 03.grid 브라우저 지원
 
@@ -40,20 +41,21 @@ css Grid Layout(level1)은 ie10, ie11 브라우저에서도 사용 가능 하다
 저는 subgrid에 대해서 직관적으로 읽으면 바로 이해 하는 것에 목적을 두고 포스팅을 하겠습니다.  
 추가적으로 css 레벨(버젼)에 대한 정보나 subgrid에 대한 기능과 자세한 정보를 확인 하시려면 아래에 사이트를 추천 합니다.
 
-**Subgrid 참고 사이트1 - CSS 그리드 레벨2: 서브그리드** : <https://webactually.com/2018/08/css-그리드-레벨2-서브그리드-2/>  
-**Subgrid 참고 사이트2 - MDN** : <https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column/>
+[Subgrid 참고 사이트1 - CSS 그리드 레벨2: 서브그리드](https://webactually.com/2018/08/css-그리드-레벨2-서브그리드-2/)  
+
+[Subgrid 참고 사이트2 - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column/) 
 
 **요점**만 말하면 **Subgrid는 grid에 새로운 기능** 입니다.
 
-현재 웹브라우저에서 사용 할 수 있는 그리드 기능은 CSS **그리드 명세 레벨1** : <https://www.w3.org/TR/css-grid-1/#intro>에 기반 합니다.
+현재 웹브라우저에서 사용 할 수 있는 그리드 기능은 CSS [그리드 명세 레벨1](https://www.w3.org/TR/css-grid-1/#intro)에 기반 합니다.
 
 새로 만들어진 기능은 해당 명세의 다음 레벨에 포함됩니다.
 CSS 그리드 레이아웃이 바로 이 단계에 있고, 레벨1 명세는 후보 권고안 상태이기 때문에 작업 중인 새 기능을 추가하기 위해 레벨2 명세를 만들었습니다.
 Subgrid에 대한 설명을 계속 보고 있지만 예제가 브라우저에서 실행이 되지 않아서 글만 보고 이해 하기 힘든 부분이 있는대요, MDN에 나온 Subgrid 소개에는
 
-`" grid-template-columns: subgrid중첩 그리드 를 사용 하고 부모의 세 열 트랙에 걸쳐있는 경우 중첩 그리드는 부모 그리드와 동일한 크기의 세 열 트랙을 갖습니다. 간격은 상속되지만 다른 gap값 으로 재정의 할 수도 있습니다 . 줄 이름은 부모에서 하위 표로 전달 될 수 있으며 하위 표는 자체 줄 이름을 선언 할 수도 있습니다"`
+>" grid-template-columns: subgrid중첩 그리드 를 사용 하고 부모의 세 열 트랙에 걸쳐있는 경우 중첩 그리드는 부모 그리드와 동일한 크기의 세 열 트랙을 갖습니다. 간격은 상속되지만 다른 gap값 으로 재정의 할 수도 있습니다 . 줄 이름은 부모에서 하위 표로 전달 될 수 있으며 하위 표는 자체 줄 이름을 선언 할 수도 있습니다"
 
-이 구절이 아직 이해가 되지 않습니다.;;
+이 구절이 아직 이해가 되지 않습니다.
 
 시간이 지나서 grid에 대한 사용법 포스팅을 하고 어느정도 이해를 하게되면 그때 즘이면 다시 이해가 될거라 생각이 드는데요, 그러면 그때즘에 다시 Subgrid에 대해서 다시한번 집고 넘어가겠습니다.
 
