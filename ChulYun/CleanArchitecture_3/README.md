@@ -236,8 +236,115 @@ public class EmployeeFacade {
 
 ##### DIP : 의존성 역전 원칙(Dependency Inversion Principle)
 
- 고수준 정책을 구현하는 코드는 저수준 세부사항을 구현하는 코드에 의존하지 않고, 대신 새부사항이 정책에 의존해야 한다는 원칙입니다.
+ 고수준 정책을 구현하는 코드는 저수준 세부사항을 구현하는 코드에 의존하지 않고, 대신 새부사항이 정책에 의존해야 한다는 원칙입니다. 즉, 의존성 역전 원칙에서 말하는 유연성이 극대화된 시스템이란 소스 코드 의존성이 추상적인 요소에 의존하며 구체적인 요소에는 의존하지 않는 시스템을 말합니다.
  
+ 자바와 같은 정적 타입 언어에서 이 말은 use, import, include 구문은 오직 인터페이스나 추상 클래스 같은 추상적인 선언만 참조해야 한다는 뜻입니다. 구체적인 대상에는 절대로 의존해서는 안됩니다. 하지만 이 아이디어를 규칙으로 보기에는 비현실적인 요소가 있습니다. 소프트웨어 시스템이라면 반드시 구체적인 많은 장치에 반드시 의존하기 때문입니다. 예를 들어 자바에서 String은 구체 클래스이며, 이를 애써 추상 클래스로 만들려는 시도는 현실성이 없어보입니다.
+ 
+ 반면 String 클래스는 매우 안정적입니다. String 클래스가 변경되는 일은 거의 없으며, 있더라도 엄격하게 통제됩니다. 프로그래머와 아키텍트는 String 클래스에서 변덕스러운 변경이 자주 발생하리라고 염려할 필요가 없습니다.
+ 
+ 이러한 이유로 DIP를 논할 때 운영체제나 플랫폼 같이 안정성이 보장된 환경에 대해서는 무시하는 편입니다. 이들 환경에 대한 의존성은 용납하는데, 변경되지 않는다면 의존할 수 있다는 사실을 이미 알고 있기 때문입니다.
+ 
+##### 안정된 추상화
+
+ 추상 인터페이스는 변경이 생기면 이를 구체화한 구현체들도 따라서 수정해야 합니다. 반대로 구체적인 구현체에 변경이 생기더라도 그 구현체가 구현하는 인터페이스는 항상, 좀 더 정확히 말하면 대다수의 경우 변경될 필요가 없습니다. 따라서 인터페이스는 구현체보다 변동성이 낮습니다. 
+ 
+##### DIP 원칙이 전달하는 코딩 실천법 요약
+
+* **변동성이 큰 구체 클래스를 참조하지 말라.** 대신 추상 인터페이스를 참조하라. 이 규칙은 객체 생성 방식을 강하게 제약하며, 일반적으로 추상 팩토리를 사용하도록 강제한다.
+* **변동성이 큰 구체 클래스로부터 파생하지 말라.** 정적 타입 언어에서 상속은 소스 코드에 존재하는 모든 관계 중에서 가장 강력한 동시에 뻣뻣해서 변경하기 어렵습니다. 따라서 상속은 아주 신중하게 사용해야 합니다. 동적 타입 언어라면 문제가 덜 되겠지만, 의존성을 가진다는 사실에는 변함이 없습니다. 따라서 신중에 신중을 거듭하는게 가장 현명한 선택입니다.
+* **구체 함수를 오버라이드 하지 말라.** 대체로 구체 함수는 소스 코드 의존성을 필요로 합니다. 따라서 구체 함수를 오버라이드 하면 이러한 의존성을 제거할 수 없게 되며, 실체로는 그 의존성을 상속하게 됩니다. 이러한 의존성을 제거하려면, 차라리 추상 함수로 선언하고 구현체들에서 각자의 용도에 맞게 구현해야 합니다.
+* **구체적이며 변동성이 크다면 절대로 그 이름을 언급하지 말라.** 
+
+##### 팩토리
+
+ 위의 규칙들을 준수하려면 변동성이 큰 구체적인 객체는 특별히 주의해서 생성해야 합니다. 모든 언어에서 객체를 생성하려면 해당 객체를 구체적으로 정의한 코드에 대해 소스 코드 의존성이 발생합니다.
+ 
+ 자바 등 대다수의 객체 지향 언어에서 이처럼 바람직하지 못한 의존성을 처리할 때 추상 팩토리를 사용하곤 합니다.
+
+![Factory](./images/factory.png)
+
+ 위의 그림에서 추상 팩토리를 사용한 구조를 볼 수 있습니다. Application은 Service 인터페이스를 통해 ConcreteImpl을 사용하지만, Application에서는 어떤 식으로든 ConcreteImpl의 인스턴스를 생성해야 합니다. ConcreteImpl에 대해 소스 코드 의존성을 만들지 않으면서 이 목적을 이루기 위해 Application은 ServiceFactory 인터페이스의 makeSvc 메서드를 호출합니다. 이 메서드는 ServiceFactory로부터 파생된 ServiceFactoryImpl에서 구현됩니다. 그리고 ServiceFactoryImpl 구현체가 ConcreteImpl의 인스턴스를 생성한 후 Service타입으로 반환합니다.
+ 
+ 그림의 곡선은 아키텍처 경계를 뜻합니다. 이 곡선은 구체적인 것들로부터 추상적인 것들을 분리합니다.
+ 
+ 제어흐름은 소스 코드 의존성과는 정반대 방향으로 곡선을 가로지르고 있습니다. 다시 말해 소스 코드 의존성은 제어흐름과는 반대 방향으로 역전되고 있습니다. 이 원칙을 의존성 역전(Dependency Inversion)이라고 부릅니다.
+ 
+##### 구체 컴포넌트
+
+ 경계선 아래의 흐름을 보면 ServiceFactoryImpl 구체 클래스가 ConcreteImpl 구체 클래스에 의존하고 있습니다. 따라서 DIP에 위배됩니다. 이는 일반적인 일입니다. DIP 위배를 모두 없앨 수는 없습니다. 하지만 DIP를 위배하는 클래스들은 적은 수의 구체 컴포넌트 내부로 모을 수 있고, 이를 통해 시스템의 나머지 부분과 분리할 수 있습니다.
+ 
+ 대다수의 시스템은 이러한 구체 컴포넌트를 최소한 하나는 포함할 것입니다. 흔히 이 컴포넌트를 메인(Main)이라고 부르는데, main 함수를 포함하기 때문입니다. 위와 같은 그림의 경우는 main 함수가 ServiceFactoryImpl의 인스턴스를 생성한 후, 이 인스턴스를 ServiceFactory 타입으로 전역 변수에 저장할 것입니다. 그런 다음 Application은 이 전역 변수를 이용해서 ServiceFactoryImpl의 인스턴스에 접근할 것입니다.
+ 
+![패키지 구조](./images/package.png)
+
+##### Application
+
+```java
+public class Application {
+    private Service service;
+
+    public Application(ServiceFactory serviceFactory) {
+        this.service = serviceFactory.makeSvc();
+    }
+
+    public void exec() {
+        service.doService();
+    }
+}
+```
+
+##### Service
+
+```java
+public interface Service {
+    void doService();
+}
+```
+
+##### ServiceImpl
+
+```java
+public class ConcreteImpl implements Service {
+    @Override
+    public void doService() {
+        System.out.println("Do something...");
+    }
+}
+```
+
+##### ServiceFactory
+
+```java
+public interface ServiceFactory {
+    Service makeSvc();
+}
+```
+
+##### ServiceFactoryImpl
+
+```java
+public class ServiceFactoryImpl implements ServiceFactory {
+    @Override
+    public Service makeSvc() {
+        return new ConcreteImpl();
+    }
+}
+```
+
+##### Main
+
+```java
+public class Main {
+
+    private final static ServiceFactory serviceFactory = new ServiceFactoryImpl();
+
+    public static void main(String[] args) {
+        Application application = new Application(serviceFactory);
+        application.exec();
+    }
+}
+```
+
 ---
 
 #### 참고자료
