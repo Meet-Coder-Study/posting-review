@@ -43,3 +43,11 @@ L4 스위치가 서비스 단위 로드밸런싱을 할 수 없다는 단점을 
 - Random with Two Choices: 임의로 두 서버를 선정 후 둘 중 더 적은 연결을 가지고 있는 서버에 요청을 전달합니다.
 
 각 알고리즘 마다 장단점이 있으니 각자 상황에 맞게 사용하면 됩니다.
+
+---
+
+참고 링크
+
+- [프록시(Proxy)란 무엇인가](https://milkye.tistory.com/202)
+- [What Is Load Balancing?](https://www.nginx.com/resources/glossary/load-balancing/)
+- [https://intellipaat.com/community/48047/what-is-the-difference-between-elb-and-alb-in-aws](https://intellipaat.com/community/48047/what-is-the-difference-between-elb-and-alb-in-aws)
