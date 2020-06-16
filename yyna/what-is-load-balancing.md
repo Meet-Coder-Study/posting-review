@@ -10,8 +10,11 @@
 
 ### 스위치의 종류 - L4/L7
 
-로드밸런서로 많이 사용되는 스위치의 종류로는 L4, L7이 있습니다.  
-네트워크를 공부하다보면 OSI 7계층에 대해 들어보셨을 텐데요. 이름에서 알 수 있듯이 L4는 Transport Layer에서 L7은 Application Layer에서 어느 서버로 요청이 전달될 지 결정됩니다.
+네트워크를 공부하다보면 OSI 7계층에 대해 많이 듣게되는데요. 네트워크 패킷이 클라이언트와 서버에서 왔다갔다 하는 동안 올바른 도착지에 도달하기 위해 각 계층에서는 이 패킷을 적당한 곳으로 안내해줍니다. 아래 그림을 보면 스위칭에 대해 쉽게 이해할 수 있을 겁니다.
+
+![switching](./image/what-is-load-balancing/5.jpg)
+
+로드밸런서로 많이 사용되는 스위치의 종류로는 L4, L7이 있습니다. 이름에서 알 수 있듯이 L4는 Transport Layer에서 L7은 Application Layer에서 어느 서버로 요청이 전달될 지 결정됩니다.
 
 ![osi-seven-layers](./image/what-is-load-balancing/2.jpg)
 
