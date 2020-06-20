@@ -52,7 +52,7 @@ applyCustomGreeting('mark', function (name) {
 });
 
 // 이걸 화살표 함수를 사용해서 변경해보자.
-applyCustomGreeting('mark',  name => `안녕, ${name}!`;);
+applyCustomGreeting('mark',  name => `안녕, ${name}!`);
 ```
 
 - 배열 메서드를 살펴보면서 화살표 함수를 자주 보고 사용하게 될 것이다.
@@ -68,19 +68,19 @@ applyCustomGreeting('mark',  name => `안녕, ${name}!`;);
 ``` javascript
 const prices = ['1.0', 'negotiable', '2.55'];
 
-const formattedPrices = [];
+let formattedPrices = [];
 for (let i = 0; i <  prices.length; i++) {
-     const price = parseFloat(prices[i]);
-     if (price) { // 문자열이 올 경우 NaN 반환
-          formattedPrices.push(price);
+     const price = parseFloat(prices[i]); // 값을 변화하는 작업
+     if (price) { // 문자열이 올 경우 NaN 반환 , 불필요한 값을 제외하는 작업
+          formattedPrices.push(price); 
      }
 }
 ```
 
 - 복잡하고, 가독성이 좋지 않고, 예측하기 어렵다.
   - 3행에서 데이터를 다루기 전에 새로운 컬렉션을 선언
-  - `let`이 블록 유효 범위이므로 밖에서 빈배열 선언ㅠㅠ
-  - 마지막으로 `for`문은 값을 변화하는 작업과 불필요한 값을 제외하는 작업을 포함해 2가지 관심사로 분리된다.(예측가능성 훼손)
+  - `for`문을 사용할때 안에 변환된 값들을 넣는 배열이 필요한데 `const`가 블록 유효 범위이므로 밖에서 빈배열 선언해야되는 불편함이 있다.
+  - 마지막으로 `for`문은 값을 변화하는 작업과 불필요한 값을 제외하는 작업(`if문`)을 포함해 2가지 관심사로 분리되서 `for`문의 작업 목적이 어떤건지 정확히 예측 할 수 없다.
 
 ### 배열메서드의 종류
 
