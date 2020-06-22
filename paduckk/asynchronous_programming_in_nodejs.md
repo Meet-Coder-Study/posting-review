@@ -2,7 +2,7 @@
 
 ## 서론
 
-nodeJS가 무엇인지 알기 위해 구글에 nodejs란 검색을 하면 매우 다양한 정보가 나옵니다.
+`NodeJS`가 무엇인지 알기 위해 구글에 `NodeJS란` 검색을 하면 매우 다양한 정보가 나옵니다.
 
 ```
 Node.js는 확장성 있는 네트워크 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. 
@@ -59,12 +59,12 @@ IO는 Input, Output을 의미합니다.  프로그램에서 IO의 의미는
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class WriteFile {
+public class Main {
     public static void main(String[] args) throws IOException {
         // 여기서 파일을 전부 불러오기전 까지 코드의 진행이 Blocking 됩니다
-        FileOutputStream output = new FileOutPutStream("../file.txt");
-        output.close();
-				system.out.print(output)
+        try (FileOutputStream output = new FileOutputStream("../file.txt")){
+            System.out.print(output);
+        }
     }
 }
 ```
@@ -114,7 +114,15 @@ console.log(file)
 
 `fs.readFileSync`라는 메서드는 BlockingIO 예시와 정확히 일치하여 동작합니다. 
 
-하지만 메서드 이름에서 알 수 있듯이 Node.js의 기본 IO작업의 동작은 Non Blocking이라는 걸 이해 하는게 중요합니다.
+자바에서는 동기적으로 동작하는 메서드에 `Sync`라는 접두어를 붙이지 않았습니다.
+
+동기적으로 동작하는 메서드에 `Sync`라는 접두어를 나타낸다는 것은 다르게 표현 하자면 
+
+`Nodejs`의  `fs.readFile`은 동기인지 비동기인지에 대한 정보가 없어도 아 IO 작업이니 비동기 방식으로 처리해야 되는 구나라고 인지 하는게 중요합니다.
 
 - fs.readFile
 - fs.readFileSync ← Sync라는 단어가 붙어 동기적으로 동작 한다는 걸 알려줍니다.
+
+## CallBack Pattern
+
+- 
