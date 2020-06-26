@@ -88,7 +88,7 @@ on i.member_no = m.member_no;
 
  다음 그림은 Non Clustered Index와 Clustered Index를 활용하여 데이터를 탐색하는 과정을 보여줍니다.
 
-[##_Image|kage@cHgPGN/btqE4rqZWzr/Yc1IJ6zPS1dDuELIxU2DGK/img.png|alignCenter|data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent"|https://jojoldu.tistory.com/476||_##]
+![clustered_nonclustered](./images/clustered_nonclustered.png)
 
  age 컬럼을 인덱스로 생성하였고, Non Clustered Index에서 age를 기준으로 정렬되어 있습니다. 그리고 Non Clustered Index에 인덱스의 컬럼 값과 Clustered Index의 값을 포함하고 있습니다. 이는 Non Clustered Index에는 실제 데이터 레코드가 없고 Clustered Index만이 해당 데이터 레코드를 알고 있기 때문입니다.
 
