@@ -995,7 +995,7 @@ public class AopUserController {
 ### 코드 설명
 
 - `Around()` : advice로 Aspect가 무엇을 언제 할지를 의미한다. 여기서 무엇은 `calcualtePerformanceTime()` 입니다.
-- `annotation()` : 포인트컷 표현식 중 하나로, 어노테이션을 의미합니다.
+- `annotation()` : 포인트컷 표현식 중 하나로, 어노테이션을 의미합니다. 여기서 어노테이션이란, 주석이라는 의미로 메타데이터를 나타내는 것입니다.
 - `ProceedingJoinPoint` : `Around Advice`에서 사용할 공통 기능 메서드는 대부분 파라미터로 전달 받은 이 클래스의 `proceed()` 메서드만 호출하면 된다.
 - `proceed()` : Target메소드를 지칭하는 것으로, `@Around`를 사용했다는 반드시 이 메소드가 호출되어야 합니다.
 
