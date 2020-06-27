@@ -2,8 +2,8 @@
 
 ## 05.grid 로 리스트 배열 해보기
 
-[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) 과 [w3schools](https://www.w3schools.com/css/css_grid_container.asp) 에서 grid 관련 속성이랑 속성값들을 천천 히 보고 있는데,
-속성들이 많기도 하고 속성값들도 생소 한 것들이 많아서 어떤식으로 어떻게 포스팅을 해야할지 고민을 하다가 [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) 과 [w3schools](https://www.w3schools.com/css/css_grid_container.asp)에 내용을 전부는 아니고 일부를 정리를 해 보려 합니다.
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) 과 [w3schools](https://www.w3schools.com/css/css_grid_container.asp) 에서 grid 관련 속성이랑 속성값들을 천천히 보고 있는데,
+속성들이 많기도 하고 속성값들도 생소한 것들이 많아서 어떤식으로 어떻게 포스팅을 해야할지 고민을 하다가 [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) 과 [w3schools](https://www.w3schools.com/css/css_grid_container.asp)에 내용을 전부는 아니고 일부를 정리를 해 보려 합니다.
 
 먼저 마크업과 css 스타일은 아래과 같습니다.  
 마크업과 css 예제 소스는 [책 - 새로운 css 레이아웃](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791185885223&orderClick=LEa&Kc=) 의 예제 소스를 포스팅용에 맞추어 일부 수정 하여 사용하고 있습니다.
@@ -79,9 +79,9 @@ ul {
 
 [코드펜-gird예제(html,css)](https://codepen.io/sanghwanAN/pen/mdVwxLK)
 
-### 1. 리스트들의 부모 태그를 Grid Container로 만든다.
+### 1. 리스트들의 부모 요소를 Grid Container로 만든다.
 
-먼저 리스트를 배열 하려면 리스트를 감싸고 있는 **부모 태그**에 **display: gird**를 적용하여 부모 태그를 **Grid Container**로 만듭니다.  
+먼저 리스트를 배열 하려면 리스트를 감싸고 있는 **부모 요소**에 **display: gird**를 적용하여 부모 요소를 **Grid Container**로 만듭니다.  
 **Grid Container**는 grid 레이아웃을 사용 할때 display:grid를 적용하는 대상을 부르는 명칭으로 이해 하면 될 것 같은데요,
 왜 이름이 **Grid Container**라고 물어보면 저는 모르겠지만 **w3.org** 에 정의 되어져 있는대요, 내용이 많은 관계로 [w3.org : grid-container](https://www.w3.org/TR/css-grid-1/#grid-container) 여기에서 관련 정의와 추가 정보를 확인 부탁 드립니다.(그리드 컨테이너 사용시 주의점?등을 알 수 있습니다.)
 
