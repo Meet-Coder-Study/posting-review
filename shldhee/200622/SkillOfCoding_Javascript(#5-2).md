@@ -27,7 +27,7 @@ for (let i = 0; i < sailingClub.length; i++) {
 - `forEach()`가 가치 있는 이유는 다른 메서드처럼 코드를 단순하게 만들기 때문이 아니고
   1. 다른 배열 메서드와 같이 작동하면서 함께 연결 할 수 있다.(체이닝)
   2. 예측가능하다.
-- `forEach()`에서 처리하는 동작은 모두 함수 외부에 영향을 준다.(부수효과 발생)
+- `forEach()`를 사용할 때 외부에 영향을 주는, 즉 부수효과가 있는 코드를 작성해야 합니다.
 
 ```javascript
 const names = ['walter', 'white'];
@@ -37,7 +37,7 @@ capitalized;
 // undefined
 ```
 
-- 위 코드는 실행해도 아무런 변화가 없다. 왜냐하면 `forEach()` 메서드 안에서 부수 효과가 없다, 즉 함수 외부에 영향을 주지 못하기 때문이다.
+- 위 코드는 실행해도 아무런 변화가 없다. 왜냐하면 `forEach()` 메서드 안에서 부수 효과가 없다, 즉 함수 외부에 영향을 주지 않는다.
 
 ```javascript
 const names = ['walter', 'white'];
@@ -78,11 +78,11 @@ const sailors = [
     email: '',
   },
   {
-    name: 'nate,
+    name: 'nate',
     active: false,
     email: '',
   },
-]
+];
 ```
 
 - 우선 활동 하고 있는 사람을 추려보자.
@@ -116,7 +116,7 @@ sailors
   .forEach((sailor) => sendEmail(sailor));
 ```
 
-- 체이닝에 단점은 새로울 메서드를 호출할때마다 반환된 배열 전체를 다시 반복한다는 점이다.
+- 체이닝에 단점은 새로운 메서드를 호출할때마다 반환된 배열 전체를 다시 반복한다는 점이다.
 - `for`문을 이용할 경우 `name, active, email`을 각 한 번씩해서 총 3번 반복하면 된다.
 - 하지만 체이닝을 사용할 경우, `filter()`에서 3번, `map()`에서 2번, `forEach()`에서 2번 총 7번을 반복한다.
 - 대규모 데이터를 다루지 않는 이상 그리 중요하진 않다.
@@ -170,6 +170,9 @@ const dogs = [
     색상: '갈색',
   },
 ];
+
+// 위 자료구조를 아래와 같이 나타내보는 코드
+//  ["검정색", "갈색"]
 ```
 
 - 원하는 고윳값이 색상일때 `reduce()` 메서드를 사용해 살펴보자.
@@ -181,6 +184,8 @@ const colors = dogs.reduce((colors, dog) => {
   }
   return [...colors, dog['색상']];
 }, []);
+
+console.log(colors); //  ["검정색", "갈색"]
 ```
 
 - `reduce()` 메서드는 맨 뒷부분부터 보면 결과값 예측이 가능하다. 여기선 `return [...colors, dog['색상']];` 부분이다.
@@ -205,6 +210,11 @@ const filters = dogs.reduce(
     color: new Set(),
   }
 );
+
+// {breed: Set(2), size: Set(3), color: Set(2)}
+//  breed: Set(2) {"보스턴테리어", "래브라도레트리버"}
+//  color: Set(2) {"검정색", "갈색"}
+//  size: Set(3) {"소형견", "대형건", "중형견"}
 ```
 
 - `Set()`(고유 항목만 남기는 컬렉션)을 사용해 중복된 값들을 없앤다.
@@ -238,6 +248,9 @@ const aggregated = developers.reduce((specialities, developer) => {
     [developer.language]: count + 1,
   };
 }, {});
+
+console.log(aggregated);
+// {php: 1, python: 2, javascript: 1}
 ```
 
 - 배열메서드는 훌륭하지만 `for in, for of`를 사용하는 경우도 있다., 다음팁에서 알아보자.
@@ -251,7 +264,12 @@ const aggregated = developers.reduce((specialities, developer) => {
 * 아래 코드는 사용자가 회사를 선택하면 정보를 추가, 삭제하는 작업이므로 맵을 사용하면 쉽게 처리할 수 있다. 이 코드를 통해 `for...in, for...of`를 살펴보자.
 
 ```javascript
-const firms = new Map().set(10, 'Zoom', 23, 'Apple', 33, 'Google');
+const firms = new Map()
+  .set(10, 'Zoom')
+  .set(23, 'Apple')
+  .set(33, 'Google');
+
+// Map(3) {10 => "Zoom", 23 => "Apple", 33 => "Google"}
 ```
 
 - `isAvailable()` 함수는 이용할 수 있는 회사인지 체크하는 코드인데 자세한 내용은 알 필요 없다.
@@ -259,41 +277,68 @@ const firms = new Map().set(10, 'Zoom', 23, 'Apple', 33, 'Google');
 - 만약 하나라도 사용할 수 없다면 사용할 수 없는 회사만 사용할 수 없다는 메세지를 반환한다.
 
 ```javascript
-const entries = [...firms];
-for (let i = 0; i < entries.length; i++) {
-  const [id, name] = entries[i];
-  if (!isAvailable(id)) {
-    return `${name}는 사용할 수 없습니다.`;
+function checkConflicts(firms, isAvailable) {
+  // START:loop
+  const entries = [...firms];
+  for (let i = 0; i < entries.length; i++) {
+    const [id, name] = entries[i];
+    if (!isAvailable(id)) {
+      return `${name}는 사용할 수 없습니다`;
+    }
   }
+  return '모든 회사를 사용할 수 있습니다';
+  // END:loop
 }
-return '모든 회사를 사용할 수 있습니다.';
+
+function checkConflicts(firms, isAvailable) {
+  // START:reduce
+  const message = [...firms].reduce((availability, firm) => {
+    const [id, name] = firm;
+    if (!isAvailable(id)) {
+      return `${name}는 사용할 수 없습니다`;
+    }
+    return availability;
+  }, '모든 회사를 사용할 수 있습니다');
+  return message;
+  // END:reduce
+}
 ```
 
 - 위 코드는 간단한 반복문이다. 맵을 배열로 변환했으므로 배열 메서드를 사용해보자.
 - 하지만 적합한 배열 메서드가 없는데 우선 `find()` 메서드를 사용해보자.
 
 ```javascript
-const unavailable = [...firms].find((firm) => {
-  const [id] = firm;
-  return !isAvailable(id);
-});
-if (unavailable) {
-  return `${unavailable[1]}는 사용할 수 없습니다.`;
+function findConflicts(firms, isAvailable) {
+  // START:find
+  const unavailable = [...firms].find((firm) => {
+    const [id] = firm;
+    return !isAvailable(id);
+  });
+
+  if (unavailable) {
+    return `${unavailable[1]}는 사용할 수 없습니다`;
+  }
+
+  return '모든 회사를 사용할 수 있습니다';
+  // END:find
 }
-return 'All firms are available';
 ```
 
 - 다음은 `reduce()` 메서드를 사용해보자.
 
 ```javascript
-const message = [...firms].reduce((availability, firm) => {
-  const [id, name] = firm;
-  if (!isAvailable(id)) {
-    return `${name}은 사용할 수 없습니다.`;
-  }
-  return availability;
-}, '모든 회사를 사용할 수 있습니다.');
-return message;
+function checkConflicts(firms, isAvailable) {
+  // START:reduce
+  const message = [...firms].reduce((availability, firm) => {
+    const [id, name] = firm;
+    if (!isAvailable(id)) {
+      return `${name}는 사용할 수 없습니다`;
+    }
+    return availability;
+  }, '모든 회사를 사용할 수 있습니다');
+  return message;
+  // END:reduce
+}
 ```
 
 - 문제점들은 우선 `find()` 메서드는 2단계를 거쳐야 된다. 이용할 수 없는 회사를 체크, 메시지를 반환
@@ -304,13 +349,17 @@ return message;
 * `for...of`문으로 이터레이터 사용이 가능하므로 살펴보자.
 
 ```javascript
-for (const firm of firms) {
-  const [id, name] = firm;
-  if (!isAvailable(id)) {
-    return `${name}는 사용할 수 없습니다.`;
+function checkConflicts(firms, isAvailable) {
+  // START:for
+  for (const firm of firms) {
+    const [id, name] = firm;
+    if (!isAvailable(id)) {
+      return `${name}는 사용할 수 없습니다`;
+    }
   }
+  return '모든 회사를 사용할 수 있습니다';
+  // END:for
 }
-return '모든 회사를 사용할 수 있습니다.';
 ```
 
 - 맵을 배열로 바꾸는 작업을 하지 않아도 된다.
@@ -329,15 +378,20 @@ const firms = {
   '33': 'Google',
 };
 
-for (const id in firms) {
-  if (!isAvailable(parseInt(id, 10))) {
-    return `${firms[id]}는 사용할 수 없습니다.`;
+function checkConflicts(firms, isAvailable) {
+  // START:for
+  for (const id in firms) {
+    if (!isAvailable(parseInt(id, 10))) {
+      return `${firms[id]}는 사용할 수 없습니다`;
+    }
   }
+  return '모든 회사를 사용할 수 있습니다';
+  // END:for
 }
-return '모든 회사를 사용할 수 있습니다.';
 ```
 
 - 배열 표기법으로 접근이 가능한데 키를 정수로 사용하려면 `parseInt()`를 사용해야 한다.
+  ![ArrayDisplay](https://user-images.githubusercontent.com/20432185/85911491-8b337d00-b860-11ea-9f3e-ae586fe4f26f.png)
 - `for...in`도 `for...of`와 마찬가지로 `Object.keys()`와 잘 비교해서 적재적소에 사용해야 한다.
 
 ## 결론
