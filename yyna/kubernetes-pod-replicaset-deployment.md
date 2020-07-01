@@ -4,7 +4,7 @@
 [List of Kubernetes Resources](https://kubernetes.io/docs/reference/kubectl/overview/#resource-types)
 그 중 가장 기본이 되는 Pod, ReplicaSet, Deployment를 직접 만들어보고 각 Resource에 대해 이해해보는 시간을 가져보려 합니다.
 
-쿠버테니스가 Object(Resource)를 관리하는 방법은 여러가지가 있습니다. 저는 [YAML](https://en.wikipedia.org/wiki/YAML) Configuration File을 사용해서 실습을 진행합니다.
+쿠버네티스가 Object(Resource)를 관리하는 방법은 여러가지가 있습니다. 저는 [YAML](https://en.wikipedia.org/wiki/YAML) Configuration File을 사용해서 실습을 진행합니다.
 
 ## Pods
 
@@ -30,14 +30,14 @@ nginx 이미지를 사용하는 컨테이너를 포함하는 Pod을 만들어봅
 apiVersion: v1
 kind: Pod
 metadata:
-	name: myapp-pod
-	labels:
-		app: myapp
-		type: front-end
+  name: myapp-pod
+  labels:
+    app: myapp
+    type: front-end
 spec:
-	containers:
-	- name: nginx-container
-	  image: nginx
+  containers:
+    - name: nginx-container
+      image: nginx
 ```
 
 v1 버전의 쿠버네티스 API를 사용해서 Pod를 만듭니다. 이 Pod의 이름은 `myapp-pod`이며 `app: myapp`, `type: front-end` 라는 Label 정보를 가집니다.
@@ -100,32 +100,32 @@ template:
 apiVersion, kind가 다르지만 가장 큰 차이점은 selector 부분입니다.
 Replication Controller의 경우 Label이 완전히 일치하는 Pod들만 하나의 세트로 묶을 수 있는 반면 ReplicaSet은 다양한 조건을 설정할 수 있어서 이미 실행 중인 Pod들을 하나의 세트로 묶기에 유용합니다.
 
-위에서 생성한 nginx Pod 3개를 포함하는 ReplicaSet을ㄹ 생성해봅시다.
+위에서 생성한 nginx Pod 3개를 포함하는 ReplicaSet을 생성해봅시다.
 
 ```yaml
 # replicaset-definition.yaml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-	name: myapp-replicaset
-	labels:
-		app: myapp
-		type: front-end
+  name: myapp-replicaset
+  labels:
+	app: myapp
+	type: front-end
 spec:
-	replicas: 3
-	selector:
-		matchLabel:
-			type: front-end
-	template:
-		metadata:
-			name: myapp-pod
-			labels:
-				app: myapp
-				type: front-end
-		spec:
-			containers:
-			- name: nginx-container
-			  image: nginx
+  replicas: 3
+  selector:
+	matchLabel:
+	  type: front-end
+  template:
+    metadata:
+	  name: myapp-pod
+		labels:
+		  app: myapp
+		  type: front-end
+    spec:
+	  containers:
+	  - name: nginx-container
+	    image: nginx
 ```
 
 label이 `type: front-end`인 Pod이 있으면 ReplicaSet에 포함시키고 추가 생성이 필요한 경우 spec > template 정보를 이용해서 새로운 Pod을 만들어 줍니다.  
@@ -140,7 +140,7 @@ kubectl create -f replicaset-definition.yaml
 위에서 만든 myapp-pod가 하나 있기 때문에 2개의 Pod만 더 생기는 모습을 볼 수 있습니다.
 
 정말 3개를 유지할까요? 궁금하니 하나를 삭제해봅시다.
-![delete-pod](./image/kubernetes-pod-replicaset-deployment/5.png 'delete-pod')
+![delete-pod](./image/kubernetes-pod-replicaset-deployment/5.png 'delete-pod')  
 3개의 Pod을 유지하기 위해 ReplicaSet이 일을 열심히 해주고 있군요! 😆
 
 ### How to scale
@@ -172,30 +172,30 @@ Pod 수를 6개로 늘려봅시다. 2가지 방법이 있습니다.
 
 Deployment 역시 YAML 파일로 생성합니다.
 
-```yaml
+```yml
 # deployment-definition.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-	name: myapp-deployment
-	labels:
+  name: myapp-deployment
+  labels:
+	app: myapp
+	type: front-end
+spec:
+  template:
+	metadata:
+	  name: myapp-pod
+      labels:
 		app: myapp
 		type: front-end
-spec:
-	template:
-		metadata:
-			name: myapp-pod
-			labels:
-				app: myapp
-				type: front-end
-		spec:
-			containers:
-			- name: nginx-container
-			  image: nginx
-	replicas: 3
-	selector:
-		matchLabels:
-			type: front-end
+	spec:
+	  containers:
+	  - name: nginx-container
+		image: nginx
+  replicas: 3
+  selector:
+	matchLabels:
+	  type: front-end
 ```
 
 ```bash
@@ -235,6 +235,7 @@ ReplicaSet 목록을 확인하면 이전에 만들어진 ReplicaSet의 Pod 수�
 
 image 정보를 nginx:12.34.56으로 변경 후 Upgrade를 하면 어떻게 될까요?
 ![wrong-image](./image/kubernetes-pod-replicaset-deployment/13.png 'wrong-image')
+
 시간이 계속 지나도 새로운 Deployment의 Pod 수가 늘어나지 않습니다.
 
 ![pod-status](./image/kubernetes-pod-replicaset-deployment/14.png 'pod-status')
