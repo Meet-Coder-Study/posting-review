@@ -109,23 +109,23 @@ kind: ReplicaSet
 metadata:
   name: myapp-replicaset
   labels:
-	app: myapp
-	type: front-end
+    app: myapp
+    type: front-end
 spec:
   replicas: 3
   selector:
-	matchLabel:
-	  type: front-end
+    matchLabel:
+      type: front-end
   template:
     metadata:
-	  name: myapp-pod
-		labels:
-		  app: myapp
-		  type: front-end
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
     spec:
-	  containers:
-	  - name: nginx-container
-	    image: nginx
+      containers:
+        - name: nginx-container
+          image: nginx
 ```
 
 label이 `type: front-end`인 Pod이 있으면 ReplicaSet에 포함시키고 추가 생성이 필요한 경우 spec > template 정보를 이용해서 새로운 Pod을 만들어 줍니다.  
