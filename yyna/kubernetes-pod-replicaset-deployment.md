@@ -179,23 +179,23 @@ kind: Deployment
 metadata:
   name: myapp-deployment
   labels:
-	app: myapp
-	type: front-end
+    app: myapp
+    type: front-end
 spec:
   template:
-	metadata:
-	  name: myapp-pod
+    metadata:
+      name: myapp-pod
       labels:
-		app: myapp
-		type: front-end
-	spec:
-	  containers:
-	  - name: nginx-container
-		image: nginx
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
   replicas: 3
   selector:
-	matchLabels:
-	  type: front-end
+    matchLabels:
+      type: front-end
 ```
 
 ```bash
