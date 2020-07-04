@@ -276,7 +276,7 @@ enumfield.ex.controller.ExitController
 시스템을 종료합니다.
 ```
 
-- 이렇게 람다가 안이라 Controller.class가 들어간걸 확인할 수 있습니다.
+- 이렇게 람다가 아니라 Controller.class가 들어간걸 확인할 수 있습니다.
 
 ## Enum Field → Method
 
@@ -364,7 +364,7 @@ public enum FunctionFieldMethod {
 
 - 위와 같이 잘 실행 되는것을 확인할 수 있습니다.
 
-- enum에 메소드를 필드를 넣을 수 있는 방법은 하나 더 있습니다.
+- enum에 메소드를 필드에 넣을 수 있는 방법은 하나 더 있습니다.
 - 추상 메서드를 이용하는 방법인데요. 아래와 같이 코드를 변경해주시면 됩니다.
 
 ```java
