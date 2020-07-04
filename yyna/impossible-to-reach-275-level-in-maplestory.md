@@ -6,6 +6,10 @@
 
 [메이플스토리/시스템/경험치 - 나무위키](https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC/%EC%8B%9C%EC%8A%A4%ED%85%9C/%EA%B2%BD%ED%97%98%EC%B9%98)를 확인해보니 사실이더라구요.
 
+각 레벨마다 다음 레벨을 위해 필요한 경험치, 누적 경험치를 그래프로 나타내봤습니다.
+
+![메이플스토리 경험치 그래프](./image/impossible-to-reach-275-level-in-maplestory/11.png '메이플스토리 경험치 그래프')
+
 만렙의 총 누적 경험치 = 86,471,480,103,891  
 239레벨의 총 누적 경험치 = 3,136,345,550,079
 
@@ -104,25 +108,26 @@ https://vercel.com/solutions/nextjs
 
 ![Vercel](./image/impossible-to-reach-275-level-in-maplestory/5.png 'Vercel')
 
-**Deploy Free** 버튼을 누르면 GitHub, GitLab, Bitbucket을 연동해서 배포를 할 수 있도록 해줍니다. 저는 이미 GitHub에 프로젝트를 올려둔 상태이기 때문에 GitHub을 선택했습니다.
+**Deploy Free** 버튼을 누르면 GitHub, GitLab, Bitbucket에 있는 저장소를 선택해서 바로 배포를 할 수 있도록 해줍니다. 저는 이미 GitHub에 프로젝트를 올려둔 상태이기 때문에 GitHub을 선택했습니다.
 
-Vercel에 권한을 제 프로젝트 권한을 승인하면 `*.vercel.app` 도메인으로 배포를 시작합니다.
+Vercel에 제 프로젝트 접근 권한을 승인하면 `*.vercel.app` 도메인으로 배포를 시작합니다.
+어차피 Public 저장소인데 무슨 권한이 필요한가 궁금할 수 있을 것 같아서 설명드리자면, 아래 스크린샷과 같이 Vercel 앱이 제 저장소에 설치된 형태이기 때문에 새롭게 Push 할 경우 Vercel이 알아차리고 자동으로 배포를 해줍니다.
+
+![Vercel](./image/impossible-to-reach-275-level-in-maplestory/9.png 'Vercel')
 
 ![CICD](./image/impossible-to-reach-275-level-in-maplestory/6.png 'CICD')
 
-배포가 완료되었다고 뜨면 들어가서 확인해봅시다!
+배포가 완료되었다고 뜨면 들어가서 확인해봅시다!  
 https://maple-zz.vercel.app
 
-![page-1](./image/impossible-to-reach-275-level-in-maplestory/7.png 'page-1')  
-![page-2](./image/impossible-to-reach-275-level-in-maplestory/8.png 'page-2')
+![demo](./image/impossible-to-reach-275-level-in-maplestory/10.gif 'demo')
 
-너무 배포가 잘 되었죠,,,? CI/CD 너무 좋네요 너무 좋아 💕
+너무 배포가 잘 되었죠..? CI/CD 너무 좋네요 너무 좋아 💕
 
 ## 주의할 점
 
 - 메이플스토리 리부트 월드?는 랭킹이 따로다... 크롤링할때 파라미터 하나만 더 추가하면 정보를 가져올 수 있다.
 - 요청 너무 많이보내면 내 IP가 차단당한다.
-- 테라버닝해서 레벨 200까지 올려도 만렙까지 가는길 중 0.017%를 달성할 뿐이다...
 
 ## 느낀 점
 
@@ -130,5 +135,11 @@ https://maple-zz.vercel.app
 - 백엔드 개발자이지만 프론트를 어느 정도 할 줄 아는 건 유용하다.
 - 어느 정도 내가 원하는 걸 뚝딱 만들어낼 수 있게된 것 같아 뿌듯하다.
 - CI/CD가 없는 세상에서 어떻게 살았을까?
-- 이 모든 사실을 알고있지만 오늘도 피곤한 몸을 이끌고 일일퀘스트를 깨고 자는 나의 남자친구는 지독한 겜돌이이다......
-- 만렙이 게임의 목표는 아니니 상관없다.
+- 이 모든 사실을 알고있지만 오늘도 피곤한 몸을 이끌고 일일퀘스트를 깨고 자는 나의 남자친구는 지독한 겜돌이이다...... 하지만 만렙이 게임의 목표는 아니니 상관없죠 뭐ㅎㅎㅎㅎ
+- 테라버닝해서 레벨 200까지 올려도 만렙까지 가는길 중 0.017%를 달성할 뿐이다...
+
+## 마무리
+
+레벨이 오를 수록 몬스터가 주는 경험치도 늘어나지만 레벨업을 위해 필요한 경험치가 더 빨리 늘어난다고 합니다. 현재 레벨이 239인 그는 올 연말에나 245 레벨에 도달할 거라고 예상하고 있더라구요. 만렙을 찍는 사람이 있을까 싶어 찾아보니 오늘(2020년 7월 4일) 기준으로 614명이나 되네요...
+
+이상 메이플스토리 만렙을 달성할 수 없는 이유에 대한 고찰이었습니다....🍄
