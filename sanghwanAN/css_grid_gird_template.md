@@ -10,7 +10,7 @@ Grid-item 들을 몇 행 몇 열 로 배치를 할 지 **grid-template-columns**
 **grid-template-columns** 와 **grid-template-rows** 속성 사용법에 대해서 설명을 할껀데요, 그전에 먼저 추가로 알게 된 Grid 관련 용어를 포스팅을 하고 속성 사용법에 대해 포스팅을 하겠습니다.
 아래 내용은  [w3.org](https://www.w3.org/TR/css-grid-1/#grid-track-concept)의 내용입니다.
 
- &gt;**Grid Tracks** / **Cells** 
+**Grid Tracks** / **Cells** 
 * **Grid track** is a generic term for a grid column or grid row—in other words, it is the space between two adjacent grid lines. Each grid track is assigned a sizing function, which controls how wide or tall the column or row may grow, and thus how far apart its bounding grid lines are. Adjacent grid tracks can be separated by gutters but are otherwise packed tightly.  
 
 * A **grid cell** is the intersection of a grid row and a grid column. It is the smallest unit of the grid that can be referenced when positioning grid items.
@@ -44,17 +44,6 @@ w3.org의 내용이 방대하고 어려운데 w3.org의 내용을 이해하기 �
 [css-tricks.com](https://css-tricks.com/snippets/css/complete-guide-grid/#grid-table-of-contents) 이라는 곳인대요,
 [css-tricks.com](https://css-tricks.com/snippets/css/complete-guide-grid/#grid-table-of-contents) 에서 나와있는 설명과 css 및 html 예제 소스를 참고 하여 포스팅을 하겟습니다.  
 
-
-* grid01. 트랙 값 사이 빈 공간을 grid Line이 자동으로 할당 됩니다.  
-
-
-```css
-.cards--grid01 {
-    grid-template-columns: 120px 100px auto 100px 120px;
-    grid-template-rows: 25% 100px auto;
-}
-```
-
 * grid01. 트랙 값 사이 빈 공간을 grid Line이 자동으로 할당 됩니다.  
 
 ```css
@@ -81,18 +70,13 @@ w3.org의 내용이 방대하고 어려운데 w3.org의 내용을 이해하기 �
 
 * grid04. 정의에 반복되는 부분이 포함 된 경우 repeat()표기법을 사용하여 작업을 간소화 할 수 있습니다.  
 ```css
+.cards--grid05 {   
+    grid-template-columns: repeat(3, 33.3% [col-start]);
+}
 .cards--grid04 {
     grid-template-columns: 33.3%  [col-start] 33.3%  [col-start] 33.3%  [col-start];
 }
 ```
-
-* grid05. repeat 적용 하기전은 다음과 같습니다.  
-```css
-.cards--grid05 {   
-    grid-template-columns: repeat(3, 33.3% [col-start]);
-}
-```
-
 * grid05. 여러 줄이 같은 이름을 공유하는 경우 해당 줄 이름과 개수로 참조 할 수 있습니다. 
 ```css
 .cards--grid__item {
