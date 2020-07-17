@@ -204,7 +204,7 @@ POST my_custom_index/_analyze
 }
 ```
 
- title이라는 text 타입에 "<p>Elasticsearch</p> is cool" 이라는 텍스트를 분석하면 아래와 같이 HTML 태그들이 모두 제거된 채로 토큰들이 정제된 것을 확인하실 수 있습니다.
+ title이라는 text 타입에 "\<p\>Elasticsearch\</p\> is cool" 이라는 텍스트를 분석하면 아래와 같이 HTML 태그들이 모두 제거된 채로 토큰들이 정제된 것을 확인하실 수 있습니다.
 
 ```
 {
@@ -421,7 +421,7 @@ PUT my_custom_index/_doc/1
 }
 ```
 
- 그리고 아래와 같이 "Chanber of Secrets"라는 문장으로 문서를 검색해보겠습니다.
+ 그리고 아래와 같이 "Chamber of Secrets"라는 문장으로 문서를 검색해보겠습니다.
 
 ```
 POST my_custom_index/_search
