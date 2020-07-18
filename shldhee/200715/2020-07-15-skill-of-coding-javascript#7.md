@@ -218,7 +218,13 @@ return { ...defaults, ...event };
 
 ```javascript
 const programInfo = mergeProgramInformation(building, manager, program);
-// {hours: "3 - 6", address: "Jayhawk Blvd", contact: "Augusto", phone: "555-555-5555", name: "Presenting Research", …}
+// {
+//  hours: "3 - 6", 
+//  address: "Jayhawk Blvd", 
+//  contact: "Augusto", 
+//  phone: "555-555-5555", 
+//  name: "Presenting Research", …}
+
 const exhibitInfo = mergeProgramInformation(building, manager, exhibit);
 //  {
 //     address: "Jayhawk Blvd"
@@ -435,7 +441,7 @@ validator.setInvalidMessage('도시');
 // 도시는 유효하지 않습니다.
 ```
 
-- `this`는 객체를 가리킨다.
+- `this`는 객체(`validator`)를 가리킨다.
 - `setInvalidMessage` 메서드가 호출될 때, 함수에서 `this` 바인딩을 생성하면서 객체를 문맥에 포함시킨다.
 
 - 문맥 다룰때 자주하는 실수를 살펴보자.
@@ -455,6 +461,7 @@ validator.setInvalidMessages('aa','bb')
 ``` 
 
 - 책에서는 에러 난다고 `message` 속성이 없다고 에러난다고 하는데 실행시키면 위와 같이 `undefined`를 반환한다. `this`는 전역를 바라본다.
+- 객체 메서드의 콜백함수의 `this`는 전역을 바라본다.
 - `map()` 메서드의 문맥에서 호출되므로 바인딩이 `validator` 객체가 아니다.
 
 ``` javascript
@@ -469,6 +476,14 @@ const validator = {
 
 validator.setInvalidMessages('도시');
 // ['도시는 유효하지 않습니다.']
+
+이 구간이 화살표 함수 영역인데 화살표 함수는 this를 만들지 않는다.
+// return fields.map(field => {
+//   return `${field}${this.message}`;
+// });
+
+따라서 아래에서 this는 validator로 바인딩되어있어서 화살표함수에서 this는 validator로 바인딩된다.
+// setInvalidMessages(...fields) {}
 ```
 
 - 화살표 함수를 사용하면 문맥을 새로 바인딩하지 않아 `validator`에 바인딩 된다.
@@ -479,7 +494,7 @@ validator.setInvalidMessages('도시');
 ``` javascript
 const validator = {
   message: '는 유효하지 않습니다.',
-  setInvalidMessage: field => `${field}${this.message}`,
+  setInvalidMessage: field => `${field}${this.message}`, // this가 없으니 상위 validator에서 this를 가져다 쓴다.
 };
 validator.setInvalidMessage('hi');
 // "hiundefined"
