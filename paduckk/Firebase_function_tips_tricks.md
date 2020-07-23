@@ -1,6 +1,6 @@
 # Firebase function tips & tricks
 
-Firebase의 공식 문서 (Tips & tricks)[https://firebase.google.com/docs/functions/tips#always_delete_temporary_files]의 내용을 소개하고 왜 그렇게 해야하는지 간단히 설명 드리겠습니다.
+Firebase의 공식 문서 Tips & tricks의 내용을 소개하고 왜 그렇게 해야하는지 간단히 설명 드리겠습니다.
 
 ## 서론
 
@@ -74,3 +74,55 @@ const requestSayHello = async (req, resp) => {
 	})
 }
 ```
+
+## Performance
+
+
+
+### Use dependencies wisely
+
+각 함수 마다 불필요한 의존성을 줄여야 합니다.
+
+Firebase function 프로젝트의 코드를 작성 할 때 일반적으로 제안하는 방식으로 프로젝트를 구성하게 되면 규모가 커질수록 의도치 않게 서로간의 의존성을 증가 시킬 수 있습니다.
+
+```jsx
+// index.js
+import { sayHelloService } from '../service/sayHello'
+import { sayHiService } from '../service/sayHi'
+
+export const sayHello = functions.https.onCall((data, context) => {
+	  // ...
+    sayHelloService.handle()
+});
+
+export const sayHi = functions.https.onCall((data, context) => {
+    // ...
+    sayHiService.handle()
+});
+
+```
+
+일반 적으로 프로젝트를 구성하게 되면 프로젝트의 `index.js` 에 모든 함수들을 export하고 `firebase-tools`를 이용해 편리하게 배포, 관리를 하게 됩니다.
+
+여기서 문제는 `sayHi`함수가 실행 될 때 `sayHello`함수에 필요한 의존성이 불필요하게 불러와 집니다. 
+
+fireabase function은 각각의 함수가 다른 인스턴스에서 실행 되어 지기 때문에 `SayHi`가 실행되는 인스턴스에서는 나머지 함수에 대한 의존성이 불필요하게 불러올 필요가 없습니다.
+
+만약 하나의 프로젝트에 함수의 개수가 50개 100개 늘어난다면  단 1개 의 함수를 호출하기 위해 나머지 50개, 100개의 의존성을 전부 불러와야 합니다. 
+
+firebase function은 부하에 따라 처리하기 위한 인스턴스를 동적으로 추가하고 삭제합니다. 인스턴스가 새로 생기고 동작하기 위해서 최초로 한 번 작성한 소스 코드의 의존성을 로드하는데 이 때를 cold start라고 지칭합니다.
+
+
+### Firebase function 실행 환경
+
+- firebase function에 배포되는 각 함수는 각기 다른 인스턴스에서 실행 됩니다.
+
+    ![images/Firebase%20function%20tips%20&%20tricks/Untitled.png](images/Firebase%20function%20tips%20&%20tricks/Untitled.png)
+
+- 하나의 인스턴스는 동시에 여러 요청을 처리하지 못합니다. 특정 함수를 처리하는 인스턴스가 모두 처리 중인 경우 새로운 인스턴스를 생성하여 처리합니다.
+
+    ![images/Firebase%20function%20tips%20&%20tricks/Untitled%201.png](images/Firebase%20function%20tips%20&%20tricks/Untitled%201.png)
+
+- 인스턴스가 새로 생성 되어 최초 실행 될 때 인스턴스 초기화 및  작성한 코드와 의존성을 불러와야 합니다. 이 때 불러와야 할 의존성이 많을 수록 `cold start` 시간에 영향을 많이 끼칩니다.
+
+![images/Firebase%20function%20tips%20&%20tricks/Untitled%202.png](images/Firebase%20function%20tips%20&%20tricks/Untitled%202.png)
