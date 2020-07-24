@@ -35,23 +35,16 @@ npm init -y
 
 // output: package.json
 {
-  "name": "yourname
-  "version" >",
-  "version": "1.0.
-  "description" >0",
-  "description":
-  "main" >"",
-  "main": "index.js
-  "scripts" >",
+  "name": "choisohyun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit
-  },
-  "" >1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "
-  "license" >author": "",
-  "license": "ISC",
+  "author": "",
+  "license": "ISC"
 }
 ```
 
