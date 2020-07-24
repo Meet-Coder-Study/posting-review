@@ -12,8 +12,8 @@
 
 참고한 환경설정을 바탕으로 이해하고 쓰는 저만의 boilerplate를 구축하고 있는 것을 소개할 예정입니다.
 
-- [React + Typescript + SSR + Code-splitting 환경 설정하기](<[https://medium.com/@minoo/react-typescript-ssr-code-splitting-환경설정하기-d8cec9567871](https://medium.com/@minoo/react-typescript-ssr-code-splitting-%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0-d8cec9567871)>)
-- [요즘 잘나가는 프론트엔드 개발 환경 만들기(2018): Webpack 4](<[https://meetup.toast.com/posts/153](https://meetup.toast.com/posts/153)>)
+- [React + Typescript + SSR + Code-splitting 환경 설정하기](https://medium.com/@minoo/react-typescript-ssr-code-splitting-%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0-d8cec9567871)
+- [요즘 잘나가는 프론트엔드 개발 환경 만들기(2018): Webpack 4](https://meetup.toast.com/posts/153)
 
 ## 목차
 
@@ -223,7 +223,7 @@ npm install -D @babel/core @babel/preset-env @babel/preset-react babel-preset-re
 - 위에서 설치한 babel preset, plugin를 프로젝트에 적용하기 위해 다음과 같이 작성해 `babel.config.js` 파일로 저장합니다.
 - preset은 **presets** 배열로, plugin은 **plugins** 배열 객체로 저장하면 됩니다.
 
-```json
+```js
 module.exports = {
   presets: ["@babel/preset-env", "@babel/preset-react"],
   plugins: ["@babel/proposal-class-properties", "@babel/syntax-dynamic-import"],
