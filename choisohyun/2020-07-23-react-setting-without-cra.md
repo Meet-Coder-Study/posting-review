@@ -51,8 +51,8 @@ npm init -y
 ### dependencies
 
 - npm 프로젝트를 초기화하고 라이브러리를 `npm intall` 명령어로 설치하면 기본적으로 dependencies에 버전과 함께 저장됩니다.
-- 버전은 `"^0.19.2"` 와 같은 형태로 저장됩니다. 예시는 `1.0.0 미만`까지만 업데이트를 허용한다는 의미입니다.
-  - 참고: `"~0.19.2"`의 형태로 되어 있다면 `0.20.0 미만` 버전까지만 허용한다는 의미입니다.
+- 버전은 `"^0.19.2"(캐럿)` 와 같은 형태로 저장됩니다. 예시는 `1.0.0 미만`까지만 업데이트를 허용한다는 의미입니다.
+  - 참고: `"~0.19.2(틸드)"`의 형태로 되어 있다면 `0.20.0 미만` 버전까지만 허용한다는 의미입니다.
 - 가장 앞의 숫자는 메이저 버전을 뜻하는데, 메이저 버전이 바뀌면 로직이 크게 바뀌어 에러가 발생하는 경우가 있어서 기본적으로 메이저 버전을 올리지 않게끔 작동합니다.
 
 ### devDependencies
@@ -202,7 +202,7 @@ npm install -D @babel/core @babel/preset-env @babel/preset-react babel-preset-re
 
 ### [preset-react](https://babeljs.io/docs/en/babel-preset-react)
 
-- React로 작성된 코드를 createElement 함수를 이용한 코드로 변환하는 preset입니다.
+- JSX로 작성된 코드를 createElement 함수를 이용한 코드로 변환하는 preset입니다.
 - `@babel/plugin-syntax-jsx`, `@babel/plugin-transform-react-jsx`, `@babel/plugin-transform-react-display-name`다음과 같은 플러그인을 포함하고 있습니다.
 
 > `plugin`은 npm 라이브러리를 가지고 있는 하나의 규칙을 적용할 때 사용합니다.
@@ -214,9 +214,9 @@ npm install -D @babel/core @babel/preset-env @babel/preset-react babel-preset-re
 
 ### [plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import)
 
-- Dynamic import로 `Code Spliting`을 구현할 때 사용하는 플러그인입니다.
+- Dynamic import로 `Code Splitting`을 구현할 때 사용하는 플러그인입니다.
 - Webpack이 `import('./example').then();` 구문을 만나게 되면 코드를 분할하게 되는 것입니다.
-- `Suspense, lazy`나 `loadable component`를 사용하여 `Code Spliting`을 구현한다면 사용하지 않아도 됩니다.
+- `Suspense, lazy`나 `loadable component`를 사용하여 `Code Splitting`을 구현한다면 사용하지 않아도 됩니다.
 
 ### ② babel.config.js 설정
 
