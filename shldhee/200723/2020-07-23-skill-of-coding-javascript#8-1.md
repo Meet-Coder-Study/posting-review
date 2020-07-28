@@ -8,11 +8,11 @@
 - 프로토타입이 조합된 자바스크립트 클래스를 살펴볼 예정이다.
   - 읽기 쉬운 클래스를 만들어라
   - 상속으로 메서드를 공유하라
-  - 클래스롣 기존의 프로토타입을 확장하라
+  - 클래스로 기존의 프로토타입을 확장하라
 
 ## 읽기 쉬운 클래스를 만들어라(TIP37)
 
-- 자바스크립트에서 크래스를 작성하는 방법을 살펴보자.
+- 자바스크립트에서 클래스를 작성하는 방법을 살펴보자.
 
 ```javascript
 class Coupon {
@@ -67,9 +67,6 @@ coupon.getExpirationMessage(); // '이 쿠폰은 2주 뒤에 만료됩니다.'
 ```javascript
 import Coupon from "./extend";
 class FlashCoupon extends Coupon {}
-const flash = new FlashCoupon(10);
-flash.price; // 10
-flash.getPriceText(); // '$ 10'
 ```
 
 - `FlashCoupon`는 `extends` 키워드를 사용해 `Coupon` 클래스를 상속받는다.
@@ -156,3 +153,11 @@ class FlashCoupon extends Coupon {
 - 시간이 되면 자바스크립트 프로토타입 체인 개념을 살펴보면 더 도움이 많이 될것이다.
   - [쉽게 이해하는 자바스크립트 프로토타입 체인](https://meetup.toast.com/posts/104)
   - [상속과 프로토타입 MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain)
+
+- JavaScript에서 class를 만든 이유에 대한 내용은 [ES6 class 도입에 대한 이해](https://mygumi.tistory.com/235) 참고!
+- [자바스크립크에스 클래스 사용하기](https://levelup.gitconnected.com/using-classes-in-javascript-e677d248bb6e) 참고!
+  - 여기서 class가 만든 이유를 단순히 객체를 쉽게 생성하기 위해서라고 한다.
+  
+> The most important thing to remember: Classes are just normal JavaScript functions and could be completely replicated without using the class syntax. It is special syntactic sugar added in ES6 to make it easier to declare and inherit complex objects.
+> 번역 - 기억해야 할 가장 중요한 점 : 클래스는 일반적인 JavaScript 함수일 뿐이며 클래스 구문을 사용하지 않고 완전히 복제 할 수 있습니다. 복잡한 객체를보다 쉽게 선언하고 상속 할 수 있도록 ES6에 추가 된 특수한 구문 설탕입니다.
+> 
