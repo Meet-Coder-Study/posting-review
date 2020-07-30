@@ -1,4 +1,4 @@
-# 자바스크립트 코딩의 기술(시리즈 8 - 클래스로 인터페이스를 간결하게 유지하라)
+# 자바스크립트 코딩의 기술(시리즈 8 - 클래스로 인터페이스를 간결하게 유지하라#1)
 
 - 자바스크립트 코딩의 기술 책을 읽고 복습 겸 정리하는 포스팅이다.
 - 시리즈 1이 시작이며 시리즈 몇까지는 대지는 진행하면서 가늠잡아 보겠다.
@@ -160,4 +160,3 @@ class FlashCoupon extends Coupon {
   
 > The most important thing to remember: Classes are just normal JavaScript functions and could be completely replicated without using the class syntax. It is special syntactic sugar added in ES6 to make it easier to declare and inherit complex objects.
 > 번역 - 기억해야 할 가장 중요한 점 : 클래스는 일반적인 JavaScript 함수일 뿐이며 클래스 구문을 사용하지 않고 완전히 복제 할 수 있습니다. 복잡한 객체를보다 쉽게 선언하고 상속 할 수 있도록 ES6에 추가 된 특수한 구문 설탕입니다.
-> 
