@@ -72,7 +72,7 @@ Error Code: 2013. Lost connection to MySQL server during query
 
 다만, 위 기능은 `Aurora Lab mode`를 활성화해야 사용가능하다. 개발 환경이라 사용해도 될 법 햇지만 뭔가 찝찝해서 최후순위로 고려하게 되었다.
 
-1. `select insert`
+2. `select insert`
 
 [https://jojoldu.tistory.com/244](https://jojoldu.tistory.com/244) 이 링크에 나와있는 것처럼 스키마를 변경할 테이블을 복사하여 진행하는 방법도 있다.
 
