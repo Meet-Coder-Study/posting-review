@@ -4,7 +4,7 @@
 
 ## 자바가 실행되는 과정
 
- 사용자가 작성한 소스 코드는 .java 라는 확장자를 가진 파일입니다. **.java 파일은 Compiler에 의해 .class 확장자를 가진 bite-code가 생성됩니다. bite-code는 JVM에 의해 로드되어 실행됩니다.** 아래는 JVM 구조에 대한 그림입니다.
+ 사용자가 작성한 소스 코드는 .java 라는 확장자를 가진 파일입니다. **.java 파일은 Compiler에 의해 .class 확장자를 가진 byte-code가 생성됩니다. byte-code는 JVM에 의해 로드되어 실행됩니다.** 아래는 JVM 구조에 대한 그림입니다.
 
 ![JVM Architecture](./images/2020-07-30-jvm-architecture/JVM-Architecture.png)
 
@@ -20,7 +20,7 @@
 
 [https://futurists.tistory.com/43](https://futurists.tistory.com/43)
 
- Class Loader Subsystem은 런타임 중에클래스 파일이 처음으로 참조 되었을 때, 내부적으로 **Loading, Linking, Initialization**이라는 세 가지 단계를 거쳐서 JVM 메모리에 적재하게 됩니다.
+ Class Loader Subsystem은 런타임 중에 클래스 파일이 처음으로 참조 되었을 때, 내부적으로 **Loading, Linking, Initialization**이라는 세 가지 단계를 거쳐서 JVM 메모리에 적재하게 됩니다.
 
 #### Loading
 
@@ -42,7 +42,7 @@
 
  링킹 과정에서는 **Verify, Prepare, Resolve** 과정을 거칩니다.
 
-**Verify** - bite-code가 적절하게 포맷하여 생성되었는지 검증합니다. 만약 검증에 실패한다면 java.lang.VerifyError라는 런타임 익셉션이 발생합니다.
+**Verify** - byte-code가 적절하게 포맷하여 생성되었는지 검증합니다. 만약 검증에 실패한다면 java.lang.VerifyError라는 런타임 익셉션이 발생합니다.
 
 **Prepare** - 클래스 변수들을 위해 JVM 메모리를 할당하고, 해당 메모리를 default value로 초기화 합니다.
 
