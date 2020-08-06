@@ -1,18 +1,18 @@
 # Lombok 사용법 1 (XXXArgsConstructor, Getter, Setter, ToString)
 
-> [예제코드](https://github.com/ksy90101/lombok-ex)
+> [예제코드](https://github.com/ksy90101/Java-TIL-ex/tree/master/blog-ex-lombok)
 
 ### Lombok Dependecy 설정
 
-```java
+```groovy
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-}
+}x
 ```
 
-```java
+```groovy
 compileOnly 'org.projectlombok:lombok'
 annotationProcessor 'org.projectlombok:lombok'
 ```
