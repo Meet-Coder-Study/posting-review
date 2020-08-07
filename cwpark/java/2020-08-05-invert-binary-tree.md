@@ -99,7 +99,7 @@ class Solution {
 
 두 번째 반복에서는 7을 큐에서 빼내어(poll) 자식 노드인 9와 6의 순서를 바꾸어 큐의 끝에 차례대로 추가한다.
 
-![image-20200805063534360](/Users/johnpark/Dev/posting-review/cwpark/images/binrary-tree-iterative3.png)
+![image-20200805063534360](../images/binrary-tree-iterative3.png)
 
 세번째 반복문은 깊이 1의 마지막 노드를 처리한다. 1과 3의 순서를 바꿔 3, 1로 만든 후 큐의 끝에 추가한다. 다음 처리할 노드는 깊이가 2다. 이렇게 하나의 깊이에 있는 노드들에 대한 작업을 끝내고 다음 깊이의 노드들을 처리할 수 있다.
 
@@ -139,6 +139,5 @@ ps. 리트코드 문제 풀이 후 다른 사람의 풀이를 볼 수 있는데,
 https://leetcode.com/articles/invert-binary-tree/
 
 https://twitter.com/mxcl/status/608682016205344768
-
 
 
