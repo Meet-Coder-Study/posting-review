@@ -95,7 +95,7 @@ class Solution {
 
 
 
-![image-20200805063136649](/Users/johnpark/Dev/posting-review/cwpark/images/binrary-tree-iterative2.png)
+![image-20200805063136649](../images/binrary-tree-iterative2.png)
 
 두 번째 반복에서는 7을 큐에서 빼내어(poll) 자식 노드인 9와 6의 순서를 바꾸어 큐의 끝에 차례대로 추가한다.
 
@@ -139,7 +139,6 @@ ps. 리트코드 문제 풀이 후 다른 사람의 풀이를 볼 수 있는데,
 https://leetcode.com/articles/invert-binary-tree/
 
 https://twitter.com/mxcl/status/608682016205344768
-
 
 
 
