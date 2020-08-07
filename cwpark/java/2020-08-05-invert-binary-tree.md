@@ -89,7 +89,7 @@ class Solution {
 
 ​	![image-20200805062440028](../images/binrary-tree-iterative0.png)예제 트리는 이전과 같다. 루트 노드 4부터 출발한다. 그리고 TreeNode를 담을 Queue를 준비한다.
 
-![image-20200805062557207](/Users/johnpark/Dev/posting-review/cwpark/images/binrary-tree-iterative1.png)
+![image-20200805062557207](../images/binrary-tree-iterative1.png)
 
 4를 큐에 담고 나서 자식 노드인 2와 7의 순서를 바꾼다. 그리고 정렬된 자식 노드 2개를 큐에 차례로 넣어준다. 
 
@@ -139,7 +139,6 @@ ps. 리트코드 문제 풀이 후 다른 사람의 풀이를 볼 수 있는데,
 https://leetcode.com/articles/invert-binary-tree/
 
 https://twitter.com/mxcl/status/608682016205344768
-
 
 
 
