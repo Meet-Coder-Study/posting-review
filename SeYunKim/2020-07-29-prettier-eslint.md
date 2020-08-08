@@ -239,7 +239,7 @@ const object = {
     - 0 ~ Infinity 까지 가능하다.
 - Parser : 사용할 파서를 지정하는 것이다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5cd3fe2-f6db-4d61-bb1d-095eabbafad0/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5cd3fe2-f6db-4d61-bb1d-095eabbafad0/Untitled.png)
+![eslint-prettier-1](https://github.com/ksy90101/TIL/blob/master/javascript/img/eslint-prettier-1.png?raw=true)
 
 - filepath : 사용할 구문 분석기를 유추하는데 사용
 - requirePragma : 파일 상단에 미리 정의된 주석을 작성하고 Pragma로 포맷팅 사용 여부
