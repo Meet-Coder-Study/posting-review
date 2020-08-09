@@ -29,7 +29,7 @@ on:
   push:
     branches: master
   pull_request:
-    branches: mastert
+    branches: master
 
 jobs:
   build:
