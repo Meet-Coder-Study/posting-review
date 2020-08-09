@@ -66,23 +66,23 @@ console.log("hello");
 
 - 위의 예제 코드는 어떤 순서대로 `실행`되고, 어떤 순서로 `출력`될까?
 
-    실행 순서(Call Stack에 담기는 순서)
+  실행 순서(Call Stack에 담기는 순서)
 
-    ```jsx
-    console.log("First"); 
-    => setTimeout(f, 1000); 
-    => console.log("hi");
-    => console.log("hello");
-    ```
+  ```jsx
+  console.log("First");
+  => setTimeout(f, 1000);
+  => console.log("hi");
+  => console.log("hello");
+  ```
 
-    출력 순서
+  출력 순서
 
-    ```jsx
-    First
-    hi
-    hello
-    Last
-    ```
+  ```jsx
+  First;
+  hi;
+  hello;
+  Last;
+  ```
 
 - setTimeout은 비동기적으로 실행하기 때문에 `hi`와 `hello`가 먼저 출력된다.
 
@@ -102,7 +102,7 @@ console.log("hello");
 function countdown() {
   let i;
   console.log("Countdown:");
-  for(i = 5; i >= 0; i--) {
+  for (i = 5; i >= 0; i--) {
     setTimeout(() => {
       console.log(i === 0 ? "GO!" : i);
     }, (5 - i) * 1000);
@@ -121,7 +121,7 @@ countdown();
 
 - 이유: `i`를 for 문 밖에 선언했기 때문이다. ⇒ **i가 for문을 다 돈 후 -1이 되었을 때 콜백이 시작됨**
 
-    ⇒ i를 for문 안에 선언하면 원하는 결과가 출력된다.
+  ⇒ i를 for문 안에 선언하면 원하는 결과가 출력된다.
 
 ### 오류 우선 콜백
 
@@ -129,11 +129,11 @@ countdown();
   오류가 발생한 경우 첫 번째 인수로, 요청의 결과를 추가 인수로 사용하여 함수를 실행하는 것으로 구성한다.
 
 ```js
-const fs = require('fs');
-const fname = 'may_or_may_not_exist.txt';
+const fs = require("fs");
+const fname = "may_or_may_not_exist.txt";
 
-fs.readFile(fname, function(err, data) {
-  if(err) return console.error(`error reading file ${fname}: ${err.message}`);
+fs.readFile(fname, function (err, data) {
+  if (err) return console.error(`error reading file ${fname}: ${err.message}`);
   console.log(`${fname} contents: ${data}`);
 });
 ```
@@ -168,7 +168,7 @@ fs.readFile(fname, function(err, data) {
 
 - 콜백을 대체하는 것이 아니고, 콜백을 예측 가능한 패턴으로 가능하게 만들어 콜백만 사용할 때의 버그를 줄여 줌
 - Promise 기반 **비동기적 함수** 호출 ⇒ 함수: `Promise 인스턴스 반환`
-- ***성공(resolve), 실패(reject)*** 두 가지 경우만 존재하고, ***단 한 번***만 발생함
+- **_성공(resolve), 실패(reject)_** 두 가지 경우만 존재하고, **_단 한 번_**만 발생함
 - 성공과 실패를 판별하는 역할(Promise 상태 관리)을 할 뿐, **함수를 멈추지는 않음**
 - 현재 진행 상황을 알 수 없음(성공, 실패 여부만 알 수 있음)
 - 객체이기 때문에 어디든 전달 가능함
@@ -177,20 +177,20 @@ fs.readFile(fname, function(err, data) {
 
 ```js
 function countdown(seconds) {
-  return new Promise(function(resolve, reject) {
-    for(i = seconds; i >= 0; i--) {
+  return new Promise(function (resolve, reject) {
+    for (let i = seconds; i >= 0; i--) {
       setTimeout(() => {
         if (i > 0) console.log(i);
         else resolve(console.log("GO!"));
-      }, (seconds - i)*1000);
+      }, (seconds - i) * 1000);
     }
   });
 }
 countdown(5).then(
-  function() {
+  function () {
     console.log("countdown completed");
   },
-  function(err) {
+  function (err) {
     console.log("countdown error" + err.message);
   }
 );
@@ -198,14 +198,14 @@ countdown(5).then(
 
 #### 실행 결과
 
-![img](https://i.imgur.com/rgxUHOm.png)
+![img](./images/callback-example.png)
 
 #### 예제2
 
 ```js
 fetch(url, { method: "GET" })
-  .then(response => response.json())
-  .catch(error => console.error(error));
+  .then((response) => response.json())
+  .catch((error) => console.error(error));
 ```
 
 ### 이벤트
@@ -229,7 +229,7 @@ const EventEmitter = require("events").EventEmitter;
 
 const myEmitter = new EventEmitter("myEvent1", "myEvent2");
 
-myEmitter.on("myEvent1", function(arg) {
+myEmitter.on("myEvent1", function (arg) {
   console.log("myEvent1 fired with " + arg);
 });
 
@@ -244,20 +244,20 @@ myEmitter.emit("myEvent1", "an arg");
 - 프라미스 사용시 *모든 단계*에서 에러 캐치할 필요는 없음
 
 ```jsx
-new Promise(function(resolve, reject) {
-  setTimeout(function() {
+new Promise(function (resolve, reject) {
+  setTimeout(function () {
     resolve(1);
   }, 2000);
 })
-  .then(function(result) {
+  .then(function (result) {
     console.log(result); // 1
     return result + 10;
   })
-  .then(function(result) {
+  .then(function (result) {
     console.log(result); // 11
     return result + 20;
   })
-  .then(function(result) {
+  .then(function (result) {
     console.log(result); // 31
   });
 ```
@@ -276,7 +276,7 @@ new Promise(function(resolve, reject) {
 
 **제너레이터 + 프라미스**
 
-> yield를 호출해 멈춘 Generator을 Promise가 제어하도록 하는 것  
+> yield를 호출해 멈춘 Generator을 Promise가 제어하도록 하는 것
 
 1. 노드의 오류 우선 콜백 ⇒ 프라미스
 2. 오류 우선 콜백의 패턴을 따르지 않는 setTimeout의 기능을 가진 ptimeout(promise timeout) 함수 생성
@@ -290,32 +290,32 @@ new Promise(function(resolve, reject) {
 - `co나 Koa`라는 이미 만들어진 생성기를 사용해도 된다.
 
 ```js
-function grun(g) { 
-    const it = g();
-    (function iterate(val){
-        const x = it.next(val);
-        if(!x.done) {
-            if(x.value instanceof Promise) {
-                x.value.then(iterate).catch(err => it.throw(err));            
-            }else{
-                setTimeout(iterate,0,x.value);
-            }
-        }
-    })();
+function grun(g) {
+  const it = g();
+  (function iterate(val) {
+    const x = it.next(val);
+    if (!x.done) {
+      if (x.value instanceof Promise) {
+        x.value.then(iterate).catch((err) => it.throw(err));
+      } else {
+        setTimeout(iterate, 0, x.value);
+      }
+    }
+  })();
 }
 ```
 
-#### 예제 
+#### 예제
 
 ```js
 function* theFutureIsNow() {
   const data = yield Promise.all([
-    nfcall(fs.readFile, 'a.txt'),
-    nfcall(fs.readFile, 'b.txt'),
-    nfcall(fs.readFile, 'c.txt')
+    nfcall(fs.readFile, "a.txt"),
+    nfcall(fs.readFile, "b.txt"),
+    nfcall(fs.readFile, "c.txt"),
   ]);
   yield ptimeout(60 * 1000);
-  yield nfcall(fs.writeFile, 'd.txt', data[0] + data[1] + data[2]);
+  yield nfcall(fs.writeFile, "d.txt", data[0] + data[1] + data[2]);
 }
 ```
 
@@ -327,5 +327,6 @@ function* theFutureIsNow() {
 - 제너레이터 + 프라미스 => 비동기적 실행의 장점 유지 + 동기적인 사고 방식으로 문제 해결 가능
 
 ### 참고링크
+
 - https://vanayun.netlify.app/til/2019-02-15-es6_14/
 - https://suhwan.dev/2018/04/18/JS-async-programming-with-promise-and-generator/
