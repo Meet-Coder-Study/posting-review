@@ -88,6 +88,7 @@ semi: 0,
 'comma-dangle': 'off',
 'no-new': 0,
 indent: ['error', 2],
+
 'import/extensions': ['error', 'always']
 ```
 
@@ -99,6 +100,7 @@ console.log('hello world') // O
 ```
 
 - [import/no-unresolved](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md) :  require.resolve동작에 정의 된대로 로컬 파일 시스템의 모듈로 해석 할 수 있도록 합니다. // 안함
+
 - [comma-dangle](https://eslint.org/docs/rules/comma-dangle#top) : 맨 뒤에 붙은 쉼표를 허용을 하지 않는다는 의미입니다.
 
 ```jsx
@@ -111,7 +113,6 @@ var foo = {
     qux: "quux"
 }; // O
 ```
-
 - [no-new](https://eslint.org/docs/rules/no-new) : new 키워드를 이용해 생성자를 호출했다면 변수에 담아야 한다는 의미이다.
 
 ```jsx
