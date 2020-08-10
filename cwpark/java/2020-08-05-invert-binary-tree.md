@@ -4,7 +4,7 @@
 
 이 문제가 만들어진 계기는 Homebrew를 만든 Max Howell이 올린 유명한 트윗 때문이다. 
 
-![Screen Shot 2020-08-05 at 5.11.04 AM](../images/tweet-max-binary-tree.png)
+![Screen Shot 2020-08-05 at 5.11.04 AM](../images/tweet-max-binarytree.png)
 
 > 구글: 구글 엔지니어의 90%는 당신(Max Howell)이 작성한 소프트웨어(Homebrew) 를 사용한다. 하지만, 화이트 보드에 이진 트리 뒤집는걸 못하네? 그냥 꺼져.
 
@@ -139,5 +139,4 @@ ps. 리트코드 문제 풀이 후 다른 사람의 풀이를 볼 수 있는데,
 https://leetcode.com/articles/invert-binary-tree/
 
 https://twitter.com/mxcl/status/608682016205344768
-
 
