@@ -88,10 +88,11 @@ semi: 0,
 'comma-dangle': 'off',
 'no-new': 0,
 indent: ['error', 2],
-'import/extensions': 'off'
+
+'import/extensions': ['error', 'always']
 ```
 
-- [semi](https://eslint.org/docs/rules/semi#top) : 세미콜론을 사용할지 여부 → 존재!
+- [semi](https://eslint.org/docs/rules/semi#top) : 세미콜론을 사용할지 여부
 
 ```jsx
 console.log('hello world'); // X
@@ -99,7 +100,8 @@ console.log('hello world') // O
 ```
 
 - [import/no-unresolved](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md) :  require.resolve동작에 정의 된대로 로컬 파일 시스템의 모듈로 해석 할 수 있도록 합니다. // 안함
-- [comma-dangle](https://eslint.org/docs/rules/comma-dangle#top) : 맨 뒤에 붙은 쉼표를 허용을 하지 않는다는 의미입니다. → 있는게 좋다.
+
+- [comma-dangle](https://eslint.org/docs/rules/comma-dangle#top) : 맨 뒤에 붙은 쉼표를 허용을 하지 않는다는 의미입니다.
 
 ```jsx
 var foo = {
@@ -111,16 +113,18 @@ var foo = {
     qux: "quux"
 }; // O
 ```
-
-- [no-new](https://eslint.org/docs/rules/no-new) : new 키워드를 이용해 생성자를 호출했다면 변수에 담아야 한다는 의미이다. → 있어야 한다.
+- [no-new](https://eslint.org/docs/rules/no-new) : new 키워드를 이용해 생성자를 호출했다면 변수에 담아야 한다는 의미이다.
 
 ```jsx
 new Person(); // X
 const person = new Person();
 ```
 
-- indent: ['error', 2] : indent를 2로 설정한다는 것으며, 2가 아닌 경우 error를 발생시키라는 의미이다. → 있어야 한다.
-- [import/extensions](https://github.com/benmosher/eslint-plugin-import#importextensions) : 확장자 명을 명시할 것인지에 대한 설정이다. → 붙어야 한다.
+- indent: ['error', 2] : indent를 2로 설정한다는 것으며, 2가 아닌 경우 error를 발생시키라는 의미이다.
+
+- [import/extensions](https://github.com/benmosher/eslint-plugin-import#importextensions) : 확장자 명을 명시할 것인지에 대한 설정이다.
+- 확장자를 명시하고 싶다면 import/extensions: ['error', 'always']를 사용한다.
+- `off`값을 준다면 확장자가 있던 없던 상관을 안쓰겠다는 의미이다.
 
 ```jsx
 import App from 'app.js'// X
@@ -236,7 +240,7 @@ const object = {
     - 0 ~ Infinity 까지 가능하다.
 - Parser : 사용할 파서를 지정하는 것이다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5cd3fe2-f6db-4d61-bb1d-095eabbafad0/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5cd3fe2-f6db-4d61-bb1d-095eabbafad0/Untitled.png)
+![eslint-prettier-1](https://github.com/ksy90101/TIL/blob/master/javascript/img/eslint-prettier-1.png?raw=true)
 
 - filepath : 사용할 구문 분석기를 유추하는데 사용
 - requirePragma : 파일 상단에 미리 정의된 주석을 작성하고 Pragma로 포맷팅 사용 여부
