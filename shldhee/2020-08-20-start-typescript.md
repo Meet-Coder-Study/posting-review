@@ -109,41 +109,39 @@ console.log(user.name);
 - 위 타입스크립트 코드들이 컴파일 되면 아래와 같이 변환된다.(에러나는 코드 제외)
 
 ``` javascript
-let isRun: boolean = false;
-
-let decimal: number = 5;
-let hex: number = 0xff;
-
-let fristName: string = '이';
-let lastName: string = '덕희';
-
-let list: number[] = [1,2,3];
-let list2: Array<number> = [1,2,3,];
-
-let point: [string, number];
-point = ["x",10];
-
-enum Color { Red = 1, Green, Blue };
-let color: Color = Color.Green
+"use strict";
+let isRun = false;
+let decimal = 5;
+let hex = 0xff;
+let fristName = '이';
+let lastName = '덕희';
+let list = [1, 2, 3];
+let list2 = [1, 2, 3,];
+let point;
+point = ["x", 10];
+var Color;
+(function (Color) {
+    Color[Color["Red"] = 1] = "Red";
+    Color[Color["Green"] = 2] = "Green";
+    Color[Color["Blue"] = 3] = "Blue";
+})(Color || (Color = {}));
+;
+let color = Color.Green;
 console.log(color); // 2
-let color1: Color = Color.Blue
+let color1 = Color.Blue;
 console.log(color1); // 3
-
-let sure: any = 1
-sure = "이건 문자열"
-sure = true
-
-function error(message: string): never {
-  throw new Error(message)
+let sure = 1;
+sure = "이건 문자열";
+sure = true;
+function error(message) {
+    throw new Error(message);
 }
-
-function forever(): never {
-  while(true){
-  }
+function forever() {
+    while (true) {
+    }
 }
-
-let user: { name: string, age: number } = { name: '이덕희', age: 100 };
-console.log(user.name);
+let user = { name: '이덕희', age: 100 };
+console.log(user.name);3
 ```
 
 ## 타입 별칭(type alias)
@@ -172,6 +170,7 @@ userType = 'asdf' // Type '"asdf"' is not assignable to type 'USER_TYPE'.
 ## 함수(Function)
 
 - 함수의 타입 작성은 각 파라미터의 타입과 함수의 리턴타입을 넣어줄수 있다.
+- `?`는 옵셔널이라는 기능인데 필수 매개변수가 아니라는 뜻이다. 즉 매개변수를 넣어도되고 안넣어도 되고 자유다!
 
 ``` javascript
 function point(x: number, y: nubmer = 10): number {
