@@ -26,7 +26,7 @@
 
 ![nosql-vs-rdbms-4](https://github.com/ksy90101/TIL/blob/master/database/image/nosql-vs-rdbms/nosql-vs-rdbms-4.png?raw=true)
 
-- 관계형 데이터 베이스로 데이터를 구성하는데 필요한 방법 중 하나로 모든 데이터를 Ke와 Value의 관계를 2차원 테이블 형태로 표현 해준다.
+- 관계형 데이터 베이스로 데이터를 구성하는데 필요한 방법 중 하나로 모든 데이터를 Key와 Value의 관계를 2차원 테이블 형태로 표현 해준다.
 
 ### 특징
 
