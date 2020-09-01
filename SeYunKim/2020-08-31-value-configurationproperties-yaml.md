@@ -375,7 +375,7 @@ class NumbersTest {
 
 ## 결론
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66d281d5-7621-4900-9401-ff47cb79c5c2/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66d281d5-7621-4900-9401-ff47cb79c5c2/Untitled.png)
+![value-configuration-properties-yaml-mapping-1](https://github.com/ksy90101/TIL/blob/master/spring/img/value-configuration-properties-ymal-mapping-1.png?raw=ture)
 
 - 위의 차이점을 알고, 필요할 때 더 정확한 annotation을 사용하는 것이 중요하다.
 - key값의 집합은 POJO로 바인딩을 해야 더 객체지향적이며, 빈 주입 구조화와 안전한 객체를 만들수 있습니다. 따라서 `@ConfigurationProperties`를 사용하는 것이 더 좋습니다.
