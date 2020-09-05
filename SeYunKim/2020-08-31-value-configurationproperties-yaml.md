@@ -1,6 +1,6 @@
 # @Value와 @ConfigurationProperties를 이용해 yaml 파일 매핑하기
 
-> [예제코드](https://github.com/ksy90101/TIL-ex/tree/master/spring-ymal-properties-ex)
+> [예제코드](https://github.com/ksy90101/TIL-ex/tree/master/spring-yaml-properties-ex)
 
 ## 1. 환경 프로퍼티 파일 설정하기
 
@@ -125,7 +125,7 @@ server:
     ```
 
 - SpEL(Spring Expression Language, 스프링 표현 언어) 평가
-    - 런타임에 개겣 참조에 대해 질의하고 조작하는 기능을 지원
+    - 런타임에 객체 참조에 대해 질의하고 조작하는 기능을 지원
     - 특히 메서드 호출 및 기본 문자열 템플릿 기능을 제공
 
 ## 1.4. @Value
@@ -156,12 +156,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ValueTest {
     @Value("${property.test.name}") // depth가 존재하는 값은 .으로 구분해서 값을 매핑
@@ -221,6 +218,7 @@ fruit:
     - name: apple
       color: red
     - name: water melon
+      color: green
 ```
 
 ```java
@@ -254,12 +252,9 @@ import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class FruitPropertyTest {
 
@@ -349,12 +344,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class NumbersTest {
 
