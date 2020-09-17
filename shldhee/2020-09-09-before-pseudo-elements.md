@@ -1,4 +1,4 @@
-# input, image 등에서 ::before 를 사용할 수 없는 이유?
+# input, image 등에서 ::before 를 사용할 수 없는 이유
 
 ## 개요
 
@@ -12,12 +12,14 @@
 ![1](images/2020-09-09-before-pseudo-elements/1.png)
 
 ## img 예제
-
+****
 ```html
 // html
 <img alt="img1 error" src="https://placeimg.com/100/100/any" />
 <img alt="img2 error" src="https://p1laceimg.com/100/100/any" /> // wrong img
-url // css img::before { content: attr(alt); // }
+url 
+// css 
+img::before { content: attr(alt); }
 ```
 
 ### ::before 정의(MDN참고)
@@ -47,9 +49,18 @@ url // css img::before { content: attr(alt); // }
   <img alt="img1 error" src="https://placeimg.com/100/100/any" />
 </div>
 
-// css .wrap { height: 200px; height: 400px; background-color: grey; } img {
-object-fit: contain; /* object-fit: fill; object-fit: cover; object-fit:
-scale-down; object-fit: none; */ height: 100%; width: 100%; }
+// css 
+.wrap { 
+  height: 200px; height: 400pxbackground-color: grey; 
+} 
+img {
+  object-fit: contain;
+  /*object-fit: fill; 
+  object-fit: cover; 
+  object-fit: scale-down; 
+  object-fit: none; 
+  */ height: 100%; width: 100%; 
+}
 ```
 
 - [코드 예제(on Codepen)](https://codepen.io/DUCKHEE/pen/ZEWrOpZ)
@@ -85,8 +96,8 @@ scale-down; object-fit: none; */ height: 100%; width: 100%; }
 <input type="url" />
 <input type="week" />
 
-// css input { display: block; margin-bottom: 30px; } input::before { content:
-attr(type) }
+// css 
+input { display: block; margin-bottom: 30px; } input::before { content: attr(type) }
 ```
 
 - [코드 예졔(on Codepen)](https://codepen.io/DUCKHEE/pen/oNxELEB)
