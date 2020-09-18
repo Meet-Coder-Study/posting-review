@@ -52,7 +52,7 @@ Integer가 Immutable하지 않아서 값이 수시로 바뀐다면 끔찍한 부
 
 
 ### (2). 상태의 안정성 보장
-다음과 같이 사용되는 Integer 객체가 있다고 한다면,
+다음과 같이 처음 생성 후 사용되는 Integer 객체가 있다고 한다면, 
 ```java
 public static void main(String[] args){
         Integer i = new Integer(20);
@@ -65,17 +65,22 @@ public static void main(String[] args){
         i = i + 1;
     }
 ```
+다음과 같이 i는 operate메소드에서 인자로 쓰이고 난 이후에도 값이 변하지 않는다.
+
 ```java
 20
 20
 ```
+이는 값이 변하지 않고 새롭게 생성되는 Immutable 특징 때문이다. 따라서 `변경으로 인한 부작용을 근본적으로 방지`할 수 있다.
+
 
 ### (3). thread safe
-앞서 살펴본 2번의 이유로, 근본적으로 멀티 스레드 환경에서 안정성이 보장된다.
+앞서 살펴본 2번의 이유로, 멀티 스레드 환경에서 안정성이 보장된다.
 
 ---
 
 ## 3. Immutable Class 만들기
+Immutable class는 다음과 같은 방법으로 직접 만들 수 있다.
 
 * (1). 클래스에 final을 추가하여 상속 불가능하도록 함.
 * (2). 모든 필드를 private으로 하여 직접 접근할 수 없도록 함.
@@ -116,6 +121,7 @@ public final class Immutable {      //(1) final class
         this.map = newMap;
     }
 }
+```
 ---
 참고한 자료   
 * https://www.journaldev.com/129/how-to-create-immutable-class-in-java
