@@ -189,8 +189,13 @@ const {
 - 결론적으로 보면 Context API와 Redux는 사용법과 그 구조에 조금 차이가 있을 뿐 전역 상태를 관리한다는 점에서는 유사합니다. 애초에 Redux가 Context API를 기반으로 만들어진 것이기 때문이기도 합니다.
 - 단순 전역 상태 관리만 있어도 된다면 Context API, 디버깅이나 로깅 등의 상태 관리 외의 기능이나 미들웨어가 필요하다면 Redux를 사용하는 것이 좋다고 여겨집니다.
 - 사용 방식 예제는 진행했던 프로젝트에서 약식으로 인용하였습니다. 아래를 통해 전체 코드를 볼 수 있습니다.
+
   - [Context API](https://github.com/codesquad-member-2020/baseball-09)
   - [Redux](https://github.com/codesquad-member-2020/airbnb-08)
+
+- 경험 상으로는 Context API와 Redux 모두 상태 관리를 편하게 해 준다는 점에서 장점이 있었고, 사용법에서는 큰 차이를 느끼지 않았습니다.
+  - Context API는 React를 사용할 때 추가 dependency 없이 사용할 수 있어서 가볍게 사용할 수 있다는 점에서 좋았습니다. 하지만 상태를 넘겨줄 때 상태가 여러 개라면 Provider를 중첩해서 내려 줘야 하기 때문에 그런 불편했습니다.
+  - Redux는 saga, thunk와 같은 미들웨어를 추가적으로 사용할 수 있어 비동기 처리를 따로 Util로 처리할 수 있어서 좋았습니다. 추가 설정을 통해 디버깅을 가시적으로 할 수도 있어 편했습니다. 하지만 미들웨어를 사용하기 위해 관련 개념을 이해해야 하기 때문에 어려운 점이 있었습니다.
 
 ## 참고
 
@@ -199,3 +204,5 @@ const {
 [https://medium.com/@ca3rot/아마-이게-제일-이해하기-쉬울걸요-react-redux-플로우의-이해-1585e911a0a6](https://medium.com/@ca3rot/%EC%95%84%EB%A7%88-%EC%9D%B4%EA%B2%8C-%EC%A0%9C%EC%9D%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%AC%EC%9A%B8%EA%B1%B8%EC%9A%94-react-redux-%ED%94%8C%EB%A1%9C%EC%9A%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-1585e911a0a6)
 
 [https://velog.io/@cada/React-Redux-vs-Context-API#context](https://velog.io/@cada/React-Redux-vs-Context-API#context)
+
+https://ko.reactjs.org/docs/context.html#before-you-use-context
