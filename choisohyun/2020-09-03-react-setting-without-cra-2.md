@@ -73,7 +73,7 @@ devtool에서 설정할 수 있는 source map 설정은 방대하기 때문에 �
 
 여기서 설정한 devtool은 `cheap-module-source-map` 입니다. 용량이 작게 번들링되는 옵션이어서 선택했는데, 개발용에서 쓰이니 `inline-source-map` 설정도 고려할 수 있습니다.
 
-![](./images/bundle-before.png)
+![](./images/bundle-after.png)
 
 ### devServer
 
@@ -126,7 +126,7 @@ plugins에 사용하는 플러그인을 설정할 수 있습니다.
 `production 모드`로 실행하면 배포와 관련된 최적화를 실행됩니다.
 
 ```jsx
-mode: "development",
+mode: "production",
 ```
 
 ### output
