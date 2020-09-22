@@ -44,7 +44,7 @@ Immutable 객체는 인스턴스 캐싱을 구현할 때 사용되는데, 이는
 예를 들어 자바의 *Integer 클래스*는 **내부적으로 인스턴스 캐싱을 사용**하고 있는데,   
 `일정 범위의 정수를 미리 생성하여 캐쉬 배열에 저장해 놓았다가, 어플리케이션에서 사용될 때 꺼내서 사용하는 형태`이다.   
 
-이떄, 한 어플리케이션에서 '1'이라는 Integer 값을 100번 사용한다고 가정해보자.   
+이때, 한 어플리케이션에서 '1'이라는 Integer 값을 100번 사용한다고 가정해보자.   
 Integer가 Immutable하지 않아서 값이 수시로 바뀐다면 끔찍한 부작용이 뒤따를 것이다.   
 때문에 인스턴스 캐싱에서는 Immutable class가 사용된다.
 
@@ -128,4 +128,3 @@ public final class Immutable {      //(1) final class
 * https://woowacourse.github.io/javable/2020-06-24/caching-instance
 * https://devonce.tistory.com/26
 * https://www.tutorialspoint.com/primitive-wrapper-classes-are-immutable-in-java
-
