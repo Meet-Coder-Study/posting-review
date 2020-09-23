@@ -1,6 +1,7 @@
 # redis 운영상 주의점
 
 참고: [https://sehajyang.github.io/2019/12/11/how-to-operate-redis/](https://sehajyang.github.io/2019/12/11/how-to-operate-redis/)
+
 Toast 기술블로그: [https://meetup.toast.com/posts/227](https://meetup.toast.com/posts/227)
 
 ## 메모리 관리 잘하자!
