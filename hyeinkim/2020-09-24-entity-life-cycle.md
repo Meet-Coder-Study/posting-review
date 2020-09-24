@@ -3,7 +3,7 @@
 > Entity의 4가지 상태(Transient, Persistent, Detached, Removed)가 어떻게 전이되는지 Life cycle을 알아봅니다.
 
 
-![엔티티 생명주기](./images/entity-status.png)
+![엔티티 생명주기](./images/entity-status.PNG)
 
 ```java
 @Component
