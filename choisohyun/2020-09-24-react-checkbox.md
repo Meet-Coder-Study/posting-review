@@ -82,6 +82,7 @@ const [checkedItems, setCheckedItems] = useState(new Set());
 ```
 
 - 그리고 이를 사용해 하나의 요소를 선택할 때의 상태관리 함수 `checkedItemHandler`를 작성합니다.
+  - Set을 사용할 때는 불변성을 유지시키기 위해 메소드 실행 후 setCheckedItems를 진행합니다.
 - 체크됐을 경우, 요소를 Set에 추가되도록 `setCheckedItems`를 활용해 `add`시킵니다.
 - 체크되지 않았을 경우, 선택됐던 것이 해제된 것이라면 `checkItems`에서 `delete`합니다.
 
@@ -89,8 +90,13 @@ const [checkedItems, setCheckedItems] = useState(new Set());
 // IssueList 컴포넌트
 
 const checkedItemHandler = (id, isChecked) => {
-  if (isChecked) setCheckedItems(checkedItems.add(id));
-  else if (!isChecked && checkedItems.has(id)) checkedItems.delete(id);
+  if (isChecked) {
+    checkedItems.add(id);
+    setCheckedItems(checkedItems);
+  } else if (!isChecked && checkedItems.has(id)) {
+    checkedItems.delete(id);
+    setCheckedItems(checkedItems);
+  }
 };
 ```
 
@@ -134,6 +140,7 @@ const allCheckedHandler = (isChecked) => {
     setIsAllChecked(true);
   } else {
     checkedItems.clear();
+    setCheckedItems(setCheckedItems);
     setIsAllChecked(false);
   }
 };
