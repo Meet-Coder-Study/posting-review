@@ -5,6 +5,10 @@
 
 ![엔티티 생명주기](./images/entity-status.PNG)
 
+## 예제코드
+> 스프링 데이터 JPA 강의의 예제코드를 참고했습니다.
+> JPA에서 Hibernate API에 접근하는 방식(Session 사용)으로 엔티티의 생명주기를 설명합니다. 
+
 ```java
 @Component
 @Transactional
@@ -27,6 +31,7 @@ public class JpaRunner implements ApplicationRunner{
 	}
 }
 ```
+
 ## 엔티티 상태
 ### 1. Transient (비영속)
 
@@ -59,12 +64,13 @@ Transient 상태의 인스턴스가 Session에 `save()`되면 이는 Session(영
 ### 3. Detached (준영속)
 
 ```java
-        session.evict(account);
-        session.clear(account);
-        session.close(account);
+        session.evict(account); // session의 account 제거
+        session.clear(); // session의 모든 객체 제거 
+        session.close();
 ```
 위 메서드들이 실행되면 Persistent 상태의 인스턴스가 Session(영속성 컨텍스트)과 연결이 끊기게 되고 Detached 상태가 된다. Detached 상태는 영속성 컨텍스트가 관리하지는 않지만 다시 Session에 연결되서(재진입) 관리 대상이 될 수 있다.
 
+>When the flush() method is called, the state of the entity is synchronized with the database. If you do not want this synchronization to occur, or if you are processing a huge number of objects and need to manage memory efficiently, **the evict() method can be used to remove the object and its collections from the first-level cache.**
 
 ### 4. Removed(삭제)
 
@@ -77,8 +83,8 @@ Transient 상태의 인스턴스가 Session에 `save()`되면 이는 Session(영
 
 ## 그렇다면 언제 변경내용이 DB에 반영이 될까? : 플러시
 - `flush()` 직접 호출 
-- 트랜잭션이 commit될 때 `flush()` 자동 호출
-- JPQL 쿼리 실행시 `flush()` 자동 호출
+- 트랜잭션이 commit되기 전 `flush()` 자동 호출
+- JPQL 쿼리 실행되기 전 `flush()` 자동 호출
 
 단, flush()를 호출한다고 해서 영속성 컨텍스트를 비우는 건 아니다. flush가 호출된 시점에는 **영속성 컨텍스트의 변경 내용을 데이터베이스와 동기화**할 뿐이다.
 
@@ -87,3 +93,4 @@ Transient 상태의 인스턴스가 Session에 `save()`되면 이는 Session(영
 # 참고자료
 - [스프링 데이터 JPA](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-jpa/dashboard)
 - [JPA 객체를 활용한 개발](https://12bme.tistory.com/492)
+- [Hibernate Docs](https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#_evicting_entities)
