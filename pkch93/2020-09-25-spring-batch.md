@@ -4,7 +4,7 @@
 
 그리고 각 Job은 여러 Step `단계`로 이뤄져 있습니다.
 
-[](./images/springbatch.png)
+![](./images/springbatch.png)
 
 이때 각 Step을 처리하기 위한 방법으로 스프링 배치에서는 Tasklet과 Chunks 방식을 제공하고 있습니다.
 
@@ -89,7 +89,7 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 
 이때 get에는 정의할 Job의 이름을 정한다. 이 이름은 Spring Batch의 메타 테이블인 `BATCH_JOB_INSTANCE`에 `JOB_NAME`으로 저장된다.
 
-[](./images/2020-09-26__3.42.55.png)
+![](./images/2020-09-26__3.42.55.png)
 
 그리고 start로 해당 Job에서 실행할 Step을 정의하는데 위 예시에서는 슬랙알림을 보내는 하나의 Step만 필요하므로 `slackNotificationStep` 하나만 정의하였다. 만약 추가 Step을 정의하고 싶다면 `next` 등으로 정의가능하다.
 
@@ -150,7 +150,7 @@ class SlackNotificationBatchJobConfigurationTest {
 
 위와 같이 Takelet 형태로 배치잡을 처리할수도 있지만 Spring Batch에서는 배치 작업을 청크단위로 나눠 처리하는 청크 지향 프로세싱을 권장한다.
 
-[](./images/chunk-oriented-processing.png)
+![](images/chunk-oriented-processing.png)
 
 > Chunk-oriented Processing의 일반적인 형태
 
@@ -248,13 +248,13 @@ processor에서는 Reader에서 String 형태로 전달한 item을 Integer로 �
 
 이렇게 작성한 코드를 실행하면 다음과 같이 나타납니다.
 
-[](./images/chunk-processing-result.png)
+![](images/chunk-processing-result.png)
 
 이렇게 위 예시에서 정의한 `inactiveUserBatchJob`이 실행됨을 확인할 수 있으며 writer에서 작성한 `System.out::println` 부분이 25개씩 나타나는 것을 확인할 수 있습니다.
 
 만약 chunk를 500씩 설정한다면 다음과 같이 나타납니다.
 
-[](./images/chunk-processing-result2.png)
+![](images/chunk-processing-result2.png)
 
 500개씩 println으로 값이 찍히는 것을 확인할 수 있습니다.
 
