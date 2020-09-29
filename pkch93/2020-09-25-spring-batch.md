@@ -162,6 +162,102 @@ Chunk 단위로 데이터를 만들어내는 방식은 다음과 같다.
 
 ### 예시
 
+```java
+@Configuration
+@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = InactiveUserJobConfiguration.JOB_NAME)
+@RequiredArgsConstructor
+public class InactiveUserJobConfiguration {
+    public static final String JOB_NAME = "inactiveUserBatchJob";
+    public static final String STEP_NAME = "inactiveUserBatchStep";
+    public static final String READER_NAME = STEP_NAME + "-reader";
+    public static final String PROCESSOR_NAME = STEP_NAME + "-processor";
+    public static final String WRITER_NAME = STEP_NAME + "-writer";
+
+    @Value("${chunkSize:25}")
+    private int chunkSize;
+    private int count;
+
+    public static List<String> RAW_NUMBERS = IntStream.rangeClosed(1, 1000)
+            .mapToObj(String::valueOf)
+            .collect(Collectors.toList());
+
+    @Bean(JOB_NAME) // 1
+    public Job inactiveUserBatchJob(JobBuilderFactory jobBuilderFactory,
+                                    @Qualifier(STEP_NAME) Step inactiveUserBatchStep) {
+        return jobBuilderFactory.get(JOB_NAME)
+                .preventRestart()
+                .incrementer(new RunIdIncrementer())
+                .start(inactiveUserBatchStep)
+                .build();
+    }
+
+    @Bean(STEP_NAME) // 2
+    public Step inactiveUserBatchStep(StepBuilderFactory stepBuilderFactory) {
+        return stepBuilderFactory.get(STEP_NAME)
+                .<String, Integer>chunk(chunkSize)
+                .reader(reader())
+                .processor(processor())
+                .writer(writer())
+                .build();
+    }
+
+    @Bean(READER_NAME) // 3
+    public ItemReader<String> reader() {
+        return () -> {
+            if (count != 1000) {
+                count += 1;
+                return RAW_NUMBERS.remove(0);
+            }
+
+            return null;
+        };
+    }
+
+    @Bean(PROCESSOR_NAME) // 4
+    public ItemProcessor<String, Integer> processor() {
+        return Integer::parseInt;
+    }
+
+    @Bean(WRITER_NAME) // 4
+    public ItemWriter<Integer> writer() {
+        return System.out::println;
+    }
+}
+```
+
+1000개의 String을 batch작업을 통해 Integer로 바꾸는 간단한 배치를 작업해보았습니다.
+
+1. Job을 설정하는 단계. 청크지향 프로세싱을 사용하는 Job에서도 Tasklet에서와 큰 차이가 없습니다.
+
+2. Step을 설정하는 단계. 이 부분부터 조금씩 달라집니다.
+
+먼저 나눌 청크의 단위를 `chunk`의 인자로 전달합니다. 현재 위 예시에서는 기본적으로 `25`개씩 청크를 나눕니다.
+그리고 reader, processor, writer를 정의합니다.
+
+3. reader를 정의한 부분.
+
+위 예시에서는 미리 1000개의 String 숫자를 정의하여 하나씩 전달하는 용도로 구현하였습니다. 이때 null을 리턴하게되면 더이상 배치를 진행하지 않습니다.
+
+그리고 하나씩 `remove(0)`을 통해 리턴을 한 이유는 Spring Batch가 reader와 processor에서 하나씩 값을 읽고 가공한 후 chunk 숫자만큼 모이면 이 데이터를 writer로 전달하기 때문입니다.
+
+4. processor와 writer를 정의한 부분.
+
+processor에서는 Reader에서 String 형태로 전달한 item을 Integer로 변환합니다. 그리고 writer에서는 chunk 단위로 모인 값들을 출력하는 역할을 합니다.
+
+실제로는 writer에서 db에 저장하는 로직을 가질 것입니다.
+
+이렇게 작성한 코드를 실행하면 다음과 같이 나타납니다.
+
+[](./images/chunk-processing-result.png)
+
+이렇게 위 예시에서 정의한 `inactiveUserBatchJob`이 실행됨을 확인할 수 있으며 writer에서 작성한 `System.out::println` 부분이 25개씩 나타나는 것을 확인할 수 있습니다.
+
+만약 chunk를 500씩 설정한다면 다음과 같이 나타납니다.
+
+[](./images/chunk-processing-result2.png)
+
+500개씩 println으로 값이 찍히는 것을 확인할 수 있습니다.
+
 ### 참고자료
 
 - https://docs.spring.io/spring-batch/docs/current/reference/html/index.html
