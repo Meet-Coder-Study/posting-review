@@ -69,3 +69,34 @@ public static <T> List<T> unmodifiableList(List<? extends T> list) {
 * 생성자는 이름이 클래스의 이름과 같아서 명확히 알 수 있다.
 * 하지만 정적 팩터리 메서드는 다른 메서드와 섞여 찾기 어려울 수 있다.
 
+## 4. 정적 팩터리 메서드의 네이밍
+정적 팩터리 메서드는 찾기 어렵다는 단점 때문에, 일반적으로 쓰이는 네이밍 방식들이 있다.     
+그 내용은 다음과 같다.
+
+* from : 매개변수를 하나 받아, 해당 타입의 인스턴스를 반환하는 형변환 메서드
+```java
+// instant 타입을 Date로 변환하여 반환
+Date d = Date.from(instant);
+```
+* of : 매개변수를 여러개 받아 적합한 타입의 인스턴스를 반환하는 집계 메서드
+```java
+// 파라미터로 전달 받은 타입의 Enum을 담은 Set을 반환
+Set<Rank> faceCards = Enumset.of(JACK, QUEEN, KING);
+```
+* valueOf : from과 of의 더 자세한 버전
+* instance 혹은 getInstance : 인스턴스를 반환, 그러나 같은 인스턴스임을 보장하지는 않음.
+* create 혹은 newInstance : 새로운 인스턴스 생성하여 반환
+* getXXX : getInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 때 사용.
+```java
+// Files 클래스에서 FileStore의 인스턴스를 반환
+FileStore fs = Files.getFileStore(path);
+```
+* newXXX : newInstance와 같으나, 생성할 클래스가 아닌 다른 클래스에 팩터리 메서드를 정의할 때 사용.
+```java
+// Files 클래스에서 BufferedReader를 반환
+BufferedReader br = Files.newBufferedReader(path);
+```
+* xxx : getXXX과 newXXX의 간결한 버전
+```java
+List<Complaint> litany = Collections.list(legacyListany);
+```
