@@ -78,8 +78,11 @@ const Button = styled.button`
   border-radius: 6px;
   background-color: white;
 `;
-
 ```
+
+아래와 같은 화면을 보실 수 있습니다.  
+
+![예시 이미지](./images/2020-09-24-styled-components-design-system-1/1.png);
 
 ## 스타일 변수로 분리하기
 
