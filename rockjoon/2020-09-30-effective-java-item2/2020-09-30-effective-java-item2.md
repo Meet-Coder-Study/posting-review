@@ -130,7 +130,7 @@ public abstract class Pizza {
     final Set<Topping> toppings;
 
     abstract static class Builder<T extends Builder<T>>{
-        //Topping 타입이 저장되는 비어 있는 set을 반환
+        // Topping 타입이 저장되는 비어 있는 set을 반환
         EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
 
         // Topping을 set에 추가
