@@ -177,7 +177,7 @@ export default Hooks;
 
 잘 사용되지 않으나 간략하게 사용 용도를 찾아서 정리해봤습니다.  
 getDerivedStateFromProps : 렌더 바로 직전에 호출. props의 변화에 따라 내부 state값을 업데이트 하게 함 (거의 사용되지 않음)  
-shouldComponentUpdate : 최적화에 사용(렌더하지 않아도 되는 컴포넌트 지정 등). 하지만 주로 PureComponent나 memo를 이용하라고 하네요.
+shouldComponentUpdate : 최적화에 사용(렌더하지 않아도 되는 컴포넌트 지정 등). 하지만 주로 PureComponent나 memo를 이용하라고 하네요.  
 getSnapshotBeforeUpdate : chat같은 UI에서 scroll position등을 설정할때
 
 [lifecycle](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
