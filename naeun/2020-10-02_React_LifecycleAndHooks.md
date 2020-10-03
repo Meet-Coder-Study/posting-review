@@ -42,7 +42,7 @@
 
 ## 3. Comparison - LifeCycle and Hooks
 
-사용예시 : 입력값에 따라 bar title을 업데이트, 윈도우 사이즈에 따라 너비 표시
+사용예시 : 입력값에 따라 bar title을 업데이트, 윈도우 사이즈에 따라 너비 표시  
 <img src="./images/2020-10-02_React_LifecycleAndHooks/hookresult.JPG" alt="result" width="300px">
 
 #### LifeCycle in Class
