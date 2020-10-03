@@ -43,7 +43,7 @@
 ## 3. Comparison - LifeCycle and Hooks
 
 사용예시 : 입력값에 따라 bar title을 업데이트, 윈도우 사이즈에 따라 너비 표시
-<img src="./images/2020-10-02_React_LifecycleAndHooks/hookresult.jpg" alt="result" width="500px">
+<img src="./images/2020-10-02_React_LifecycleAndHooks/hookresult.JPG" alt="result" width="500px">
 
 #### LifeCycle in Class
 
@@ -133,7 +133,8 @@ function Hooks(props) {
     document.title = name + " " + surname;
   });
 
-  //(class에서 window 관련 이벤트들이 componentDidMount, componentWillUnmount등에 나누어져 있었다면) useEffect내부에서 window 관련 이벤트를 정리가능
+  //(class에서 window 관련 이벤트들이 componentDidMount, componentWillUnmount등에 나누어져 있었다면)
+  //useEffect내부에서 window 관련 이벤트를 정리가능
   useEffect(() => {
     //callback함수 정의하고 setWidth로 값을 업데이트
     const handleResize = () => {
@@ -173,7 +174,7 @@ export default Hooks;
 
 **LifeCycle 추가**
 
-![lifecycle](./images/2020-10-02_React_LifecycleAndHooks/lesscommonlifecycle.jpg)
+![lifecycle](./images/2020-10-02_React_LifecycleAndHooks/lesscommonlifecycle.JPG)
 
 잘 사용되지 않으나 간략하게 사용 용도를 찾아서 정리해봤습니다.  
 getDerivedStateFromProps : 렌더 바로 직전에 호출. props의 변화에 따라 내부 state값을 업데이트 하게 함 (거의 사용되지 않음)  
