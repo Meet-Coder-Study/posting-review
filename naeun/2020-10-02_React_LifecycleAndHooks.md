@@ -2,7 +2,7 @@
 
 ## 1. LifeCycle
 
-- 리액트에서는 컴포넌트가 처음 나타날때 및 변경될 때마다, render를 다시 한다. render 되는 과정을 나타내는 것이 lifecycle이다.
+리액트에서는 컴포넌트가 처음 나타날때 및 변경될 때마다, render를 다시 한다. render 되는 과정을 나타내는 것이 lifecycle이다.
 
 ![lifecycle](./images/2020-10-02_React_LifecycleAndHooks/lifecycle.png)
 
@@ -19,13 +19,13 @@
 
 - lifecycle에서 clean-up이 필요할 때
 
-외부 데이터를 subscribe(구독)한 것은 componentWillUnmount에서 해제를 한다.  
-: 메모리 누수가 발생하지 않도록 하기 위함
+  외부 데이터를 subscribe(구독)한 것은 componentWillUnmount에서 해제를 한다.  
+  : 메모리 누수가 발생하지 않도록 하기 위함
 
 ## 2. Hooks
 
-- 기존에는 class 사용할 때만 Lifecycle을 사용하여 state의 값을 업데이트하고 변경하는 것이 가능했다.  
-  하지만, Hook이 등장하면서 함수에서도 state 값을 변경하는 것이 가능해졌다.
+기존에는 class 사용할 때만 Lifecycle을 사용하여 state의 값을 업데이트하고 변경하는 것이 가능했다.  
+하지만, Hook이 등장하면서 함수에서도 state 값을 변경하는 것이 가능해졌다.
 
 - Hook의 장점 (왜 만들어졌는가?)
 
@@ -37,13 +37,13 @@
 
 - 가장 많이 사용되는 Hooks
 
-  1. useState : class에서 state를 초기지정하고, setState를 통해 업데이트 해주는데, 그 역할을 담당
-  2. useEffect : lifecycle에서 componentDidMount, componentDidUpdate, componentWillUnmount를 합쳐 놓은 것.
+1. useState : class에서 state를 초기지정하고, setState를 통해 업데이트 해주는데, 그 역할을 담당
+2. useEffect : lifecycle에서 componentDidMount, componentDidUpdate, componentWillUnmount를 합쳐 놓은 것.
 
 ## 3. Comparison - LifeCycle and Hooks
 
 사용예시 : 입력값에 따라 bar title을 업데이트, 윈도우 사이즈에 따라 너비 표시
-<img src="./images/2020-10-02_React_LifecycleAndHooks/hookresult.JPG" alt="result" width="500px">
+<img src="./images/2020-10-02_React_LifecycleAndHooks/hookresult.JPG" alt="result" width="300px">
 
 #### LifeCycle in Class
 
@@ -170,16 +170,17 @@ function Hooks(props) {
 export default Hooks;
 ```
 
-###### 참고
+## 참고
 
 **LifeCycle 추가**
 
 ![lifecycle](./images/2020-10-02_React_LifecycleAndHooks/lesscommonlifecycle.JPG)
 
-잘 사용되지 않으나 간략하게 사용 용도를 찾아서 정리해봤습니다.  
-getDerivedStateFromProps : 렌더 바로 직전에 호출. props의 변화에 따라 내부 state값을 업데이트 하게 함 (거의 사용되지 않음)  
-shouldComponentUpdate : 최적화에 사용(렌더하지 않아도 되는 컴포넌트 지정 등). 하지만 주로 PureComponent나 memo를 이용하라고 하네요.  
-getSnapshotBeforeUpdate : chat같은 UI에서 scroll position등을 설정할때
+잘 사용되지 않으나 간략하게 사용 용도를 찾아서 정리해봤습니다.
+
+1. getDerivedStateFromProps : 렌더 바로 직전에 호출. props의 변화에 따라 내부 state값을 업데이트 하게 함 (거의 사용되지 않음)
+2. shouldComponentUpdate : 최적화에 사용(렌더하지 않아도 되는 컴포넌트 지정 등). 하지만 주로 PureComponent나 memo를 이용하라고 하네요.
+3. getSnapshotBeforeUpdate : chat같은 UI에서 scroll position등을 설정할때
 
 [lifecycle](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
 [리액트 hook 동영상](https://www.youtube.com/watch?v=dpw9EHDh2bM&feature=youtu.be)  
