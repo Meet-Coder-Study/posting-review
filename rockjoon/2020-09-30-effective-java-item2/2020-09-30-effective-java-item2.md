@@ -199,6 +199,12 @@ public class NyPizza extends Pizza{
     
 }
 ```
+```java
+NyPizza nyPizza = new NyPizza.Builder(SMALL)
+                    .addTopping(MUSHROOM)
+                    .addTopping(ONION)
+                    .build();
+```
 * 여기서 self() 메서드를 오버라이드 하여, 하위 클래스의 Builder를 반환하도록 했고, 이로 인해 형변환 없이 인스턴스를 유지할 수 있었다. 이러한 방법을 `셀프타입 관용구 (simulated self-type)`라고 한다.
 * 또한 build메서드와 같이 하위  클래스의 메서드가 상위 클래스의 메서드가 정의한 반환 타입이 아닌, 그 하위 타입을 반환하는 기능을 `공변 반환 타이핑(covariant return typing)`이라 한다.
 * 이러한 점들로 인해 빌더패턴은 계층적 구조에서도 유연하게 사용할 수 있다.
@@ -211,6 +217,7 @@ public class NyPizza extends Pizza{
 * 또한 빌더 패턴을 사용하기 위해 필요한 절대적인 코드량이 있기 때문에 매개변수가 적을 경우에는 비효율적이다.
 * 즉 빌더 패턴은 선택적인 매개변수의 수가 많아야 가치가 있다.
 * 하지만 시스템은 지간이 지날수록 매개변수가 많아질 가능성이 높다. 따라서 애초에 빌더로 시작하는 편이 나을 때가 많다.
+* 요즘은 lombok에서 빌더를 자동으로 생성해주기 때문에, 빌더를 매우 간편하게 만들 수 있다.
 
 
 ---
