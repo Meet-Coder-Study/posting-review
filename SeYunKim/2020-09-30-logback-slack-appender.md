@@ -11,12 +11,12 @@
 
 - Log를 효율적으로 관리하기 위해서 사용하는 것입니다.
 - 현재 core, classic, access의 세가지 모듈로 나눠져 있다.
-- 코어 모듈은 다른 두 개의 모듈을 위한 기반이며, classic 모듈은 코어를 확장하는데 사용하며 access는 서블릿 컨테이너와 통합되어 HTTP-access 로그 기능을 제공한다.
-- 스프링에서는 기본적으로 logback을 사용한다.
+- 코어 모듈은 다른 두 개의 모듈을 위한 기반이며, classic 모듈은 코어를 확장하는데 사용하며 access는 서블릿 컨테이너와 통합되어 HTTP-access 로그 기능을 제공합니다.
+- 스프링에서는 기본적으로 logback을 사용합니다.
 
 ## Spring Boot Base Logback
 
-[spring-boot-base-logback](https://github.com/ksy90101/TIL/blob/master/spring/spring-boot-base-logback.md)
+[Spring Boot Base Logback](https://github.com/ksy90101/TIL/blob/master/spring/spring-boot-base-logback.md)
 
 ## logback-slack-appender
 
@@ -66,30 +66,30 @@ implementation 'com.github.maricn:logback-slack-appender:1.4.0'
 	</configuration>
 ```
 
-- <token>
+- \<token\>
     - SLACK TOKEN을 넣는 공간입니다.
     - 저는 webhookUri를 사용했기 떄문에 token부분은 제외했습니다.
     - 노출이 되면 안되는 부분이기 때문에 property를 사용해 처리하는걸 추천합니다.
-- <webhookUri>
+- \<webhookUr\>
     - SLACK webhookUri를 넣는 부분입니다.
     - webhookUri는 어떻게 가져오는지는 아래에서 설정하도록 하겠습니다.
     - token과 마찬가지로 노출이 되면 안되는 부분이기 때문에 property값으로 처리하도록 하겠습니다.
-- <channel>
+- \<channel\>
     - token을 사용했을 경우 어느 채널로 해당 로그를 푸시할지 결정하는 부분입니다.
     - 디폴트 값은 general 입니다.
-- <layout>, <pattern>
+- \<layout\>, \<pattern\>
     - 해당 부분은 슬랙 메시지를 커스텀 하는 부분입니다.
     - 아울러 로그를 어떻게 슬랙으로 보내줄지 결정하는 부분입니다.
-- <username>
+- \<username\>
     - 메시지를 보낼 사용자 이름으로 봇 네임을 적어주면 됩니다.
-- <iconEmoji>
+- \<iconEmoj\>
     - 메시지를 전송할때 이모지를 사용할지를 결정하는 부분입니다.
-- <colorCoding>
+- \<colorCoding\>
     - 로그 레벨마다 색이 다르게 설정해놨을 경우 그에 맞춰 메시지 색을 사용할지를 결정하는 부분입니다.
 - ASYNC_SLACK
     - 현재 추천하는 방식으로 appender를 비동기 방식으로 사용하는걸 권장하고 있습니다.
     - 동기와 비동기의 차이는 아래에서 설정하도록 하겠습니다.
-- <filter>
+- \<filter\>
     - 기본적으로 레벨을 가지고 필터를 설정할 수 있습니다.
     - 위의 예제는 ERROR레벨만 슬랙 메시지를 보내겠다는 의미입니다.
     - 슬랙과 같은 메신저를 이용해 받을 경우에는 심각한 오류인 경우에만 로그를 받아보는것이 좋습니다.(그렇지 않으면 알람이 계속 울리게 되는 문제가 발생합니다.)
@@ -98,8 +98,8 @@ implementation 'com.github.maricn:logback-slack-appender:1.4.0'
 
 - 비동기라는 이름처럼 빠르다는 장점이 있습니다.
 - 그러나 단점으로 부하가 심한 상황에서는 WARN 이하 레벨 로그는 기본적으로 20%가 유실될 수있고 비동기 큐에 로그가 쌓인 상태에서 프로세스가 종료되면 해당 로그는 기록되지 않고 종료되는 단점이 있습니다.
-- 또한 Method name, Line Number 등이 출력되지 않습니다.(기본적으로 출력을 하지 않는 것뿐이고 출력하다록 설정이 가능하다.) → `includeCallerData=true`를 이용하면 되지만, 성능 저하가 발생한다는 점은 알고 있어야 한다.
-- 이러한 손실율에 대해서 커스텀할 수 있도록 제공해주기도 한다.
+- 또한 Method name, Line Number 등이 출력되지 않습니다.(기본적으로 출력을 하지 않는 것뿐이고 출력하다록 설정이 가능하다.) → `includeCallerData=true`를 이용하면 되지만, 성능 저하가 발생한다는 점은 알고 있어야 합니다.
+- 이러한 손실율에 대해서 커스텀할 수 있도록 제공해주기도 합니다.
     - 버퍼 용량을 늘릴 수 있습니다.
     - 버퍼가 최대 용량에 도달하면 Logback에 이벤트를 삭제하도록 지시 할 수 있습니다.
     - 버릴 이벤트 유형을 제어 할 수 있습니다. ERROR 이벤트 전에 TRACE 이벤트를 삭제가 가능합니다.
