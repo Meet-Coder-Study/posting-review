@@ -16,7 +16,7 @@
 
 ## Spring Boot Base Logback
 
-[ksy90101/TIL](https://github.com/ksy90101/TIL/blob/master/spring/spring-boot-base-logback.md)
+[spring-boot-base-logback](https://github.com/ksy90101/TIL/blob/master/spring/spring-boot-base-logback.md)
 
 ## logback-slack-appender
 
