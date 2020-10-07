@@ -1,16 +1,18 @@
-# React \_ API를 사용하는 방법
+# React \_ API를 사용하여 외부 데이터 받아오기
 
 ## 1. DI (Dependency Injection)
 
-<img src='./images/2020-10-08_React_usingAPI/diDiagram.JPG' width='400px'/>
+<img src='./images/2020-10-08_React_usingAPI/diDiagram.JPG' alt="diDiagram" width='400px'/>
 
 #### DI란?
 
 의존성 주입이라고 불리며, 의존하는 객체를 분리하여 주입한다.  
 a의 내부에 있는 b는 c,e 등에 관계 의존성을 가지고 있다.  
-b를 a로 부터 분리하여 주입하면(의존관계 역전, 의존성의 분리) c,e는 a에 주입된 b와 관계성이 형성되므로 b자체와 별개로 a와의 관계에 신경쓰면 된다.
+b를 a로 부터 분리하여 주입하면(의존관계 역전, 의존성의 분리) c,e는 a에 주입된 b와 관계성이 형성되므로 b자체 보다는 a와의 관계에 신경쓰면 된다.
 
 #### Di의 장점
+
+**기능 단위로 분리된다**
 
 1. 테스트가 용이하다
 2. 코드의 재사용성을 높여준다
