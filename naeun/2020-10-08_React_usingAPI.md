@@ -2,7 +2,7 @@
 
 ## 1. DI (Dependency Injection)
 
-<img src='./images/2020-10-08_React_usingAPI/diDiagram.JPG' alt="diDiagram" width='400px'/>
+<img src='./images/2020-10-08_React_usingAPI/diDiagram.JPG' alt="diDiagram" width='560px'/>
 
 #### DI란?
 
@@ -18,6 +18,9 @@ b를 a로 부터 분리하여 주입하면(의존관계 역전, 의존성의 분
 4. 가독성이 좋아진다
 
 ## 2. Comparison - Fetch & Axios
+
+Fetch와 Axios 두가지 방법으로 youtube 클래스를 만들어 App 컴포넌트에 프롭으로 전달하는 방식으로 작성하였습니다.  
+App 컴포넌트에서 url을 받아올 수 있지만, 받아오는 로직을 분리하여 App에 넣어줌으로써 기능단위로 분리된 코드작성이 가능합니다.
 
 #### Fetch
 
@@ -81,7 +84,7 @@ src/service/youtube.js
 
 ```javascript
 class Youtube {
-  //httpClient에서 공통적으로 사용되는 baseUrl, key정보를 주입
+  //httpClient으로 공통적으로 사용되는 baseUrl, key정보를 받아옴
   constructor(httpClient) {
     this.youtube = httpClient;
   }
