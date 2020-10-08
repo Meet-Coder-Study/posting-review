@@ -126,7 +126,8 @@ new Vue({
 // template
 <span>{{ id }} {{ pw }}</span>
 
-// script data() { return { id: "", pw: "" }; },
+// script
+data() { return { id: "", pw: "" }; },
 ```
 
 ### props
