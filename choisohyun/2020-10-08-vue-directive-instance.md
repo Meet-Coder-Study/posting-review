@@ -30,6 +30,7 @@
 ### v-model
 
 - 사용자에게 입력을 받을 때 뷰 데이터 속성에 자동으로 연결할 때
+  - 여기서 입력을 받는 종류는 폼의 **input 태그**로 받을 수 있는 `text, textarea, radio, checkbox` 등과 **select 태그** 등을 말한다.
 - 사용 예시
   입력할 때마다 data의 id 값이 변한다.
 
@@ -72,7 +73,7 @@ new Vue({
 - A 상황에서 ㄱ을 렌더링하고, B 상황에서는 ㄴ을 렌더링해야 한다고 할 때 조건문으로 렌더되도록 할 때
 - v-if 조건에 따라 컴포넌트가 실제로 제거되거나 생성된다.
 - v-if 를 쓴 후에는 `v-else-if나 v-else`를 사용해야 하며 속성들은 떨어져 있으면 안 된다. 예로, v-if와 v-else 사이에 다른 태그가 있으면 제대로 실행되지 않는다.
-- 참고: 단순히 어떤 엘리먼트를 보여줄지 말지(display 속성만 사용해서) 결정하는 것이라면 `v-show` 를 사용하면 된다. 
+- 참고: 단순히 어떤 엘리먼트를 보여줄지 말지(display 속성만 사용해서) 결정하는 것이라면 `v-show` 를 사용하면 된다.
 - 사용 예시
 
   v-for로 데이터가 반복되는데 특정 인덱스의 데이터만 다르게 렌더링되게 한다.
@@ -147,10 +148,10 @@ props: ['myProps', 'myCar']
 props: {
   myProps: string,
   myCar: {
-	type: Number,
-	default: 0,
-	required: true,
-	validator: (value) => value >= 0
+    type: Number,
+    default: 0,
+    required: true,
+    validator: (value) => value >= 0
   }
 }
 ```
