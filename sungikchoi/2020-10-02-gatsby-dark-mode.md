@@ -139,7 +139,7 @@ export const darkTheme = {
 
 ## utterances 댓글 플러그인에 적용하기
 
-여기서 문제가 하나 발생하는데, 포스트 앞에서 말했듯이 **utterances 댓글 플러그인과 코드블록 플러그인에는 다이나믹 테마가 함께 적용되지 않습니다.** 어떻게 해야 다이내믹 테마를 함께 적용할 수 있을지 utterances 플러그인 부터 설명하겠습니다. utterances 플러그인을 gatsby에 적용해야 하는 방법은 이 포스트의 주제와 어긋나므로 따로 설명하지 않겠습니다.
+여기서 문제가 하나 발생하는데, 포스트 앞에서 말했듯이 **utterances 댓글 플러그인과 코드블록 플러그인에는 다이나믹 테마가 함께 적용되지 않습니다.** 어떻게 해야 다이내믹 테마를 함께 적용할 수 있을지 utterances 플러그인 부터 설명하겠습니다. utterances 플러그인을 gatsby에 적용하는 방법은 이 포스트의 주제와 어긋나므로 따로 설명하지 않겠습니다.
 
 ```js
 // src/components/comment.js
@@ -251,7 +251,7 @@ const DARK_THEME = 'github-dark';
 
 const Comment = () => {
   const { theme } = useContext(ThemeContext); // 객체 구조 분해 할당으로 theme 값을 가져왔습니다. 이제 변경될 theme에 접근할 수 있습니다!
-  const themeMode = theme = LIGHT ? LIGHT_THEME : DARK_THEME; // theme에 따라 utterances의 테마를 설정하는 변수입니다.
+  const themeMode = theme === LIGHT ? LIGHT_THEME : DARK_THEME; // theme에 따라 utterances의 테마를 설정하는 변수입니다.
   
   const site = useSiteMetadata();
   const { repo } = site.siteMetadata.utterances;
@@ -294,7 +294,7 @@ export default Comment;
 
 ![iframe](./images/2020-09-24-styled-components-design-system-1/2020-10-02-gatsby-dark-mode/4.png)
 
-위 이미지처럼 utterance는 `iframe` 으로 생성됩니다. 구글링 결과 `window.postMessage()` 메서드를 통해 `iframe` 에 메세지 이벤트를 전달할 수 있다는 걸 알게되었습니다.
+위 이미지처럼 utterances는 `iframe` 으로 생성됩니다. 구글링 결과 `window.postMessage()` 메서드를 통해 `iframe` 에 메세지 이벤트를 전달할 수 있다는 걸 알게되었습니다.
 
 > window.postMessage() 메소드는 Window 오브젝트 사이에서 안전하게 cross-origin 통신을 할 수 있게 합니다. 예시로, 페이지와 생성된 팝업 간의 통신이나, 페이지와 페이지 안의 iframe 간의 통신에 사용할 수 있습니다. (출처: [MDN](https://developer.mozilla.org/ko/docs/Web/API/Window/postMessage))
 
@@ -372,7 +372,7 @@ Comment.displayName = 'comment';
 export default Comment;
 ```
 
-테마가 변경될 때마다 함수가 실행돼야 하므로, `useEffect` 의존성 배열에 `themeMode` 를 추가해줍니다. `iframe` 이 있는지 없는지 확인하고, 있다면 `createUtterancesEl()` 함수를 통해 생성하고, 존재한다면 `postThemeMessage()` 함수를 통해 메세지 이벤트를 전달해 테마를 변경합니다.
+테마가 변경될 때마다 함수가 실행돼야 하므로, `useEffect` 의존성 배열에 `themeMode` 를 추가해줍니다. `iframe` 이 있는지 없는지 확인하고 없다면 `createUtterancesEl()` 함수를 통해 생성합니다. 이미 존재한다면 `postThemeMessage()` 함수를 통해 메세지 이벤트를 전달해 테마를 변경합니다.
 
 ![utterances 적용 완료](./images/2020-09-24-styled-components-design-system-1/2020-10-02-gatsby-dark-mode/5.gif)
 
