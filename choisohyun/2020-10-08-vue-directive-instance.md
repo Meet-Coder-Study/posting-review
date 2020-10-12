@@ -52,19 +52,20 @@ new Vue({
 ### v-for
 
 - 배열, 객체와 같은 여러 데이터를 같은 형태로 렌더링할 때
+- v-for는 key값을 항상 가지고 있어야 한다.
 - 사용 예시
 
   데이터가 배열이라면 두 번째 인자로 index를, 객체라면 객체명을 받아 와 사용할 수도 있다.
 
 ```jsx
 <ul id="example-1">
-  <li v-for="item in items">{{ item.message }}</li>
+  <li v-for="item in items" :key="item.id">{{ item.message }}</li>
 
   // 데이터가 배열일 때
-  <li v-for="(item, index) in items">{{ item.message }} / {{ index }}</li>
+  <li v-for="(item, index) in items" :key="item.id">{{ item.message }} / {{ index }}</li>
 
   // 데이터가 객체일 때
-  <li v-for="(item, name) in items">{{ item.message }} / {{ name }}</li>
+  <li v-for="(item, name) in items" :key="item.id">{{ item.message }} / {{ name }}</li>
 </ul>
 ```
 
@@ -80,17 +81,20 @@ new Vue({
 
 ```html
 <ul id="example-1">
-  <li v-for="(item, index) in items" v-if="index >= 3">{{ item.message }} - 3 이상입니다.</li>
-  <li v-for="(item, index) in items" v-else>{{ item.message }} - 3 미만입니다.</li>
+  <li v-if="index >= 3">{{ item.message }} - 3 이상입니다.</li>
+  <li v-else>{{ item.message }} - 3 미만입니다.</li>
 </ul>
 
 // 에러 상황
 <ul id="example-1">
-  <li v-for="(item, index) in items" v-if="index >= 3">{{ item.message }} - 3 이상입니다.</li>
+  <li v-if="index >= 3">{{ item.message }} - 3 이상입니다.</li>
   <img :src="imgUrl" />
-  <li v-for="(item, index) in items" v-else>{{ item.message }} - 3 미만입니다.</li>
+  <li v-else>{{ item.message }} - 3 미만입니다.</li>
 </ul>
 ```
+
+> 주의: Vue 스타일 가이드에 따르면 v-if와 v-for는 동시에 사용하면 안 다.  
+> 만약 반복문에서 필터링이 필요한 상황이라면 `computed`에서 filter 혹은 map 메소드로 계산한 뒤에 사용해야 한다.
 
 ### v-text
 
