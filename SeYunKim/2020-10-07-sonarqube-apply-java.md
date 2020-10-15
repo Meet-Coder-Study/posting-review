@@ -25,7 +25,7 @@
     - Web Server: 분석 결과, 설정 페이지 제공
     - Serach Server: ElasticSearch 서버, 검색 기능 제공
     - Compute Engine Server: 정적 분석 결과 생성하여 DB에 저장
-- SonarQube Databse
+- SonarQube Database
     - 기본 설정들과 프로젝트 분석 스냅샷들을 저장
     - 설치 시 기본으로 H2 DB 사용
     - 설정을 통해 다양한 DB 사용가능
@@ -88,13 +88,13 @@ subprojects {
     apply plugin: "org.sonarqube"
     sonarqube {
         properties {
-            property "sonar.host.url", {snoarqubeServer}
-            property "sonar.sources", "src"
-            property "sonar.language", "java"
-            property "sonar.projectVersion", "1.1.0-SNAPSHOT"
-            property "sonar.sourceEncoding", "UTF-8"
-            property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-            property "sonar.test.inclusions", "**/*Test.java"
+            property "sonar.host.url", {sonarqubeServer} // 소나 큐브 서버 url
+            property "sonar.sources", "src" // 분석할 폴더 
+            property "sonar.language", "java" // 분석할 언어
+            property "sonar.projectVersion", "1.1.0-SNAPSHOT" // 프로젝트 버전
+            property "sonar.sourceEncoding", "UTF-8" // 소스 인코딩
+            property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml" // jacoco report 위치
+            property "sonar.test.inclusions", "**/*Test.java" // 테스트 코드
         }
     }
 }
@@ -125,7 +125,7 @@ subprojects {
 - 이러한 캐싱때문에 Memory가 오버가 된것 입니다
 - 그래서 Stop을 이용해 Daemon을 정지시키는 작업을 진행함으로써 해결했습니다.
 
-### 결과
+### 해결방법 1
 
 - 결론 Build를 진행하는 중에 Sonarqube까지 하는 것은 Memory 문제가 발생합니다.
 - 따라서 Task를 각자 따로 가져가는 방식으로 사용하도록 했습니다.
@@ -139,6 +139,14 @@ subprojects {
 ```
 
 - 이런식으로 소나큐브 Task를 따로 실행 하고 그 후 Daemon을 정지시키는 방식으로 캐싱 전략을 제거했습니다.
+
+### 해결방법 2
+```
+org.gradle.jvmargs = -Xms512m -Xmx2048m
+```
+- 위와 같이 gradle의 jvm 메모리를 늘려주는 것도 방법이 될 수 있습니다.
+- 기본 build시 옵션은 -Xmx512m 입니다.
+[configuring jvm memory](https://docs.gradle.org/current/userguide/build_environment.html#sec:configuring_jvm_memory)
 
 ## 결과 화면
 
