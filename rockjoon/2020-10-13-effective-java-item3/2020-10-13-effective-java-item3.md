@@ -54,7 +54,7 @@ public class StaticFactorySingleTone {
 }
 ```
 * public static final 필드 방식과 다르게 `INSTANCE` 필드를 private으로 선언한다.
-* 그리고 정적 팩토리 메서드를 통해 `INSTANCE` 필드를 반환 받는다.
+* 그리고 정적 팩토리 메서드 `getInstance()`를 통해 `INSTANCE` 필드를 반환 받는다.
 
 ### (2-1). 정적 팩터리 방식의 장점
 * 정적 팩터리 메서드를 수정하여 싱글턴이 아니도록 수정할 수 있다.
