@@ -9,17 +9,17 @@
 
 1. 자주 사용되는 이벤트
 
-   mouse : click, mousemove, contextmenu
-   window : resize, scroll
-   form : submit, reset, change, focus, blur
+   mouse : click, mousemove, contextmenu  
+   window : resize, scroll  
+   form : submit, reset, change, focus, blur  
    [다양한 이벤트 종류들 MDN](https://developer.mozilla.org/ko/docs/Web/Events)
 
-`event.preventDefault()` : 이벤트가 가지고 있는 기본기능 취소 (자주 사용되는 예시 : submit의 reload되는 것을 방지함)
+   `event.preventDefault()` : 이벤트가 가지고 있는 기본기능 취소 (자주 사용되는 예시 : submit의 reload되는 것을 방지함)
 
 2. 3가지 event Methods
 
-   `EventTarget.addEventListener()` : EventTarget에 특정 이벤트 처리기(handler)를 등록
-   `EventTarget.removeEventListener()` : EventTarget에 주어진 수신기 제거
+   `EventTarget.addEventListener()` : EventTarget에 특정 이벤트 처리기(handler)를 등록  
+   `EventTarget.removeEventListener()` : EventTarget에 주어진 수신기 제거  
    `EventTarget.dispatchEventListener()` : EventTarget에 특정 이벤트를 보냄
 
    [EventTarget Method MDN](https://developer.mozilla.org/ko/docs/Web/API/EventTarget)
@@ -27,15 +27,15 @@
 3. Bubbling And Capturing
 
    ![캡쳐링버블링](./images/2020-10-15_jsEvent_Css/capturingAndBubbling.JPG)  
-    [이벤트 버블링, 캡처링](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)  
-    이벤트 캡처링 : 바인딩 되어있는 부모부터 이벤트 처리기가 불러와 내려져 오는 것이다.(캡처링 단계에서 무언가 이벤트를 처리하는 일은 거의 없다고 합니다.)  
-    이벤트 버블링 : 캡처링과 반대로 이벤트가 일어난 대상부터 이벤트가 바인딩 되어있는 부모까지 올라가는 것이다. (상위 부모의 이벤트를 호출합니다.)
+    [버블링, 캡처링 MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)  
+    이벤트 캡처링 : 바인딩 되어있는 부모부터 이벤트 처리기가 불러와 내려져 오는 것 (캡처링 단계에서 무언가 이벤트를 처리하는 일은 거의 없다고 합니다.)  
+    이벤트 버블링 : 캡처링과 반대로 이벤트가 일어난 대상부터 이벤트가 바인딩 되어있는 부모까지 올라가는 것 (상위 부모의 이벤트를 호출합니다.)
 
 4. Comparison - event.target & event.currentTarget
 
    ![targetAndCurrent](./images/2020-10-15_jsEvent_Css/targetAndCurrent.jpg)  
-    event.target : 이벤트가 일어난 본인
-   event.currentTarget : 이벤트가 일어난 것에 부모
+    event.target : 이벤트가 일어난 본인  
+    event.currentTarget : 이벤트가 일어난 것에 부모
 
 버블링 단계에서 상위 부모의 이벤트를 호출하지 않기 위해서는 `stopPropagation()`를 사용한다. 하지만, 이것은 이벤트 자체를 무시하는 것이므로 추후 프로젝트가 복잡해질 경우 문제가 될 수 있으니 아래와 같이 처리해주는 방법이 더 좋다.
 
@@ -49,7 +49,8 @@
 
 5. 이벤트 위임 (Delegation)
 
-이벤트 위임은 비슷한 방식으로 여러 요소를 다룰때 사용된다. 요소에 할당할 이벤트를 부모에게 위임하여 자식요소 각각에 이벤트가 적용된 효과를 얻는다.
+이벤트 위임은 비슷한 방식으로 여러 요소를 다룰때 사용된다. 요소에 할당할 이벤트를 부모에게 위임하여 자식요소 각각에 이벤트가 적용된 효과를 얻는다.  
+아래의 예시는 ul태그 아래 각 li태그를 선택시 배경색이 바뀌게 하는 경우이다.
 
 ```html
 <style>
@@ -78,7 +79,7 @@ ul.addEventListener("click", (event) => {
 });
 ```
 
-currentTarget과 target을 이용하여 각 엘리먼트의 정보를 받아올 수 있다. 이를 활용하여 각 개별 리스트에게 이벤트리스너를 등록한 것과 같은 효과를 낼 수 있다.
+currentTarget과 target을 이용하여 각 엘리먼트의 정보를 받아올 수 있다. 이를 활용하여 각 개별 리스트에게 이벤트리스너를 등록한 것과 같은 효과를 낼 수 있게 되는 것이다.
 
 ## 2. 조건적 CSS 사용 예시
 
@@ -152,7 +153,9 @@ loading을 state로 관리하여 loading 여부에 따라 버튼이 보여거나
 
 3. 선택 요소에 따라 개별 디자인 변경
 
-`<select name="theme">` 자식태그인 `<option>`에서 dark, light, colorful으로 theme별로 선택이 가능하게 하였다. 이때, 선택된 theme별로 switch문을 사용하여 클래스 이름을 반환할 수 있도록 설정하였다. 설정된 값에 따라 클래스 이름에 추가되며 각 이름에 맞는 css 설정에 따라 디자인 조정이 가능하다. 선택의 경우가 2가지인 경우 위의 예시와 같이 삼항연산자를 이용하여 간단한 if문을 구성하였다면, 선택의 요소가 3가지 이상이 되는 경우 switch문으로 구성해주면 된다.
+`<select name="theme">` 자식태그인 `<option>`에서 dark, light, colorful으로 theme별로 선택이 가능하게 하였다.  
+이때, 선택된 theme별로 switch문을 사용하여 클래스 이름을 반환할 수 있도록 설정하였다.  
+설정된 값에 따라 클래스 이름에 추가되며 각 이름에 맞는 css 설정에 따라 디자인 조정이 가능하다. 선택의 경우가 2가지인 경우 위의 예시와 같이 삼항연산자를 이용하여 간단한 if문을 구성하였다면, 선택의 요소가 3가지 이상이 되는 경우 switch문으로 구성해주면 된다.
 
 ```js
 return (
