@@ -7,35 +7,35 @@
 ![eventInheritance](./images/2020-10-15_jsEvent_Css/elementEvent.JPG)  
 모든 element는 node를 상속하고 모든 node는 Event를 상속한다. 즉, 모든 엘리먼트는 eventTarget이다.
 
-- 1. 자주 사용되는 이벤트
+1. 자주 사용되는 이벤트
 
-     mouse : click, mousemove, contextmenu
-     window : resize, scroll
-     form : submit, reset, change, focus, blur
-     [다양한 이벤트 종류들 MDN](https://developer.mozilla.org/ko/docs/Web/Events)
+   mouse : click, mousemove, contextmenu
+   window : resize, scroll
+   form : submit, reset, change, focus, blur
+   [다양한 이벤트 종류들 MDN](https://developer.mozilla.org/ko/docs/Web/Events)
 
-  `event.preventDefault()` : 이벤트가 가지고 있는 기본기능 취소 (자주 사용되는 예시 : submit의 reload되는 것을 방지함)
+`event.preventDefault()` : 이벤트가 가지고 있는 기본기능 취소 (자주 사용되는 예시 : submit의 reload되는 것을 방지함)
 
-- 2. 3가지 event Methods
+2. 3가지 event Methods
 
-     `EventTarget.addEventListener()` : EventTarget에 특정 이벤트 처리기(handler)를 등록
-     `EventTarget.removeEventListener()` : EventTarget에 주어진 수신기 제거
-     `EventTarget.dispatchEventListener()` : EventTarget에 특정 이벤트를 보냄
+   `EventTarget.addEventListener()` : EventTarget에 특정 이벤트 처리기(handler)를 등록
+   `EventTarget.removeEventListener()` : EventTarget에 주어진 수신기 제거
+   `EventTarget.dispatchEventListener()` : EventTarget에 특정 이벤트를 보냄
 
-     [EventTarget Method MDN](https://developer.mozilla.org/ko/docs/Web/API/EventTarget)
+   [EventTarget Method MDN](https://developer.mozilla.org/ko/docs/Web/API/EventTarget)
 
-- 3. Bubbling And Capturing
+3. Bubbling And Capturing
 
-     ![캡쳐링버블링](./images/2020-10-15_jsEvent_Css/capturingAndBubbling.JPG)  
-     [이벤트 버블링, 캡처링](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)  
-     이벤트 캡처링 : 바인딩 되어있는 부모부터 이벤트 처리기가 불러와 내려져 오는 것이다.(캡처링 단계에서 무언가 이벤트를 처리하는 일은 거의 없다고 합니다.)  
-     이벤트 버블링 : 캡처링과 반대로 이벤트가 일어난 대상부터 이벤트가 바인딩 되어있는 부모까지 올라가는 것이다. (상위 부모의 이벤트를 호출합니다.)
+   ![캡쳐링버블링](./images/2020-10-15_jsEvent_Css/capturingAndBubbling.JPG)  
+    [이벤트 버블링, 캡처링](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)  
+    이벤트 캡처링 : 바인딩 되어있는 부모부터 이벤트 처리기가 불러와 내려져 오는 것이다.(캡처링 단계에서 무언가 이벤트를 처리하는 일은 거의 없다고 합니다.)  
+    이벤트 버블링 : 캡처링과 반대로 이벤트가 일어난 대상부터 이벤트가 바인딩 되어있는 부모까지 올라가는 것이다. (상위 부모의 이벤트를 호출합니다.)
 
-- 4. Comparison - event.target & event.currentTarget
+4. Comparison - event.target & event.currentTarget
 
-     ![targetAndCurrent](./images/2020-10-15_jsEvent_Css/targetAndCurrent.jpg)  
-     event.target : 이벤트가 일어난 본인
-     event.currentTarget : 이벤트가 일어난 것에 부모
+   ![targetAndCurrent](./images/2020-10-15_jsEvent_Css/targetAndCurrent.jpg)  
+    event.target : 이벤트가 일어난 본인
+   event.currentTarget : 이벤트가 일어난 것에 부모
 
 버블링 단계에서 상위 부모의 이벤트를 호출하지 않기 위해서는 `stopPropagation()`를 사용한다. 하지만, 이것은 이벤트 자체를 무시하는 것이므로 추후 프로젝트가 복잡해질 경우 문제가 될 수 있으니 아래와 같이 처리해주는 방법이 더 좋다.
 
@@ -47,7 +47,7 @@
 };
 ```
 
-- 5. 이벤트 위임 (Delegation)
+5. 이벤트 위임 (Delegation)
 
 이벤트 위임은 비슷한 방식으로 여러 요소를 다룰때 사용된다. 요소에 할당할 이벤트를 부모에게 위임하여 자식요소 각각에 이벤트가 적용된 효과를 얻는다.
 
