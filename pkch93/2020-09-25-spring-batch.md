@@ -156,6 +156,8 @@ class SlackNotificationBatchJobConfigurationTest {
 
 청크 지향 프로세싱은 청크 단위로 트랜잭션을 묶어 데이터를 처리한다. 이때, Chunk는 데어터의 덩어리로 하나의 커밋에 처리되는 row의 수를 의미한다.
 
+Spring Batch가 청크 단위로 트랜잭션 처리하므로 실패한 Job에 대한 원복도 쉽게 가능하며 재시작 또한 트랜잭션을 통해 이룰 수 있다.
+
 Chunk 단위로 데이터를 만들어내는 방식은 다음과 같다.
 
 먼저 `ItemReader`에서 하나의 아이템씩 값을 가져온다. 그리고 해당 아이템을 처리할 필요가 있는 경우 `ItemProcessor`를 거쳐 값을 처리한다. 이렇게 설정한 Chunk의 수만큼 데이터를 가져온 뒤에 `ItemWriter`로 최종 쓰기처리를 한다.
@@ -164,11 +166,11 @@ Chunk 단위로 데이터를 만들어내는 방식은 다음과 같다.
 
 ```java
 @Configuration
-@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = InactiveUserJobConfiguration.JOB_NAME)
+@ConditionalOnProperty(name = "spring.batch.job.names", havingValue = ExampleJobConfiguration.JOB_NAME)
 @RequiredArgsConstructor
-public class InactiveUserJobConfiguration {
-    public static final String JOB_NAME = "inactiveUserBatchJob";
-    public static final String STEP_NAME = "inactiveUserBatchStep";
+public class ExampleJobConfiguration {
+    public static final String JOB_NAME = "exampleUserBatchJob";
+    public static final String STEP_NAME = "exampleUserBatchStep";
     public static final String READER_NAME = STEP_NAME + "-reader";
     public static final String PROCESSOR_NAME = STEP_NAME + "-processor";
     public static final String WRITER_NAME = STEP_NAME + "-writer";
@@ -182,17 +184,17 @@ public class InactiveUserJobConfiguration {
             .collect(Collectors.toList());
 
     @Bean(JOB_NAME) // 1
-    public Job inactiveUserBatchJob(JobBuilderFactory jobBuilderFactory,
+    public Job exampleUserBatchJob(JobBuilderFactory jobBuilderFactory,
                                     @Qualifier(STEP_NAME) Step inactiveUserBatchStep) {
         return jobBuilderFactory.get(JOB_NAME)
                 .preventRestart()
                 .incrementer(new RunIdIncrementer())
-                .start(inactiveUserBatchStep)
+                .start(exampleUserBatchStep)
                 .build();
     }
 
     @Bean(STEP_NAME) // 2
-    public Step inactiveUserBatchStep(StepBuilderFactory stepBuilderFactory) {
+    public Step exampleUserBatchStep(StepBuilderFactory stepBuilderFactory) {
         return stepBuilderFactory.get(STEP_NAME)
                 .<String, Integer>chunk(chunkSize)
                 .reader(reader())
