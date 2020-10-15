@@ -1,7 +1,7 @@
 # [이펙티브 자바] 아이템3. private 생성자나 열거 타입으로 싱글턴임을 보증하라
 
 ## 1. 싱글턴이란?
-
+---
 ### (1). 싱글턴 의미
 인스턴스를 오직 하나만 생성할 수 있는 클래스
 
@@ -11,10 +11,10 @@
 무상태 객체란?
 인스턴스 필드가 없는 객체. 하지만 클래스 필드는 가질 수 있다.(static final)
 ```
-[무상태 객체 참조]((https://stackoverflow.com/questions/9735601/what-is-stateless-object-in-java))
+> [무상태 객체 참조](https://stackoverflow.com/questions/9735601/what-is-stateless-object-in-java)
 
 2) 설계상 유일해야 하는 시스템 컴포넌트
-* 유틸 클래스
+* ex) 유틸 클래스, 스프링의 Bean, logger객체 등
 
 ### (3) 싱글턴의 단점
 테스트하기 어려울 수 있다.
@@ -22,8 +22,9 @@
 * 가자(mock) 구현 테스트들은 대부분 `인터페이스 구현이나 상속을 이용해 껍데기만 구현`하여테스트하도록 되어 있다.
 * 싱글턴 메소드는 `생성자가 private`으로 감춰져 있다.
 * 따라서 인터페이스를 구현을 통해 생성한 싱글턴 인스턴스가 아니라면 **가짜(mock) 객체를 만들 수 없으므로 테스트에 어려움**이 있다.
-
+----
 ## 2. 싱글턴을 만드는 방법
+---
 ### (1). public static final 필드 방식
 ```java
 public class Singletone1 {
@@ -33,8 +34,8 @@ public class Singletone1 {
     public void method1(){}
 }
 ```
-* 위의 예에서 INSTANCE 필드는 public static final로 선언되어 있다.
-* INSTANCE 필드는 초기화될 때 private 생성자를 딱 한번만 호출하므로 싱글턴이 보장된다.
+* 위의 예에서 `INSTANCE` 필드는 **public static final**로 선언되어 있다.
+* `INSTANCE` 필드는 초기화될 때 private 생성자를 딱 한번만 호출하므로 싱글턴이 보장된다.
 
 ### (1-1). public static final 필드 방식의 장점
 * 해당 클래스가 싱글턴임이 명백히 드러난다.
@@ -52,13 +53,13 @@ public class StaticFactorySingleTone {
     public void method1(){}
 }
 ```
-* public static final 필드 방식과 다르게 INSTANCE 필드를 private으로 선언한다.
-* 그리고 정적 팩토리 메서드를 통해 INSTANCE 필드를 반환 받는다.
+* public static final 필드 방식과 다르게 `INSTANCE` 필드를 private으로 선언한다.
+* 그리고 정적 팩토리 메서드를 통해 `INSTANCE` 필드를 반환 받는다.
 
 ### (2-1). 정적 팩터리 방식의 장점
 * 정적 팩터리 메서드를 수정하여 싱글턴이 아니도록 수정할 수 있다.
-* 정적 팩터리 메서드를 제네릭으로 만들 수 있다.
-* 정적 팩터리의 메서드 참조를 공급자(supplier)로 사용할 수 있다.
+* 정적 팩터리 메서드를 **제네릭으로** 만들 수 있다.
+* 정적 팩터리의 **메서드 참조**를 `공급자`(supplier)로 사용할 수 있다.
 * * 위의 예제에서 getInstance를 메서드 참조로 변환하면 `StaticFactorySingleTone::getInstance`형태가 되고 이를 람다식의 Supplier\<StaticFactorySingleTone>로 사용 할 수 있다.
 
 ### (3). 위의 방식들의 단점
@@ -76,7 +77,7 @@ public enum EnumSingleTone {
     public void method(){}
 }
 ```
-* 원소가 하나뿐인 열거 타입 또한 싱글턴을 만들어 준다.
+* 원소가 하나뿐인 열거 타입 또한 싱글턴을 보증한다.
 * 이 방법은 간결하고, 추가 노력 없이 지렬화 할 수 있으며, 리플렉션 공격도 막아 준다.
 * **따라서 대부분 상황에서 원소가 하나인 열거 타입이 싱글턴을 만드는 가장 좋은 방법이다.**
 * 다만 열거 타입은 기본적으로 Enum을 상속하고 있으므로 다른 클래스를 상속해야 한다면 이 방법을 사용할 수 없다.
