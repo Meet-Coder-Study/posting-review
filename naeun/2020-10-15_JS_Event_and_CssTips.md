@@ -20,7 +20,8 @@
 
    `EventTarget.addEventListener()` : EventTarget에 특정 이벤트 처리기(handler)를 등록  
    `EventTarget.removeEventListener()` : EventTarget에 주어진 수신기 제거  
-   `EventTarget.dispatchEventListener()` : EventTarget에 특정 이벤트를 보냄
+   `EventTarget.dispatchEvent()` : EventTarget에 특정 이벤트를 보냄  
+   (dispatchEvent는 이벤트 핸들러를 동기적으로 호출할 수 있다. 예를 들어 클릭하지 않아도 dispatchEvent에 클릭이벤트를 등록하면, 클릭이벤트가 실행되는 것과 같은 효과를 낼 수 있다.)
 
    [EventTarget Method MDN](https://developer.mozilla.org/ko/docs/Web/API/EventTarget)
 
@@ -30,6 +31,30 @@
     [버블링, 캡처링 MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)  
     이벤트 캡처링 : 바인딩 되어있는 부모부터 이벤트 처리기가 불러와 내려져 오는 것 (캡처링 단계에서 무언가 이벤트를 처리하는 일은 거의 없다고 합니다.)  
     이벤트 버블링 : 캡처링과 반대로 이벤트가 일어난 대상부터 이벤트가 바인딩 되어있는 부모까지 올라가는 것 (상위 부모의 이벤트를 호출합니다.)
+
+```javascript
+//sample code - 각 div에 클릭이벤트를 등록하고, 이벤트 발생시, currentTarget과 target을 콘솔에 출력
+<body>
+  <div class="parent">
+    Parent
+    <div class="middle">
+      Middle
+      <div class="child">
+        Child
+      </div>
+    </div>
+  </div>
+  <script>
+  const parent = document.querySelector(".parent");
+  const middle = document.querySelector(".middle");
+  const child = document.querySelector(".child");
+
+  parent.addEventListener("click", ()=>{console.log("I am parent");console.log("event.currentTarget",event.currentTarget); console.log("event.target",event.target)})
+  middle.addEventListener("click",  ()=>{console.log("I am something in between");console.log("event.currentTarget",event.currentTarget); console.log("event.target",event.target)})
+  child.addEventListener("click", ()=>{console.log("I am child");console.log("event.currentTarget",event.currentTarget); console.log("event.target",event.target)})
+  </script>
+</body>
+```
 
 4. Comparison - event.target & event.currentTarget
 
@@ -83,7 +108,8 @@ currentTarget과 target을 이용하여 각 엘리먼트의 정보를 받아올 
 
 ## 2. 조건적 CSS 사용 예시
 
-아래 예시들은 React와 postCSS를 사용한 예시입니다.
+아래 예시들은 React와 postCSS를 사용한 예시입니다.  
+(postCSS 사용시, 장점은 모듈화가 가능합니다. `app.jsx`의 css파일로 `app.module.css`를 만들고 `app.jsx`에서 `import styles from "./app.module.css"` 하여 `className={styles.클래스이름}`의 형식으로 작성합니다. postCSS를 사용하면 실행될 때, 각 파일 단위로 BEM 형식의 클래스 이름이 알아서 작성이 되기 때문에 클래스 이름이 겹치는 고려를 하지 않아도 됩니다. 즉, 개별 파일에서만 클래스 이름이 겹치지 않게 해주면 되기 때문에 클래스 이름에 대한 고민이 줄어들 수 있습니다~!)
 
 1. 선택 요소에 따른 전체적인 레이아웃 변경
 
