@@ -29,6 +29,7 @@
 ```java
 public class Singletone1 {
     public static final Singletone1 INSTANCE = new Singletone1();
+    
     private Singletone1(){}
     
     public void method1(){}
@@ -45,7 +46,9 @@ public class Singletone1 {
 ```java
 public class StaticFactorySingleTone {
     private static final StaticFactorySingleTone INSTANCE = new StaticFactorySingleTone();
+
     private StaticFactorySingleTone(){}
+
     public static StaticFactorySingleTone getInstance(){
         return INSTANCE;
     }
