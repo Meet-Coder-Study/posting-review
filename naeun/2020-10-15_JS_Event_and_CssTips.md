@@ -59,8 +59,8 @@
 4. Comparison - event.target & event.currentTarget
 
    ![targetAndCurrent](./images/2020-10-15_jsEvent_Css/targetAndCurrent.jpg)  
-    event.target : 이벤트가 일어난 본인  
-    event.currentTarget : 이벤트가 일어난 것에 부모
+    event.target :실제 이벤트가 발생하는 위치. 즉, 내가 클릭한 요소  
+    event.currentTarget : 이벤트가 바인딩 되어있는 위치(this가 가리키는 것). 예를 들면 자식의 부모 요소가 될 수도 있다.
 
 버블링 단계에서 상위 부모의 이벤트를 호출하지 않기 위해서는 `stopPropagation()`를 사용한다. 하지만, 이것은 이벤트 자체를 무시하는 것이므로 추후 프로젝트가 복잡해질 경우 문제가 될 수 있으니 아래와 같이 처리해주는 방법이 더 좋다.
 
