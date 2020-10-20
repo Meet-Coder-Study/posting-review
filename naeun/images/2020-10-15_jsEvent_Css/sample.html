@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Sample</title>
+  <style>
+    .parent{
+      background-color:cornflowerblue;
+      width: 300px;
+      height:300px;
+    }
+    .middle{
+      background-color:blanchedalmond;
+      width: 200px;
+      height:200px;
+    }
+    .child{
+      background-color: burlywood;
+      width: 100px;
+      
+      height:100px;
+    }
+    .selected{
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <h3 class="title">Event practice</h3>
+  <div class="parent">
+    Parent
+    <div class="middle">
+      Middle
+      <div class="child">
+        Child
+      </div>
+    </div>
+  </div>
+  <ul class="ul">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+  </ul>
+  <script>
+    const parent = document.querySelector(".parent");
+    const middle = document.querySelector(".middle");
+    const child = document.querySelector(".child");
+
+    parent.addEventListener("click", (event)=>{if(event.target !== event.currentTarget){return;} console.log })
+    middle.addEventListener("click",  ()=>{console.log("I am something in between");
+    
+    const eventTarget = event.target;
+    console.log("event.currentTarget",event.currentTarget); console.log("event.target",eventTarget)})
+    child.addEventListener("click", ()=>{console.log("I am child");console.log("event.currentTarget",event.currentTarget); console.log("event.target",event.target)})
+
+
+    const ul = document.querySelector('ul');
+    ul.addEventListener("click", (event) =>{ 
+      if(event.target.tagName == 'LI')
+      {event.target.classList.add("selected")}
+     
+    })
+
+
+  </script>
+</body>
+</html>
