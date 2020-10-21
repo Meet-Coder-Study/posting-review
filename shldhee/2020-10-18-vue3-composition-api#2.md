@@ -195,7 +195,20 @@ return { event.capacity, event.attending, event.spacesLeft, increaseCapacity }
 - `toRefs`라는 메서드를 사용해 `event`를 구조분해 시켜보자.
 - 기본 객체를 reactive 객체로 변환시켜준다.
 
-``` javascript
+``` html
+<template>
+  <div>
+    <p>Spaces Left: {{ spacesLeft }} out of {{ capacity }}</p>
+    <h2>Attending</h2>
+    <ul>
+      <li v-for="(name, index) in attending" :key="index">
+        {{ name }}
+      </li>
+    </ul>
+    <button @click="increaseCapacity()">Increase Capacity</button>
+  </div>
+</template>
+<script>
 import { reactive, computed, toRefs } from "vue";
 export default {
   setup() {
@@ -213,7 +226,10 @@ export default {
     return toRefs(event); // toRefs만 반환하는 경우
   }
 };
+</script>
 ```
+
+- 최종 코드 : [codesandbox-vue3-composition-API-2](https://codesandbox.io/s/vigorous-poitras-bbbh4?file=/src/App.vue)
 
 ## 참조
 
