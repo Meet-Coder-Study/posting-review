@@ -16,7 +16,7 @@ object는 생성될 때, 메모리상에서 데이터의 주소값(?) 인 `ref`�
 
 shallow comparison은 비교할 때, object의 내부 데이터 까지 비교하는 것이 아니라 `ref`를 비교한다. 따라서 object의 내부 설정 값이 변경되어도 `ref` 값이 같다면 true를 반환한다.
 
-**JavaScript에서 ==, ===, deepEquals**
+**JavaScript에서 ==, ===**
 
 자바스크립트에서 `==` 와 `===` 는 다르게 작동한다.
 
