@@ -4,7 +4,7 @@
 
 ### React에서의 작동
 
-React에서는 업데이트 될 때마다 렌더링을 진행하고, VDOM에서 필요한 요소만 확인하여 실제 DOM에는 필요한 것들만 렌더한다. 그래서 업데이트 될 때마다 리액트는 렌더링이 진행되도 html 전체가 렌더링 되는 것이 아니라 필요 부분만 렌더링 되기 때문에 개선된 성능으로 렌더링되어 화면에 나타나는 것이다. 하지만, 업데이트 시 클래스형 컴포넌트 내부의 `render`메서드나 `함수 컴포넌트`등은 호출이 계속된다. 이것은 `shallow comparison(얕은비교)`를 시용하여 성능을 좀 더 개선할 수 있다. `shallow comparison`를 활용하면 object의 최상위 데이터(props나 state)가 변경되지 않으면 `render`메서드나 `함수 컴포넌트`를 호출해주지 않음으로써 성능을 개선할 수 있다. 2번째에서 정리할, PureComponent, memo, useCallback은 `shallow comparison`을 하며 성능개선에 이용된다.
+React에서는 업데이트 될 때마다 렌더링을 진행하고, VDOM에서 필요한 요소만 확인하여 실제 DOM에는 필요한 것들만 렌더한다. 그래서 업데이트 될 때마다 리액트는 렌더링이 진행되도 html 전체가 렌더링 되는 것이 아니라 필요 부분만 렌더링 되기 때문에 개선된 성능으로 렌더링되어 화면에 나타나는 것이다. 하지만, 업데이트 시 클래스형 컴포넌트 내부의 `render`메서드나 `함수 컴포넌트`등은 호출이 계속된다. 이것은 `shallow comparison(얕은비교)`를 시용하여 성능을 좀 더 개선할 수 있다. `shallow comparison`를 활용하면 object의 최상위 데이터(props나 state)가 변경되지 않으면 `render`메서드나 `함수 컴포넌트`를 호출해주지 않음으로써 성능을 개선할 수 있다. 2번째에서 정리할, PureComponent, memo, useCallback은 `shallow comparison`을 하며 성능개선에 이용된다. 내부 값까지 비교하는 것이 아니고 오프젝트의 ref 값을 비교하여 작동한다는 것에 유의해야 한다.
 
 ### Shallow Comparison 과 Deep Comparison
 
@@ -16,11 +16,7 @@ object는 생성될 때, 메모리상에서 데이터의 주소값(?) 인 `ref`�
 
 shallow comparison은 비교할 때, object의 내부 데이터 까지 비교하는 것이 아니라 `ref`를 비교한다. 따라서 object의 내부 설정 값이 변경되어도 `ref` 값이 같다면 true를 반환한다.
 
-2. Deep Comparison
-
-deep comparison은 shallow comparison과는 반대로 내부 데이터 값까지 비교하는 것이다.
-
-### JavaScript에서 ==, ===, deepEquals
+**JavaScript에서 ==, ===, deepEquals**
 
 자바스크립트에서 `==` 와 `===` 는 다르게 작동한다.
 
@@ -45,7 +41,11 @@ false == undefined; //false
 null === undefined; //false
 ```
 
-deep comparison은 아래의 예시와 같이 deepEqaul 메서드를 사용한다.
+[equality mdn](https://developer.mozilla.org/ko/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
+2. Deep Comparison
+
+deep comparison은 shallow comparison과는 다르게 내부 데이터 값을 비교하는 것이다. deep comparison은 자체적으로 비교해주는 메서드는 찾지 못했고, 라이브러리나 함수를 만들어 사용하는 듯 하다.
 
 ```js
 var obj = { here: 2 };
@@ -57,9 +57,33 @@ console.log(deepEqual(obj, { here: 2 }));
 // → true
 console.log(obj === { here: 2 });
 // → false
+function deepEqual(a, b) {
+  if (typeof a == "object" && a != null && typeof b == "object" && b != null) {
+    var count = [0, 0];
+    for (var key in a) count[0]++;
+    for (var key in b) count[1]++;
+    if (count[0] - count[1] != 0) {
+      return false;
+    }
+    for (var key in a) {
+      if (!(key in b) || !deepEqual(a[key], b[key])) {
+        return false;
+      }
+    }
+    for (var key in b) {
+      if (!(key in a) || !deepEqual(b[key], a[key])) {
+        return false;
+      }
+    }
+    return true;
+  } else {
+    return a === b;
+  }
+}
 ```
 
-[deep comparison stackoverflow 참고](https://stackoverflow.com/questions/38400594/javascript-deep-comparison)
+[위 예시 deep comparison stackoverflow 참고](https://stackoverflow.com/questions/38400594/javascript-deep-comparison)
+[npm deep-equal 라이브러리 참고](https://www.npmjs.com/package/deep-equal)
 
 ### 상태 업데이트 작업을 할 때 참고할 점
 
