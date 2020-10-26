@@ -31,7 +31,7 @@ Vue 아키텍처의 흐름에 대해 설명하겠습니다.
 ### mutations
 
 - mutation은 변이입니다. 변이의 목적은 `상태를 변경하는 것`입니다.
-- 변이 안에서 상태 변경과 관련 없는 일(비동기적인 작업 등)은 Action에서 실행되도록 합니다. 
+- 변이 안에서 상태 변경과 관련 없는 일(비동기적인 작업 등)은 Action에서 실행되도록 합니다. 즉, 동기적인 작업만 실행한다고 보면 됩니다.
 - Store는 state를 직접 변경하지 않기 때문에 반드시 변이를 통해서 변경해야 합니다. 
 - DevTools에서는 변이 전후를 스냅샷 캡쳐해 디버깅을 제공합니다.
 
@@ -182,5 +182,5 @@ methods: {
 ## 참고
 
 - [Vue.js 퀵 스타트](http://www.yes24.com/Product/Goods/45091747)
-- [Vue.js 공식 사이트](https://kr.vuejs.org/v2/)
+- [Vue.js 공식 사이트](https://kr.vuejs.org/v2/guide/index.html)
 - [[vuex] Modules](https://beomy.tistory.com/88)
