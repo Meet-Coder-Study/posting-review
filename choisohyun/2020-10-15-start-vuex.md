@@ -37,7 +37,7 @@ Vue 아키텍처의 흐름에 대해 설명하겠습니다.
 
 ##### 인자
 
-- 첫 번째 인자: state - 기존의 상태
+- 첫 번째 인자: state - 기존의 상태
 - 두 번째 인자: payload - 변이에서 필요로 하는 데이터. 즉 상태를 변경할 때 필요한 정보
 ```js
   mutations: {
@@ -182,5 +182,10 @@ methods: {
 ## 참고
 
 - [Vue.js 퀵 스타트](http://www.yes24.com/Product/Goods/45091747)
+<<<<<<< HEAD
 - [Vue.js 공식 사이트](https://kr.vuejs.org/v2/guide/index.html)
 - [[vuex] Modules](https://beomy.tistory.com/88)
+=======
+- [Vue.js 공식 사이트](https://kr.vuejs.org/v2/)
+- [[vuex] Modules](https://beomy.tistory.com/88)
+>>>>>>> ddb01e0e0192f62609d9faf36e695f8584e855d5
