@@ -18,7 +18,7 @@ public class SpellChecker {
 (2). 싱글턴 방식
 ```java
 public class SpellChecker {
-    private static final Lexicon dictionary = ...;
+    private final Lexicon dictionary = ...;
 
     private SpellChecker(){}
     public static SpellChecker INSTANCE = new SpellChecker();
@@ -39,7 +39,7 @@ public class SpellChecker {
 하지만 이 조건에 적합한 간단한 패턴이 있다. 바로 `인스턴스를 생성할 때 생성자에 자원을 넘겨주는 방식`이다.
 ```java
 public class SpellChecker {
-    private static final Lexicon dictionary;
+    private final Lexicon dictionary;
 
     // 생성자에 자원을 전달
     public SpellChecker(Lexicon dictionary){
