@@ -26,7 +26,7 @@ public class SpellChecker {
     public static boolean isValid(String word){ ... }
 }
 ```
-하지만 SpellChecker에서 사용하는 사전은 영어 사진이 될 수도 있고 국어 사전이 될 수도 있다.        
+하지만 SpellChecker에서 사용하는 사전은 영어 사전이 될 수도 있고 국어 사전이 될 수도 있다.        
 위의 두 방법 모두 **dictionary가 변화한다고 가정했을 때 그리 좋은 모습이 아니다.**  
 
 * 사전의 변화를 대비 하기 위하여 클래스 안에서 사전을 종류별로 선언하는 것은 코드를 매우 복잡하게 만든다.
@@ -57,7 +57,8 @@ public class SpellChecker {
 ---
 
 생성자에 자원을 전달하는 방법의 변형으로 자원 대신 `자원을 생성하는 팩터리`를 넘겨주는 방식이 있다.
-> 팩터리 : 특정 타입의 인스턴스를 만들어주는 객체
+> 팩터리 : 특정 타입의 인스턴스를 만들어주는 객체   
+
 즉, 다음과 같이 생성자의 매개 변수로 Supplier<T>가 오는 패턴을 말한다.
 ```java
 public SpellChecker(Supplier<Lexicon> dictionaryFactory){
