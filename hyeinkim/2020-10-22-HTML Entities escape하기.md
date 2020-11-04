@@ -20,8 +20,7 @@ HTML에서 <는 태그의 시작을 의미한다. 만약 태그의 시작이 아
 - `<`, `&`, `"`같은 HTML 관련 문자를 명시하기를 원할 때
 
 ### 2. 사용 시 장단점
-- 장점 : Entity Name은 기억하기 쉽다. 
-  - ex) `&nbsp;` : non-breaking space , `&lt;` : less than 
+- 장점 : Entity Name의 경우 Entity Number보다 기억하기 쉽다. 예를 들면, 공백을 표현할 때 Entity Name인 `&nbsp;` (non-breaking space)가 Entity Number인 `&#160;`보다 더 의미를 파악하기 쉽다.
 - 단점 : 브라우저가 모든 Entity Name을 지원하지는 않는다. Entity Number로는 지원해준다.
 
 ## StringEscapeUtils
