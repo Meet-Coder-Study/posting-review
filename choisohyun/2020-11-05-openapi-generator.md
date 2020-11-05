@@ -21,7 +21,7 @@
  
  - 우리는 swagger에 명시된 타입을 바탕으로 타입을 정의해야 합니다. 아래와 같이 명세를 펼치면 알맞는 타입을 알 수 있습니다. 
  
- ![Screen Shot 2020-11-04 at 12.03.37.png](/wikis/2840149879339316044/files/2870204382244695422)
+ ![Screen Shot 2020-11-04 at 12.03.37.png](./images/swagger.png)
  캡처 출처: https://petstore.swagger.io/#/pet/addPet
  
  - 그렇게 타입을 아래와 같이 정의했습니다. (github의 issue 상세 페이지를 예상하고 간략하게 작성했습니다.)
@@ -112,7 +112,7 @@
  
  아래는 [공개된 swagger](https://petstore.swagger.io/#/pet/addPet)의 yml 파일 일부입니다.
  
- <img src="/wikis/2840149879339316044/files/2870290858477537441" alt="yml_example.png" width="600"/>
+ <img src="./images/yml_example.png" alt="yml_example.png" width="600"/>
  
  #### 3) 실행
  
@@ -128,11 +128,11 @@
  
  타입 인터페이스가 아래와 같은 형태로 작성되었습니다.
  
- <img src="/wikis/2840149879339316044/files/2870281875743737097" alt="interface.png" width="600"/>
+ <img src="./images/interface.png" alt="interface.png" width="600"/>
  
  통신 코드도 axios 타입을 `AxiosPromise`와 `AxiosInstance`로 axios에서 제공하는 타입을 가져와 사용하는 코드로 생성되었습니다.
  
- ![axios.png](/wikis/2840149879339316044/files/2870892022188128340)
+ ![axios.png](./images/axios.png)
  
  ### 4. 정리
  
