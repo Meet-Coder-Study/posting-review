@@ -12,5 +12,4 @@ gen
 !.vscode/extensions.json
 *.code-workspace
 
-#macOS
-.DS_Store
+*.DS_Store
