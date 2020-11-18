@@ -69,7 +69,7 @@
 
 - Hypermedia As The Engine Of Application State(HATEOAS)
     - 애플리케이션 상태에 대한 엔진으로서의 하이퍼미디어
-    - 즉, 단순히 결과 데이터만이 아닌 결롼 리소스 정보를 포함해야 한다는 의미 입니다.
+    - 즉, 단순히 결과 데이터만이 아닌 결과 리소스 정보를 포함해야 한다는 의미 입니다.
 
 ### Layered System
 
