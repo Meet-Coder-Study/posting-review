@@ -7,7 +7,7 @@
 참고
 
 - `React`: 16.13버전, Function component
-- `Vue`: 2.6버전, Class component
+- `Vue`: 2.6버전, Single File component
 - 사용법 차이 위주로 설명하고 있습니다.
 - 스타일은 동일하게 적용했습니다.
 
@@ -48,6 +48,8 @@ npm install -g create-react-app
 create-react-app react-sign-up
 ```
 
+#### Vue
+
 ```jsx
 // vue create를 일회성으로 사용할 경우
 npx @vue/cli create vue-sign-up
@@ -57,7 +59,6 @@ npm install -g @vue/cli
 vue create vue-sign-up
 ```
 
-#### Vue
 
 기본 설정 외에 다른 의존성을 추가하려고 한다면 리액트는 `--typescript` 와 같이 간단한 옵션을 지정할 수 있고, 뷰는 설치 시 `직접 설정`할 수 있습니다. 개인적으로는 뷰에 선택지가 더 많아서 라우팅과 vuex까지 편하게 시작할 수 있어 편리했습니다. 만약 직접 설정하는 경우라면 환경 구성은 비슷하게 이루어질 것 같습니다.
 
@@ -139,7 +140,7 @@ export default {
 
 - `created`: 이벤트와 데이터 등이 초기화되고 화면에 주입된다. 아직 화면이 나타나기 전이다.
 - `mounted`: 화면이 값을 가지고 나타나게 된다.
-- `updated`: 데이터가 변경되고 화면이 재랜더링된다.
+- `updated`: 재랜더링 된 이후에 실제 DOM이 되었을 때 호출된다.
 - `destroyed`: 컴포넌트, 인스턴스, 디렉티브 등이 모두 해제된다.
 
 ## 4. Props
