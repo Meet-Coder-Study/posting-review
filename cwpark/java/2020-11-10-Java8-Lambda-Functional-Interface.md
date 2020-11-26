@@ -233,7 +233,8 @@ Runnable runImpl = getRunnable();
 
 ```java
 int threadNumber = 100;
-list.stream().forEach((String s) -> System.out.println(s + ", " + threadNumber));
+list.stream()
+.forEach((String s) -> System.out.println(s + ", " + threadNumber));
 ```
 
 여기서 주의할 점은 람다 표현식에서 사용하는 외부 변수는 반드시 final이거나 final과 유사한 조건이어야 한다. 즉, final 키워드를 붙이지 않아도 값이 변경될 가능성이 없어야 한다.
@@ -617,19 +618,18 @@ public class ConstructorReferenceExample {
     
     System.out.println("Lambda Expression !");
     // 람다 표현식
-    list.stream().map((String name) -> new ConstructorReferenceExample(name)
-                     .forEach((ConstructorReferenceExample data) -> System.out.println(data)));
-    
-    System.out.println("Constructor Reference !");
-    // 생성자 참조
-    list.stream().map(ConstructorReferenceExample::new
-                     .forEach((ConstructorReferenceExample data) -> System.out.println(data)));
-    
-    System.out.println("Method Reference !");
-    // 생성자 참조, 메서드 참조로 변환
-    list.stream().map(ConstructorReferenceExample::new
-                     .forEach(System.out::println);
-  }
+        list.stream().map((String name) -> new ConstructorReferenceExample(name))
+                .forEach((ConstructorReferenceExample data) -> System.out.println(data));
+
+        System.out.println("Constructor Reference !");
+        // 생성자 참조
+        list.stream().map(ConstructorReferenceExample::new)
+                .forEach((ConstructorReferenceExample data) -> System.out.println(data));
+
+        System.out.println("Method Reference !");
+        // 생성자 참조, 메서드 참조로 변환
+        list.stream().map(ConstructorReferenceExample::new)
+                .forEach(System.out::println);
 }
 ```
 
@@ -781,6 +781,3 @@ public class FunctionComposeExample {
 ---
 
 Practical 모던자바. 장윤기. 인사이트.
-
-
-
