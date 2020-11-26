@@ -172,7 +172,7 @@ cropper.getCroppedCanvas().toBlob((blob) => {
 ![20201126-image3](Image/20201126-image3)
 
 - CropBox 사용자 크기 지정 가능케 변경
-![20201126-image4](Image/20201126-image3)
+![20201126-image4](Image/20201126-image3.png)
 Ss
 
 
