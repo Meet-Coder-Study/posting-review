@@ -127,10 +127,10 @@ registry.config()
 new MeterFilter() {
     @Override
     public MeterFilterReply accept(Meter.Id id) {
-       if(id.getName().contains("test")) {
-          return MeterFilterReply.DENY;
-       }
-       return MeterFilterReply.NEUTRAL;
+    if(id.getName().contains("test")) {
+        return MeterFilterReply.DENY;
+    }
+    return MeterFilterReply.NEUTRAL;
     }
 }
 ```
@@ -150,10 +150,10 @@ MeterFilterReply의 상태는 3가지가 존재한다.
 new MeterFilter() {
     @Override
     public Meter.Id map(Meter.Id id) {
-       if(id.getName().startsWith("test")) {
-          return id.withName("extra." + id.getName()).withTag("extra.tag", "value");
-       }
-       return id;
+    if(id.getName().startsWith("test")) {
+        return id.withName("extra." + id.getName()).withTag("extra.tag", "value");
+    }
+    return id;
     }
 }
 ```
@@ -196,8 +196,8 @@ Auto-Configuration을 활용하려면 먼저 사용하고자 하는 모니터링
 ```groovy
 // build.gradle
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'io.micrometer:micrometer-registry-influx'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-influx'
 }
 ```
 
@@ -210,10 +210,10 @@ InfluxDB 외에도 Prometheus, New Relic, JMX 등 다양한 모니터링 툴을 
 Spring Boot에서는 다음 메트릭들을 기본 지원해준다.
 
 - JVM 메트릭
-  - memory와 buffer pool
-  - Garbage Collection
-  - Thread Utilization
-  - Number of class load/unload
+- memory와 buffer pool
+- Garbage Collection
+- Thread Utilization
+- Number of class load/unload
 - CPU 메트릭
 - File descriptor 메트릭
 - kafka consumer와 producer 메트릭
@@ -227,23 +227,23 @@ Spring Boot에서는 다음 메트릭들을 기본 지원해준다.
 - Spring WebFlux
 - Jersey Server
 
-  micrometer-jersey2 모듈이 classpath에 존재한다면 사용할 수 있다.
+micrometer-jersey2 모듈이 classpath에 존재한다면 사용할 수 있다.
 
 - HTTP Client
 
-  RestTemplate이나 WebClient의 메트릭을 지원
+RestTemplate이나 WebClient의 메트릭을 지원
 
 - Cache
 
-  Caffeine, EhCache 2, Hazelcast, JCache 구현체를 지원
+Caffeine, EhCache 2, Hazelcast, JCache 구현체를 지원
 
 - DataSource
 
-  `jdbc.connections`가 붙은 메트릭으로 DataSource 메트릭을 수집할 수 있다.
+`jdbc.connections`가 붙은 메트릭으로 DataSource 메트릭을 수집할 수 있다.
 
 - Hibernate
 
-  Hibernate의 `EntityManagerFactory`가 있다면 사용할 수 있다.
+Hibernate의 `EntityManagerFactory`가 있다면 사용할 수 있다.
 
 - RebbitMQ
 - Kafka
@@ -256,17 +256,17 @@ Spring Boot에서는 `MeterRegistry`를 기본 빈으로 제공하고 있으므�
 ```java
 @RestController
 public class TestController {
-		private final Counter counter;
+        private final Counter counter;
 
     public CountController(MeterRegistry registry) {
-				counter = registry.counter("my.counter", "health");
+                counter = registry.counter("my.counter", "health");
     }
 
-		@GetMapping("/healthcheck")
-		public String health() {
-				this.counter.increment();
-				return "OK";
-		}
+        @GetMapping("/healthcheck")
+        public String health() {
+                this.counter.increment();
+                return "OK";
+        }
 }
 ```
 
