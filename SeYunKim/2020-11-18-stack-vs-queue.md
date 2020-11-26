@@ -13,7 +13,7 @@
 - 한 쪽 끝에서만 자료를 넣고 뺄 수 있는 LIFO(Last In First Out) 형식의 자료 구조
 - 즉, 가장 최근에(마지막에) 스택에 추가한 항목이 가장 먼저 제거될 항목이다.
 
-![stack-va-queue-1](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-va-queue-1.png?raw=true)
+![stack-vs-queue-1](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-vs-queue-1.png?raw=true)
 
 ### Stack의 연산
 
@@ -75,7 +75,7 @@ public class Stack<E> {
 - 데이터가 입력된 순서대로 쌓고, 먼저 들어온 데이터 부터 사용하는 FIFO(First In First Out)입니다.
 - 이때 데이터를 넣는 것은 ENQUEUE, 데이터를 꺼내는 것을 DEQUEUE라고 한다.
 
-![stack-va-queue-2](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-va-queue-2.png?raw=true)
+![stack-vs-queue-2](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-vs-queue-2.png?raw=true)
 
 ### Queue의 연산
 
@@ -84,7 +84,7 @@ public class Stack<E> {
 - add() : 큐에 데이터를 삽입한다. ( == offer())
 - isEmpty(): 큐가 비어있는지 확인한다.
 
-![stack-va-queue-3](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-va-queue-3.png?raw=true)
+![stack-vs-queue-3](https://github.com/ksy90101/TIL/blob/master/computerScience/image/stack-vs-queue-3.png?raw=true)
 
 ### 자바 코드
 
