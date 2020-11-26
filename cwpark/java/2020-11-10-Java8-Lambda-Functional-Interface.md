@@ -233,7 +233,8 @@ Runnable runImpl = getRunnable();
 
 ```java
 int threadNumber = 100;
-list.stream().forEach((String s) -> System.out.println(s + ", " + threadNumber));
+list.stream()
+.forEach((String s) -> System.out.println(s + ", " + threadNumber));
 ```
 
 여기서 주의할 점은 람다 표현식에서 사용하는 외부 변수는 반드시 final이거나 final과 유사한 조건이어야 한다. 즉, final 키워드를 붙이지 않아도 값이 변경될 가능성이 없어야 한다.
@@ -780,5 +781,4 @@ public class FunctionComposeExample {
 ---
 
 Practical 모던자바. 장윤기. 인사이트.
-
 
