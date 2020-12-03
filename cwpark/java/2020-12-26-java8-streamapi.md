@@ -132,7 +132,7 @@ public class FirstStreamExample {
     // 스트림 객체 생성
     Stream<String> firstStream = firstList.stream();
     // 스트림 객체의 크기를 조회 한다. (최종 연산)
-    System.out.println("Stream 항목 개수 : " + firstList.count());
+    System.out.println("Stream 항목 개수 : " + firstStream.count());
     // 스트림에서 앞에서 5개의 데이터를 한정하여 새로운 스트림 객체를 생성한다.
     Stream<String> limitedStream = firstStream.limit(5);
     limitedStream.forEach(System.out::println);
@@ -1254,7 +1254,6 @@ public class ReduceMinMaxExample {
 ---
 
 Practical 모던자바. 장윤기. 인사이트.
-
 
 
 
