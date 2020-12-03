@@ -656,7 +656,7 @@ public class StreamSortedExample2 {
 
 #### 데이터 매핑
 
-매핑(map)은 스트림의 데이터를 다른 타입으로 변환하는 것을 맗란다. 매핑 메서드는 다음과 같이 4개가 존재한다.
+매핑(map)은 스트림의 데이터를 다른 타입으로 변환하는 것을 말한다. 매핑 메서드는 다음과 같이 4개가 존재한다.
 
 -  map(Function\<? super T, ? extends R> mapper)
 - mapToDuble(ToDoubleFunction\<? super T> mapper)
@@ -1254,7 +1254,6 @@ public class ReduceMinMaxExample {
 ---
 
 Practical 모던자바. 장윤기. 인사이트.
-
 
 
 
