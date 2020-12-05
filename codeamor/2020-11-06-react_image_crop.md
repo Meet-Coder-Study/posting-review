@@ -4,7 +4,7 @@
 
 <br>
 
-# Why react-image-crop ?
+# Why react-image-crop?
 
 최근 npm trend에서 가장 많은 사용이 있었던 이미지 자르기 오픈소스입니다.
 
@@ -16,10 +16,15 @@
 # 특징
 
 - 사용자가 픽셀과 퍼센티지를 사용할 수 있어 유연합니다.
-- 터치가 가능합니다. (모바일)
+
+- 터치가 가능합니다.
+
 - 이미지 자르기 시에 영역 자유 선택과 고정 선택이 가능합니다.
+
 - 키보드로 미세 조정이 가능합니다.
+
 - dependencies가 필요 없고, 용량이 작습니다.
+
 - 최소/최대 자르기 사이즈를 지정할 수 있습니다.
 
 <br>
@@ -39,7 +44,7 @@
 import ReactCrop from 'react-image-crop';
 ```
 
-> ReactCrop.css or ReactCrop.scss (깃허브 )
+> ReactCrop.css or ReactCrop.scss (깃허브 소스 예제)
 
 ```js
 import 'react-image-crop/dist/ReactCrop.css';
@@ -60,7 +65,7 @@ function CropDemo({ src }) {
 
 # Props
 
-> src
+> src (필수)
 
 ```js
 <ReactCrop src="path/to/image.jpg" />
@@ -84,7 +89,7 @@ onChange = crop => {
 ```
 <br>
 
-> crop
+> crop (필수)
 
 - 모든 crop params는 초기 설정이 가능합니다.
 
@@ -92,7 +97,7 @@ onChange = crop => {
 
 ```js
 crop: {
-  unit: 'px', // default, can be 'px' or '%'
+  unit: 'px', // default, 'px'나 '%' 가 될 수 있습니다.
   x: 130,
   y: 50,
   width: 200,
@@ -126,80 +131,78 @@ crop: {
 
 # Options
 
-- minWidth
+> minWidth
 
-- minHeight
+> minHeight
+> maxWidth
 
-- maxWidth
+> maxHeight
 
-- maxHeight
-
-- keepSelection
+> keepSelection
 
 : true가 전달되면 사용자가 선택 영역 외부를 클릭하면 선택을 비활성화 할 수 없습니다.
 
-- disabled
+> disabled
 
 : 참이면 자르기를 만들거나 크기를 조정할 수 없습니다.
 
-- locked
+> locked
 
 : 참이면 자르기를 만들거나 크기를 조정할 수 없지만 기존 자르기는 계속 드래그 할 수 있습니다.
 
-- className
+> className
 
-- style
+> style
 
-- imageStyle
+> imageStyle
 
-- imageAlt
+> imageAlt
 
-- onComplete(crop, percentCrop)
+> onComplete(crop, percentCrop)
 
-- onImageLoaded(image)
+> onImageLoaded(image)
 
 ```js
 onImageLoaded = image => {
   this.setState({ crop: { width: image.width, height: image.height } });
-  return false; // Return false when setting crop state in here.
-  // setState 중인 crop state가 여기로 올 때 false가 반환된다.
+  return false;
+  // crop의 상태를 업데이트할 때 false를 반환해야 합니다.
 };
 ```
 
 - crop 객체를 바꾸고 있다면 반드시 이 콜백에서 false를 반환해야 합니다.
-
-- onImageError(event)
+> onImageError(event)
 
 : 이미지 로드 중 오류가 발생한 경우 호출됩니다.
 
-- onDragStart(event)
+> onDragStart(event)
 
 : 드래그 혹은 크기 조정을 시작할 때 발생하는 콜백입니다.
 
-- onDragEnd(event)
+> onDragEnd(event)
 
 : 드래그 또는 크기 조정 후 사용자가 커서를 놓거나 터치 할 때 발생하는 콜백입니다.
 
-- crossorigin
+> crossorigin
 
 : 이미지에 crossorigin 속성을 설정합니다.
 
-- renderSelectionAddon(state)
+> renderSelectionAddon(state)
 
 : 자르기 선택에서 사용자 지정 요소를 렌더링합니다.
 
-- renderComponent
+> renderComponent
 
 : 이미지 대신 커스텀 HTML 요소를 렌더링합니다. 비디오를 지원하려는 경우 유용합니다.
 
-```js
+```html
 const videoComponent = (
   <video
     autoPlay
     loop
     style={{ display: 'block', maxWidth: '100%' }}
     onLoadStart={e => {
-      // 미디어가 로드되면 ReactCrop에 알려야 합니다.
+      <!-- 미디어가 로드되면 ReactCrop에 알려야 합니다. -->
       e.target.dispatchEvent(new Event('medialoaded', { bubbles: true }));
     }}
   >
@@ -379,11 +382,11 @@ async makeClientCrop(crop) {
 getCroppedImg(image, crop, fileName) {
     // document 상에 canvas 태그 생성
     const canvas = document.createElement("canvas");
-    // 캔버스 영역을 잘려진 이미지 크기 만큼 조절합니다.
+    // canvas 영역을 잘려진 이미지 크기 만큼 조절합니다.
     canvas.width = crop.width;
     canvas.height = crop.height;
-    // getContext() 메서드를 활용하여 캔버스 렌더링 컨텍스트 함수 사용
-    // 이 경우 drawImage() 메서드를 활용하여 이미지를 그린다
+    // getContext() 메서드를 활용하여 canvas 렌더링 컨텍스트 함수 사용
+    // 이 경우 drawImage() 메서드를 활용하여 이미지를 그립니다.
     const ctx = canvas.getContext("2d");
 
     // 화면에 잘려진 이미지를 그립니다.
@@ -408,8 +411,11 @@ getCroppedImg(image, crop, fileName) {
 }
 ```
 - canvas 요소를 생성하고, 너비와 높이를 잘려진 이미지와 같게 만들어 줍니다.
+
 - 렌더링과 관련된 메서드를 사용하기 위해 getContext 메서드를 호출하여 ctx 상수에 담습니다.
+
 - canvas에 이미지를 그리는 drawImage 함수에 필요한 옵션을 준 뒤 호출합니다.
+
 - 마지막으로, 해당 canvas에 나타난 이미지의 URI를 생성하여 반환합니다.
 
 <br>
