@@ -102,7 +102,7 @@ methods: {
 위에서 작성한 이벤트와 다른 점은 confirm을 직접 띄워야 한다는 것입니다.
 
 ```jsx
-	beforeRouteLeave(to, from, next) {
+  beforeRouteLeave(to, from, next) {
     if (this.canLeaveSite) next();
     else if (confirm('이 사이트에서 나가시겠습니까?\n변경사항이 저장되지 않을 수 있습니다.')) {
       next();
