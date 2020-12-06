@@ -135,7 +135,7 @@ router-link를 사용하면서 클릭 이벤트를 넣었습니다. 링크 네�
 조건에 맞지 않으면 return시켜 페이지가 이동되지 않도록 합니다.
 
 ```jsx
-	checkCanLeavePage: function () {
+  checkCanLeavePage: function () {
       if (!this.canLeaveSite) {
         if (!confirm('이 사이트에서 나가시겠습니까?\n변경사항이 저장되지 않을 수 있습니다.')) return;
         this.canLeaveSite = true;
