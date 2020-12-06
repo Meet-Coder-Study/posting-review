@@ -62,7 +62,7 @@ beforeunload 이벤트는 구체적으로 다음과 같은 상황에서 발생�
 그리고 vue의 라이프 사이클 주기 중에서 mounted될 때와 beforeUnmount될 때 이벤트를 등록하고 해지시키도록 합니다. 
 
 ```jsx
-	mounted() {
+  mounted() {
     window.addEventListener('beforeunload', this.unLoadEvent);
   },
   beforeUnmount() {
