@@ -70,7 +70,7 @@ PECS를 정리하자면, 어떠한 제너릭 타입의 컬렉션이 항목을 �
 
 
 
-추가적으로, 조슈아 블로크는 리턴타입에는 와일드카드를 사용하지 마라고 말한다. 와일드 카드는 파라미터에만 사용하는 것을 권고한다. 와일드 카드는 API에 숨겨져야 하는데, 사용자가 와일드카드를 인지하고 사용해야하는 상황이 생기기 때문이다.
+추가적으로, 조슈아 블로크는 리턴타입에는 와일드카드를 사용하지 말라고 말한다. 와일드 카드는 파라미터에만 사용하는 것을 권고한다. 와일드 카드는 API에 숨겨져야 하는데, 사용자가 와일드카드를 인지하고 사용해야하는 상황이 생기기 때문이다.
 
 ---
 
@@ -81,6 +81,5 @@ PECS를 정리하자면, 어떠한 제너릭 타입의 컬렉션이 항목을 �
 https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/34077112
 
 https://stackoverflow.com/questions/2745265/is-listdog-a-subclass-of-listanimal-why-are-java-generics-not-implicitly-po/2745301#2745301
-
 
 
