@@ -64,7 +64,7 @@
 
 ## 많이 하는 실수들
 
-- Mode에서 View의 접근 또는 역할.
+- Model에서 View의 접근 또는 역할.
 - View에서 일어하는 과한 값 검증과 예외 처리.
 - View에서 일어나는 비즈니스 로직
 
@@ -102,10 +102,8 @@
 - 데이터를 처리하는 부분입니다.(CRUD)
 - Service는 Repository 객체를 사용합니다.
 - DAO vs Repository
-
-[DAO vs Repository Patterns | Baeldung](https://www.baeldung.com/java-dao-vs-repository)
-
-[What is the difference between DAO and Repository patterns?](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns)
+  - [DAO vs Repository Patterns | Baeldung](https://www.baeldung.com/java-dao-vs-repository)
+  - [What is the difference between DAO and Repository patterns?](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns)
 
 ### Domain Model Layer
 
@@ -115,12 +113,12 @@
 
 ## Spring에서의 MVC 흐름
 
-- DispatcherServelt이 Controller에게 Maaping 해주고
-- Controller안에 있는 작은 Servelet들이 데이터 조작후 View를 준비하고
+- DispatcherServlet이 Controller에게 Mapping 해주고
+- Controller안에 있는 작은 Servlet들이 데이터 조작후 View를 준비하고
 - View가 Rendering 해줍니다.
 
 ## 참고자료
 
-[[10분 테코톡] 👩🏻‍💻👨🏻‍💻해리&션의 MVC 패턴](https://www.youtube.com/watch?v=uoVNJkyXX0I&t=229s)
-[[10분 테코톡] 🙋‍♂️제이엠의 MVC](https://www.youtube.com/watch?v=nMolWzTT-dU)
-[[10분 테코톡] 🐝범블비의 MVC Pattern](https://www.youtube.com/watch?v=es1ckjHOzTI)
+- [[10분 테코톡] 👩🏻‍💻👨🏻‍💻해리&션의 MVC 패턴](https://www.youtube.com/watch?v=uoVNJkyXX0I&t=229s)
+- [[10분 테코톡] 🙋‍♂️제이엠의 MVC](https://www.youtube.com/watch?v=nMolWzTT-dU)
+- [[10분 테코톡] 🐝범블비의 MVC Pattern](https://www.youtube.com/watch?v=es1ckjHOzTI)
