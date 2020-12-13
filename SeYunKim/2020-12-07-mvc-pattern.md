@@ -55,17 +55,17 @@
 - 각 컴포넌트의 코드 결합도를 낮춥니다.
     - 백엔드 개발자와 프론트엔드 개발자가 독립적으로 개발을 진행할 수 있습니다.
 - 높은 응집도를 가지고 있습니다.
-    - 논리적으로 관련이 있는 기능을 하나의 컨트롤러로 묶거나 특정 모델과 관련 있는 뷰를 그릅화 할 수 있습니다.
+    - 논리적으로 관련이 있는 기능을 하나의 컨트롤러로 묶거나 특정 모델과 관련 있는 뷰를 그룹화 할 수 있습니다.
 - 낮은 의존도를 가지고 있습니다.
-    - 각자의 역햘을 가지고 있습니다.
-    - 역할및 책임이 구분되어 있어 코드 수정이 편안하기 떄문에 개발이 용이합니다.
+    - 각자의 역할을 가지고 있습니다.
+    - 역할 및 책임이 구분되어 있어 코드 수정이 편안하기 떄문에 개발이 용이합니다.
 - 코드의 재사용성이 올라갑니다.
 - 구현자들 간의 커뮤니케이션 효율성을 높일 수 있습니다.
 
 ## 많이 하는 실수들
 
 - Model에서 View의 접근 또는 역할.
-- View에서 일어하는 과한 값 검증과 예외 처리.
+- View에서 일어나는 과한 값 검증과 예외 처리.
 - View에서 일어나는 비즈니스 로직
 
 ### 실수 해결 방법
@@ -104,7 +104,10 @@
 - DAO vs Repository
   - [DAO vs Repository Patterns | Baeldung](https://www.baeldung.com/java-dao-vs-repository)
   - [What is the difference between DAO and Repository patterns?](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns)
-
+  - DAO : 데이터 영속성의 추상화이며 테이블 중심적이다.
+  - Repository : 데이터를 저장, 검색 등의 캡슐화하는 매커니즘입니다.
+  - 실제로는 두개의 의미가 비슷하기 때문에 같은 의미로 많이 사용합니다.
+  
 ### Domain Model Layer
 
 - 데이터와 행위를 갖는 객체로 핵심 비즈니스 로직이 있으며 주요 검증을 진행합니다.
