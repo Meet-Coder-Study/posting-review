@@ -161,3 +161,6 @@ class AppleLightWeightAndGreenColorPredicate implements  ApplePredicate {
 다음에는 람다를 작성하는 방식을 위 예제를 통해 알아보자  
 
 
+### 출처
+Java 8 In Action 2장 - 동작 파라미터화 코드 전달하기
+
