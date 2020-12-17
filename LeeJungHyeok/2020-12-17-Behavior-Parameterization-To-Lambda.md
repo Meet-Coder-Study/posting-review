@@ -1,8 +1,8 @@
 # 동작 파라미터 부터 람다 표현식 까지 
 
 ## 동작파라미터화
-동작 파라미터화: 아직은 어떻게 실행할 것인지 결정하지 않은 코드 블록  
-이라고 말한다 이제 코드를 통해서 알아보자 
+동작 파라미터화란 아직은 어떻게 실행할 것인지 결정하지 않은 코드 블록 이라고 말한다. 
+이제 코드를 통해서 알아보자.
 ```java
     public static List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> apples = new ArrayList<>();
@@ -163,4 +163,3 @@ class AppleLightWeightAndGreenColorPredicate implements  ApplePredicate {
 
 ### 출처
 Java 8 In Action 2장 - 동작 파라미터화 코드 전달하기
-
