@@ -79,7 +79,7 @@ public class Apple {
 
     public static void main(String[] args) {
         List<Apple> apples = Collections.singletonList(new Apple("green", 10));
-        AppleLightWeightAndRedColorPredicate predicate = new AppleLightWeightAndRedColorPredicate();
+ApplePredicate predicate = new AppleLightWeightAndRedColorPredicate();
 
         filterApples(apples,predicate);
     }
