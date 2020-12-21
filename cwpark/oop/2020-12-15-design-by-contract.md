@@ -76,7 +76,7 @@ public class Screening {
 
 ## 사전조건
 
-사전조건이란 메서드가 정상적으로 실행되기 위해 만족해야할 조건이다. 클라이언트가 사존조건을 만족하지 못했다면 클라이언트에 버그가 있음을 의미한다.
+사전조건이란 메서드가 정상적으로 실행되기 위해 만족해야할 조건이다. 클라이언트가 사전조건을 만족하지 못했다면 클라이언트에 버그가 있음을 의미한다.
 
 ```c#
 public Reservation Reserve(Customer customer, int audienceCount)
