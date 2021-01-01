@@ -11,7 +11,6 @@ public interface Predicate<T> {
     boolean test (T t);
 }
 ```
-이다.
 
 몇가지 예제를 통해 좀 더 설명하면
 ```java
@@ -122,10 +121,13 @@ F(x) = x+y 라는 함수가 있을때 이를 λx.x+y 이런 형식으로 추상�
 
 (λx. x+1)5 를 우리가 익숙한 형태로 바꾸면 f(x) = x+1, x=5; 이고 결과는 6이 된다.
 ```
-그럼 왜 우리는 람다라고 부르게 되었을까?
+그럼 왜 우리는 람다라고 부르게 되었을까?  
 **지금부터는 지극히 개인적인 생각을 정리 한것 입니다. 주의해주세요**  
 1. 함수
 프로그래밍이 아니라 수학적으로 함수를 생각해보자, 수학적으로 함수는 함수의 이름도 필요가 없고, 그저 입력값과 그에 대한 연산만 있을 뿐이다.  
+```
+S(x,y) = x+y, (x,y) -> x+y <-요런식
+```
 그와 더불어 자바 에서는 익명 클래스 즉 클래스의 이름이 익명으로된 클래스가 있다.  
 아래 코드는 동작 파라미터화 때 작성했던 익명 클래스 코드인데, 여기서 보면 우리는 Apple객체를 변수로 받아 어떤 연산을 반환하는 구현을 했다.  
 ```java
@@ -137,8 +139,8 @@ F(x) = x+y 라는 함수가 있을때 이를 λx.x+y 이런 형식으로 추상�
     });
 }
 ```  
-test 메서드에서 apple, "green".equals(apple.getColor()) && 150 > apple.getWeight();을 본후 다음 수식을 보자  
-(λapple."green".equals(apple.getColor()) && 150 > apple.getWeight());  
+test 메서드에서 apple, "green".equals(apple.getColor()) && 150 > apple.getWeight(); 을 본후 다음 수식을 보자  
+(λapple."green".equals(apple.getColor()) && 150 > apple.getWeight())  
 그리고 이걸 우리눈에 익숙한 함수형태로 보면 편한 상태로 수정해보면  
 f(apple) = "green".equals(apple.getColor()) && 150 > apple.getWeight()  
 이렇게 함수의 형태로 표현 할 수 있고 람다 대수로 표현 할 수 있기 때문에 람다라는 말을 붙인거 같은데 왜 굳이 람다 대수였을까?.  
