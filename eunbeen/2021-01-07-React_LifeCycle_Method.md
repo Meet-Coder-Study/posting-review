@@ -13,7 +13,7 @@
 
 # 1. 라이프사이클 메서드의 이해
 
-![image-all](./Image/20210107-all.PNG)
+![](./Image/20210107-all.png)
 
 - 메서드 종류 총 9 가지(컴포넌트 클래스에서 덮어 써 선언함으로써 사용)
     - Will 접두사 : 어떤 작업을 작동하기 전에 실행 메서드
@@ -68,7 +68,7 @@
 
 ## 2.1. render() 함수
 
-![image-render](./Image/20210107-render.PNG)
+![image-render](./Image/20210107-render.png)
 
 - `render() {...}`
 - 컴포넌트 **모양새**를 정의(**컴포넌트에게 가장 중요한 메서드**)
@@ -79,7 +79,7 @@
 
 ## 2.2. constructor 메서드
 
-![image-constructor](./Image/20210107-constructor.PNG)
+![image-constructor](./Image/20210107-constructor.png)
 
 - `constructor(props) {...}`
 
@@ -97,7 +97,7 @@
 
 ## 2.3. getDerivedStatedFromProps 메서드**(v16.3 이후)**
 
-![image-getDerivedStateFromProps](./Image/20210107-getDerivedStateFromProps.PNG)
+![image-getDerivedStateFromProps](./Image/20210107-getDerivedStateFromProps.png)
 
 ```jsx
 statice getDerivedStateFromProps(nextProps, prevState){
@@ -113,7 +113,7 @@ statice getDerivedStateFromProps(nextProps, prevState){
 
 ## 2.4. componentDidMount 메서드
 
-![image-componentDidMount](./Image/20210107-componentDidMount.PNG)
+![image-componentDidMount](./Image/20210107-componentDidMount.png)
 
 - `componentDidMount() {...}`
 
@@ -127,9 +127,9 @@ statice getDerivedStateFromProps(nextProps, prevState){
 - 컴포넌트 생성 후 **첫 렌더링**을 다 마친 후 실행
 - 다른 자바 스트립트 라이브러리, 프레임워크 함수 호출, 이벤트 등록, setTimeout, setInterval, 네트워크 같은 **비동기 작업 처리**
 
-## 2.5. shoudCompoenetUpdate 메서드
+## 2.5. shouldCompoenetUpdate 메서드
 
-![image-shoudCompoenetUpdate](./Image/20210107-shoudCompoenetUpdate.PNG)
+![image-shouldComponentUpdate](./Image/20210107-shouldComponentUpdate.png)
 
 - `shoudCompoenetUpdate(nextProps, nextSatae) {...}`
 
@@ -151,7 +151,7 @@ statice getDerivedStateFromProps(nextProps, prevState){
 
 ## 2.6. **getSnapshotBeforeUpdate 메서드(v16.3 이후)**
 
-![image-getSnapshotBeforeUpdate](./Image/20210107-getSnapshotBeforeUpdate.PNG)
+![image-getSnapshotBeforeUpdate](./Image/20210107-getSnapshotBeforeUpdate.png)
 
 ```jsx
 getSnapshotBeforeUpdate(prevProps, prevState){
@@ -168,7 +168,7 @@ getSnapshotBeforeUpdate(prevProps, prevState){
 
 ## 2.7. componentDidUpdate 메서드
 
-![image-componentDidUpdate](./Image/20210107-componentDidUpdate.PNG)
+![image-componentDidUpdate](./Image/20210107-componentDidUpdate.png)
 
 - `componentDidUpdate(prevProps. prevState, snapshot) {...}`
 
@@ -187,7 +187,7 @@ getSnapshotBeforeUpdate(prevProps, prevState){
 
 ## 2.8. componentWillUnmount 메서드
 
-![image-componentWillUnmount](./Image/20210107-componentWillUnmount.PNG)
+![image-componentWillUnmount](./Image/20210107-componentWillUnmout.png)
 
 - `componentWillUnmount() {...}`
 
@@ -201,8 +201,6 @@ getSnapshotBeforeUpdate(prevProps, prevState){
 - `componentDidMount()` 에서 등록한 이벤트, 타이머, 직접 생성 DOM 존재 시 여기서 제거 작업
 
 ## 2.9 compoenetDidCatch 메서드(v16 도입)
-
-![image-componentDidCatch](./Image/20210107-componentDidCatch.PNG)
 
 - 컴포넌트 렌더링 도중에 **에러 발생 시 오류 UI 보여줌**
 
