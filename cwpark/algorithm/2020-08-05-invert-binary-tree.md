@@ -61,15 +61,15 @@ public class TreeNode {
 
 ```java
 class Solution {
-	public TreeNode invertTree(TreeNode root) {
-		if(root == null) {
-    	return null;
-		}
-    TreeNode right = invertTree(root.right);
-		TreeNode left = invertTree(root.left);
-    root.left = right;
-    root.right = left;
-    return root;
+    public TreeNode invertTree(TreeNode root) {
+	if(root == null) {
+    	    return null;
+	}
+	TreeNode right = invertTree(root.right);
+    	TreeNode left = invertTree(root.left);
+	root.left = right;
+        root.right = left;
+        return root;
   }
   
 }
@@ -87,7 +87,7 @@ class Solution {
 
 이번에는 반복 방식으로 풀어보자. 이 방식은 너비 우선 탐색(breadth-first search)과 비슷하다. 루트에서 출발해서 왼쪽 자식 노드와 오른쪽 자식 노드를 모두 방문하여 다음 자식 노드에서 다시 뒤집기 작업을 진행한다. 재귀방식과 다른 점은 너비 우선 탐색이 가능하도록 Queue를 별도로 마련해야 한다는 것이다.
 
-​	![image-20200805062440028](../images/binrary-tree-iterative0.png)예제 트리는 이전과 같다. 루트 노드 4부터 출발한다. 그리고 TreeNode를 담을 Queue를 준비한다.
+![image-20200805062440028](../images/binrary-tree-iterative0.png)예제 트리는 이전과 같다. 루트 노드 4부터 출발한다. 그리고 TreeNode를 담을 Queue를 준비한다.
 
 ![image-20200805062557207](../images/binrary-tree-iterative1.png)
 
