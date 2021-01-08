@@ -147,7 +147,7 @@ public int add(int a, int b) {
 그리고 이런 패러다임을 알아야 하는 이유는 구현을 하면서 코드를 표현하는 여러가지 패러다임을 알면 상황에 맞게 협업 및 가독성이 좋게 작성 할 수 있기 때문이라는 생각이든다.  
 
 
-##출처
+##참고자료
 - [명령형 프로그래밍과 선언적 프로그래밍 비교](https://velog.io/@hyun_sang/%EB%AA%85%EB%A0%B9%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EA%B3%BC-%EC%84%A0%EC%96%B8%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%B9%84%EA%B5%90)
 - [함수형 프로그래밍 요약](https://velog.io/@kyusung/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9A%94%EC%95%BD)
 - [함수형 프로그래밍 이란?](https://velog.io/@delmasong/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%B4%EB%9E%80)
