@@ -266,7 +266,7 @@ tailrec fun functionalMemoization(n: Int, first: Int = 0, second: Int = 1): Int 
 
 다음 코드는 꼬리 재귀로 구현하였다. 이 경우 다음과 같이 함수가 호출된다.
 
-![](images/2021-01-07-1.png)
+![](images/2021-01-07-2.png)
 
 즉, 꼬리 재귀를 사용할 경우 컴파일러가 새로운 스택 프레임을 생성하여 재귀 호출을 하는 것이 아니라 현재 스택 프레임에서 함수 시작 지점으로 점프하여 재귀 호출을 최적화한다. 이를 통해 성능을 향상시키고 stackoverflow 에러를 방지할 수 있다.
 
