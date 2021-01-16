@@ -2,9 +2,9 @@
 
 데이터 유효성 검사는 Presentation Layer, Business Layer, Data Access Layer 등 **모든 애플리케이션 계층에서 발생하는 작업**이다. 그래서 **같은 로직임에도 코드가 중복되는 문제**를 가지고 있다.
 
-![application-layers](./images/application-layers.PNG)
+![application-layers](./images/application-layers.png)
 
-![application-layers2](./images/application-layers2.PNG)
+![application-layers2](./images/application-layers2.png)
 
 `Bean Validation`은 이 문제를 해결하기 위해 만들어졌다. 도메인 모델에 Bean Validation을 사용해서 데이터 유효성 로직을 구현하고, 이를 검증이 필요한 계층에서 사용할 수 있다. 
 
