@@ -124,8 +124,9 @@ public int add(int a, int b) {
 이런 함수를 순수함수 라고 한다.  
 그러나  
 ```
+int c = 0; // 전역변수
 public void main(String[] args) {
-    int c = 0;
+    
     add(10,20);
     c = 10;
     add(10,20);
@@ -145,3 +146,18 @@ public int add(int a, int b) {
 여러 프로그래밍 패러다임을 알아보면서 느낀건 내가 지금 쓰고 있는 프로그래밍 언어가 한가지 패러다임을 쓰고 있는것이 아니라 여러 패러다임이 
 섞여 있다는 생각이 들었다.  
 그리고 이런 패러다임을 알아야 하는 이유는 구현을 하면서 코드를 표현하는 여러가지 패러다임을 알면 상황에 맞게 협업 및 가독성이 좋게 작성 할 수 있기 때문이라는 생각이든다.  
+
+
+##참고자료
+- [명령형 프로그래밍과 선언적 프로그래밍 비교](https://velog.io/@hyun_sang/%EB%AA%85%EB%A0%B9%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EA%B3%BC-%EC%84%A0%EC%96%B8%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%B9%84%EA%B5%90)
+- [함수형 프로그래밍 요약](https://velog.io/@kyusung/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9A%94%EC%95%BD)
+- [함수형 프로그래밍 이란?](https://velog.io/@delmasong/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%B4%EB%9E%80)
+- [순수 함수란?](https://jeong-pro.tistory.com/23)
+- [함수형 프로그래밍 이란?](https://medium.com/@lazysoul/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%B4%EB%9E%80-d881230f2a5e)
+- [선언형 프로그래밍이란 무엇일까?](https://codechaser.tistory.com/81)
+- [절차지향 VS 객체지향](https://brownbears.tistory.com/407)
+- [프로그래밍 패러다임](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84)
+- [프로그래밍 패러다임이](https://developer.qustory.com/post/programming-paradigm/)
+- [명령형 프로그래밍](https://ko.wikipedia.org/wiki/%EB%AA%85%EB%A0%B9%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
+- [명령형 프로그래밍 VS 선언형 프로그래밍](https://boxfoxs.tistory.com/430)
+- [명령형 프로그래밍과 선억적 프로그래밍 비교](https://velog.io/@hyun_sang/%EB%AA%85%EB%A0%B9%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EA%B3%BC-%EC%84%A0%EC%96%B8%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%B9%84%EA%B5%90)
