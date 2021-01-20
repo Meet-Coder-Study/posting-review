@@ -124,8 +124,9 @@ public int add(int a, int b) {
 이런 함수를 순수함수 라고 한다.  
 그러나  
 ```
+int c = 0; // 전역변수
 public void main(String[] args) {
-    int c = 0;
+    
     add(10,20);
     c = 10;
     add(10,20);
