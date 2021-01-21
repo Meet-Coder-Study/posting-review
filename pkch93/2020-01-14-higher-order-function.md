@@ -133,7 +133,7 @@ private companion object TestParams {
 0 이하, 11 이상의 값이 들어가면 `IllegalArgumentException`이 발생한다.
 
 > 참고로 위 `partialFunction` 테스트에서 PartialFunction의 인스턴스 power를 메서드처럼 활용하고 있다.
-이는 `PartialFunction` 클래스가 invoke를 재정의`override`하기 때문이다. Kotlin에서는 클래스의 `invoke` 함수를 이름 없이 호출할 수 있다.
+> 이는 `PartialFunction` 클래스가 invoke를 재정의`override`하기 때문이다. Kotlin에서는 클래스의 `invoke` 함수를 이름 없이 호출할 수 있다.
 
 이를 Java로도 비슷하게 구현할 수 있다.
 
