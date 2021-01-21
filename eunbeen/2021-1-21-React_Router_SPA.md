@@ -199,10 +199,9 @@ export default Profile;
  </li>
 </ul>
 <hr/>
-<Route path="/" component={Home} exact={true}/>{/*exact props 이유는 /about 규칙에 / 규칙도 포함되기 때문*/}
+<Route path="/" component={Home} exact={true}/>
 <Route path={['/info', "/about"]} component={About}/>
 <Route path='/profile/:username' component={Profile}/>
-{/*이렇게 설정하면 match.params.username 값을 통해 username 값 조회 가능*/}
 ```
 
 - 라우트로 사용되는 컴포넌트에서 받아오는 `match` 객체 안 `params`값 참조
@@ -220,7 +219,7 @@ export default Profile;
     //location 형태
     //http://localhost :3000/about?detail=true 주소 들어갔을 때 값
     {
-     "pathname" : '/about',
+     "pathname" : "/about",
      "search" : "?detail=true",
      "hash" : ""
     }
@@ -262,7 +261,6 @@ export default Profile;
          <Route path="/" component={Home} exact={true}/>
          <Route path={['/info', "/about"]} component={About}/>
          <Route path='/profile/:username' component={Profile}/>
-         {/*이렇게 설정하면 match.params.username 값을 통해 username 값 조회 가능*/}
        </div>
      );
     }
@@ -293,14 +291,10 @@ const Profiles = () => {
            <h3>사용자 목록:</h3>
            <ul>
                <li>
-                    <Link to="/propfiles/velopert">
-											velopert
-										</Link>
+                    <Link to="/propfiles/velopert"> velopert </Link>
                </li>
                <li>
-                    <Link to="/profiles/gildong">
-											gildong
-										</Link>
+                    <Link to="/profiles/gildong"> gildong </Link>
                </li>
            </ul>
  
@@ -309,9 +303,7 @@ const Profiles = () => {
                exact
                render={() => <div>사용자를 선택해 주세요.</div>}
            />
-           <Route paht="/profiles/:username" 
-									component={Profile}
-						/>
+           <Route paht="/profiles/:username" component={Profile}/>
        </div>
    );
 };
