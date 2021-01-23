@@ -1,11 +1,3 @@
----
-title: JS | 화살표 함수가 Function 키워드 함수를 완전히 대체할 수 없는 이유
-date: 2021-01-21 20:01:65
-category: js
-thumbnail: { thumbnailSrc }
-draft: false
----
-
 # JavaScript ES6 화살표 함수란?
 
 function 키워드 함수에 비해 구문이 짧고 항상 익명 함수로써 사용할 수 있습니다.
