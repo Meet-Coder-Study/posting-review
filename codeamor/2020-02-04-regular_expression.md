@@ -1,11 +1,3 @@
----
-title: JS | 정규표현식
-date: 2021-02-04 21:02:40
-category: js
-thumbnail: { thumbnailSrc }
-draft: false
----
-
 # **정규표현식이란?**
 
 문자열에 나타나는 특정 문자 조합과 대응시키기 위해 사용되는 패턴입니다.
