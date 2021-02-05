@@ -20,7 +20,8 @@ which are constructed according to the syntax of the language, that evaluates to
 ## 표현식의 예
 
 ```java
-int a = 1; int b = 2;
+int a = 1; 
+int b = 2;
 int result = a + b - 3;
 ```
 위의 코드에서 `a + b - 3` 은 표현식이다.
