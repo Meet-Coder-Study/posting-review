@@ -19,7 +19,7 @@
 ```shell
 docker-compose up #docker-compose.yml 파일 내에 모든 서비스 실행
 docker-compose up service1 #docker-compose.yml 파일 내에 service1만 실행
-docker-compose scale service1=2 service2=4 #service1은 2개, service2는 4개로 scale out  
+docker-compose compose up --sacle service1=2 service2=4 #service1은 2개, service2는 4개로 실행  
 ```
 
 ## IaC(Infrastructure as Code)와 docker-compose
@@ -152,6 +152,8 @@ services:
       - "5000:5000"
     networks:
       - service-network
+    depends_on:
+      - redis # redis 서비스가 실행된 후에 실행하도록 설정
   redis:
     container_name: "redis"
     image: "redis:alpine"
