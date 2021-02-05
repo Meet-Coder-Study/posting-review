@@ -115,7 +115,7 @@ docker run -it -d --name redis redis:alpine
 <p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
 ```
 
-앗! 500에러가 발생합니다. 제대로 배포된 것이 아닌 것을 알려주고 있습니다.
+앗! 500에러가 발생합니다. 제대로 배포된 것이 아님 알려주고 있습니다.
 
 확인을 해보니 `app.py`에서 `redis.Redis(host='redis', port=6379)` 부분을 보니 `redis:6379` 주소로 통신을 해야하는데 현재 두 도커 컨테이너는 동일한 docker network에 있지 않아서 통신이 되지 않고 있습니다.
 
