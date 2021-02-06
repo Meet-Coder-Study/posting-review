@@ -19,7 +19,7 @@
 ```shell
 docker-compose up #docker-compose.yml 파일 내에 모든 서비스 실행
 docker-compose up service1 #docker-compose.yml 파일 내에 service1만 실행
-docker-compose compose up --sacle service1=2 service2=4 #service1은 2개, service2는 4개로 실행  
+docker-compose compose up --scale service1=2 service2=4 #service1은 2개, service2는 4개로 실행  
 ```
 
 ## IaC(Infrastructure as Code)와 docker-compose
