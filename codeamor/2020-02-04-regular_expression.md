@@ -372,6 +372,33 @@ str.match(/a$/);
 
 <br>
 
+# **수량자**
+
+메타 문자들이 n회 반복됨을 나타냅니다. 문자의 오른쪽에 수량자가 위치합니다.
+
+정규식은 기본적으로 **탐욕 알고리즘**을 따르기 때문에, 수량자에 여러 패턴이 매칭될 때에 가능한 길고 많은 패턴을 반환합니다.
+
+```js
+const str = "abc";
+
+str.match(/abc?/);
+// "abc"
+```
+
+c에 옵셔널(`?`) 플래그를 주어서 ab, abc라는 두 가지 값을 확인하게 됩니다.
+하지만 탐욕적인 정규식은 ab와 abc 중에 더 긴 문자열인 abc를 반환하게 됩니다.
+
+수량자 뒤에 `?`를 한번 더 붙임으로써 최대한 짧고 적은 값을 반환하게 할 수 있습니다.
+
+이것을 **게으른 수량자(Lazy Quantifier)** 라고 합니다.
+
+```js
+str.match(/abc??/);
+// "ab"
+```
+
+<br>
+
 # Reference
 
 [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D)
