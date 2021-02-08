@@ -76,6 +76,49 @@ JavaScript에는 정규표현식에서 제공하는 다양한 메소드들이 �
 | `toString` | 생성자 함수 방식의 정규식을 리터럴 방식의 문자열(String)로 반환 |
 |            |
 
+## **메소드 사용하기**
+
+```js
+let name = "Sumin Son";
+let namePattern = /Sumin/;
+
+namePattern.test(name); // true
+namePattern.exec(name); // ["Sumin"]
+name.match(namePattern); // ["Sumin]
+```
+
+- `test()`는 boolean을 반환합니다.
+- `exec()`는 문자열의 시작 부분을 가지는 배열을 반환합니다.<br>
+  검색된 내용이 없으면 아무 것도 반환하지 않습니다.
+- `match()`는 검색된 문자열 부분의 배열을 반환합니다. <br>
+  마찬가지로 검색된 내용이 없다면 아무 것도 반환하지 않습니다.
+
+## **exec와 match의 차이점**
+
+- 실행 인자에서, `exec()`는 문자열을 받고, `match()`는 정규식 패턴을 받습니다. 서로 문자열과 패턴의 위치가 반대입니다.
+
+- match는 string에서 제공하기 때문에 name.match()와 같이 사용합니다. <br>
+  => [String.prototype.match()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+
+- exec() 함수는 `/g` 옵션을 붙이더라도 일치하는 첫 번째 값만 반환합니다.
+
+```js
+let name = "Sumin Son Sumin";
+let namePattern = /Sumin/g;
+
+namePattern.exec(name); // "Sumin"
+name.match(namePattern); // [ "Sumin", "Sumin" ]
+```
+
+그러나 캡쳐 구문`()`과 함께 쓰이면 배열로 반환을 해줍니다.
+
+```js
+let name = "Sumin Son Sumin";
+let namePattern = /(Sumin)/;
+
+namePattern.exec(name);
+```
+
 <br>
 
 # **이스케이프(Escape) 문자**
@@ -220,6 +263,18 @@ str.match(/[^0-9]/g);
 
 <br>
 
+> ## **캡쳐링 그룹(`()`)**
+
+캡쳐링 그룹은 정규식 안의 작은 표현식과 같고, 특수 문자를 그대로 사용할 수 있습니다.
+
+```js
+let phonePattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+```
+
+이렇게 번호 패턴을 체크하는 것에 있어서 () 캡쳐 그룹을 통해 어떻게 나뉘는지 확인할 수 있습니다.
+
+<br>
+
 > ## **10진수 문자(`\d`, `\D`)**
 
 문자 그룹(`[0-9]`)와 동일한 역할입니다. 대문자 `\D`를 사용하면 그 **역집합**을 검색하게 됩니다.
@@ -311,7 +366,7 @@ str.match(/a$/);
 
 시작 앵커(`^`)는 해당 정규식이 줄의 시작 부분인지를 확인하는 역할을 합니다. 보통 정규식의 가장 앞에 붙여서 사용합니다.
 
-종료 앵커(\$)는 해당 정규식이 줄의 마지막 부분인지를 확인하는 역할을 합니다. 보통 정규식의 가장 마지막에 붙여서 사용합니다.
+종료 앵커(`$`)는 해당 정규식이 줄의 마지막 부분인지를 확인하는 역할을 합니다. 보통 정규식의 가장 마지막에 붙여서 사용합니다.
 
 **부정 문자 그룹에서의 캐럿과의 차이점은 중괄호에 포함 여부입니다.**
 
