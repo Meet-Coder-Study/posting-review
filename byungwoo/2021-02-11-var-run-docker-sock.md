@@ -3,7 +3,6 @@
 - 이 글은 [Docker Tips: about /var/run/docker.sock](https://medium.com/better-programming/about-var-run-docker-sock-3bfd276e12fd) 를 번역하였습니다. 
 
 ![docker-unix-socket.png](https://miro.medium.com/max/1400/1*bKtsM045UOnZcU2QVqcAmg.png)
-<center>Image modified from http://blog.honeybadger.io</center>
 
 Docker Hub에서 컨테이너를 실행해본 경험이 있다면 일부 컨테이너에서 `/var/run/docker.sock` 파일을 바인드 마운트(bind mount)하는 것을 본 적이 있을 것입니다. 이 파일은 무엇이고 왜 특정 컨테이너에서만 사용되는 것일까요? 간단한 답은 이것입니다: Docker daemon이 기본적으로 수신(listen)하고 있는 Unix socket이고 컨테이너 내부에서 Docker daemon과 통신하는 데에 사용됩니다.  
 * 역주: 여기서 바인드 마운트(bind mount, 이하 마운트)란 도커 컨테이너 실행시 `-v ${source}:${target}`과 같이 특정 볼륨을 컨테이너에 연결하는 것을 의미합니다.
