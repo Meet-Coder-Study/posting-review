@@ -1,6 +1,6 @@
 # docker를 넘어서 docker-compose를 써보자 (feat. 컨테이너 오케스트레이션 & IaC)
 
-###### ![docker-compose-button.jpg](./images/docker-compose-button.jpg)
+![docker-compose-button.jpg](./images/docker-compose-button.jpg)
 
 도커(컨테이너)를 써야 하는 이유에 대해서는 여러 [글](https://www.44bits.io/ko/post/why-should-i-use-docker-container) 에서 언급하고 있습니다. 그러나 생각보다 [docker-compose](https://docs.docker.com/compose/) 를 써야 하는 이유에 대해서 설명해주는 글은 많이 보지 못한 것 같습니다.
 
