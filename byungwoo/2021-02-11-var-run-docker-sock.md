@@ -33,7 +33,7 @@ Docker를 호스트에 설치하였을 때, Docker를 daemon은 기본적으로 
 * 역주: 원문의 Docker engine API는 v1.27 버전 기준으로 작성되었으나 2021년 2월 기준으로 Docker engine API의 latest 버전은 [v1.41](https://docs.docker.com/engine/api/v1.41/) 이며 아래의 모든 예제는 v1.41로 동작하는 것을 확인하였습니다.  
 
 ### 컨테이너 생성
-Portainer UI를 통해서 우리는 쉽게 컨테이너를 실행할 수 있습니다. 그러나 내부적으로는 HTTP 요청은 `docker.sock`을 통해서 Docker daemon으로 전달됩니다. [curl](https://curl.se/) 을 활용하여 Nginx 컨테이너를  생성하는 예제를 살펴보겠습니다.
+Portainer UI를 통해서 우리는 쉽게 컨테이너를 실행할 수 있습니다. 그러나 내부적으로는 HTTP 요청은 `docker.sock`을 통해서 Docker daemon으로 전달됩니다. Docker engine API에 [curl](https://curl.se/) 을 활용하여 Nginx 컨테이너 생성을 요청하는 예제를 통해서 좀 더 자세히 살펴보겠습니다. 
 
 > Note: HTTP API하여 컨테이너를 실행하기 위해서는 2개의 작업으로 나누어서 진행해야합니다: 먼저 컨테이너를 생성한 후에 컨테이너를 시작할 수 있씁니다.  
 * 역주: `docker run` 명령어는 `docker create`와 `docker start`를 동시에 수행하는 명령어이지만 HTTP API를 사용할 경우 `docker create`와 `docker start`를 나누어서 수행해야합니다.
