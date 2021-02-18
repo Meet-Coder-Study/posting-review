@@ -189,7 +189,7 @@ cleaning the machine...
 
 아마추어는 커피 머신 청소를 안했는데 프로 바리스타는 청소까지 마침!
 
-## 상속 적용해보기
+# 상속 적용해보기
 
 ```ts
 type CoffeeCup = {
