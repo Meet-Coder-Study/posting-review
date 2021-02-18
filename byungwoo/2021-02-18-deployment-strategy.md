@@ -25,7 +25,7 @@ MSA(Microservices Architecture)가 늘어나면서 다양한 배포전략이 생
 무중단 배포는 반드시 "서버 이중화" 상태에서 수행할 수 있다.
 
 서버 이중화란 다음과 같이 로드밸런서를 앞에 두고 한 대 이상의 동일한 서버가 트래픽을 분산하는 것을 말한다.
-![server-duplicate.png](./images/server-duplicate.png)
+![server-duplicate.png](https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2332684E583157AD06)
 
 서버 이중화는 다음의 두 가지 큰 목적을 가지고 있다.
 
