@@ -171,14 +171,14 @@ const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
 const amateur = new AmateurUser(maker);
 const pro = new ProBarista(maker);
 amateur.makeCoffee();
-/*
+/* 실행 결과
 grinding beans for 2
 heating up... 🔥
 Pulling 2 shots... ☕
 { shots: 2, hasMilk: false }
 */
 pro.makeCoffee();
-/*
+/* 실행 결과
 grinding beans for 2
 heating up... 🔥
 Pulling 2 shots... ☕
@@ -187,7 +187,7 @@ cleaning the machine...
 */
 ```
 
-아마추어는 커피 머신 청소를 안했는데 프로 바리스타는 청소까지 마침!
+아마추어는 커피 머신 청소를 안했는데 프로 바리스타는 청소까지 마쳤습니다!
 
 # 상속 적용해보기
 
@@ -539,10 +539,12 @@ class CandySugarMixer {
   }
 }
 
+// 카페 라떼 머신
 class CaffeLatteMachine extends CoffeeMachine {
   constructor(
     beans: number,
     public readonly serialNumber: string,
+    // Dependency Injection(DI): 필요한 기능을 외부에서 내부로 주입시킵니다.
     private milkFrother: CheapMilkSteamer
   ) {
     super(beans);
@@ -554,6 +556,7 @@ class CaffeLatteMachine extends CoffeeMachine {
   }
 }
 
+// 달달한 커피 머신
 class SweetCoffeeMaker extends CoffeeMachine {
   constructor(private beans: number, private sugar: CandySugarMixer) {
     super(beans);
@@ -605,7 +608,7 @@ const sweetLatteMachine = new SweetCaffeLatteMachine(
 
 결론적으로 조합으로 인해 강하게 커플링 되어있는 클래스들을 인터페이스로 디커플링 시킬 수 있습니다.
 
-# interface를 이용해 개선된 조합
+# interface를 통해 개선된 조합
 
 ```ts
 type CoffeeCup = {
