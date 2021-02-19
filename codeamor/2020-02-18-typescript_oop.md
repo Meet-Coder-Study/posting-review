@@ -513,7 +513,7 @@ class CheapMilkSteamer {
   private steamMilk(): void {
     console.log("Steaming some milk... 🥛");
   }
-  // 우유를 만드는 함수: 만들어진 커피 컵을 받아서 내부에서 열심히 만든 우유 거품을 붓고, 다시 커피 컵을 리턴하는 함수
+  // 우유를 만드는 함수: 만들어진 커피 컵을 받아서 내부에서 열심히 만든 우유 거품을 붓고, 다시 커피 컵과 우유 포함 여부를 리턴하는 함수
   makeMilk(cup: CoffeeCup): CoffeeCup {
     this.steamMilk();
     return {
@@ -523,7 +523,7 @@ class CheapMilkSteamer {
   }
 }
 // 설탕 제조기
-class AutomaticSugarMixer {
+class CandySugarMixer {
   // 설탕을 가져오는 함수
   private getSugar() {
     console.log("Getting some sugar from candy 🍭");
@@ -555,7 +555,7 @@ class CaffeLatteMachine extends CoffeeMachine {
 }
 
 class SweetCoffeeMaker extends CoffeeMachine {
-  constructor(private beans: number, private sugar: AutomaticSugarMixer) {
+  constructor(private beans: number, private sugar: CandySugarMixer) {
     super(beans);
   }
   makeCoffee(shots: number): CoffeeCup {
@@ -569,7 +569,7 @@ class SweetCaffeLatteMachine extends CoffeeMachine {
   constructor(
     private beans: number,
     private milk: CheapMilkSteamer,
-    private sugar: AutomaticSugarMixer
+    private sugar: CandySugarMixer
   ) {
     super(beans);
   }
@@ -580,20 +580,215 @@ class SweetCaffeLatteMachine extends CoffeeMachine {
   }
 }
 
-const machines: CoffeeMaker[] = [
-  new CoffeeMachine(16),
-  new CaffeLatteMachine(16, "SSM-2319"),
-  new SweetCoffeeMaker(16),
-  new CoffeeMachine(16),
-  new CaffeLatteMachine(16, "SSM-2319"),
-  new SweetCoffeeMaker(16),
-];
-
-machines.forEach((machine) => {
-  console.log("-----------------------------");
-  machine.makeCoffee(1);
-  machine.makeCoffee;
-});
+const cheapMilkMaker = new CheapMilkSteamer();
+const candySugar = new CandySugarMixer();
+const sweetMachine = new SweetCoffeeMaker(12, candySugar);
+const latteMachine = new CaffeLatteMachine(12, "SSM-2319", cheapMilkMaker);
+const sweetLatteMachine = new SweetCaffeLatteMachine(
+  12,
+  cheapMilkMaker,
+  candySugar
+);
 ```
 
 이렇게 필요한 기능(우유 제조, 설탕 공급)을 가져와서 외부에서 주입 받음으로서 컴포지션을 이용해 필요한 기능을 재사용할 수 있습니다.
+
+하지만 현재 이 상태도 재사용성이 떨어집니다.
+
+만약 비싼 커피 머신을 구입했는데, 판매처에서 "이 커피 머신은 서울우유만 넣을 수 있습니다." 라고 하면 어안이 벙벙할 것입니다.
+
+아무리 좋은 우유 거품기, 좋은 설탕을 가져와도 지금의 커피 머신은 사용할 수 없게 됩니다.
+
+또한, CoffeeMachine을 상속하는 라떼 머신과 달달한 커피 머신도 인터페이스를 활용하여 충분히 대체할 수 있습니다.
+
+이런 식으로 클래스들 사이에 서로 상호 작용을 하는 경우엔 클래스 자신을 노출하는 것이 아니라 계약서(interface)를 통해서 상호작용을 해야합니다.
+
+결론적으로 조합으로 인해 강하게 커플링 되어있는 클래스들을 인터페이스로 디커플링 시킬 수 있습니다.
+
+# interface를 이용해 개선된 조합
+
+```ts
+type CoffeeCup = {
+  shots: number;
+  hasMilk?: boolean;
+  hasSugar?: boolean;
+};
+
+interface CoffeeMaker {
+  makeCoffee(shots: number): CoffeeCup;
+}
+
+class CoffeeMachine implements CoffeeMaker {
+  private static BEANS_GRAMM_PER_SHOT: number = 7; // class level
+  private coffeeBeans: number = 0; // instance(object) level
+
+  constructor(
+    coffeeBeans: number,
+    private milk: MilkFrother,
+    private sugar: SugarProvider
+  ) {
+    this.coffeeBeans = coffeeBeans;
+  }
+
+  fillCoffeeBeans(beans: number) {
+    if (beans < 0) {
+      throw new Error("value for beans should be greater than 0");
+    }
+    this.coffeeBeans += beans;
+  }
+
+  clean() {
+    console.log("cleaning the machine...");
+  }
+
+  private grindBeans(shots) {
+    console.log(`grinding beans for ${shots}`);
+    if (this.coffeeBeans < shots * CoffeeMachine.BEANS_GRAMM_PER_SHOT) {
+      throw new Error("Not enough coffee beans!");
+    }
+    this.coffeeBeans -= shots * CoffeeMachine.BEANS_GRAMM_PER_SHOT;
+  }
+
+  private preheat(): void {
+    console.log("heating up... 🔥");
+  }
+
+  private extract(shots: number): CoffeeCup {
+    console.log(`Pulling ${shots} shots... ☕`);
+    return {
+      shots,
+      hasMilk: false,
+    };
+  }
+
+  makeCoffee(shots: number): CoffeeCup {
+    this.grindBeans(shots);
+    this.preheat();
+    const coffee = this.extract(shots);
+    const sugarAdded = this.sugar.addSugar(coffee);
+    return this.milk.makeMilk(sugarAdded);
+  }
+}
+
+interface MilkFrother {
+  makeMilk(cup: CoffeeCup): CoffeeCup;
+}
+
+interface SugarProvider {
+  addSugar(cup: CoffeeCup): CoffeeCup;
+}
+
+// 싸구려 우유 거품기
+class CheapMilkSteamer implements MilkFrother {
+  private steamMilk(): void {
+    console.log("Steaming some milk... 🥛");
+  }
+  makeMilk(cup: CoffeeCup): CoffeeCup {
+    this.steamMilk();
+    return {
+      ...cup,
+      hasMilk: true,
+    };
+  }
+}
+// 고급 우유 거품기
+class FancyMilkSteamer implements MilkFrother {
+  private steamMilk(): void {
+    console.log("Fancy Steaming some milk... 🥛");
+  }
+  makeMilk(cup: CoffeeCup): CoffeeCup {
+    this.steamMilk();
+    return {
+      ...cup,
+      hasMilk: true,
+    };
+  }
+}
+// 차가운 우유 거품기
+class ColdMilkSteamer implements MilkFrother {
+  private steamMilk(): void {
+    console.log("Cold Fancy Steaming some milk... 🥛");
+  }
+  makeMilk(cup: CoffeeCup): CoffeeCup {
+    this.steamMilk();
+    return {
+      ...cup,
+      hasMilk: true,
+    };
+  }
+}
+
+// 우유를 넣지 않는 거품기 (아무 것도 하지 않음)
+class NoMilk implements MilkFrother {
+  makeMilk(cup: CoffeeCup): CoffeeCup {
+    return cup;
+  }
+}
+
+// 설탕 제조기
+class CandySugarMixer implements SugarProvider {
+  private getSugar() {
+    console.log("Getting some sugar from candy 🍭");
+    return true;
+  }
+
+  addSugar(cup: CoffeeCup): CoffeeCup {
+    const sugar = this.getSugar();
+    return {
+      ...cup,
+      hasSugar: sugar,
+    };
+  }
+}
+
+class SugarMixer implements SugarProvider {
+  private getSugar() {
+    console.log("Getting some sugar from jar... 🧉");
+    return true;
+  }
+
+  addSugar(cup: CoffeeCup): CoffeeCup {
+    const sugar = this.getSugar();
+    return {
+      ...cup,
+      hasSugar: sugar,
+    };
+  }
+}
+
+class NoSugar implements SugarProvider {
+  addSugar(cup: CoffeeCup): CoffeeCup {
+    return cup;
+  }
+}
+
+// Milk
+const cheapMilkMaker = new CheapMilkSteamer();
+const fancyMilkMaker = new FancyMilkSteamer();
+const coldMilkMaker = new ColdMilkSteamer();
+const noMilk = new NoMilk();
+
+// Sugar
+const candySugar = new CandySugarMixer();
+const sugar = new SugarMixer();
+const noSugar = new NoSugar();
+
+// Machine
+// 이렇게 우유가 필요 없을 땐 매개 변수에 noMilk를 넣어주는 것으로 만들 수 있습니다.
+const sweetCandyMachine = new CoffeeMachine(12, noMilk, candySugar);
+const sweetMachine = new CoffeeMachine(12, noMilk, sugar);
+
+const latteMachine = new CoffeeMachine(12, cheapMilkMaker, noSugar);
+const coldLatteMachine = new CoffeeMachine(12, coldMilkMaker, noSugar);
+const sweetLatteMachine = new CoffeeMachine(12, cheapMilkMaker, candySugar);
+```
+
+이렇게 함으로써 다양한 우유와 설탕을 조합하면서 사용할 수 있게 되었습니다.
+
+조합이 유용하지만, 상속이 무조건적으로 나쁜 것은 아닙니다.
+
+상속이 유용하고 꼭 필요한 경우가 있지만, 상속의 관계가 너무 깊다면 조합을 이용해 필요한 기능들을 조립하여 확장 가능하고 재사용성이 높은 코딩을 지향해야 할 필요가 있습니다.
+
+# Reference
+
+[드림코딩 엘리 강의](https://www.youtube.com/watch?v=ZZib1YpxNdg)
