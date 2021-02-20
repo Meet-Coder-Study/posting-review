@@ -34,6 +34,10 @@
 
 # 캡슐화 적용해보기
 
+정보를 은닉하는 과정
+
+`BEANS_GRAMM_PER_SHOT`, `coffeeBeans` 등은 외부에서 접근할 필요가 없습니다.
+
 ```ts
 type CoffeCup = {
   shots: number;
@@ -82,6 +86,8 @@ console.log(maker); // CoffeeMaker { coffeeBeans: 32 }
 
 # 추상화 적용해보기
 
+언어마다 추상화의 레벨이 다르지만, 타입스크립트에서는 캡슐화를 통한 추상화와 인터페이스를 통한 추상화를 할 수 있습니다.
+
 ```ts
 type CoffeeCup = {
   shots: number;
@@ -99,7 +105,7 @@ interface CommercialCoffeeMaker {
   fillCoffeeBeans(beans: number): void;
   clean(): void;
 }
-
+// 이 클래스를 위에서 만든 interface 규격을 따라가게 만듭니다. (implements)
 class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
   private static BEANS_GRAMM_PER_SHOT: number = 7; // class level
   private coffeeBeans: number = 0; // instance(object) level
