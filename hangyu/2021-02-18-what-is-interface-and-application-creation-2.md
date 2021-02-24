@@ -62,7 +62,7 @@ Business Layer의 Interface를 도출하기 가장 좋은 시점은 Controller�
 Object(Class) != Structure + Function 
 ```
 ``` 
-요즘 OOP에서 강조하는 부분은 Message passing 입니다. Method Call을 Function Call 관점에서 보는 것이 아니라, 특정 Object에 Message를 보낸다는 형태로 보는 관점이죠. 이 관점에서 Interface를 바라보면, 정의되어 있는 Recive Message 에 대한 규칙이에요
+요즘 OOP에서 강조하는 부분은 Message passing 입니다. Method Call을 Function Call 관점에서 보는 것이 아니라, 특정 Object에 Message를 보낸다는 형태로 보는 관점이죠. 이 관점에서 Interface를 바라보면, 정의되어 있는 Receive Message 에 대한 규칙이에요
 ```
 
 이 말을 보면 Object를 가지고 Request / Response를 하는 느낌이다
