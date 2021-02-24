@@ -31,7 +31,7 @@
 
 여기서
 
-Business Layer의 Interface를 도출하기 가장 좋은 시점은 Controller를 구현한 후 요구사항을 만족하기 위한 Business Layer를 만들어 가능 과정이지 않을까 생각한다는 자바지기 님의 의견이 나온다 
+Business Layer의 Interface를 도출하기 가장 좋은 시점은 Controller를 구현한 후 요구사항을 만족하기 위한 Business Layer를 만들어 가는 과정이지 않을까 생각한다는 자바지기 님의 의견이 나온다 
 
 이 경우는 실질적인 로직을 Controller 이후부터 보게 된다는 말인 것 같다
 
