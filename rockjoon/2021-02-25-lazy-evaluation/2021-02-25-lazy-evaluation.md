@@ -97,4 +97,61 @@ compute메서드가 실행되면 process의 결과는 필요 없기 때문에 �
 
 ## lambda를 활용한 lazy evaluation
 
+이런 경우 람다를 이용하여 이를 해결할 수 있다. 람다는 기본적은 lazy 하게 작동한다.
+
+아래의 예를 살펴보자.
+```java
+public class LazyCodeExample {
+    public static void main(String args[]) {
+        final int number = 4;
+        final Supplier<Boolean> computeResult = () -> compute(number);
+        final Supplier<Boolean> processResult = () -> process(number);
+        if (computeResult.get() && processResult.get()) {
+            System.out.println("TRUE");
+        } else {
+            System.out.println("FALSE");
+        }
+    }
+    public static boolean compute(final int number) {
+        System.out.println("computing number : " + number);
+        return false;
+    }
+    public static boolean process(final int number) {
+        System.out.println("processing number : " + number);
+        return false;
+    }
+}
+```
+위의 예에서 computeResult에는 람다 표현식이 할당되어 있다. 즉, 실제로  computeResult가 나타내는 것은 함수의 실행이 아닌
+
+Supplier라는 함수형 인터페이스이다. 이 부분에서는 함수가 실행되는 것이 아니라 선언만 되어 있다.
+
+그리고 실제로 다음이 호출되면 함수가 실행되는 것이다.
+```java
+computeResult.get()
+```
+이와 같은 원리로 람다를 통해 lazy evaluation을 구현할 수 있고, 이는 Stream이 Lazy하게 작동하게 한다.
+
+## (번외) 스프링의 Lazy Loading
+
+스프링에는 레이지 로딩이라는 개념이 있다. 용어는 조금 다르지만 결국 같은 의도를 같고 있다.
+
+`
+필요하지 않으면 수행하지 않는다.
+`
+
+스프링에서는 그 대상이 Bean이 된다. 스프링은 기본적으로 컨테이너가 Bean을 미리 생성해놓고 관리한다.
+
+하지만 미리 생성한 빈이 사용되지 않는다면? 자원의 낭비가 될 것이다.
+
+이를 대비한 전략이 레이지 로딩이고, @Lazy 어노테이션을 선언하게 간편하게 레이지 로딩을 구현할 수 있다.
+
+```java
+@Component
+@Lazy
+public class Lazy {
+    //...   
+}
+```
+해당 빈이 사용될 때 로딩된다.
 
