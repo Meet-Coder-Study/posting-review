@@ -151,9 +151,9 @@ app1, app2으로부터 `v1`이 포함된 응답을 받을 수 있습니다.
 # 1초 간격으로 무한으로 요청을 보냅니다.
 > while true; do curl localhost:80; echo ""; sleep 1; done 
 Hi there, I love ! app1,v1
-Hi there, I love ! app2,v2
+Hi there, I love ! app2,v1
 Hi there, I love ! app1,v1
-Hi there, I love ! app2,v2
+Hi there, I love ! app2,v1
 ...
 ```
 
