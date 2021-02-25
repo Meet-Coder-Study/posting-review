@@ -44,6 +44,7 @@ services:
       - "3000"
 ```
 ![nginx.png](images/nginx.png)
+
 4. nginx의 설정 파일인 `nginx.conf`를 작성합니다.
 - 설정 수정 후 `service nginx reload` 명령어를 실행하면 nginx을 중단하지 않고 설정을 반영 할 수 있습니다.
 - `listen 80`, `location /`을 통해서 요청을 받고 `proxy_pass http://apps` 설정을 통해서 `upstream apps` 부분으로 이동하여 `app1:3000`과 `app2:3000`으로 로드밸런싱을 진행합니다.
