@@ -8,7 +8,7 @@
 
 # Redux  미들웨어
 
-![Redux%20%E1%84%86%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5%207ea70e1fdf6d4d029dd024064ecd4c28/redux-middleware.png](Redux%20%E1%84%86%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5%207ea70e1fdf6d4d029dd024064ecd4c28/redux-middleware.png)
+![](Image/20210225-image1.png)
 
 출처 : [https://redux-advanced.vlpt.us/images/redux-middleware.png](https://redux-advanced.vlpt.us/images/redux-middleware.png)
 
