@@ -160,7 +160,13 @@ Observer Pattern은 다음과 같은 단점이 존재한다.
 
 Reactive Programming은 Observer Pattern이 기존에 가지고 있는 문제를 보완하였다. `Subscription`, `onComplete`, `onError`
 
-[Iterable과 Observable의 duality](https://www.notion.so/9a34d5bfd0b140ca975afa178d379e9c)
+**Iterable과 Observable의 duality**
+
+event | Iterable `pull` | Observable `push`
+-- | -- | --
+데이터 조회 | T next() | onNext(T)
+에러 처리 | throw Exception | onError(Exception)
+마지막 여부 | !hasNext() | onCompleted()
 
 따라서 Iterable과 Obserable은 위와 같이 데이터 조회,에러처리, 완료처리에 대한 쌍대성을 만족한다. 
 
