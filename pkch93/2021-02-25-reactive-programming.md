@@ -208,4 +208,4 @@ ReactiveX Operators 참고: [http://reactivex.io/documentation/operators.html](h
 
 Funtional Reactive Programming은 시간이 지남에 따른 지속적인 값의 변화를 원칙으로한다. 하지만 Reactive Programming은 시간이 지남에 따라 방출되는 이산형 값에 대해 동작한다. 또한 데이터 스트림을 병합하는 과정에서 사이드이펙트를 일으킬 수 있다. `순수하지 못한 함수`
 
-이런 원칙부터 Funtional Reactive Programming을 따르지 않으므로 `Functional하다` 라고는 말할 수 있게지만 Funtional Reactive Programming이라고 말하기는 어렵다.
+이런 원칙부터 Funtional Reactive Programming을 따르지 않으므로 `Functional하다` 라고는 말할 수 있겠지만 Funtional Reactive Programming이라고 말하기는 어렵다.
