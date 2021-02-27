@@ -8,7 +8,7 @@ Reactive Manifesto: [https://www.reactivemanifesto.org/ko](https://www.reactivem
 
 Reactive Programming은 선언적 코드를 사용하여 비동기 파이프라인 코드를 작성하는 새로운 패러다임이다. 이벤트 기반의 모델로 비동기적 일련의 이벤트를 처리하는데 사용된다. 이렇게 코드를 작성하는 이유는 저수준의 비동기, 병렬 처리 코드를 쉽게 작성하면서 더 효율적으로 컴퓨터 자원을 사용하기 위함이다.
 
-Reactive Programming은 [Observer Pattern](https://www.notion.so/Observer-Pattern-2234cdddfaf84f97a11ccf7f7c183fe1)을 확장하여 지원한다. Observable은 observer의 메서드를 호출하면서 item이나 정보를 호출하는 역할을 한다. 반면 Observer는 Observable을 subscribe한다. 따라서 subscriber, watcher, reactor 등으로도 불린다.
+Reactive Programming은 [Observer Pattern](https://johngrib.github.io/wiki/observer-pattern/)을 확장하여 지원한다. Observable은 observer의 메서드를 호출하면서 item이나 정보를 호출하는 역할을 한다. 반면 Observer는 Observable을 subscribe한다. 따라서 subscriber, watcher, reactor 등으로도 불린다.
 
 Observable이 강력한 이유는 A stream에 의해 B stream이 영향을 받는 경우 A만 바꿔도 B를 자동으로 바꿀 수 있다. 즉, 데이터의 동기화가 간편하다. 이는 A, B stream 사이 관계를 선언적으로 선언했기에 가능한 일이다. 또한, Observable은 다수의 value를 다룰 수 있다는 점도 큰 장점이다.
 
