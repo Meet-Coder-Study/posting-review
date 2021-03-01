@@ -90,9 +90,17 @@ void pulling_with_async() {
 }
 ```
 
-이렇게 데이터를 가지고 있는 `Iterable`에서 값을 가져오는 `pull` 방식으로는 비동기로직을 작성을 클라이언트가 하도록 만든다. `Iterable에서 비동기 지원하는 경우도 가능하긴함...`
+이렇게 데이터를 가지고 있는 `Iterable`에서 값을 가져오는 `pull` 방식으로는 비동기로직을 작성을 클라이언트가 하도록 만든다.
 
-반면 push 방식에서는 Observable 자체를 비동기 로직으로 처리하여도 문제가 없다. push 방식의 Observable 데이터를 소비하는 Observer는 이미 전달되는 데이터를 비동기로 처리하기 때문이다. 때문에 Observable이 비동기로 처리하든 동기로 처리하든 Observer는 전달되는 데이터를 비동기로 처리한다.
+그리고 작성을 하더라도 위 방식으로는 `Iterable`의 모든 데이터를 제대로 가져온다는 보장을 할 수 없다.
+
+![](https://user-images.githubusercontent.com/30178507/109444173-f08ade00-7a7f-11eb-900f-6d6f1b84ecc5.png)
+
+> 위 캡처처럼 `Iterable`로 비동기를 사용했을때 같은 데이터에 접근하거나 유실이 있을 수 있다.
+
+반면 push 방식에서는 Observable 자체를 비동기 로직으로 처리하여도 문제가 없다. push 방식의 Observable 데이터를 소비하는 Observer는 이미 전달되는 데이터를 비동기로 처리하기 때문이다. 
+
+Observable이 비동기로 처리하든 동기로 처리하든 Observer는 전달되는 데이터를 비동기로 처리한다.
 
 ```java
 @Test
@@ -144,7 +152,9 @@ static class IntObservable extends Observable implements Runnable {
 
 > 위 `Observable`로 비동기 동작을 쉽게 구현이 가능하다.
 
-이점에서 Observable의 구현을 비동기로 만들면 프로그래머가 직접 비동기를 구현할 필요없이 간단하게 비동기 프로그램을 구현할 수 있는 장점이 생긴다. 비동기 로직을 Observable을 통해 추상화할 수 있다는 점에서 Reactive Programming이 Observer Pattern을 활용하는 것이 아닌가 생각한다.
+이점에서 Observable의 구현을 비동기로 만들면 프로그래머가 직접 비동기를 구현할 필요없이 간단하게 비동기 프로그램을 구현할 수 있는 장점이 생긴다.
+
+비동기 로직을 Observable을 통해 추상화할 수 있다는 점에서 Reactive Programming이 Observer Pattern을 활용하는 것이 아닌가 생각한다.
 
 ### Observer Pattern의 단점
 
@@ -158,7 +168,7 @@ Observer Pattern은 다음과 같은 단점이 존재한다.
 
     복구 가능한 예외에 대해 예외가 전파되는 방식을 처리할 수 없다. 예외를 받았을때 다시 재시도를 하거나 fallback을 해줄 방법이 없다.
 
-Reactive Programming은 Observer Pattern이 기존에 가지고 있는 문제를 보완하였다. `Subscription`, `onComplete`, `onError`
+Reactive Programming은 Observer Pattern이 기존에 가지고 있는 문제를 보완하였다. `onComplete`, `onError`
 
 **Iterable과 Observable의 duality**
 
