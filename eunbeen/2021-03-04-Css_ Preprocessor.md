@@ -69,7 +69,7 @@ CSS 전처리기에는 다양한 모듈이 존재
 
 공식 문서 - [https://sass-lang.com/](https://sass-lang.com/)
 
-
+![](Image/20210304-image1.png)
 
 - 2006년부터 시작하여 가장 오래된 CSS 확장 언어
 - 기초 언어의 힘과 우아함을 더해주는 CSS 확장 언어
