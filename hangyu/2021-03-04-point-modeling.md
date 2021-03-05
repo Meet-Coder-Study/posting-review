@@ -23,6 +23,6 @@
 - 물리
 
 ### 실무적 접근 예시 
-![image](./images/point.png)
+![image](./images/2021-03-04/point.png)
 
 
