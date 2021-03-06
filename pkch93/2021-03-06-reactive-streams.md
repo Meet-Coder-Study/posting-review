@@ -270,6 +270,12 @@ public class ReactiveObserver<T> implements Subscriber<T> {
 }
 ```
 
+Subscriber의 각 메서드 `onSubscribe`, `onNext`, `onError`, `onComplete`을 구현한 ReactiveObserver이다.
+
+`onSubscribe`에서는 Subscription의 request를 `Long.MAX_VALUE`로 호출하여 무한정으로 데이터를 받을 수 있도록 구현하였다.
+
+그외 다른 메서드들은 콘솔을 찍는 형태로 구현되어있다.
+
 ```java
 public class ReactiveObservable<T> implements Publisher<T> {
     private final List<T> data;
@@ -317,6 +323,14 @@ public class ReactiveObservable<T> implements Publisher<T> {
 }
 ```
 
+Publisher의 메서드 `subscribe`를 구현한 ReactiveObservable이다.
+
+subscribe에서는 인자로 받는 Subscriber의 `onSubscribe`를 호출하고 그 인자로 Subscription을 전달한다.
+
+만약 cancel이 호출되면 데이터 전달을 위한 신호인 `onNext` 호출을 중지한다. 일반적인 상황에서는 ReactiveObservable의 data를 하나씩 꺼내 `onNext`로 전달한다.
+
+그리고 완료되면 `onComplete`로 Subscriber에게 더이상 전달할 데이터가 없다는 신호를 보낸다. 에러가 발생했을때에도 에러가 발생했다는 신호인 `onError`를 전달한다.
+
 ```java
 @Test
 void reactiveStreams() {
@@ -327,4 +341,12 @@ void reactiveStreams() {
 }
 ```
 
-> 참고로 위 코드는 규약을 전부 지키는 코드는 아님, 전체적인 흐름을 보기 위한 예시코드
+```
+subscribe: 1
+subscribe: 2
+subscribe: 3
+subscribe: 4
+subscribe: 5
+```
+
+위와 같은 결과가 도출된다.
