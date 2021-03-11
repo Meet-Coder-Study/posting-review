@@ -196,7 +196,7 @@ const useStateWithPromise = initialState => {
 };
 ```
 
-이 훅을 와전히 이해하는 것은 중요치 않습니다. 하지만 useStateWithPromise가 무엇을 반환하는지는 반드시 이해해야 합니다. useState와 동일하게 getter와 setter를 반환하지만, 약간의 차이가 있습니다 : setter가 Promise를 반환한다는 것입니다! 그렇다면 setter에 await를 사용할 수 있겠죠!
+이 훅을 완전히 이해하는 것은 중요치 않습니다. 하지만 useStateWithPromise가 무엇을 반환하는지는 반드시 이해해야 합니다. useState와 동일하게 getter와 setter를 반환하지만, 약간의 차이가 있습니다 : setter가 Promise를 반환한다는 것입니다! 그렇다면 setter에 await를 사용할 수 있겠죠!
 
 이제 우리는 기존의 useState 코드를 우리의 커스텀 훅인 useStateWithPromise로 변경해 보겠습니다.
 
