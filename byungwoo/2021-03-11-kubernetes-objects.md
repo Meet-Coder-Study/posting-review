@@ -40,7 +40,7 @@
 - Pod로 트래픽을 프록시하고 로드밸런싱을 담당하는 오브젝트
 
 
-### Storge
+### Storage
 #### Persistent Volume
 - Pod에서 사용하는 데이터를 보존하기 하기 위한 볼륨 오브젝트
 #### Config Map
@@ -100,17 +100,14 @@
 ### Cron Job
 - Job에 스케줄링 기능을 추가한 오브젝트
 
-### 클러스터 에이전트와 유틸리티
-#### 데몬셋
+## 클러스터 에이전트와 유틸리티
+### 데몬셋
 - 모든 노드(서버)에 1개씩 배포되는 오브젝트
 - 주로 모니터링 용도로 사용
 
 ## 참고
-- https://kubernetes.io/
-- https://seulcode.tistory.com/504
-- https://arisu1000.tistory.com/27832
-- https://bcho.tistory.com/1306
-- https://jungwoon.github.io/kubernetes/2020/01/19/Kubernetes-3.html
-- https://judo0179.tistory.com/66
-- https://subicura.com/2019/05/19/kubernetes-basic-1.html
-- https://subicura.com/k8s/guide/kubectl.html
+- [쿠버네티스 공식 문서](https://kubernetes.io/ko/docs/home/)
+- [매니징 쿠버네티스](http://www.yes24.com/Product/Goods/73416815)
+- [쿠버네티스 시작하기 - Kubernetes란 무엇인가?](https://subicura.com/2019/05/19/kubernetes-basic-1.html)
+- [쿠버네티스 안내서 설치부터 배포까지 <실습편>](https://subicura.com/k8s/)
+- [쿠버네티스 구성요소 : 객체(Object), 컨트롤러(Controller), 템플릿(Template)](https://arisu1000.tistory.com/27832)
