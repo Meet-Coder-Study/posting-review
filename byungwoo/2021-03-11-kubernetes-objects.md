@@ -105,7 +105,7 @@
 - 모든 노드(서버)에 1개씩 배포되는 오브젝트
 - 주로 모니터링 용도로 사용
 
-## 참고
+# 참고
 - [쿠버네티스 공식 문서](https://kubernetes.io/ko/docs/home/)
 - [매니징 쿠버네티스](http://www.yes24.com/Product/Goods/73416815)
 - [쿠버네티스 시작하기 - Kubernetes란 무엇인가?](https://subicura.com/2019/05/19/kubernetes-basic-1.html)
