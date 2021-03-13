@@ -161,7 +161,9 @@ class Obj(var name: String, var age: Int, var type: String) {
         println("${this.name} + ${this.age} + ${this.type}")
     }
     
-    constructor(name: String) : this(name, 10, "years")
+    constructor(name: String) : this(name, 10, "years") {
+        println("보조 생성자가 사용되었습니다.")
+    }
 }
 fun main() {
     val Objs = Obj("Kotlin", 2, "Better Java")
@@ -173,6 +175,8 @@ fun main() {
 위처럼 class안에 constructor를 사용하고 파리미터를 추가해좁니다  
 constructor를 사용할때는 반드시 기본생성자를 통해 속성을 초기화 해줘야 합니다.  
 이는 constructor 뒤에 : this(기본생성자 파라미터 초기화) 를 통해 초기화 해줍니다.  
+위 코드를 실행하면 "Java + 10 + years"가 출력된후 "보조 생성자가 사용되었습니다"가 출력됩니다. 
+constructor뒤 : this를 통해 Obj를 생성하면서 init이 실행이되고 그 후 constructor에서 구현한 구현체가 실행됩니다.
 
 ## 상속
 ```kotlin
