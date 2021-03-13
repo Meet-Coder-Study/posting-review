@@ -128,7 +128,8 @@ step 3이 있는 반복문은 0,3,6,9를 출력합니다.
 ```
 위 Java 이중for문의 경우 내부 for문에서 if 조건대한 구문을 실행하고 전체 for문의 진행을 정지 하고 싶은경우 break를 두번 써야 합니다.  
 Kotlin은 이를 loop@ @loop를 통해 표현할 수 있습니다.  
-loop@는 시작점 @loop는 break에 사용가능합니다.  
+@loop는 break뒤에 사용 가능합니다.  
+그리고 break가 수행될때 loop@가 붙여진 for문 까지 break가 적용됩니다.  
 
 ## 생성자
 Kotlin에서도 class를 통해 객체를 생성할 수 있습니다.  
