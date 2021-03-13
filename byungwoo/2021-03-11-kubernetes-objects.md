@@ -57,7 +57,7 @@
 
 ### Namespace
 - 쿠버네티스 오브젝트를 위한 폴더
-- 쿠너베티스 오브젝트는 생성되면 무조건 하나의 Namespace에 속하게 된다.
+- 쿠버네티스 오브젝트는 생성되면 무조건 하나의 Namespace에 속하게 된다.
 - 최초 클러스터 구성시 default와 kube-system Namespace가 생성됨
 - Namespace 별로 역할기반접근제어(RBAC, Role-Based Access Control) 규칙을 다르게 설정할 수 있음
 - Namespace 별로 리소스(cpu, memomry) 제한을 줄 수 있음
