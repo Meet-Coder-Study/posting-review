@@ -1,4 +1,4 @@
-#Kotlin  
+# Kotlin  
 이번 포스팅은 Kotlin의 기본을 알아보는 포스팅입니다  
 
 ## 변수
