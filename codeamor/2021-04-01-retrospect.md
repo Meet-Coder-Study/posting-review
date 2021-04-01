@@ -1,11 +1,11 @@
 - [**블로그 포스팅 3기 회고**](#%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8C%85-3%EA%B8%B0-%ED%9A%8C%EA%B3%A0)
-  - [✔ **Keep**](#%E2%9C%94-keep)
-  - [⚔ **Problem & Try**](#%E2%9A%94-problem--try)
+  - [✔ **Keep**](#-keep)
+  - [⚔ **Problem & Try**](#-problem--try)
 - [**2021년 1분기 회고**](#2021%EB%85%84-1%EB%B6%84%EA%B8%B0-%ED%9A%8C%EA%B3%A0)
   - [**풀스택**](#%ED%92%80%EC%8A%A4%ED%83%9D)
   - [**진로 이즈 백**](#%EC%A7%84%EB%A1%9C-%EC%9D%B4%EC%A6%88-%EB%B0%B1)
-  - [✔ **Keep**](#%E2%9C%94-keep)
-  - [⚔ **Problem & Try**](#%E2%9A%94-problem--try)
+  - [✔ **Keep**](#-keep)
+  - [⚔ **Problem & Try**](#-problem--try)
 
 # **블로그 포스팅 3기 회고**
 
