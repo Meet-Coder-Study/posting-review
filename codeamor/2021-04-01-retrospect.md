@@ -1,11 +1,11 @@
-- [**MeetCoder 3기 회고**](#meetcoder-3%EA%B8%B0-%ED%9A%8C%EA%B3%A0)
-  - [**✔ Keep**](#%E2%9C%94-keep)
-  - [**⚔ Problem & Try**](#%E2%9A%94-problem--try)
+- [**블로그 포스팅 3기 회고**](#%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8C%85-3%EA%B8%B0-%ED%9A%8C%EA%B3%A0)
+  - [✔ **Keep**](#%E2%9C%94-keep)
+  - [⚔ **Problem & Try**](#%E2%9A%94-problem--try)
 - [**2021년 1분기 회고**](#2021%EB%85%84-1%EB%B6%84%EA%B8%B0-%ED%9A%8C%EA%B3%A0)
   - [**풀스택**](#%ED%92%80%EC%8A%A4%ED%83%9D)
   - [**진로 이즈 백**](#%EC%A7%84%EB%A1%9C-%EC%9D%B4%EC%A6%88-%EB%B0%B1)
-  - [**✔ Keep**](#%E2%9C%94-keep)
-  - [**⚔ Problem & Try**](#%E2%9A%94-problem--try)
+  - [✔ **Keep**](#%E2%9C%94-keep)
+  - [⚔ **Problem & Try**](#%E2%9A%94-problem--try)
 
 # **블로그 포스팅 3기 회고**
 
@@ -61,12 +61,12 @@
 
 늘 알게 모르게 운영해주시는 분들에게 감사드리고 제게 긍정적인 영향을 주셔서 감사드립니다. 아마 나중에 2021년을 회고했을 때, 가장 잘했다고 생각하는 스터디는 당연 MeetCoder가 될 것 같습니다!
 
-## **✔ Keep**
+## ✔ **Keep**
 
 - 스터디에 참여하는 것
 - 다른 분들의 글에 리뷰 달기
 
-## **⚔ Problem & Try**
+## ⚔ **Problem & Try**
 
 - **Problem**
 
@@ -134,12 +134,12 @@ JavaScript 책을 읽는 스터디도 하고 있는데, 혼자 읽었으면 진�
 
 굉장히 깊이 있게 JS를 다루는 것 같아서 필요한 부분은 블로깅을 하면서 읽어보려고 합니다.
 
-## **✔ Keep**
+## ✔ **Keep**
 
 - Modern JavaScript Deep Dive 책 읽기 (스터디)
 - Node.js 공부
 
-## **⚔ Problem & Try**
+## ⚔ **Problem & Try**
 
 - **Problem**
 
