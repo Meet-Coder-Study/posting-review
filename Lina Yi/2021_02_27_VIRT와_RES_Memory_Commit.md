@@ -1,15 +1,13 @@
 
 ### 1. VIRT, RES 
 
-- VIRT: Virtual Image의 약자.
+- **VIRT: Virtual Image의 약자.**
 
 - 모든 코드, data, 공유된 라이브러리, swap out된 페이지 전체를 이야기한다.
 
-- 프로세스에 할당된 가상 메모리 전체.
+- 프로세스에 할당된 가상 메모리 전체.(SWAP + RES)
 
-(SWAP + RES)
-
-- RES: Resident size의 약자.
+- **ES: Resident size의 약자.**
 
 - 현재 프로세스가 사용중인 물리 메모리
 
