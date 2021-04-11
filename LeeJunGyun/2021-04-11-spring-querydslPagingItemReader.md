@@ -289,3 +289,4 @@ public class QuerydslPagingItemReaderTest {
 ## Reference
 - https://woowabros.github.io/experience/2020/02/05/springbatch-querydsl.html
 - https://ict-nroo.tistory.com/117
+- https://blog.codecentric.de/en/2012/03/transactions-in-spring-batch-part-2-restart-cursor-based-reading-and-listeners/
