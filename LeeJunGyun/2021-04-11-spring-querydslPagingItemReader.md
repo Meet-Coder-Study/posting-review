@@ -144,6 +144,7 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
         }
     }
 
+    // 이 메소드의 용도는 효율적인 Page 이동방식이 있으면 구현
     @Override
     protected void doJumpToPage(int index) {
     }
@@ -165,8 +166,15 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
     - 그런 뒤 데이터를 조회하고, results (메모리) 에 데이터를 담고
 - Reference 에 나와있는 글을 보면 JdbcCursorItemReader 와 동작을 일치하기 위해서 이와 같이 했다고 나와있습니다.
     - JdbcCursorItemReader 는 cursor 를 별도 트랜잭션으로 열어서 처리하기에 spring transaction 에 참여하지 않는다고 되어있습니다.
-- Cursor 나 Paging 이나 배치 프로그램에서 대용량 데이터를 가져오는 기법 중 하나이기에 동일한 consistent 를 위해 이렇게 작성했을 것이라고 spring-batch 담당자가 얘기해줍니다. 
-    - 그럼 굳이 트랜잭션 처리를 안해도 될 것 같습니다.    
+    - 이 부분을 조금 더 집중적으로 살펴보면 다음과 같습니다.
+    - JdbcCursorItemReader 는 별도 connection 으로 db 와 연결해 fetchSize 만큼 데이터를 읽어오는 방식입니다.
+    - 처음 fetchSize 만큼 읽어오고, fetchSize 만큼 데이터를 다 처리했으면 또 다시 fetchSize 만큼 읽어옵니다. 데이터를 다 읽을 때까지 이를 반복합니다.
+    - 그렇기에 JdbcCursorItemReader 는 오랫동안 Connection 이 열려있어야 합니다. 만약 Spring Managed transaction 을 사용한다면, commit 후 close 가 되기에 reader 에서 더 이상 데이터를 읽어오지 못합니다.
+    - 그렇기에 JdbcCursorItemReader 는 별도의 트랜잭션으로 관리됩니다. 
+- 다시 본론으로 돌아와 왜 JpaPagingItemReader 에서 트랜잭션을 별도로 관리하는 기능을 제공하는 이유는 cursor 와 같은 일관성있는 방법을 제시하는 것이라고 설명이 돼있습니다.  
+    - 하지만 이 부분을 조금 고민해보면, cursor 는 streaming 방식으로 데이터를 계속 가져오는 것이고.
+    - Paging 은 범위를 지정해서 Page 단위로 가져오는 것이기에 cursor 와 같은 방법이 필요하지는 않을 것 같습니다.
+    - Spring Managed Transaction 이 시작할 때, Connection 을 가져올테고. 해당 Connection 으로 Page 크기만큼 데이터를 가져올테니 문제가 안될 것이라 생각됩니다.    
     
 ```java
 @Override
