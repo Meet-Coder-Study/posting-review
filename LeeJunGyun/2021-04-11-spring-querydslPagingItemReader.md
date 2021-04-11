@@ -5,7 +5,7 @@
 #### 1.1 QuerydslPagingItemReader
 - spring-batch 에서 사용가능한 querydsl 기반 ItemReader 이며, Paging 기능을 사용할 수 있습니다.
     - Paging 기능은 전체 데이터 중 일부 데이터를 조회하는 기법
-    - 예를 들면, 1만건의 데이터가 있을 때, 1~100, 101~200 ... 이런 순으로 데이터를 가져오는 것입니다.
+    - 예를 들면, 1만건의 데이터가 있을 때, 1\~100, 101\~200 ... 이런 순으로 데이터를 가져오는 것입니다.
     - 왜 Paging 을 쓰냐하면 DB 데이터를 한꺼번에 메모리에 올리다가 Out Of Memory 가 떨어질 수 있기 때문입니다.
 
 #### 1.2 Querydsl, JPQL
