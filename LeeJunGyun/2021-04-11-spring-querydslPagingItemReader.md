@@ -27,6 +27,7 @@
 
   
 ```java
+
 package org.example.batch.reader;
 
 import com.querydsl.jpa.impl.JPAQuery;
@@ -52,23 +53,22 @@ import java.util.function.Function;
 
 public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
 
-    protected final Map<String, Object> jpaProperties = new HashMap<>();
-    protected EntityManagerFactory entityManagerFactory;
-    protected EntityManager entityManager;
-    protected Function<JPAQueryFactory, JPAQuery<T>> queryFunction;
+    protected final Map<String, Object> preoperties = new HashMap<>();
+    protected EntityManagerFactory emf;
+    protected EntityManager em;
+    protected Function<JPAQueryFactory, JPAQuery<T>> function;
     protected boolean transacted = true;    //default value
 
     protected QuerydslPagingItemReader() {
         setName(ClassUtils.getShortName(QuerydslPagingItemReader.class));
     }
 
-    public QuerydslPagingItemReader(EntityManagerFactory entityManagerFactory,
+    public QuerydslPagingItemReader(EntityManagerFactory emf,
                                     int pageSize,
-                                    Function<JPAQueryFactory,
-                                    JPAQuery<T>> queryFunction) {
+                                    Function<JPAQueryFactory, JPAQuery<T>> function) {
         this();
-        this.entityManagerFactory = entityManagerFactory;
-        this.queryFunction = queryFunction;
+        this.emf = emf;
+        this.function = function;
         setPageSize(pageSize);
     }
 
@@ -80,8 +80,8 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
     protected void doOpen() throws Exception {
         super.doOpen();
 
-        entityManager = entityManagerFactory.createEntityManager(jpaProperties);
-        if (entityManager == null) {
+        em = emf.createEntityManager(preoperties);
+        if (em == null) {
             throw new DataAccessResourceFailureException("Unable to obtain an EntityManager");
         }
     }
@@ -90,9 +90,11 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
     @SuppressWarnings("unchecked")
     protected void doReadPage() {
 
-        clearIfTransacted();
-    
-        // 이 부분이 기존 JpaPagingItemReader 트랜잭션 관련 로직.
+        // 영속성컨텍스트 초기화 하지 않으면 대용량 쌓여서 OOM 발생 가능성 있음.
+        if (transacted) {
+            em.clear();
+        }
+
 //        if (transacted) {
 //            tx = entityManager.getTransaction();
 //            tx.begin();
@@ -113,15 +115,9 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
         fetchQuery(query);
     }
 
-    protected void clearIfTransacted() {
-        if (transacted) {
-            entityManager.clear();
-        }
-    }
-
     protected JPAQuery<T> createQuery() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
-        return queryFunction.apply(queryFactory);
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+        return function.apply(queryFactory);
     }
 
     protected void initResults() {
@@ -136,7 +132,7 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
         if (!transacted) {
             List<T> queryResult = query.fetch();
             for (T entity : queryResult) {
-                entityManager.detach(entity);
+                em.detach(entity);
                 results.add(entity);
             }
         } else {
@@ -144,17 +140,21 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
         }
     }
 
-    // 이 메소드의 용도는 효율적인 Page 이동방식이 있으면 구현
+    /**
+     * 효율적인 page 이동법이 있으면 구현.
+     * @param index
+     */
     @Override
     protected void doJumpToPage(int index) {
     }
 
     @Override
     protected void doClose() throws Exception {
-        entityManager.close();
+        em.close();
         super.doClose();
     }
 }
+
 ```
 
 ## 3. JpaPagingItemReader 에서 왜 트랜잭션을 처리하지?
@@ -174,7 +174,8 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
 - 다시 본론으로 돌아와 왜 JpaPagingItemReader 에서 트랜잭션을 별도로 관리하는 기능을 제공하는 이유는 cursor 와 같은 일관성있는 방법을 제시하는 것이라고 설명이 돼있습니다.  
     - 하지만 이 부분을 조금 고민해보면, cursor 는 streaming 방식으로 데이터를 계속 가져오는 것이고.
     - Paging 은 범위를 지정해서 Page 단위로 가져오는 것이기에 cursor 와 같은 방법이 필요하지는 않을 것 같습니다.
-    - Spring Managed Transaction 이 시작할 때, Connection 을 가져올테고. 해당 Connection 으로 Page 크기만큼 데이터를 가져올테니 문제가 안될 것이라 생각됩니다.    
+    - Spring Managed Transaction 이 시작할 때, Connection 을 가져올테고. 해당 Connection 으로 Page 크기만큼 데이터를 가져올테니 문제가 안될 것이라 생각됩니다.  
+     
     
 ```java
 @Override
@@ -227,6 +228,7 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
 
 ## 5. QuerydslPagingItemReader 테스트
 ```java
+
 package org.example.batch.reader;
 
 import org.example.batch.domain.Member;
@@ -278,6 +280,7 @@ public class QuerydslPagingItemReaderTest {
         Assert.assertThat(reader.read().getName(), is("test2"));
     }
 }
+
 ```
 
 ## 6. pageSize 는 chunkSize 랑 동일하게 하는 것이 좋음.
