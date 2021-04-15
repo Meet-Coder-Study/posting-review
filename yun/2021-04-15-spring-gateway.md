@@ -658,7 +658,9 @@ CUSTOM-RESPONSE-HEADER: It worked
 Response code: 200 (OK); Time: 109ms; Content length: 15 bytes
 ```
 
-## Code 설정
+## Filter 설명
+
+![](2021-04-15-gateway/gateway-flow.png)
 ... 블라블라
 
 
