@@ -50,15 +50,15 @@ AJAX는 HTML 페이지 전체가 아닌 일부분만 갱신할 수 있도록 XML
 이 경우, **JSON이나 XML형태로 필요한 데이터만 받아 갱신하기 때문에 그만큼의 자원과 시간을 아낄 수 있다.**
 
 
-# AJAX의 장단점
+## AJAX의 장단점
 
-## 1. AJAX의 장점
+### 1. AJAX의 장점
 - 웹페이지 속도 향상
 - 서버의 처리가 완료될 때까지 기다리지 않고 처리가 가능하다.
 - 서버에서 Data만 전송하면 되므로, 전체적인 코딩의 양이 줄어든다.
 - 기존 웹에서 불가능했던 다양한 UI를 가능하게 해준다. (예시: Flickr의 경우, 사진의 제목이나 태그를 페이지 리로드 없이 수정할 수 있다.)
 
-## 2. AJAX의 단점
+### 2. AJAX의 단점
 - 히스토리 관리가 되지 않는다.
 - 페이지 이동없는 통신으로 인한 보안상의 문제가 있다.
 - 연속으로 데이터를 요청하면 서버 부하가 증가할 수 있다.
@@ -69,6 +69,15 @@ AJAX는 HTML 페이지 전체가 아닌 일부분만 갱신할 수 있도록 XML
 - 지원하는 Charset이 한정되어 있다. 
 - Script로 작성하므로 디버깅이 용이하지 않ㄴ다.
 - 동일-출처 정책으로 인해 다른 도메인과는 통신이 불가능하다. (Cross-Domain문제)
+
+
+## Jquery와의 시너지  
+
+Ajax하면 Jquery에 대한 설명을 빼놓을 수 없다. 
+
+일반 Javascript만으로 Ajax를 하게되면 코딩량도 많아지고 브라우저별로 구현방법이 다른 단점이 있다.
+
+그러나 jquery를 이용하면 더 적은 코딩량과 동일한 코딩방법으로 대부분의 브라우저에서 같은 동작을 할 수 있게 된다. 
 
 
 # XMLHttpRequest
@@ -205,3 +214,5 @@ https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest
 https://poiemaweb.com/js-ajax
 
 https://velog.io/@surim014/AJAX%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
+
+https://coding-factory.tistory.com/143
