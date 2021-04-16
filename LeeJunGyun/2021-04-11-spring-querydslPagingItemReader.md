@@ -19,141 +19,17 @@
     - Jpa 메소드를 사용하면 JPQL 로 변경되서 실행되는 구조입니다.
     - 동적 쿼리 작성이 극악입니다. (JPQL 을 더해서 동적쿼리를 만들어야 함.)
      
-## 2. QuerydslPagingItemReader source
-- 기존 JpaPagingItemReader 에 offset 이나 page 관련 JPQL 만 들어가면 되니 JpaPagingItemReader 를 복사한 후, 수정하면 됩니다.
-- doReadPage 메소드에서 offset, limit 를 넣어주면 제대로 동작합니다.
-- doReadPage 에 트랜잭션 로직들을 빼준게 있는데 어차피 spring-batch transcation manager 가 관리를 해주기에 문제 없습니다. 
-- 여기서 좀 특이한점은 doReadPage 에서 트랜잭션 관리 처리가 있는데 이건 아래에서 자세히 다뤄보기로 합니다.
+## 2. QuerydslPagingItemReader 설명
+- 자세한 source 는 reference 를 참고하시면 됩니다. 
+- 핵심은 JpaPagingItemReader 에 offset 이나 page 관련 JPQL 만 들어가면 되니 JpaPagingItemReader 를 복사한 후, 수정하면 됩니다. (아래 소스)
+    - doReadPage 메소드에서 offset, limit 를 넣어주면 제대로 동작합니다.
+    - doReadPage 에 트랜잭션 로직들을 빼준게 있는데 어차피 spring-batch transcation manager 가 관리를 해주기에 문제 없습니다. 
 
-  
 ```java
 
-package org.example.batch.reader;
-
-import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.batch.item.database.AbstractPagingItemReader;
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.CollectionUtils;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.function.Function;
-
-
-/**
- * QuerydslPagingItemReader
- * @param <T>
- */
-
-public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
-
-    protected final Map<String, Object> preoperties = new HashMap<>();
-    protected EntityManagerFactory emf;
-    protected EntityManager em;
-    protected Function<JPAQueryFactory, JPAQuery<T>> function;
-    protected boolean transacted = true;    //default value
-
-    protected QuerydslPagingItemReader() {
-        setName(ClassUtils.getShortName(QuerydslPagingItemReader.class));
-    }
-
-    public QuerydslPagingItemReader(EntityManagerFactory emf,
-                                    int pageSize,
-                                    Function<JPAQueryFactory, JPAQuery<T>> function) {
-        this();
-        this.emf = emf;
-        this.function = function;
-        setPageSize(pageSize);
-    }
-
-    public void setTransacted(boolean transacted) {
-        this.transacted = transacted;
-    }
-
-    @Override
-    protected void doOpen() throws Exception {
-        super.doOpen();
-
-        em = emf.createEntityManager(preoperties);
-        if (em == null) {
-            throw new DataAccessResourceFailureException("Unable to obtain an EntityManager");
-        }
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    protected void doReadPage() {
-
-        // 영속성컨텍스트 초기화 하지 않으면 대용량 쌓여서 OOM 발생 가능성 있음.
-        if (transacted) {
-            em.clear();
-        }
-
-//        if (transacted) {
-//            tx = entityManager.getTransaction();
-//            tx.begin();
-//
-//            entityManager.flush();
-//            entityManager.clear();
-//        }//end if
-
-        /**
-         * 이게 핵심 로직임. 기존 JpaPagingItemReader 에다가 뒤에 offset, limit 을 추가.
-         */
-        JPAQuery<T> query = createQuery()
+ JPAQuery<T> query = createQuery()
                 .offset(getPage() * getPageSize())
                 .limit(getPageSize());
-
-        initResults();
-
-        fetchQuery(query);
-    }
-
-    protected JPAQuery<T> createQuery() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        return function.apply(queryFactory);
-    }
-
-    protected void initResults() {
-        if (CollectionUtils.isEmpty(results)) {
-            results = new CopyOnWriteArrayList<>();
-        } else {
-            results.clear();
-        }
-    }
-
-    protected void fetchQuery(JPAQuery<T> query) {
-        if (!transacted) {
-            List<T> queryResult = query.fetch();
-            for (T entity : queryResult) {
-                em.detach(entity);
-                results.add(entity);
-            }
-        } else {
-            results.addAll(query.fetch());
-        }
-    }
-
-    /**
-     * 효율적인 page 이동법이 있으면 구현.
-     * @param index
-     */
-    @Override
-    protected void doJumpToPage(int index) {
-    }
-
-    @Override
-    protected void doClose() throws Exception {
-        em.close();
-        super.doClose();
-    }
-}
 
 ```
 
@@ -178,7 +54,10 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
      
     
 ```java
-@Override
+    
+    // JpaPagingItemReader.java
+
+    @Override
 	@SuppressWarnings("unchecked")
 	protected void doReadPage() {
 
@@ -218,6 +97,7 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
 			tx.commit();
 		}//end if
 	}
+
 ```
 
 ## 4. JpaPagingItemReader 는 왜 hibernate.default_batch_fetch_size 안먹히는가?
@@ -226,70 +106,20 @@ public class QuerydslPagingItemReader<T> extends AbstractPagingItemReader<T> {
 - spring-batch 자체 내에서 commitCount 단위로 트랜잭션을 관리하고 있는데 JpaPagingItemReader 에서 또 트랜잭션 처리를 해버리니 해당 옵션이 안먹힙니다.
 - 그래서 @OneToMany 관계에서 hibernate.default_batch_fetch_size 옵션을 써도 하위 엔티티 조회할 때, 상위 엔티티 조회해서 In Query 로 조회를 안합니다. 
 
-## 5. QuerydslPagingItemReader 테스트
-```java
-
-package org.example.batch.reader;
-
-import org.example.batch.domain.Member;
-import org.example.batch.domain.QMember;
-import org.example.batch.repository.MemberRepository;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.batch.item.ExecutionContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.persistence.EntityManagerFactory;
-
-import static org.hamcrest.Matchers.is;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class QuerydslPagingItemReaderTest {
-
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
-    @Autowired
-    private MemberRepository memberRepository;
-
-    private final int pageSize = 1;
-
-
-    @Test
-    public void querydslPagingItemReaderTest() throws Exception {
-        Member member = Member.builder()
-                .name("test1")
-                .build();
-        Member member2 = Member.builder()
-                .name("test2")
-                .build();
-        memberRepository.save(member);
-        memberRepository.save(member2);
-
-        QuerydslPagingItemReader<Member> reader = new QuerydslPagingItemReader<>(entityManagerFactory, pageSize, queryFactory -> queryFactory
-                .selectFrom(QMember.member))
-                ;
-
-        reader.open(new ExecutionContext());
-
-        Assert.assertThat(reader.read().getName(), is("test1"));
-        Assert.assertThat(reader.read().getName(), is("test2"));
-    }
-}
-
-```
-
-## 6. pageSize 는 chunkSize 랑 동일하게 하는 것이 좋음.
+## 5. pageSize 는 chunkSize 랑 동일하게 하는 것이 좋음.
 - chunkSize 는 데이터를 몇 개 가져올까 하는 것입니다.
 - pageSize 는 QuerydslPagingItemReader 가 데이터를 한꺼번에 얼마만큼 읽을지를 결정하는 properties 입니다.
 - chunkSize 가 100이라면, pageSize 도 100이여야 조회할 때 한꺼번에 조회를 해옵니다.
 - 만약 chunkSize 가 100이고, pageSize 가 50이라면 두번에 걸쳐 조회를 하기에 그만큼의 리소스 소모가 발생합니다. 
 
+## 6. commit-interval 비교
+- chunkSize 는 ChunkedOrientedTasklet 방식에서 reader --> processor 를 호출할 횟수를 의미합니다.
+- commit-interval = 100 일 때, reader --> processor 를 1사이클이라 한다면 이 사이클 횟수가 100이 됐을 때, writer 로 List 데이터가 넘어갑니다.
+- 만약 reader 에서 한 건씩 넘기는게 아니라 2건씩 데이터를 넘긴다면, commit-interval = 100 이여도 최종적으로 writer 로 넘어가는 List size 는 200이 됩니다.  
+
+
 ## Reference
 - https://woowabros.github.io/experience/2020/02/05/springbatch-querydsl.html
 - https://ict-nroo.tistory.com/117
 - https://blog.codecentric.de/en/2012/03/transactions-in-spring-batch-part-2-restart-cursor-based-reading-and-listeners/
+- https://sheerheart.tistory.com/entry/Spring-Batch-commitinterval%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%95%EB%A6%AC
