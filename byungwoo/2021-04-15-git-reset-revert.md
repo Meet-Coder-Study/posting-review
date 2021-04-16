@@ -9,7 +9,7 @@ Git을 활용하여 과거의 상태로 되돌리는 것은 생각보다 조심�
 이 글에서는 Git을 활용하여 과거로 되돌아갈 수 있는 git reset과 git revert에 대해서 알아보겠습니다.
 
 ![time-stone](./images/using-time-stone.jpeg)
-<center>우리도 잘 써봅시다</center>
+<center>(우리도 잘 써봅시다)</center>
 
 ## 준비
 다음과 같이 git 저장소을 초기화한 후에 파일을 생성하고, 생성한 파일을 Staging Area에 올리고 commit을 만듭니다.
@@ -115,7 +115,7 @@ nothing to commit, working tree clean
 
 
 # Git Revert
-`git revert`로 과거로 돌릴 수도 있습니다. 그러나 reset과 다르게 revert는  과거로 돌린 이력이 커밋 메세지로 남는다는 특징이 있습니다.
+`git revert`로 과거로 돌릴 수도 있습니다. 그러나 reset과 다르게 revert는 과거로 돌린 이력이 커밋 메세지로 남는다는 특징이 있습니다.
 
 git revert를 사용하여 네번째 커밋으로 revert를 실행한 이력이 다음과 같이 남습니다.
 
