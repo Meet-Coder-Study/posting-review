@@ -660,8 +660,54 @@ Response code: 200 (OK); Time: 109ms; Content length: 15 bytes
 
 ## Filter 설명
 
+![](https://cloud.spring.io/spring-cloud-gateway/reference/html/images/spring_cloud_gateway_diagram.png)
+
+클라이언트는 Spring Cloud Gateway를 통해 요청을 하고 게이트웨이는 매핑에서 요청이 경로와 일치한다고 판단하면 게이트웨이 웹 처리기로 요청을 전송하게 됩니다.
+
+> [Spring Cloud Gateway Document](https://cloud.spring.io/spring-cloud-gateway/reference/html/)
+
+
 ![](2021-04-15-gateway/gateway-flow.png)
-... 블라블라
+
+```kotlin
+@Component
+class CustomFilter : AbstractGatewayFilterFactory<CustomFilter.Config>(Config::class.java) {
+    val log by logger()
+
+    override fun apply(config: Config): GatewayFilter {
+        return GatewayFilter { exchange, chain ->
+            val request = exchange.request
+            val response = exchange.response
+            log.info("CustomFilter request id: ${request.id}")
+            chain.filter(exchange).then(Mono.fromRunnable { log.info("CustomFilter response status code: ${response.statusCode}") })
+        }
+    }
+
+    class Config
+}
+
+@Component
+class GlobalFilter : AbstractGatewayFilterFactory<GlobalFilter.Config>(Config::class.java) {
+    val log by logger()
+
+    override fun apply(config: Config): GatewayFilter {
+        return GatewayFilter { exchange, chain ->
+            val request = exchange.request
+            val response = exchange.response
+
+            log.info("Global request id: ${request.id}")
+            chain.filter(exchange).then(Mono.fromRunnable {
+                log.info("Global response status code: ${response.statusCode}")
+            })
+        }
+    }
+
+    class Config
+}
+```
+필터는 모두 AbstractGatewayFilterFactory를 상속받아 구현을 진행합니다. 실제 Gateay 로그는 아래와 같습니다.
+
+![](2021-04-15-gateway/gateway-log.png)
 
 
 # 출처
