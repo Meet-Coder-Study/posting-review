@@ -3,7 +3,7 @@
 | 명칭               | 설명                                                                                                                                            |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 라우트(Route)      | 라우트는 목적지 URI, 조건자 목록과 필터의 목록을 식별하기 위한 고유 ID로 구성된다. 라우트는 모든 조건자가 충족됐을 때만 매칭된다                |
-| 조건자(Predicates) | 각 요청을 처리하기 전에 실행되는 로직, 헤더와 입력돤값 등 다양한 HTTP 요청이 정의된 기준에 맞는지를 찾는다.                                     |
+| 조건자(Predicates) | 각 요청을 처리하기 전에 실행되는 로직, 헤더와 입력된 값 등 다양한 HTTP 요청이 정의된 기준에 맞는지를 찾는다.                                     |
 | 필터(Filters)      | HTTP 요청 또는 나가는 HTTP 응답을 수정할 수 있게한다. 다운스트림 요청을 보내기전이나 후에 수정할 수 있다. 라우트 필터는 특정 라우트에 한정된다. |
 
 # Getting Started
@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
     runApplication<GatewayServerApplication>(*args)
 }
 ```
-필요한 의존성만 추가하면 빠르게 Srping Cloud Gateway를 만들 수 있습니다.
+필요한 의존성만 추가하면 빠르게 Spring Cloud Gateway를 만들 수 있습니다.
 
 
 ## Gateway Route 노출
@@ -241,7 +241,7 @@ routes:
             - Path=/order/**
             - Before=2020-08-20T19:25:19.126+09:00[Asia/Seoul]
 ```
-`Befroe`는 특정 날짜 이전 호출이 가능합니다. 현재 날짜가 `Befroe`에서 지정한 날짜 보다 이전 이어야 합니다. 특정 API가 deprecate가 되는 경우 유용합니다.
+`Before`는 특정 날짜 이전 호출이 가능합니다. 현재 날짜가 `Before`에서 지정한 날짜 보다 이전 이어야 합니다. 특정 API가 deprecate가 되는 경우 유용합니다.
 
 ## Between
 ```yml
@@ -275,7 +275,7 @@ routes:
         filters:
             - RewritePath=/order/(?<path>.*),/$\{path}
 ```
-`grpup`, `weight`를 기반으로 그룹별로 가중치를 계산하게 됩니다. 위 설정은 70% `order-service-high`, 30% `order-service-low`으로 라우팅을 분배합니다.
+`group`, `weight`를 기반으로 그룹별로 가중치를 계산하게 됩니다. 위 설정은 70% `order-service-high`, 30% `order-service-low`으로 라우팅을 분배합니다.
 
 # Filters
 
