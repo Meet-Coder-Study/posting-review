@@ -247,3 +247,7 @@ supports-eeprom-access: yes
 supports-register-dump: yes
 supports-priv-flags: no
 ```
+
+## 참고
+- [DevOps와 SE를 위한 리눅스 커널 이야기](http://www.yes24.com/Product/Goods/44376723)
+- [Linux Kernal Basic - 1. 시스템 구성 정보 확인하기](https://jihooyim1.gitbooks.io/linuxbasic/content/contents/01.html)
