@@ -5,6 +5,7 @@
 
 ### 1. Go to file
 바로 파일을 검색할 수 있는 편하지만 은근히 사람들이 모르는 기능
+
 ![20210422-1](https://user-images.githubusercontent.com/37948906/115726798-03ee6180-a3be-11eb-952e-0d1177a03b44.PNG)
 - Go to file을 누른다.
 
@@ -86,12 +87,13 @@
 ### 후기
 
 어떻게 이렇게 깃헙 검색이 빠를까? 구현한 코드 진짜 보고 싶다...
-잡다하지만 어딘가 쓰이지 않을까 생각하고 정리해둔 깃헙 검색하기! 어딘가 유용하게 쓰는 분이 있기를..
+
+잡다하지만 어딘가 쓰이지 않을까.. 어딘가 유용하게 쓰는 분이 있기를..ㅎㅎ
 
 이 방법으로 몇 개 실험해보다가 몇몇 괜찮아보이는 레포를 발견했다.
-[무료 프로그래밍 책 모아둔 레포](https://github.com/EbookFoundation/free-programming-books)
-[코딩인터뷰 레포 (영어주의)](https://github.com/jwasham/coding-interview-university)
-[개발자 로드맵](https://github.com/kamranahmedse/developer-roadmap)
+- [무료 프로그래밍 책 모아둔 레포](https://github.com/EbookFoundation/free-programming-books)
+- [코딩인터뷰 레포 (영어주의)](https://github.com/jwasham/coding-interview-university)
+- [개발자 로드맵](https://github.com/kamranahmedse/developer-roadmap)
 
 ### 참고링크
 [깃헙 검색하기](https://docs.github.com/en/github/searching-for-information-on-github)
