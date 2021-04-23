@@ -120,7 +120,7 @@ p::first-letter { color: #FF4500; font-size: 2em; }
 </html>
 ```
 
-![CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled.png](CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled.png)
+![](./Image/20210423_1.png)
 
 ```html
 <!DOCTYPE html>
@@ -151,7 +151,7 @@ p::first-letter { color: #FF4500; font-size: 2em; }
 </html>
 ```
 
-![CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled%201.png](CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled%201.png)
+![](./Image/20210423_2.png)
 
 ```html
 <!DOCTYPE html>
@@ -174,7 +174,7 @@ h1::after {
 </html>
 ```
 
-![CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled%202.png](CSS%20Pseudo-Element(%E1%84%80%E1%85%A1%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A9)%200f56bd1cf9614ae28ccbe39668d98204/Untitled%202.png)
+![](./Image/20210423_3.png)
 
 🤔그럼 가상 클래스는 뭔가요? 둘이 같은 건가요?🤔
 
