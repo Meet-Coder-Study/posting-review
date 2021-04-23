@@ -120,7 +120,7 @@ p::first-letter { color: #FF4500; font-size: 2em; }
 </html>
 ```
 
-![](./Image/20210423_1.png)
+![](./Image/20210423_image1.png)
 
 ```html
 <!DOCTYPE html>
@@ -151,7 +151,7 @@ p::first-letter { color: #FF4500; font-size: 2em; }
 </html>
 ```
 
-![](./Image/20210423_2.png)
+![](./Image/20210423_image2.png)
 
 ```html
 <!DOCTYPE html>
@@ -174,7 +174,7 @@ h1::after {
 </html>
 ```
 
-![](./Image/20210423_3.png)
+![](./Image/20210423_image3.png)
 
 🤔그럼 가상 클래스는 뭔가요? 둘이 같은 건가요?🤔
 
