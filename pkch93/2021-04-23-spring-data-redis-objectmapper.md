@@ -48,7 +48,7 @@ public class Person {
     this.age = age;
   }
 
-public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -82,7 +82,7 @@ public class Person implements Serializable {
     this.age = age;
   }
 
-	public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -166,7 +166,7 @@ public class Person {
   private String name;
   private int age;
 
-	private Person() {}
+  private Person() {}
 
   public Person(String name, int age) {
     this.name = name;
@@ -203,20 +203,20 @@ $ get json_person
 
 ```java
 public GenericJackson2JsonRedisSerializer() {
-    this((String) null);
+  this((String) null);
 }
 
 public GenericJackson2JsonRedisSerializer(@Nullable String classPropertyTypeName) {
 
-    this(new ObjectMapper());
+  this(new ObjectMapper());
 
-    registerNullValueSerializer(mapper, classPropertyTypeName);
+  registerNullValueSerializer(mapper, classPropertyTypeName);
 
-    if (StringUtils.hasText(classPropertyTypeName)) {
-        mapper.enableDefaultTypingAsProperty(DefaultTyping.NON_FINAL, classPropertyTypeName);
-    } else {
-        mapper.enableDefaultTyping(DefaultTyping.NON_FINAL, As.PROPERTY);
-    }
+  if (StringUtils.hasText(classPropertyTypeName)) {
+    mapper.enableDefaultTypingAsProperty(DefaultTyping.NON_FINAL, classPropertyTypeName);
+  } else {
+    mapper.enableDefaultTyping(DefaultTyping.NON_FINAL, As.PROPERTY);
+  }
 }
 ```
 
@@ -278,7 +278,17 @@ void readValueWithActivateDefaultTyping() throws JsonProcessingException {
 
 > 참고로 위 activateDefaultTyping은 GenericJackson2JsonRedisSerializer의 설정을 그대로 따름
 
-[참고. JSON과 매핑되는 Java Type](https://www.notion.so/f2e5a2232f1b4f8fb29396cb3cc00fbe)
+#### 참고. JSON과 매핑되는 Java Type
+
+JSON | Java Type
+:---: | :---:
+object | LinkedHashMap<String, Object>
+array | ArrayList\<Object>
+string | String
+number (no fraction) | Integer / Long / BigInteger
+number (fraction) | Double / BigDecimal
+true / false | Boolean
+null | null
 
 참고: [https://enterkey.tistory.com/392](https://enterkey.tistory.com/392)
 
@@ -288,20 +298,20 @@ void readValueWithActivateDefaultTyping() throws JsonProcessingException {
 
 ```java
 public GenericJackson2JsonRedisSerializer() {
-		this((String) null);
-	}
+  this((String) null);
+}
 
 public GenericJackson2JsonRedisSerializer(@Nullable String classPropertyTypeName) {
 
-	this(new ObjectMapper()); // default ObjectMapper
+  this(new ObjectMapper()); // default ObjectMapper
 
-	registerNullValueSerializer(mapper, classPropertyTypeName);
+  registerNullValueSerializer(mapper, classPropertyTypeName);
 
-	if (StringUtils.hasText(classPropertyTypeName)) {
-		mapper.enableDefaultTypingAsProperty(DefaultTyping.NON_FINAL, classPropertyTypeName);
-	} else {
-		mapper.enableDefaultTyping(DefaultTyping.NON_FINAL, As.PROPERTY);
-	}
+  if (StringUtils.hasText(classPropertyTypeName)) {
+    mapper.enableDefaultTypingAsProperty(DefaultTyping.NON_FINAL, classPropertyTypeName);
+  } else {
+    mapper.enableDefaultTyping(DefaultTyping.NON_FINAL, As.PROPERTY);
+  }
 }
 ```
 
@@ -313,7 +323,7 @@ enableDefaultTyping에서도 activateDefaultTyping를 그대로 사용한다.
 ```java
 @Deprecated
 public ObjectMapper enableDefaultTyping(DefaultTyping applicability, JsonTypeInfo.As includeAs) {
-    return activateDefaultTyping(getPolymorphicTypeValidator(), applicability, includeAs);
+  return activateDefaultTyping(getPolymorphicTypeValidator(), applicability, includeAs);
 }
 ```
 
@@ -370,8 +380,8 @@ GenericJackson2JsonRedisSerializer에 ObjectMapper를 인자로 받는 생성자
 ```java
 public GenericJackson2JsonRedisSerializer(ObjectMapper mapper) {
 
-	Assert.notNull(mapper, "ObjectMapper must not be null!");
-	this.mapper = mapper;
+  Assert.notNull(mapper, "ObjectMapper must not be null!");
+  this.mapper = mapper;
 }
 ```
 
