@@ -80,7 +80,7 @@ p::before { content: url("/examples/images/img_penguin.png"); }
 - `normal` : 아무것도 표시하지 않는 기본값
 - `string` : 문자열 생성
 - `image` : 이미지, 비디오(크기 조절 불가)
-- `counte` : 순서
+- `counter` : 순서
 - `none` : 표시 X
 - `attr` : 해당속성의 속성값 표시
 
