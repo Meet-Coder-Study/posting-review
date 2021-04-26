@@ -173,23 +173,15 @@ version 0는 쿠키를 최초로 사용한 netscape가 정의했다.
 
 기본 틀은 version 0와 비슷하다. 
 
-- version 속성을 명시하지않고(version 1의 호환때문에 제안되어 사용되었던 항목), 
+- version 속성을 명시하지않는다.(version 1의 호환때문에 제안되어 사용되었던 항목)
 - Set-Cookie2 헤더를 더 이상 사용하지 않는다.(Set-cookie 헤더만 사용한다.) 
 - max-age 값이 존재할 경우 expire값을 무시한다.
 - path 속성을 신뢰하지 않는다.
 
 
 
-
-
-
-
-
-
 ##### REFERENCE
 
-- 
+- Real MySQL (이성욱 저, 위키북스. 2012.05.08)
 - [Chrome Developers : chrome.cookies](https://developer.chrome.com/docs/extensions/reference/cookies/)
 - [RFC6265](https://tools.ietf.org/html/rfc6265)
-- 
-
