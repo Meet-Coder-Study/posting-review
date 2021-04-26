@@ -6,7 +6,7 @@
 ## 1. 커널 정보 확인하기
 
 ### uname (Unix NAME)
-uname 명령어를 사용하여 커널버전을 확인할 수 있스습니다.
+uname 명령어를 사용하여 커널버전을 확인할 수 있습니다.
 ```bash
 > uname -a
 Linux ${호스트명} 3.10.0-693.11.1.el7.x86_64 #1 SMP Mon Dec 4 23:52:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
