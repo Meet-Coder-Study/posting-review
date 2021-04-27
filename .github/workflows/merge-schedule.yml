@@ -1,20 +1,12 @@
-name: Merge Schedule
+name: automerge
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
   schedule:
-    - cron: 0 22 * * 1
-
+    - cron: '* * * * *'
 jobs:
-  merge_schedule:
+  automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: gr2m/merge-schedule-action@v1
-        with:
-          merge_method: rebase
-          time_zone: "Asia/Seoul"
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.13.1"
         env:
-          GITHUB_TOKEN: ${{ secrets.AUTO_MERGE }}
+          GITHUB_TOKEN: "${{ secrets.AUTO_MERGE }}"
