@@ -10,3 +10,5 @@ jobs:
         uses: "pascalgn/automerge-action@v0.13.1"
         env:
           GITHUB_TOKEN: "${{ secrets.AUTO_MERGE }}"
+          MERGE_LABELS: ""
+
