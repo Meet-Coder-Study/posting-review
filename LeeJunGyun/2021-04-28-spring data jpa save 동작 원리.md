@@ -28,7 +28,7 @@ public <S extends T> S save(S entity) {
 
 ## isNew 는 어떻게 동작하는건가?
 
-#### Entity 가 언제 new 로 인식돼는지 설명
+### Entity 가 언제 new 로 인식돼는지 설명
 
 The following table describes the strategies that Spring Data offers for detecting whether an entity is new:
 
@@ -38,26 +38,25 @@ The following table describes the strategies that Spring Data offers for detecti
 | Implementing `Persistable`                            | If an entity implements `Persistable`, Spring Data delegates the new detection to the `isNew(…)` method of the entity. See the [Javadoc](https://docs.spring.io/spring-data/data-commons/docs/current/api/index.html?org/springframework/data/domain/Persistable.html) for details.*Note: Properties of `Persistable` will get detected and persisted if you use `AccessType.PROPERTY`. To avoid that, use `@Transient`.* |
 | Providing a custom `EntityInformation` implementation | You can customize the `EntityInformation` abstraction used in the repository base implementation by creating a subclass of the module specific repository factory and overriding the `getEntityInformation(…)` method. You then have to register the custom implementation of module specific repository factory as a Spring bean. Note that this should rarely be necessary. |
 
-###### 식별자
+#### 식별자
 - 첫번째는 식별자가 null 또는 0일 경우 new 상태로 인식합니다. (@Id 가 붙은 것이 식별자)
 
-###### @Version
+#### @Version
 - 두번째는 Entity 필드에 @Version 이라는 것이 달려있는데 해당 필드가 null 이면 new 로 간주합니다. Version property 가 존재하고 다른 값을 가지고 있으면 new 가 아닙니다.
     - @Version 에 대해 간략히 설명하면, Entity 에서 Lock 을 잡고 싶을 때 Version 을 사용합니다.
     - 아래 예제와 같이 where 를 통해 version 에 맞는 record 를 찾이 못할 경우 OptimisticLockException 을 발생시킵니다. (이미 다른 스레드가 변경했음)
-```mysql-sql
+    
+```oracle-sql
 update test 
-set version + 1
-...
-where version = #{version}
-...
- 
+set version + 1 
+where version = #{version} 
 ``` 
 
-###### Persistable
+#### Persistable
 - 세번째는 Persistable interface 를 구현한 것입니다.
     - Persistable interface 는 getId(), isNew() method 를 제공하는 interface 입니다.
     - 즉, Persistable 을 구현한 Entity 는 구현한 isNew() method 에 따라 Entity 가 new 인지 아닌지를 판단합니다.
+    
 ```java
 @Entity
 public class Test implements Persistable<Long> {
@@ -73,9 +72,10 @@ public class Test implements Persistable<Long> {
 }
 ```    
 
-###### EntityInformation customize
+#### EntityInformation customize
 - 네번째는 EntityInformation 을 customize 하는 것입니다. 세번째 항목과 유사하게 개발자가 customize 한대로 isNew 를 판단합니다.
 - 아래 source 의 EntityInformation 을 customize 하는 것입니다.
+
 ```java
 @Transactional
 @Override
