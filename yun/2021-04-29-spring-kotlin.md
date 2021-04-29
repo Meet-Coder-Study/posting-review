@@ -203,7 +203,7 @@ internal class BookTest(
 }
 ```
 
-![](kotlin-jpa-no-arg-error.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/kotlin-jpa-no-arg-error.png)
 
 기본 생성자가 없어 Error가 발생하는 것을 확인할 수 있습니다. Book 클래스 파일을 decompile 해서 코드를 확인해보겠습니다.
 
@@ -250,7 +250,7 @@ public class Book extends AuditingEntity {
 ```
 `no-arg`생성자가 코드가 있는 것을 확인할 수 있고, 테스트 코드도 정상적으로 동작하는 것을 확인할 수 있습니다.
 
-![](kotlin-jpa-test-code.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/kotlin-jpa-test-code.png)
 
 ## all-open In JPA
 
@@ -327,17 +327,17 @@ internal fun `lazy loading test`() {
 ```
 **Lazy 패치 전략을 사용했기 때문에 book에 대한 조회 시 order에 대한 조회가 쿼리가 발생하지 않을 것이라고 예상했지만 결과는 다릅니다.**
 
-![](kotlin-lazy-query.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/kotlin-lazy-query.png)
 
 order에 대한 조회 발생합니다. 디버깅 모드를 활용해서 해당 값을 확인해보겠습니다.
 
-![](jpa-proxy.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/jpa-proxy.png)
 
 Lazy Loading이기 때문에 order는 Proxy 객체이어야 합니다. **하지만 Proxy 객체가 아니라 실제 order 객체를 가지고 있는 것을 확인할 수 있습니다.** 그 이유는 Kotlin은 기본적으로 `final`이기 때문에 Proxy 클래스를 생성하지 못합니다. Proxy 클래스를 생성하기 위해서는 상속이 가능해야 하므로 `open`이 필요한데 없으니 Proxy 기반으로 Lazy Loading을 진행할 수 없는 것입니다. 그렇다면 allOpen을 적용하고 다시 테스트해보겠습니다.
 
-![](jpa-proxy-3.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/jpa-proxy-3.png)
 
-![](jpa-proxy-2.png)
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/jpa-proxy-2.png)
 
 Lazy Loading이 정상적으로 동작하고 Proxy 기반으로 order 객체를 가져오는것을 확인할 수 있습니다. 
 
