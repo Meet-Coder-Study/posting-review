@@ -16,12 +16,12 @@ plugins {
 ### all-open
 해당 플러그인을 사용하면 아래 어노테이션이 있으면 `all-open`을 자동으로 추가시킵니다. 참고로 `kotlin-allopen`, `plugin.spring`는 동일한 프로젝트입니다.
 
-* @Component
-* @Async
-* @Transactional
-* @Cacheable
-* @SpringBootTest
-* @Configuration, @Controller, @RestController, @Service, @Repository, @Component
+* `@Component`
+* `@Async`
+* `@Transactional`
+* `@Cacheable`
+* `@SpringBootTest`
+* `@Configuration`, `@Controller`, `@RestController`, `@Service`, `@Repository`, `@Component`
 
 
 ```kotlin
@@ -95,6 +95,13 @@ class Book(
 ```
 특정 어노테이션에 `open` 키워드를 편리하기 추가할 수 있습니다.
 
+
+### all-open은 왜 필요할까?
+
+![](https://github.com/cheese10yun/blog-sample/raw/master/query-dsl/docs/images/result-3.png)
+
+Spring Boot 2.x 버전부터는 CGLIB Proxy 방식으로 Bean을 관리하고 있습니다. CGLIB Proxy는 Target Class를 상속받아 생성하기 때문에 `open`으로 성속이 가능한 상태이어야 합니다. 그러기 때문에 `all-open` 플러그인이 필요합니다.
+
 ### no-arg
 
 `no-arg`는 argument가 없는 기본 생성자를 의미합니다. 클래스는 기본 생성자가 기본적으로 생성되며 다른 생성자를 만들면 기본 생성자는 명시적으로 선언하지 않는 이상 사라지게 됩니다.
@@ -161,7 +168,7 @@ Book 객체에 기본 생성자가 없지만 `plugin.jpa` 플러그인으로 인
 
 ## plugin.jpa 플러그인
 
-`no-arg`에서 언급했듯이 `plugin.jpa` 플러그인을 사용 하면 @Entity, @Embeddable, @MappedSuperclass 어노테이션을 사용해면 `no-arg`생성자(기본 생성자)가 자동으로 생성됩니다.
+`no-arg`에서 언급했듯이 `plugin.jpa` 플러그인을 사용 하면 `@Entity`, `@Embeddable`, `@MappedSuperclass` 어노테이션을 사용해면 `no-arg`생성자(기본 생성자)가 자동으로 생성됩니다.
 
 ### no-arg이 왜 필요할까?
 
@@ -341,23 +348,28 @@ Lazy Loading이기 때문에 order는 Proxy 객체이어야 합니다. **하지�
 
 Lazy Loading이 정상적으로 동작하고 Proxy 기반으로 order 객체를 가져오는것을 확인할 수 있습니다. 
 
-## jackson-module-kotlin 모듈 -> 현재는 문제 없음
+## jackson-module-kotlin 모듈
 
-[Spring Initializr](https://start.spring.io/)를 이용해서 `Spring Web MVC` 프로젝트를 생성하게 되면 `com.fasterxml.jackson.module:jackson-module-kotlin` 디펜던시가 자동으로 추가된다. [jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)는 기존 Jackson으로 deserialize 하기 위해서는 기본 생성자가 반드시 필요합니다. 하지만 코틀린에서 `data class`의 객체를 deserialize를 진행하게 되면 기본 생성자가 없기 때문에 문제가 발생합니다.
+[Spring Initializr](https://start.spring.io/)를 이용해서 `Spring Web MVC` 프로젝트를 생성하게 되면 `com.fasterxml.jackson.module:jackson-module-kotlin` 디펜던시가 자동으로 추가된다. [jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)는 기존 Jackson으로 deserialize 하기 위해서는 기본 생성자가 반드시 필요합니다. 하지만 코틀린에서 `data class`의 객체를 deserialize를 진행하게 되면 기본 생성자가 없기 때문에 아래와 같은 예외가 발생합니다.
+
+```
+(no Creators, like default construct, exist): cannot deserialize from Object valu...
+```
+
 
 ```java
 class SampleRequestBody {
     private String name;
     private int age;
 
-// all arguemtn 생성자는 주석
+// all arguments 생성자는 주석
 //    public SampleRequestBody(String name, int age) {
 //        this.name = name;
 //        this.age = age;
 //    }
 }
 ```
-위 같은 자바 코드는 all arguemtn 생성자가 주석인 경우 기본 생성자를 명시적으로 선언하지 않아도 존재하기 때문에 deserialize 진행에 문제가 없습니다. 만약 다른 생성자가 있다면 명시적으로 기본 생성자를 작성하지 않으면 예외가 발생합니다.
+위 같은 자바 코드는 all arguments 생성자가 주석인 경우 기본 생성자를 명시적으로 선언하지 않아도 존재하기 때문에 deserialize 진행에 문제가 없습니다. 만약 다른 생성자가 있다면 명시적으로 기본 생성자를 작성하지 않으면 예외가 발생합니다.
 
 ```kotlin
 data class SampleRequestBody(
@@ -389,7 +401,48 @@ public final class SampleRequestBody {
    ..
 }
 ```
-코틀린의 `data class`는 all argument 생성자만 생성하기 때문에 기존 jackson으로 deserialize를 못하고 `jackson-module-kotlin`을 통해서 단일 생성자로 deserialize를 진행할 수 있습니다. 
+코틀린의 `data class`는 all argument 생성자만 생성하기 때문에 기존 jackson으로 deserialize를 못하고 `jackson-module-kotlin`을 통해서 단일 생성자로 deserialize를 진행할 수 있습니다. **하지만 최근에는 이 부분도 개선되어 굳이 `jackson-module-kotlin` 모듈의 도움 없이 기본 생성자가 없이도 deserialize를 진행할 수 있습니다.**
+
+### ParameterName 이용
+
+![](https://raw.githubusercontent.com/cheese10yun/spring-kotlin-api/master/docs/jackson-dependency.png)
+
+`spring-boot-starter-web`의 디펜던시를 통해서 `jackson-module-parameter-names`는 자동으로 추가됩니다. 즉 `ParameterName` 모듈은 이미 사용할 수 있는 상태입니다. ParameterNameModule 모듈에 대한 자세한 정리는 [Jackson으로 파싱한 JSON 속성값을 생성자로 전달하기](https://blog.benelog.net/jackson-with-constructor.html#jsoncreator)에 잘 정리되어 있어 한 번 읽어 보시는 것을 권유 드립니다.
+
+해당 블로그의 내용을 정리하면 다음과 같습니다.
+
+1. `@JsonProperty("ip")` 방식([Jackson Deserialization Annotations: @JsonCreator 참고](https://github.com/cheese10yun/blog-sample/tree/master/jackson)) 같은 방식으로 생성자 파라미터와, json 필드명이 일치한다면 따로 속성을 지정하지 않아도 가져올 수 있음
+2. `JDK 8` 이전까지는 Reflection만으로는 파라미터 이름을 가져올 수 없었으나 `JDK 8` 이상의 경우 컴퍼일 할 때 `-parameters` 옵션을 붙이면 Reflection API로 파라미터 정보를 가져올 수 있습니다.
+3. Spring Boot Gradle Plugin 플러그인에서 Java 컴파일의 `-parameters` 옵션을 자동으로 추가됩니다.
+
+
+`@RequestBody`를 통해서 deserialize를 진행할 때 별다른 설정을 하지 않았다면 `WebMvcAutoConfiguration` 클래스의 정의된 아래의 코드에 의해 결정됩니다. 
+
+```java
+class WebMvcAutoConfiguration {
+    ...
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        this.messageConvertersProvider
+                .ifAvailable((customConverters) -> converters.addAll(customConverters.getConverters()));
+    }
+}
+
+public class JacksonAutoConfiguration {
+    ...
+    @Configuration(proxyBeanMethods = false)
+    @ConditionalOnClass(ParameterNamesModule.class)
+            static class ParameterNamesModuleConfiguration {
+
+        @Bean
+        @ConditionalOnMissingBean
+        ParameterNamesModule parameterNamesModule() {
+            return new ParameterNamesModule(JsonCreator.Mode.DEFAULT);
+        }
+    }
+}
+```
+
+`HttpMessageConverter` 리스트에 기본으로 추가되는 Jackson에는 `ParameterNamesModule`이 추가되어 있습니다. 만약 `WebMvcConfigurer` 인터페이스를 기반으로 `extendMessageConverters`를 재정의 해서 사용하는 경우에는 `ParameterNamesModule` 설정을 추가해야 합니다. **결과 적으로 `jackson-module-kotlin` 모듈 없이 `jackson-module-parameter-names` 모듈만으로 deserialize를 진행할 수 있습니다.**
 
 
 ## 참고
@@ -397,3 +450,4 @@ public final class SampleRequestBody {
 * [Why does Hibernate require no argument constructor?](https://stackoverflow.com/questions/2935826/why-does-hibernate-require-no-argument-constructor)
 * [스프링캠프 2019 [Track 1 Session 6] : Kotlin + Spring Data JPA (김태호)
 ](https://www.youtube.com/watch?v=Ou_-DFaAUhQ)
+* [Jackson으로 파싱한 JSON 속성값을 생성자로 전달하기](https://blog.benelog.net/jackson-with-constructor.html#jsoncreator)
