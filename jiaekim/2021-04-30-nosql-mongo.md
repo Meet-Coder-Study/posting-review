@@ -19,20 +19,14 @@
 
 ### 4. 고정되지 않은 테이블 스키마
 `RDBMS에서 간단한 테이블 구조 예시`
-|||
-| - | - | - |
-| ID: int | 이름: varchar(255) | 주소: varchar(255) |
+
+<img src=https://user-images.githubusercontent.com/37948906/116687885-d83c2e80-a9f0-11eb-836c-ba2c29f7bf0f.png width=200px>
 
 - RDBMS와는 다르게 테이블 스키마가 유동적이다. 예를 들어 RDBMS의 경우 테이블이 다음과 같은 형태로 되어 있을 때 해당 테이블은 반드시 숫자, 이름, 문자열, 주소 문자열만 들어갈 수 있다.
 
 `NoSQL에서 간단한 테이블 구조 예시`
-|||||
-| - | - | - | - | - |
-| ID: int | 이름: varchar(255) | 
-| ID: int | 이름: varchar(255) | 주소: varchar(255) |
-| ID: int | 이름: varchar(255) | 성별: char(1) |
-| ID: int | 영문이름: varchar(255) | 국적: varchar(10) | 전화: varchar(50) |
-| ID: int | 영문이름: varchar(255) |
+
+<img src=https://user-images.githubusercontent.com/37948906/116687888-d96d5b80-a9f0-11eb-93ed-e426cc943085.png width=400px>
 
 위와 같이 ID로 사용하는 키 부분에만 타입이 동일하고 생략되지 않는 (Mandatory) 필드로 지정하면 값이 해당하는 칼럼은 어떤 타입이든 어떤 이름이 오든 모두 허용된다.
 
