@@ -78,7 +78,7 @@ swap을 끄는 방법은 다음과 같습니다.
 - `/etc/fstab`에서 swap관련 옵션 주석처리하면 영구적으로 swap을 끌 수 있습니다.
 - `vm.swappiness=1`으로 스왑 사용 최소화할 수 있습니다.
   - [vm.swappiness=0으로 설정할 경우 스왑을 사용안하지만 OOM Kill이 난다고 합니다.](https://xdhyix.wordpress.com/2015/07/30/vm-swappiness0/)
-  - [Elasticsearch시에도 swap을 끄기 위한 방법으로 vm.swappiness=1을 권장하고 있습니다.](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration-memory.html#swappiness)
+  - [Elasticsearch에서도 swap을 끄기 위한 방법으로 vm.swappiness=1을 권장하고 있습니다.](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration-memory.html#swappiness)
 
 
 ## 참고
