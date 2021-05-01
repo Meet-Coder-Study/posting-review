@@ -100,7 +100,7 @@ class Book(
 
 ![](https://github.com/cheese10yun/blog-sample/raw/master/query-dsl/docs/images/result-3.png)
 
-Spring Boot 2.x 버전부터는 CGLIB Proxy 방식으로 Bean을 관리하고 있습니다. CGLIB Proxy는 Target Class를 상속받아 생성하기 때문에 `open`으로 성속이 가능한 상태이어야 합니다. 그러기 때문에 `all-open` 플러그인이 필요합니다.
+Spring Boot 2.x 버전부터는 CGLIB Proxy 방식으로 Bean을 관리하고 있습니다. CGLIB Proxy는 Target Class를 상속받아 생성하기 때문에 `open`으로 상속이 가능한 상태이어야 합니다. 그러기 때문에 `all-open` 플러그인이 필요합니다.
 
 ### no-arg
 
