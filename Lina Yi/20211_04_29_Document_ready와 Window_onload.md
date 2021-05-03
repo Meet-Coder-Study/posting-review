@@ -76,6 +76,7 @@ $(document).ready(function(){
     $('#id_file').change(function() { // 파일 선택  input에 변화가 있으면
             console.log("체인지");
     });
+});
 ```
 
 
