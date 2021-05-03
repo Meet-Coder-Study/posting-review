@@ -30,7 +30,7 @@
 - 렌더링 트리를 탐색하면서 페이지를 그려나간다.
 
 
-### $(document).ready vs $(window).onolad
+### $(document).ready vs $(window).onload
 
 - $(document).ready 의 호출 시점 : 1~2번 과정이 완료되어 DOM Tree 생성이 완료된 후 호출
   $(window).onolad 의 호출 시점 : 모든 과정이 완료되어, 웹 페이지가 다 구성된 후 호출
