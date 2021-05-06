@@ -1,4 +1,4 @@
-# Week 5 SpringApplication
+# SpringApplication
 
 ## 1. Spring Ioc Container
 
