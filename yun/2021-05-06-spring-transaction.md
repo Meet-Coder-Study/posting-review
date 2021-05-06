@@ -1,4 +1,4 @@
-ister, Slave 트랜잭션 처리 방식
+# Spring Master, Slave 트랜잭션 처리 방식
 
 대부분의 서비스에서는 데이터베이스를 Master, Slave 구조로 Master에서는 Create, Update, Delete 업무를 진행하고 Slave에서 Read 업무를 진행하는 구조로 설계합니다. Spring의 Master, Slave 환경에서의 트랜잭션에 대해서 포스팅해보겠습니다.
 
@@ -6,6 +6,18 @@ ister, Slave 트랜잭션 처리 방식
 ## Mysql Master, Slave 환경
 
 ### Mysql Master, Slave
+
+![](https://github.com/cheese10yun/TIL/raw/master/assets/mysql-replication3.png)
+
+MySQL은 위와 같은 구조로 마스터 - 슬레이브 구조를 지원합니다. 간략하게 설명하면 다음과 같이 구성되어 있습니다.
+
+* 마스터의 변경을 기록하기 위한 바이너리 로그
+* 슬레이브에 데이터를 전송하기 위한 마스터 스레드
+* 슬레이브에서 데이터를 받아 릴레이 러그에 기록하기 위한 I/O 스레드
+* 릴레이 러그에서 데이터를 읽어 재생하기 위한 SQL 스레드
+
+MySQL 5.7 부터 ACK를 기다리는 시점의 변경이 생겼습니다. 기존 COMMIT을 실행한 다음이 아니라 COMMIT을 실행하기 전에 ACK를 기다리도록 변경되었씁니다. 이로 인해 마스터에서 COMMIT이 완료된 트랜잭션은 모두 슬레이브에 확실히 전달되게 되어서 무손실 레플리케이션을 보다 잘 지원하게 되었습니다. 자세한 내용은 [MySQL 5.7 완벽 분석](http://www.yes24.com/Product/Goods/72270172?)에 잘 설명되어 있습니다. 
+
 
 ### RoutingDataSource
 
@@ -316,3 +328,8 @@ Response code: 200; Time: 51ms; Content length: 526 bytes
 
 ![](https://i.pinimg.com/originals/65/eb/70/65eb70a4aad8ceb926b44cc4d6e7fdd9.jpg)
 다음주 포스팅에... 
+
+
+## 참고
+* [MySQL 5.7 완벽 분석](http://www.yes24.com/Product/Goods/72270172?)
+* [Spring, master-slave dynamic routing datasource 사용하기](https://taes-k.github.io/2020/03/11/sprinig-master-slave-dynamic-routing-datasource/)
