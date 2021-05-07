@@ -126,7 +126,7 @@ class BookApi(
 }
 ```
 
-`/api/book"/slave`는 `readOnly = true` 설정으로 Slave를 바라보게 하고, 그와 반대로 `/api/book"/master`는 `readOnly = false`설정으로 Master를 바라보게 설정하고 API 호출 이후 데이터베이스 로그를 확인해보겠습니다.
+`/api/book/slave`는 `readOnly = true` 설정으로 Slave를 바라보게 하고, 그와 반대로 `/api/book/master`는 `readOnly = false`설정으로 Master를 바라보게 설정하고 API 호출 이후 데이터베이스 로그를 확인해보겠습니다.
 
 ![](https://raw.githubusercontent.com/cheese10yun/blog-sample/master/spring-transaction/docs/query-log.png)
 
