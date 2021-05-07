@@ -19,20 +19,14 @@
 
 ### 4. 고정되지 않은 테이블 스키마
 `RDBMS에서 간단한 테이블 구조 예시`
-|||
-| - | - | - |
-| ID: int | 이름: varchar(255) | 주소: varchar(255) |
+
+<img src=https://user-images.githubusercontent.com/37948906/116687885-d83c2e80-a9f0-11eb-836c-ba2c29f7bf0f.png width=200px>
 
 - RDBMS와는 다르게 테이블 스키마가 유동적이다. 예를 들어 RDBMS의 경우 테이블이 다음과 같은 형태로 되어 있을 때 해당 테이블은 반드시 숫자, 이름, 문자열, 주소 문자열만 들어갈 수 있다.
 
 `NoSQL에서 간단한 테이블 구조 예시`
-|||||
-| - | - | - | - | - |
-| ID: int | 이름: varchar(255) | 
-| ID: int | 이름: varchar(255) | 주소: varchar(255) |
-| ID: int | 이름: varchar(255) | 성별: char(1) |
-| ID: int | 영문이름: varchar(255) | 국적: varchar(10) | 전화: varchar(50) |
-| ID: int | 영문이름: varchar(255) |
+
+<img src=https://user-images.githubusercontent.com/37948906/116687888-d96d5b80-a9f0-11eb-93ed-e426cc943085.png width=400px>
 
 위와 같이 ID로 사용하는 키 부분에만 타입이 동일하고 생략되지 않는 (Mandatory) 필드로 지정하면 값이 해당하는 칼럼은 어떤 타입이든 어떤 이름이 오든 모두 허용된다.
 
@@ -40,16 +34,24 @@
 ### 1. Key/Value Store
 - 가장 기본적인 패턴으로 대부분의 NoSQL에서 기본적으로 Key/Value 개념을 지원한다. Key/Value Store란 고유한 키에 하나의 값을 가진 형태를 이야기한다. Put(Key, Value), Value := get(Key) 형태의 API로 접근한다.
 - `Put(Key, Value), Value := get(Key)` 형태의 API로 접근
+<img src=https://user-images.githubusercontent.com/37948906/116665960-5e4a7c00-a9d5-11eb-8857-f0be08ba06ba.png width=200px>
+
 - Value는 String이나 Integer같은 Primitive 타입이 될 수도 있지만, 조금 더 확장된 개념으로 Key 안에 (Column, Value) 조합으로 된 여러 개의 필드를 갖는 Colomn Family 개념도 있다.
 - 예를 들어 사용자 이름을 키로 두고, 성별, 주소, 나이들은 각각의 칼럼이 될 수 있다.
+<img src=https://user-images.githubusercontent.com/37948906/116670728-0ca4f000-a9db-11eb-998f-c6626c24e190.png width=400px>
+
 - 대표적인 제품으로는 Oracle의 Coherence, Redis 등이 있다.
 ### 2. Ordered Key/Value Store
 - Key/Value Store의 확장된 형태로, Key/Value Store와 데이터 저장 방식은 동일하나 데이터가 내부적으로 키를 순서로 정렬해서 저장한다.
 - NoSQL은 RDBMS의 ORDER BY와 같은 기능을 제공하지 않기 때문에 결과 값을 업데이트 날짜 등으로 정렬해서 보여주는 것은 Ordered Key/Value Store가 절대적으로 유리하다.
+<img src=https://user-images.githubusercontent.com/37948906/116670964-58579980-a9db-11eb-86af-3dfea1cef686.png width=500px>
+
 - 대표적인 제품으로는 아파치의 HBase, Coassandra 등이 있다.
 ### 3. Document Key/Value Store
 - Key/Value Store의 확장된 형태로, 기본적으로 Key/Value Store이다. 키에 해당하는 값 필드에 데이터를 저장하는 구조는 같으나, 저장하는 값의 데이터 타입으로 Document(XML, JSON, YAML 등의 구조화된 데이터 타입) 타입을 사용한다.
 - Document Store 기반의 NOSQL은 제품에 따라 다르기는 하지만 대부분 추가적인 기능 (Sorting, Join, Grouping 등)을 제공한다. 
+<img src=https://user-images.githubusercontent.com/37948906/116671172-96ed5400-a9db-11eb-9e68-968b94577b52.png width=300px>
+
 - 대표적인 제품으로는 MongoDB, CouchDB, Riak 등이 있다.
 
 ## NoSQL(MongoDB) vs RDBMS 차이
@@ -63,5 +65,5 @@
 | 쿼리의 결과로 "커서(Cursor)" 반환 | 쿼리의 결과로 "레코드(Record)" 반환 |
 
 ## 참고자료
-  - [DB - MongoDB란?](https://coding-start.tistory.com/273)
   - 조대협의 서버사이드 - 대용량 아키텍처와 성능튜닝 책 - NoSQL
+  - [DB - MongoDB란?](https://coding-start.tistory.com/273)
