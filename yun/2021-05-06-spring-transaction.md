@@ -394,4 +394,7 @@ Response code: 200; Time: 107ms; Content length: 521 bytes
 ## 참고
 * [MySQL 5.7 완벽 분석](http://www.yes24.com/Product/Goods/72270172?)
 * [Spring, master-slave dynamic routing datasource 사용하기](https://taes-k.github.io/2020/03/11/sprinig-master-slave-dynamic-routing-datasource/)
+<<<<<<< HEAD
 * [토비의 스프링 3.1](http://m.yes24.com/goods/detail/7516911)
+=======
+>>>>>>> 53a12ae724b5eb7b28a7ab70bd966a3cd19a1b23
