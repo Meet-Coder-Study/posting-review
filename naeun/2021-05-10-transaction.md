@@ -3,7 +3,12 @@
 ## DB 응용
 
 - OLTP(OnLine Transaction Processing)
+    - 복수의 사용자에서 발생되는 트랜잭션을 DB가 처리하고 돌려주는 과정
+    - 응답속도가 빠름
+    - 데이터 처리가 얼마나 정확하고 무결한지가 중요
 - OLAP(OnLine Analytical Processing)
+    - 데이터를 분석하여 유의미한 정보를 제공해주는 처리방법
+    - 오래 걸림, 상대적으로 응답속도가 느림
 
 ## Transaction(트랜잭션)
 
@@ -75,10 +80,21 @@
 - redo: 쿼리문을 다시 발생시킬 수 있을 만큼의 충분한 정보를 가짐
 - undo(rollback): 쿼리문이 다시 없던 일로 만들 수 있을 만큼의 충분한 정보를 가짐
 - 검사점(checkpoint) 이후의 장애(failure)시점을 기준으로 undo와 redo를 판단
-
-![redo,undo](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F9914C5345A7E60EA05DB09)
+  ![redo,undo](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F9914C5345A7E60EA05DB09)
 
 *이미지출처:https://victorydntmd.tistory.com/130*
+
+## DBMS 간략한 구조
+
+![DMBS 구조](https://d2.naver.com/content/images/2015/06/helloworld-407507-1.png)
+
+*이미지 출처:https://d2.naver.com/helloworld/407507*
+
+- 질의처리기(Query Processor)와 저장시스템(Storage System)으로 나뉨
+- 데이터를 고정길이 페이지로 저장하며, 디스크에서 읽거나 쓸 때 페이지 단위의 입출력이 이루어짐
+- 페이지 관리 모듈: 페이지 버퍼, 버퍼 관리자라고 함
+- 버퍼에서 디스크에 작성되어야 데이터가 저장됨
+- 페이지들이 버퍼 관리자의 교체알고리즘에 따라 디스크에 출력
 
 ## Transaction Isolation Levels (4 단계)
 
