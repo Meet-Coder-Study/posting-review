@@ -1,10 +1,10 @@
 ![image](https://user-images.githubusercontent.com/15938354/116842077-40b82500-ac16-11eb-86c1-27e4e4b72593.png)
 
 
-### JVM(Java Virtual Machine)
+## JVM(Java Virtual Machine)
 
 - JVM은 자바 가상 머신의 약자이다.
-- JVM은 자바 소스코드로부터 만들어지는 자바 바이너리 파일(.class)을 실행할 수 있다. 
+- JVM은 **자바 소스코드로부터 만들어지는 자바 바이너리 파일(.class)을 실행할 수 있다.** 
 - JVM은 **플랫폼에 의존적**이다. 
   즉, 리눅스의 JVM과 윈도우의 JVM은 다르다. 
 - 단, 컴파일 된 바이너리 코드는 어떤 JVM에서도 동작시킬 수 있다. 
@@ -17,11 +17,11 @@
 - 실행환경(Runtime Environment)의 규격(필요한 라이브러리 및 기타 파일)을 제공한다. 
 
 
-### JRE(Java SE Runtime Environment)
+## JRE(Java SE Runtime Environment)
+
+- JRE는 **JVM이 자바 프로그램을 동작시킬 때 필요한 라이브러리 파일들과 기타 파일들을 갖고 있다.** 
 
 - JRE는 JVM을 생성하는 디스크 상의 부분이다.
-
-- JVM이 자바 프로그램을 동작시킬 때 필요한 라이브러리 파일들과 기타 파일들을 갖고 있다. 
 
 - JAVA언어로 작성된 프로그램을 실행하기 위해선 JRE(Java SE Runtime Environment)가 필요하다. 
 
@@ -29,9 +29,9 @@
   
   (JAVA언어를 사용하는 개발자가 아니라 JAVA언어로 만들어진 프로그램을 실행하는 사용자는, JRE만 컴퓨터에 설치하면 된다.)
 
-### JDK
+## JDK
 
-- JAVA언어를 사용하는 개발자는 JAVA언어로 작성된 소스(Source)를 컴파일하고 관리할 필요가 있다.
+- JAVA언어를 사용하는 개발자는 JAVA언어로 작성된 소스코드를 **컴파일하고 관리**할 필요가 있다.
 
 - 이때 사용되는 도구를 JDK(Java SE Development Kit)라고 말한다.
 
@@ -45,6 +45,7 @@
 
 - JDK 최신버전은 9이다. 
 - 그러나 현재 가장 많이 사용되는 버전은 8이다.
+
 
 #### Q1. JDK가 운영체제별로 설치파일을 제공하는 이유는 무엇입니까?
 -> 내 생각: JDK는 JVM을 포함하고 있는데, JVM이 플랫폼에 의존적이기 때문이다. 
