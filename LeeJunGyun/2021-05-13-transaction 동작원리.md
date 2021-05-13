@@ -9,6 +9,7 @@
 - 아래 예시는 jdbc 를 활용해서 예시로 표현된 것입니다.
  
 #### Proxy mechanism 적용 전
+- 단순히 Service 에서 SQL 을 호출하는 예시입니다.
 ```java
 @Service
 public class TestService {
@@ -23,21 +24,27 @@ public class TestService {
 ```
    
 #### Proxy mechanism 적용 후
+- @Transactional 을 Spring core 에서 캐치해서 proxy 객체를 만들었을 때, 아래 코드와 유사하게 생성이 된다는 예시입니다.
+
 ```java
 @Service
 public class TestService {
 
     @Transactional
     public Long saveMember(Member member) {
+        // 1. connection 을 가져오기.
         Connection connection = dataSource.getConnection();
         try (connection) {
-
+            
+            // 2. transaction 을 시작한다. 
             connection.setAutoCommit(false);
 
             // call SQL
-
+    
+            // 3. connection commit
             connection.commit();
         } catch (SQLException e) {
+            // 4. 에러가 생기면 rollback
             connection.rollback();
         }
     }
