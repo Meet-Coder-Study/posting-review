@@ -92,6 +92,7 @@ $ mysql -u root -p
 $ CREATE USER 'repl'@'%' IDENTIFIED BY 'repl';
 $ GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
 ```
+* 레플리케이션 계정을 생성하고, 해당 계정에 레플리케이션 권한을 부여
 
 #### slave container 설정
 
@@ -104,6 +105,68 @@ MASTER_USER='repl', MASTER_PASSWORD='repl', \
 MASTER_AUTO_POSITION=1;
 $ start slave;
 $ show slave status\G
+```
+* master에서 생성한 레플리케이션으로 슬레이브로 접속함
+
+```
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: db001
+                  Master_User: repl
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: mysql-bin.000008
+          Read_Master_Log_Pos: 194
+               Relay_Log_File: db002-relay-bin.000018
+                Relay_Log_Pos: 407
+        Relay_Master_Log_File: mysql-bin.000008
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB:
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: 0
+                   Last_Error:
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 194
+              Relay_Log_Space: 654
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: 0
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error:
+               Last_SQL_Errno: 0
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: 100
+                  Master_UUID: d1705987-ab66-11eb-a1f7-0242ac130007
+             Master_Info_File: /var/lib/mysql/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has read all relay log; waiting for more updates
+           Master_Retry_Count: 86400
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set: d1705987-ab66-11eb-a1f7-0242ac130007:1-1278
+            Executed_Gtid_Set: cd763d8c-ab66-11eb-a1ad-0242ac130003:1-2,
+d1705987-ab66-11eb-a1f7-0242ac130007:1-1278
+                Auto_Position: 1
+         Replicate_Rewrite_DB:
+                 Channel_Name:
+           Master_TLS_Version:
 ```
 
 
