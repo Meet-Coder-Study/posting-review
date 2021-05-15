@@ -168,6 +168,7 @@ d1705987-ab66-11eb-a1f7-0242ac130007:1-1278
                  Channel_Name:
            Master_TLS_Version:
 ```
+* `Slave_IO_Running: Yes`, `Slave_SQL_Running: Yes` 해당 설정이 정상동작하는 것을 확인할 수 있습니다.
 
 
 ## 참고
