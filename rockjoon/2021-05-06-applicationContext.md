@@ -23,7 +23,7 @@
 
 ## 3. ApplicationContext
 
-* ApplicationContext는BeanFactory의 확장된 형태(superset)이다. 따라서 BeanFactory의 기본 기능인 Bean관리를 기본적으로 제공한다.  
+* ApplicationContext는 BeanFactory의 확장된 형태(superset)이다. 따라서 BeanFactory의 기본 기능인 Bean관리를 기본적으로 제공한다.  
 거기에 더불어 다음과 같은 기능들이 추가된다.
 
 ```
@@ -52,4 +52,4 @@
 
 * 스프링 공식 문서에서는 이 둘 중에 **ApplicationContext 방식을 더 추천**하고 있다.
 * BeanFactory 방식은 안정성이 떨어지고, 같은 빈을 사용한다고 했을 때 메모리 효율성이 크게 좋다고 볼 수 없으며,
-무엇보다 ApplicationContex가 제공 하는 기능이 더 다양하다.
+무엇보다 ApplicationContext가 제공 하는 기능이 더 다양하다.
