@@ -1,0 +1,20 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    networks:
+      - service-network
+  redis:
+    image: redis
+    networks:
+      - service-network
+
+volumes:
+  logvolume01: {}
+networks:
+  service-network: {}
