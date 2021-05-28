@@ -34,7 +34,7 @@ Controls the maximum number of statements Hibernate will batch together before a
 
 - 사용방법
 
-```yaml
+```properties
 
 spring:
   jpa:
@@ -75,7 +75,7 @@ update test2 set column02 = 'test6' where regdate = '20210513';
 
 - 사용방법
 
-```yaml
+```properties
 
 spring:
   jpa:
@@ -106,23 +106,7 @@ spring:
 - 아래 테스트는 20만건의 데이터를 repository.saveAll 을 통해 insert 할 때, batch_size 에 따라 성능 차이가 어느정도 나는지 확인해본 것입니다.
 - 결론부터 얘기하면 그렇게 차이 안납니다. batch_size 옵션을 켰을 때는 7초대, 옵션을 안켰을 때는 9초대가 나옵니다. (h2 in-memory-db 사용)
 - 어떤 블로그였는지 지금 못찾겠는데 batching 기능이 h2 는 20% 향상. mysql 은 300% 대. oracle 은 500% 대까지 성능 향상이 있던 글을 봤습니다.
-- mysql 의 경우 위 batch_size 옵션 외에 rewriteBatchedStatements 옵션을 적용하면 batching 기능이 동작합니다.
-- rewriteBatchedStatements 옵션을 켜놓는다면 아래와 같이 쿼리가 재구성되서 성능 향상이 일어납니다. 
 
-```sql
-
-# 옵션 켜기 전
-insert into test (column01, column02) values ('test01', 'test02');
-insert into test (column01, column02) values ('test03', 'test04');
-insert into test (column01, column02) values ('test05', 'test06');
-
-# 옵션 켠 후
-insert into test (column01, column02) 
-values ('test01', 'test02'),
-       ('test03', 'test04'),
-       ('test05', 'test06') 
-
-```   
    
 ```
 // 옵션 켰을 때
@@ -133,7 +117,7 @@ values ('test01', 'test02'),
 ```
 
 
-```yaml
+```properties
 
 spring:
   jpa:
@@ -259,6 +243,24 @@ public class Student {
 
 ```
  
+## 기타
+- mysql 의 경우 위 batch_size 옵션 외에 rewriteBatchedStatements 옵션을 적용하면 batching 기능이 동작합니다.
+- rewriteBatchedStatements 옵션을 켜놓는다면 아래와 같이 쿼리가 재구성되서 성능 향상이 일어납니다. 
+
+```sql
+
+# 옵션 켜기 전
+insert into test (column01, column02) values ('test01', 'test02');
+insert into test (column01, column02) values ('test03', 'test04');
+insert into test (column01, column02) values ('test05', 'test06');
+
+# 옵션 켠 후
+insert into test (column01, column02) 
+values ('test01', 'test02'),
+       ('test03', 'test04'),
+       ('test05', 'test06') 
+
+```   
 
 ## reference
 - https://www.baeldung.com/spring-data-jpa-batch-inserts
