@@ -2,12 +2,14 @@
 
 ## spring data jpa batch insert 란?
 - batch insert 라는 것은 여러 개의 SQL Statement 를 하나의 구문으로 처리할 수 있습니다. 
-- 정확히는 위 기능은 jdbc batch 기능이며, hibernate 에서 위 기능을 이용해서 처리하는 것입니다.
+- 정확히는 위 기능은 jdbc batch 기능이며, hibernate 에서 위 기능을 이용해서 처리하는 것입니다. (write-behind 를 통해)
 - 여러 개의 구문을 여러 번 network 를 통해 보내는 것이 아니라 합쳐서 1개로 보내기에 성능 개선을 할 수 있습니다. (이게 핵심)
-    - jpa 의 경우 트랜잭션이 commit 되는 순간 한꺼번에 flush 가 이루어집니다. flush 는 단건씩 데이터를 network 를 통해 보낼 것입니다.
-    - jdbc batch 를 이용할 경우 batch_size 만큼 네트워크를 통해 데이터를 보낼 것입니다.
+    - jpa 의 경우 트랜잭션이 commit 되는 순간 한꺼번에 flush 가 이루어집니다. 
+    - batch_size 옵션이 없다면 단건으로 데이터를 network 를 통해 보낼 것입니다.
+    - batch_size 설정해준다면 해당 사이즈만큼 네트워크를 통해 데이터를 보낼 것입니다.
 - 아래 예시를 보면 3개의 insert statements 를 하나의 PreparedStatement 로 실행해준다는 것입니다.
     - 자세한건 spring data jpa 동작원리 에서 설명하겠습니다.
+- 다시 정리하면 spring data jpa 를 이용한다면 write-behind 를 통해 addBatch 와 같은 로직을 직접 작성할 필요 없고, batch_size 옵션을 준다면 batch 기능을 사용할 수 있습니다.
 
 ```sql
 
@@ -102,8 +104,25 @@ spring:
 
 ## 성능 테스트
 - 아래 테스트는 20만건의 데이터를 repository.saveAll 을 통해 insert 할 때, batch_size 에 따라 성능 차이가 어느정도 나는지 확인해본 것입니다.
-- 결론부터 얘기하면 그렇게 차이 안납니다. batch_size 옵션을 켰을 때는 7초대, 옵션을 안켰을 때는 9초대가 나옵니다.
-   
+- 결론부터 얘기하면 그렇게 차이 안납니다. batch_size 옵션을 켰을 때는 7초대, 옵션을 안켰을 때는 9초대가 나옵니다. (h2 in-memory-db 사용)
+- 어떤 블로그였는지 지금 못찾겠는데 batching 기능이 h2 는 20% 향상. mysql 은 300% 대. oracle 은 500% 대까지 성능 향상이 있던 글을 봤습니다.
+- mysql 의 경우 위 batch_size 옵션 외에 rewriteBatchedStatements 옵션을 적용하면 batching 기능이 동작합니다.
+- rewriteBatchedStatements 옵션을 켜놓는다면 아래와 같이 쿼리가 재구성되서 성능 향상이 일어납니다. 
+
+```sql
+
+# 옵션 켜기 전
+insert into test (column01, column02) values ('test01', 'test02');
+insert into test (column01, column02) values ('test03', 'test04');
+insert into test (column01, column02) values ('test05', 'test06');
+
+# 옵션 켠 후
+insert into test (column01, column02) 
+values ('test01', 'test02'),
+       ('test03', 'test04'),
+       ('test05', 'test06') 
+
+```   
    
 ```
 // 옵션 켰을 때
@@ -238,29 +257,8 @@ public class Student {
     }
 }
 
-
 ```
-
-
-## 결론
-- spring data jpa batch insert 로는 많은 성능향상을 기대하기는 어려울 것 같습니다.
-- 그러나 mysql 에 rewriteBatchedStatements 옵션이 존재하는데 이 옵션을 사용하면 성능 향상이 확실히 됩니다.
-- rewriteBatchedStatements 옵션을 켜놓는다면 아래와 같이 쿼리가 재구성되서 성능 향상이 일어납니다. 
-
-```sql
-
-# 옵션 켜기 전
-insert into test (column01, column02) values ('test01', 'test02');
-insert into test (column01, column02) values ('test03', 'test04');
-insert into test (column01, column02) values ('test05', 'test06');
-
-# 옵션 켠 후
-insert into test (column01, column02) 
-values ('test01', 'test02'),
-       ('test03', 'test04'),
-       ('test05', 'test06') 
-
-```
+ 
 
 ## reference
 - https://www.baeldung.com/spring-data-jpa-batch-inserts
