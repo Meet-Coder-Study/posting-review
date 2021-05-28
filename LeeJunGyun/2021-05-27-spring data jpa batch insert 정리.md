@@ -266,3 +266,5 @@ values ('test01', 'test02'),
 - https://www.baeldung.com/spring-data-jpa-batch-inserts
 - https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#batch
 - https://www.vertica.com/docs/9.2.x/HTML/Content/Authoring/ConnectingToVertica/ClientJDBC/BatchInsertsUsingJDBCPreparedStatements.htm
+- https://dzone.com/articles/beginners-guide-jpahibernate-0
+- https://access.redhat.com/documentation/en-us/jboss_enterprise_application_platform/5/html/performance_tuning_guide/sect-performance_tuning_guide-entity_beans-batching_database_operations
