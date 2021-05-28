@@ -39,7 +39,7 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 1000ㅇ
+          batch_size: 1000
 
 ```
 
