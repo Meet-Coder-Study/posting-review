@@ -241,7 +241,7 @@ def hello():
 ```markdown
 # I am README.md
 ```
-- requirements.txt.txt
+- requirements.txt
 ```text
 flask
 redis
