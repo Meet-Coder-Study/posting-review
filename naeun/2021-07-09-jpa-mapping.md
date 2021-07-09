@@ -25,23 +25,7 @@
 - 쿼리문에서 user, delete_history 테이블 등 불필요한 정보는 배제하고 글을 작성함
 - `@OneToMany`의 fetch 기본설정은 LAZY 이다.
 
-## 1-1. JoinColumn 을 설정하지 않은 경우
-
-```java
-@Entity
-public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String contents;
-    private Long writerId;
-    private final boolean deleted = false;
-    @OneToMany
-    //@JoinColumn(name = "answer_id") 
-    private final List<Answer> answers = new ArrayList<>();
-}
-```
+## 테스트 코드
 
 - Question 객체를 하나 만들고 Question에 answer1, answer2를 등록하는 테스트 설정
 - 나중에 answer1의 답변 내용을 `답변1`에서 `답변1을 바꿈`으로 수정
@@ -93,6 +77,24 @@ class QuestionTest {
         assertThat(changedContent).isEqualTo("답변1을 바꿈");
         testEntityManager.flush();
     }
+}
+```
+
+## 1-1. JoinColumn 을 설정하지 않은 경우
+
+```java
+@Entity
+public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String contents;
+    private Long writerId;
+    private final boolean deleted = false;
+    @OneToMany
+    //@JoinColumn(name = "answer_id") 
+    private final List<Answer> answers = new ArrayList<>();
 }
 ```
 
