@@ -183,14 +183,14 @@ spring-cloud의 서비스 중 하나. Circuit Breaker Pattern을 사용.
 뒷단 API 서버가 장애 발생 등의 이유로 일정 시간(Time window) 내에 여러번 오류 응답을 주는 경우(timeout, bad gateway 등), 해당 API 서버로 요청을 보내지 않고 잠시 동안 대체(fallback) method를 실행. 일정 시간이 지나서 다시 뒷단 API 서버를 호출하는 등의, 일련의 작업을 제공해준다.  
 Circuit Breaker Pattern(마틴 파울러)
 ```
-fallback, fallbackFactory의 경우 configuration과 같이 class를 만들어서 적용해주면 됬는데 rate limit에 걸리게 되면 rate limit의 시간을 기다릴수 있는 api를 호출 할 수 있게 만들어주면 서비스 관점에서 좋을거같다는 생각을 했다.
-Hystrix는 현재 넷플릭스에서 지원을 중단한 상태라고 한다.
-Hystrix보단 resilience4j를 사용 하도록 권고하고 있는데 아래 글을 보면서 공부하면 좋을듯 하다.
-[resilience4j](https://dlsrb6342.github.io/2019/06/03/Resilience4j%EB%9E%80/)
+fallback, fallbackFactory의 경우 configuration과 같이 class를 만들어서 적용해주면 됬는데 rate limit에 걸리게 되면 rate limit의 시간을 기다릴수 있는 api를 호출 할 수 있게 만들어주면 서비스 관점에서 좋을거같다는 생각을 했다.  
+Hystrix는 현재 넷플릭스에서 지원을 중단한 상태라고 한다.  
+Hystrix보단 resilience4j를 사용 하도록 권고하고 있는데 아래 글을 보면서 공부하면 좋을듯 하다.  
+[resilience4j](https://dlsrb6342.github.io/2019/06/03/Resilience4j%EB%9E%80/)  
 
 ### 출처
 [선언형 프로그래밍](https://codechaser.tistory.com/81)  
 [웹 서비스](https://ko.wikipedia.org/wiki/%EC%9B%B9_%EC%84%9C%EB%B9%84%EC%8A%A4)  
 [우아한 feign 적용기](https://techblog.woowahan.com/2630/)  
-[connect - read timeout](https://inyl.github.io/programming/2017/12/02/timeout.html)
-[Feign Client 적용](https://055055.tistory.com/93)
+[connect - read timeout](https://inyl.github.io/programming/2017/12/02/timeout.html)  
+[Feign Client 적용](https://055055.tistory.com/93)  
