@@ -130,7 +130,7 @@ public class FeignConfiguration {
 그리고 Controller를 만들었다.  
 ``` java
 @RestController
-public class SummonerController {
+ public class SummonerController {
 
     @Autowired
     RiotApi riotApi;
