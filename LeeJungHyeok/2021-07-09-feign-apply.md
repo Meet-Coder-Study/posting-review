@@ -185,7 +185,7 @@ Circuit Breaker Pattern(마틴 파울러)
 ```
 fallback, fallbackFactory의 경우 configuration과 같이 class를 만들어서 적용해주면 됬는데 rate limit에 걸리게 되면 rate limit의 시간을 기다릴수 있는 api를 호출 할 수 있게 만들어주면 서비스 관점에서 좋을거같다는 생각을 했다.  
 Hystrix는 현재 넷플릭스에서 지원을 중단한 상태라고 한다.  
-Hystrix보단 resilience4j를 사용 하도록 권고하고 있는데 아래 글을 보면서 공부하면 좋을듯 하다.  
+Hystrix보단 resilience4j를 사용 하도록 권고하고 있는데 아래 글을 보면서 공부하면 좋을듯 하다.
 [resilience4j](https://dlsrb6342.github.io/2019/06/03/Resilience4j%EB%9E%80/)  
 
 ### 출처
