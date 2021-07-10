@@ -91,10 +91,10 @@ public class Question {
     private String title;
     private String contents;
     private Long writerId;
-    private final boolean deleted = false;
+    private boolean deleted = false;
     @OneToMany
     //@JoinColumn(name = "answer_id") 
-    private final List<Answer> answers = new ArrayList<>();
+    private List<Answer> answers = new ArrayList<>();
 }
 ```
 
@@ -244,10 +244,10 @@ public class Question {
   private String title;
   private String contents;
   private Long writerId;
-  private final boolean deleted = false;
+  private boolean deleted = false;
   @OneToMany
   @JoinColumn(name = "answer_id")
-  private final List<Answer> answers = new ArrayList<>();
+  private List<Answer> answers = new ArrayList<>();
 }
 ```
 
