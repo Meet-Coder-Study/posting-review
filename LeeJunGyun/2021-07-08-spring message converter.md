@@ -11,12 +11,67 @@
     - client 에서 /test GET Method 를 호출했습니다. (conetent-type = 'application/json')
     - spring 엔진에서는 json 에 맞는 MessageConverter 를 찾아 자바로 컨버팅 해줍니다. 이것을 Unmarshal 이라고 합니다.
     - Unmarshal 은 직렬화된 (byte) 것을 오브젝트로 (자바 객체) 변환하는 것을 의미합니다.
+
+#### 변환 소스
+- 아래 소스를 보면 messageConverters 를 for 문으로 돌리면서 canRead 메소드를 수행하여 적절한 MessageConverter 를 찾습니다.
+- canRead 메소드 또한 제공하고 있는 mediaTypes 조회해서 적절한 mediaType 을 찾습니다.  
+
+```java
+
+@Override
+@SuppressWarnings({"unchecked", "rawtypes", "resource"})
+public T extractData(ClientHttpResponse response) throws IOException {
+	MessageBodyClientHttpResponseWrapper responseWrapper = new MessageBodyClientHttpResponseWrapper(response);
+	if (!responseWrapper.hasMessageBody() || responseWrapper.hasEmptyMessageBody()) {
+		return null;
+	}
+	MediaType contentType = getContentType(responseWrapper);
+
+	try {
+		for (HttpMessageConverter<?> messageConverter : this.messageConverters) {
+			if (messageConverter instanceof GenericHttpMessageConverter) {
+				GenericHttpMessageConverter<?> genericMessageConverter =
+						(GenericHttpMessageConverter<?>) messageConverter;
+				if (genericMessageConverter.canRead(this.responseType, null, contentType)) {
+					if (logger.isDebugEnabled()) {
+						ResolvableType resolvableType = ResolvableType.forType(this.responseType);
+						logger.debug("Reading to [" + resolvableType + "]");
+					}
+					return (T) genericMessageConverter.read(this.responseType, null, responseWrapper);
+				}
+			}
+			if (this.responseClass != null) {
+				if (messageConverter.canRead(this.responseClass, contentType)) {
+					if (logger.isDebugEnabled()) {
+						String className = this.responseClass.getName();
+						logger.debug("Reading to [" + className + "] as \"" + contentType + "\"");
+					}
+					return (T) messageConverter.read((Class) this.responseClass, responseWrapper);
+				}
+			}
+		}
+	}
+
+
+    protected boolean canRead(@Nullable MediaType mediaType) {
+		if (mediaType == null) {
+			return true;
+		}
+		for (MediaType supportedMediaType : getSupportedMediaTypes()) {
+			if (supportedMediaType.includes(mediaType)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+```
+
          
 ## server 에서 client 로 response 보낼 때 메시지 변환 과정
 - server 에서 client 로 json 데이터를 보낼려 할 때, server 의 spring 엔진에서는 request 에 담겨진 header 의 'Accept' 를 살펴봅니다.
 - spring 엔진에서는 이 정보를 통해 response 를 어떤 MessageConvert 를 이용해서 데이터를 보낼지 결정합니다.
 - 이를 marshal 이라고 하며, 오브젝트를 (자바 객체) 직렬화하는 (byte) 것입니다.  
-
 
 
 ## spring @RequestBody, @ResponseBody
