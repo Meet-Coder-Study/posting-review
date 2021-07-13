@@ -13,8 +13,7 @@
 - 하지만 기존 모델(OSI 참조 모델)의 복잡성과 중복성을 해결하기 위해 TCP/IP 모델(인터넷 표준 모델)을 도입해서 네트워크 프로토콜로 사용하기 시작했다.
 - TCP/IP 모델의 경우 아래와 같이 5계층을 Layering하여 구성 되어 있다.
 - (물리 계층+데이터링크 계층)을 합쳐서 네트워크 인터페이스 계층라고 한다.
-![image](https://user-images.githubusercontent.com/64846408/125461464-8d141906-3416-4631-992b-7c17bd824609.png)
-![][https://user-images.githubusercontent.com/64846408/125461703-1f15f3f0-775d-4400-b4f9-2a44d0ea2bd8.png]
+![image](https://user-images.githubusercontent.com/64846408/125462460-d4d3c033-ae30-434f-a80f-9f16ae6b2fee.png)![image](https://user-images.githubusercontent.com/64846408/125461703-1f15f3f0-775d-4400-b4f9-2a44d0ea2bd8.png)
 ### 네트워크 인터페이스 계층
 - 라우터 간의 신뢰성 있는 데이터 전송을 담당하는 계층이다. 즉, 흔히 알고 있는 랜카드(NIC)를 이용해서 해당 계층에서 통신을 진행한다.
 - 또한 MAC 주소가 데이터 링크 계층에서 이용된다.
@@ -32,13 +31,13 @@
 - 포워딩 테이블에 존재하는 IP주소를 앞에서부터 많이 겹치는 Link Interface로 전송하는 방식이다.
 - 아래의 경우 `11001000 00010111 00011000 101010101`를 목적지 IP주소로 가지면, 1번 Link-Interface 로 보내진다.
 - Link-Interface는 다음 차례의 라우터라고 보면된다.
-![][image-3]
+![image](https://user-images.githubusercontent.com/64846408/125462326-74368602-054b-4317-b25d-e58c66f657c1.png)
 
 ### 전송 계층(Transport Layer)
 - TCP 또는 UDP 프로토콜을 사용해서 Payload에 TCP 헤더를 붙여 세그먼트를 전송한다.
 - TCP 세그먼트에는 포트 넘버에 대한 정보도 포함 되어 있다.
 - 포트와 IP주소의 차이점은 공통적인 아파트의 동호수라고 보면된다. 아파트 주소가 IP주소라 볼 수 있고, 해당 아파트의 동호수가 포트넘버라고 보면된다.
-![][image-4]
+![image](https://user-images.githubusercontent.com/64846408/125461464-8d141906-3416-4631-992b-7c17bd824609.png)
 
 ### 응용 계층(Application Layer)
 - 클라이언트와 가장 가까운 계층으로 클라이언트가 소프트웨어 어플리케이션과 통신할 수 있게 해준다.
