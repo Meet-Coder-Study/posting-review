@@ -13,7 +13,7 @@
 ```bash
   커넥션 유지
                          +---------------------------+
-                         |                           |                                         
+                         |                           |                           |                           |              
                          v                       +------+
   TCP 커넥션 오픈 ---->  HTTP 요청 ----> HTTP 응답 -- | wait |  --> TCP 커넥션 해제
   (3handshake)                                   +------+      (4handshake)
@@ -21,6 +21,9 @@
 ```          
 
 (정확히는 HTTP 1.0에서부터는 Keep-Alive라 지칭하고 HTTP 1.1에서부터는 Persistent Connection이라고 지칭한다)
+
+
+
 
 ### 2. HTTP 1.1의 지속커넥션
 
@@ -32,11 +35,12 @@ Connection: keep-alive
 ``` 
 하지만, 설계에 문제가 있어 잘 동작하지 않는 문제가 있었다고 한다.(일명 멍청한 프록시 문제가 발생했다고 함) 
 
-HTTP 1.1에서부터는 위의 문제를 개선하고 표준화된 기술로 되어 default로 지속 커넥션(keep-alive)가 활성화 되어있다. 클라이언트와 서버 모두 HTTP 1.1을 구현하고 있다면 지속커넥션을 사용할 수 있다. 
+HTTP 1.1에서부터는 위의 문제를 개선하고 표준화된 기술로 되어 default로 지속 커넥션(keep-alive)가 활성화 되어있다. 클라이언트와 서버 모두 HTTP 1.1을 구현하고 있다면 지속커넥션을 기본으로 사용하게 되어있다.  
    
 2.1) keep-alive 옵션
 - `max` : 한 커넥션에서 최대 요청 수   
 - `timeout` : 유휴상태에서의 keep-alive 유지시간(초 단위)
+
 
 2.2) 제한과 규칙 
  - 커넥션 해제시 응답 헤더에 `Connection: close`로 응답된다. 
@@ -56,13 +60,15 @@ HTTP 1.1에서부터는 위의 문제를 개선하고 표준화된 기술로 되
 
 
 ### 4. 간단한 테스트
-개념으로만 살펴보기에는 뭔가 아쉬워서 부족하지만 간단한 테스트를 진행하였다. nginx 웹서버에서 keep-alive를 활성화, 비활성화하여 개념과 
-비슷하게 동작하는지 간단하게 살펴보자.
+
+개념으로만 살펴보기에는 뭔가 아쉬워서 간단한 테스트를 진행하였다. nginx 웹서버에서 keep-alive 옵션값을 수정하여 위의 정리한 
+내용과 동일하게 동작하는지 간단하게 테스트해보겠다. 
   
-nginx에서 요청시 커넥션이 유지되는지 확인하기 위해서는 우선 로그 설정이 필요하다. nginx가 설치된 폴더 내부에 nginx.conf파일에서 
-로그를 수정한다. 
+nginx에서 요청시 커넥션이 유지되는지 확인하기 위한 로그설정과 keep-alive 옵션값인 `max`값과 `timeout`을 수정하기 위해 nginx가 설치된 폴더 내부에 nginx.conf파일에서 설정값을 변경한다.
 
 ```bash
+[nginx.conf 파일]
+
 http {
     include       mime.types;
     default_type  application/octet-stream;
@@ -72,45 +78,53 @@ http {
                           '"$connection $connection_requests"';
     #로그 저장 위치 
     access_log /opt/homebrew/var/log/nginx/connection.log  connection;
+
+    #...생략
+
+    #timeout값 설정 (default 65)
+    keepalive_timeout 65;
+    #max값 설정 (default 1000)
+    keepalive_requests 5;
+
 }
 #...생략
 ```
+ - `$conntcion` :  커넥션의 고유한 시리얼 넘버
+ - `$connection_requests` : 커넥션의 요청 수  
+ - `keepalive_timeout` :  유휴 상태에서의 커넥션이 유지되는 시간(초 단위) - keepalive 옵션인 timeout
+ - `keepalive_requests` : 한 커넥션에서의 최대 요청수 - keepalive 옵션인 max (
 
- $conntcion을 추가하면 커넥션의 시리얼 넘버를 확인할 수 있어 동일한 커넥션을 사용하는지 알아볼 수 있다. $connection_requests는 해당 커넥션에서 이루어진 요청수를 의미한다.  
- localhost:8080으로 여러 횟수 접속하면 위에 access_log를 설정한 `/opt/homebrew/var/log/nginx/connection.log`에서 
- 커넥션 시리얼 넘버가 유지되지는 확인이 가능하다.
+위와 같이 설정하고 nginx를 재시작한다.(mac 기준) 
 
- nginx에서는 keep-alive의 커넥션을 유지할 수 있는 최대요청수인 `max`값은 default로 1000으로 잡혀있다. 테스트를 위해 5로 수정하고 테스트해보자 
+```bash
+sudo nginx -s reload 
+```
+
+총 12번의 localhost로 접속 시 아래와 같은 로그가 출력된다.   
+![로그출력](./images/로그.png)
+
+커넥션 넘버별로 최대 요청수 5회 시 다음 요청에 대해서 새로운 커넥션이 맺어진걸 확인 할 수 있다. 
+
+추가로, 커넥션이 해제되는 응답값을 확인하기 위하여 Jmeter라는 테스트 도구를 통해서 4번째 요청과
+5번째 요청에 대한 응답값을 확인해봤다.
+![4번째_요청](./images/4번째_요청.png)
+![5번째_요청](./images/5번째_요청.png)
+
+아직 최대 요청수를 넘어서지 않았기 때문에 4번째 요청에 대한 응답 헤더값은 Connection: keep-alive로 설정되어있고
+최대 요청수의 5번째 요청은 응답 헤더값에 Connection:close 값이 추가되어 이 후 후속요청은 새로운 커넥션이 맺어진걸 확인 할 수 있다. 
+
+### 정리
+지속커넥션(keep-alive)은 반복적인 커넥션 생성 비용을 낮추고 no handshaking을 통한 네트워크 속도 증가 등의 이점이 있다. 
+하지만, 유휴상태에서의 리소스를 계속 점유하고 있어 적절한 max request 설정과 timeout 설정이 필요할 것으로 보인다. 
+
+이번 주제를 공부하면서 tcp keep-alive와 http keep-avlie의 개념을 나눠서 다루는데 아직 이 두가지의 차이점은 파악하지 못하였다. 또한,
+마지막에 성능테스트도 해보고 싶었는데 아직 성능테스트에 대한 배경지식이 없어 못한 점이 아쉬웠다. 
 
 
- ```bash
-127.0.0.1 - - [13/Jul/2021:22:05:33 +0900]  304 "22 1"
-127.0.0.1 - - [13/Jul/2021:22:05:35 +0900]  304 "22 2"
-127.0.0.1 - - [13/Jul/2021:22:05:36 +0900]  304 "22 3"
-127.0.0.1 - - [13/Jul/2021:22:05:37 +0900]  304 "22 4"
-127.0.0.1 - - [13/Jul/2021:22:05:37 +0900]  304 "22 5"
- ```  
-시리얼넘버 22번 커넥션이 총 5번 요청을 처리한 로그이다.
-
-
-
-[ 참고 ]  
-
+[Reference]  
  - [https://www.youtube.com/watch?v=MBgEhSUOlXo&t=47s](https://www.youtube.com/watch?v=MBgEhSUOlXo&t=47s)
-
-[https://blog.insightdatascience.com/learning-about-the-http-connection-keep-alive-header-7ebe0efa209d](https://blog.insightdatascience.com/learning-about-the-http-connection-keep-alive-header-7ebe0efa209d)
-
-
-
--https://datatracker.ietf.org/doc/html/rfc2616#page-44
-
-https://evan-moon.github.io/2019/11/17/tcp-handshake/
-
-
 - [위키피디아](https://en.wikipedia.org/wiki/HTTP_persistent_connection#HTTP_1.0)
 - [Jmeter사용법 참고 유투브](https://www.youtube.com/watch?v=1AyxqIePusA&t=321s)
 - [Nginx 공식문서](http://nginx.org/en/docs/)
-http://tlog.tammolo.com/blog/4-cf6edc94-2ac1-4b59-b7bd-99b5fbb00287/
-- [https://www.geeksforgeeks.org/http-non-persistent-persistent-connection/](https://www.geeksforgeeks.org/http-non-persistent-persistent-connection)
-[https://whatisthenext.tistory.com/123](https://whatisthenext.tistory.com/123)
-- https://feel5ny.github.io/2019/09/04/HTTP_004_02/
+- [https://evan-moon.github.io/2019/11/17/tcp-handshake/](https://evan-moon.github.io/2019/11/17/tcp-handshake/)
+
