@@ -2,17 +2,20 @@
 
 ### 1. Keep-Alive 사용이유
 
-일반적인 웹 환경에서는 TCP 프로토콜 기반으로 HTTP 요청과 응답이 이루어진다. TCP에서는 신뢰성 있는 데이터 통신을 위해 접속 가능한 상태를 만들기 위한 3핸드 쉐이크 과정과 안전하게 접속종료를 위한 4핸드 쉐이크 과정을 거치게 된다.
+일반적인 웹 환경에서는 TCP 프로토콜 기반으로 HTTP 요청과 응답이 이루어진다. 
 
 ```bash
   TCP 커넥션 오픈 ---->  HTTP 요청 ----> HTTP 응답 ----> TCP 커넥션 해제
   (3 핸드쉐이크)                                       (4핸드 쉐이크)
 ```
 
-핸드쉐이크를 통한 안정적이고 신뢰성 있는 데이터 통신이 TCP의 장점이지만, 요청 수가 많을 경우 요청 수에 따라 커넥션이 생성되기 때문에 CPU 사용률 증가와 매 요청마다 이루어지는 핸드쉐이크 과정으로 인해 네트워크 속도가 느려지고, 커넥션 해제 과정 중 TIME_WAIT 소켓 문제 가능성이 조금 더 높은 빈도로 발생할 수 있는 단점이 있다.
-keep-alive와 관련된 내용을 찾아보면서 TCP의 단점으로 가장 많이 다루는 주제가 [지연시작(TCP혼잡제어)](https://evan-moon.github.io/2019/11/26/tcp-congestion-control/)와 [TIME_WAIT 문제](https://www.youtube.com/watch?v=MBgEhSUOlXo&t=359s)이었다.
-(다른분들이 잘 정리해놓은 내용이 있어 자세한 내용은 링크 참고 )
+ TCP 프로토콜은 데이터의 신뢰성을 보장하기 위해 핸드쉐이크 과정과 혼잡제어, 흐름제어 등 여러가지 일을 수행한다.
+이런 TCP의 기술들 덕분에 데이터의 안정성과 신뢰성을 보장 받지만, 일종의 트레이드 오프처럼 일부 아쉬운 단점들 또한 존재한다.   
 
+ 그 중에서 keep-alive와 관련된 내용을 찾아보면 TCP의 단점으로 대표되는 주제가 [지연시작(TCP혼잡제어)](https://evan-moon.github.io/2019/11/26/tcp-congestion-control/)과 [TIME_WAIT 문제](https://www.youtube.com/watch?v=MBgEhSUOlXo&t=359s)가 있다.   
+ (다른분들이 잘 정리해놓은 내용이 있어 자세한 내용은 링크 참고)
+
+ 이러한 TCP의 단점으로 인해 매회 요청시 잦은 지연시작이 발생하여 네트워크 속도가 저하되고, 커넥션 해제 중 TIME_WAIT 문제의 빈도수가 높아지게 된다. 또한, 요청 수에 따른 커넥션 생성은 CPU 사용률 증가 문제도 발생하게 된다. 
 
 위와 같은 문제점을 보완하기 위하여 여러 요청에 대해 단일 커넥션을 유지(재사용)하기 위한 기술인 Keep-alive 혹은 Persistent Connection 기술이 나오게 되었다.
 ```bash
@@ -24,9 +27,6 @@ keep-alive와 관련된 내용을 찾아보면서 TCP의 단점으로 가장 많
   (3 핸드쉐이크)                                    +------+      (4 핸드쉐이크)
                                                  (timeout)
 ```          
-
-(정확히는 HTTP 1.0에서부터는 Keep-Alive라 지칭하고 HTTP 1.1에서부터는 Persistent Connection이라고 지칭한다)
-
 
 ### 2. HTTP 1.1의 지속커넥션
 
@@ -98,8 +98,8 @@ http {
 ```
  - `$conntcion` :  커넥션의 고유한 시리얼 넘버
  - `$connection_requests` : 커넥션의 요청 수  
- - `keepalive_timeout` :  유휴 상태에서의 커넥션이 유지되는 시간(초 단위) - keepalive 옵션인 timeout
- - `keepalive_requests` : 한 커넥션에서의 최대 요청수 - keepalive 옵션인 max (
+ - `keepalive_timeout` :  유휴 상태에서의 커넥션이 유지되는 시간(초 단위) = keepalive 옵션인 timeout
+ - `keepalive_requests` : 한 커넥션에서의 최대 요청수 = keepalive 옵션인 max 
 
 위와 같이 설정하고 nginx를 재시작한다.(mac 기준) 
 
@@ -118,7 +118,7 @@ sudo nginx -s reload
 ![5번째_요청](./images/5번째_요청.png)
 
 아직 최대 요청수를 넘어서지 않았기 때문에 4번째 요청에 대한 응답 헤더값은 Connection: keep-alive로 설정되어있고
-최대 요청수의 5번째 요청은 응답 헤더값에 Connection:close 값이 추가되어 이 후 후속요청은 새로운 커넥션이 맺어진걸 확인 할 수 있다. 
+최대 요청수의 5번째 요청은 응답 헤더값에 Connection:close 값이 추가되어 후속요청은 새로운 커넥션이 맺어진걸 확인 할 수 있다. 
 
 ### 5. 정리
 지속커넥션(keep-alive)은 반복적인 커넥션 생성 비용을 낮추고 no handshaking을 통한 네트워크 속도 증가 등의 이점이 있다. 
