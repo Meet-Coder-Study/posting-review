@@ -86,7 +86,7 @@ Browser를 제어하는 방식이 셀레늄과는 다른 webdriver를 사용하�
 여기서 셀레늄과 반하는 장점으로는 Puppeteer를 설치할 때, Chromium이 번들로 제공됩니다. 즉, 셀레늄에서의 호환되는 browser driver를 설치/업그레이드  해줘야 하는 번거로움을 여기선 자동호환되는 브라우저로 문제를 해결 해줍니다. 셀레늄에서 이런 문제를 해결하기 위해  크롬드라이버를 자동으로 설치해주는 라이브러리를 설치할 수 있지만, 이런 과정 또한 Puppeteer에선 불필요한 과정이므로, Puppeteer가 프로젝트를 시작하기에 더 쉬운 이점이 있습니다. 하지만 지원되는 브라우저는 Chrome에 국한 됩니다. 최근 firefox를 지원하긴 했지만, [is Puppeteer Firefox ready yet?](https://puppeteer.github.io/ispuppeteerfirefoxready/)을 참고하는게 좋을 것 같습니다. 다양한 브라우저에서 테스팅을 진행하기가 어렵습니다. 그래서인지 Puppeteer는 테스트를 위한 툴보다는 automation 툴에 더 가깝다는 글, 정보들을 볼 수 있습니다. 즉, 스크래핑이나 pdf를 만들어내는 일들에 빠른 일처리를 합니다.
 
 ![webDriver](./images/protocol.png)  
-[이미지 발췌](https://yogendra.me/2017/10/28/puppeteer-no-strings-attached/) 
+이미지 발췌 : [yogendra.me](https://yogendra.me/2017/10/28/puppeteer-no-strings-attached/) 
 
 ## Playwright
 
