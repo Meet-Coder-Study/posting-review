@@ -3,17 +3,22 @@
 ### 1. Keep-Alive 사용이유
 
 일반적인 웹 환경에서는 TCP 프로토콜 기반으로 HTTP 요청과 응답이 이루어진다. TCP에서는 신뢰성 있는 데이터 통신을 위해 접속 가능한 상태를 만들기 위한 3핸드 쉐이크 과정과 안전하게 접속종료를 위한 4핸드 쉐이크 과정을 거치게 된다.
+
 ```bash
   TCP 커넥션 오픈 ---->  HTTP 요청 ----> HTTP 응답 ----> TCP 커넥션 해제
   (3 핸드쉐이크)                                    (4핸드 쉐이크)
 ```
+
 핸드쉐이크를 통한 안정적이고 신뢰성 있는 데이터 통신이 TCP의 장점이지만, 요청 수가 많을 경우 요청 수에 따라 커넥션이 생성되기 때문에 CPU 사용률 증가와 매 요청마다 이루어지는 핸드쉐이크 과정으로 인해 네트워크 속도가 느려지고, 커넥션 해제 과정 중 TIME_WAIT 소켓 문제 가능성이 조금 더 높은 빈도로 발생할 수 있는 단점이 있다.
+keep-alive와 관련된 내용을 찾아보면서 TCP의 단점으로 가장 많이 다루는 주제가 [지연시작(TCP혼잡제어)](https://evan-moon.github.io/2019/11/26/tcp-congestion-control/)와 [TIME_WAIT 문제](https://www.youtube.com/watch?v=MBgEhSUOlXo&t=359s)이었다.
+(다른분들이 잘 정리해놓은 내용이 있어 자세한 내용은 링크 참고 )
+
 
 위와 같은 문제점을 보완하기 위하여 여러 요청에 대해 단일 커넥션을 유지(재사용)하기 위한 기술인 Keep-alive 혹은 Persistent Connection 기술이 나오게 되었다.
 ```bash
   커넥션 유지
                          +---------------------------+
-                         |                           |                           |                           |              
+                         |                           |                                         
                          v                       +------+
   TCP 커넥션 오픈 ---->  HTTP 요청 ----> HTTP 응답 -- | wait |  --> TCP 커넥션 해제
   (3handshake)                                   +------+      (4handshake)
@@ -21,8 +26,6 @@
 ```          
 
 (정확히는 HTTP 1.0에서부터는 Keep-Alive라 지칭하고 HTTP 1.1에서부터는 Persistent Connection이라고 지칭한다)
-
-
 
 
 ### 2. HTTP 1.1의 지속커넥션
@@ -42,9 +45,12 @@ HTTP 1.1에서부터는 위의 문제를 개선하고 표준화된 기술로 되
 - `timeout` : 유휴상태에서의 keep-alive 유지시간(초 단위)
 
 
-2.2) 제한과 규칙 
- - 커넥션 해제시 응답 헤더에 `Connection: close`로 응답된다. 
- - 정확한 Content-length값 혹은 청크 인코딩(chunked transfer encoding)으로 처리
+2.2) 제한과 규칙
+  요청 당 하나의 커넥션으로 처리되는 HTTP 1.0에서는 HTTP 메시지의 끝을 커넥션이 종료되는 기점으로 알 수 있었다. 하지만, HTTP1.1에서부터는 여러 요청에 대해 커넥션을 유지하기 때문에 커넥션이 종료되는 기점으로 HTTP 메시지에 대한 끝부분을 알 수 없게된다.
+  
+  이러한 지속적인 커넥션 때문에 HTTP `Content-length` 헤더값을 사용하여 HTTP 메세지 본문의 끝점을 식별하거나,
+  [청크 인코딩(패키징된 데이터)](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Transfer-Encoding) 헤더를 사용하여 지속커넥션을 사용할 수 있다.  
+
 
 ### 3. 이점 및 단점
 
@@ -127,4 +133,4 @@ sudo nginx -s reload
 - [Jmeter사용법 참고 유투브](https://www.youtube.com/watch?v=1AyxqIePusA&t=321s)
 - [Nginx 공식문서](http://nginx.org/en/docs/)
 - [https://evan-moon.github.io/2019/11/17/tcp-handshake/](https://evan-moon.github.io/2019/11/17/tcp-handshake/)
-
+- [https://mkki.github.io/http/2018/02/14/http-the-definitive-guide-1-15.html](https://mkki.github.io/http/2018/02/14/http-the-definitive-guide-1-15.html)
