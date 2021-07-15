@@ -19,8 +19,6 @@ Safari | Webkit | Apple
 FireFox | Gecko | Mozilla
 Opera| Webkit | Apple
 
-  
-같은 렌더링 엔진을 사용하는 브라우저는 비슷한 행동 양식을 가지므로 Edge 환경을 테스팅 한다고 한다면, Chrome과 같은 엔진을 사용하므로 두 군데 모두 테스팅할 수고를 덜게 됩니다.  
 
 브라우저 자동화의 강점은 매뉴얼로 시행될 테스팅 스토리를 그대로 자동화로 실현할 수 있다는 점입니다.  
 
