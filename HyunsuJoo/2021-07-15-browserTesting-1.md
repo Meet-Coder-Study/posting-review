@@ -39,12 +39,12 @@ Opera| Webkit | Apple
 - [Erik](http://phimage.github.io/Erik/) -webkit 지원 
 - [triflejs](https://triflejs.org/)
 
-**.
 
-위에서 제시한 헤드리스 브라우저를 구동/제어 하기위해선 cli 또는 프로그래밍 언어로 쓰여진 테스트 스크립트 방법이 있습니다. 헤드리스 크롬을 이용하여 스크린샷을 찍는 경우의 예를 들어보겠습니다. Mac and Linux ( Chrome 59부터 ) Windows( Chrome 60 부터)의 환경에서는
-(headlessChrome 설치 및 사용에 대한 자세한 설명입니다 )[https://developers.google.com/web/updates/2017/04/headless-chrome]
 
-1. cli로 직접적으로 headless browser로 접근할 수 있습니다.
+위에서 제시한 헤드리스 브라우저를 구동/제어 하기위해선 cli 또는 프로그래밍 언어로 쓰여진 테스트 스크립트 방법이 있습니다. 헤드리스 크롬을 이용하여 스크린샷을 찍는 경우의 예를 들어보겠습니다. (Mac and Linux ( Chrome 59부터 ) Windows( Chrome 60 부터)의 환경부터 가능)
+[참고 자료 : headlessChrome 설치 및 사용에 대한 자세한 설명입니다](https://developers.google.com/web/updates/2017/04/headless-chrome)
+
+1. cli로 직접적으로 headless browser로 접근할 수 있습니다. 
 ``` 
 chrome \
   --headless \                   # Runs Chrome in headless mode.
@@ -52,11 +52,18 @@ chrome \
   --remote-debugging-port=9222 \
   https://www.chromestatus.com   # URL to open. Defaults to about:blank.
 ```
+```
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+```
+
 현재 페이지에 대한 PDF파일을 만드는 기능을 사용하고 싶다면,  
 
 ```
 chrome --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/
 ```
+파일은 현재 디렉토리에 저장됩니다.  
 
 2. 또는 Puppeteer(Node js library)라는 툴을 사용하게 된다면 JavaScript 언어를 이용하여 프로그래밍 접근방식도 가능합니다.
 Puppeteer라는 라이브러리 설치후,
@@ -74,11 +81,9 @@ await browser.close();
 })();
 ```
 
-3. 헤드리스 크롬 브라우저는 또한 Selenium이라는 툴을 통해서도 가능합니다. Selenium 의 경우 WebDriver 를 통해서 브라우저를 제어 할 수 있습니다. Selenium WebDriver란 다양한 브라우저를 자동화 테스트 할 수 있도록 도와주는 테스트 프레임워크 입니다. 그래서 각 브라우저에는 응용프로그램이 실행되는 각각의 드라이버 들이 있습니다. 더 자세한 설명은 이 분 설명이 좋은것 같습니다. WebDriver는 WebDriver JSON Wire Protoco라는 프로토콜을 사용하여 브라우저 (Chrome/Firefox/Safari/IE)와 통신하거나 메시지를 보내고, 여기서의 chrome Driver 는 Chromium 과의 통신을 위한 WebDriver의 유선 프로토콜을 구현하는 독립된 실행가능한 서버입니다. 참고자료 : stackoverflow: How does chromedriver.exe work on a core and fundamental level
-ChromeDriver 2.32 uses Chrome 61 and works well with headless Chrome.
+3. 헤드리스 크롬 브라우저는 또한 Selenium이라는 툴을 통해서도 가능합니다. Selenium 의 경우 WebDriver 를 통해서 브라우저를 제어 할 수 있습니다. Selenium WebDriver란 다양한 브라우저를 자동화 테스트 할 수 있도록 도와주는 테스트 프레임워크 입니다. 그래서 각 브라우저에는 응용프로그램이 실행되는 각각의 드라이버 들이 있습니다.[더 자세한 설명은 이 분 설명이 좋은것 같습니다](https://testmanager.tistory.com/103). WebDriver는 WebDriver JSON Wire Protoco라는 프로토콜을 사용하여 브라우저 (Chrome/Firefox/Safari/IE)와 통신하거나 메시지를 보내고, 여기서의 chrome Driver 는 Chromium 과의 통신을 위한 WebDriver의 유선 프로토콜을 구현하는 독립된 실행가능한 서버입니다. [참고자료 : stackoverflow: How does chromedriver.exe work on a core and fundamental level](https://sqa.stackexchange.com/questions/28358/how-does-chromedriver-exe-work-on-a-core-and-fundamental-level)
 
-(selenium 에서 headlessChrome 설치 및 사용에 대한 자세한 설명입니다 )[https://developers.google.com/web/updates/2017/04/headless-chrome]
-
+  [selenium 에서 headlessChrome 설치 및 사용에 대한 자세한 설명입니다](https://developers.google.com/web/updates/2017/04/headless-chrome)
 
 헤드리스 브라우저들을 사용할 수 있는 API를 제공하는 라이브러리들을 몇가지 추렸습니다. 
 
@@ -97,8 +102,7 @@ ChromeDriver 2.32 uses Chrome 61 and works well with headless Chrome.
 **지원 브라우저** : Chromium/Chrome, Firefox, Edge, Safari,Opera, Internet Explorer   
 
 Selenium은 2004년부터 릴리즈 되었으며, 지원언어 및 지원 대상 브라우저 측면에서 가장 포괄적으로 제공합니다. 그래서 가장 널리 알려져 있으며 많이 쓰이기도 합니다.  
-Selenium은 중간 프록시인 WebDriver 프로토콜을 통해 브라우저와 상호작용합니다.지원되는 각 브라우저에는 WebDriver 프로토콜이 있습니다. 예를 들어, Chrome의 경우 [ChromeDriver](https://chromedriver.chromium.org/downloads), Safari는 [Safaridriver](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/safari/SafariDriver.html) , Firefox는 [Geckodriver 가](https://firefox-source-docs.mozilla.org/testing/geckodriver/index.html) 있습니다. 이 WebDriver 프로토콜에 대해 알아야 할 한 가지는 브라우저 버전에 맞는 특정 프로토콜을 설치해야 한다는 것입니다. 즉 다운로드하여 스크립트나 앱에서 참조해야 합니다. 다음에 설명할 puppeteer나 playwright 보단 복잡성이 조금 추가되는 일이지만 프로젝트의 요구사항에 따라 다양한 브라우저와 다양한 버전을 지원 하여 웹 애플리케이션의 브라우저 간 테스트를 가능하게 합니다.  
-  
+앞서 언급하였듯이 다른 브라우저의 환경에서 테스팅 하려면, 드라이버를 설치해야합니다. 예를 들어, Chrome의 경우 [ChromeDriver](https://chromedriver.chromium.org/downloads), Safari는 [Safaridriver](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/safari/SafariDriver.html) , Firefox는 [Geckodriver 가](https://firefox-source-docs.mozilla.org/testing/geckodriver/index.html) 있습니다. 이 WebDriver 에 대해 알아야 할 한 가지는 브라우저 드라이버를 설치하여 한다는 것입니다. 다음에 설명할 puppeteer나 playwright 보단 복잡성이 조금 추가되는 일이지만 프로젝트의 요구사항에 따라 다양한 브라우저와 다양한 버전을 지원 하여 웹 애플리케이션의 브라우저 간 테스트를 가능하게 합니다.  
 Selenium은 헤드리스 브라우저 자동화도 지원합니다. SeleniumWebDriver3 이전 버전에서는 HTMLUnitDriver를 이용하여 헤드리스 브라우저를 이용하였고, SeleniumWebDriver3 이후 부터는 실제브라우저의 헤드리스 버전도 지원합니다. GUI가 없기 때문에 사용자는 테스트 실행 화면을 볼 수 없습니다.  
 
 ## Puppeteer
