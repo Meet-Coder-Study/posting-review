@@ -39,19 +39,56 @@ Opera| Webkit | Apple
 - [Erik](http://phimage.github.io/Erik/) -webkit 지원 
 - [triflejs](https://triflejs.org/)
 
+**.
 
-이런 브라우저에는 각각 지원되는 프로그래밍 언어가 있으므로, 그 프로그래밍 언어를 사용하여 cli 와 스크립트를 사용하여 제어 됩니다. 그리고 **이 브라우저들이 작동 하려면 컨트롤러 또는 드라이버가 필요합니다**.
+위에서 제시한 헤드리스 브라우저를 구동/제어 하기위해선 cli 또는 프로그래밍 언어로 쓰여진 테스트 스크립트 방법이 있습니다. 헤드리스 크롬을 이용하여 스크린샷을 찍는 경우의 예를 들어보겠습니다. Mac and Linux ( Chrome 59부터 ) Windows( Chrome 60 부터)의 환경에서는
+(headlessChrome 설치 및 사용에 대한 자세한 설명입니다 )[https://developers.google.com/web/updates/2017/04/headless-chrome]
 
-몇가지를 추려보자면, 
+1. cli로 직접적으로 headless browser로 접근할 수 있습니다.
+``` 
+chrome \
+  --headless \                   # Runs Chrome in headless mode.
+  --disable-gpu \                # Temporarily needed if running on Windows.
+  --remote-debugging-port=9222 \
+  https://www.chromestatus.com   # URL to open. Defaults to about:blank.
+```
+현재 페이지에 대한 PDF파일을 만드는 기능을 사용하고 싶다면,  
+
+```
+chrome --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/
+```
+
+2. 또는 Puppeteer(Node js library)라는 툴을 사용하게 된다면 JavaScript 언어를 이용하여 프로그래밍 접근방식도 가능합니다.
+Puppeteer라는 라이브러리 설치후,
+
+```javascript
+const puppeteer = require('puppeteer');
+
+(async() => {
+const browser = await puppeteer.launch();
+const page = await browser.newPage();
+await page.goto('https://www.chromestatus.com', {waitUntil: 'networkidle2'});
+await page.pdf({path: 'page.pdf', format: 'A4'});
+
+await browser.close();
+})();
+```
+
+3. 헤드리스 크롬 브라우저는 또한 Selenium이라는 툴을 통해서도 가능합니다. Selenium 의 경우 WebDriver 를 통해서 브라우저를 제어 할 수 있습니다. Selenium WebDriver란 다양한 브라우저를 자동화 테스트 할 수 있도록 도와주는 테스트 프레임워크 입니다. 그래서 각 브라우저에는 응용프로그램이 실행되는 각각의 드라이버 들이 있습니다. 더 자세한 설명은 이 분 설명이 좋은것 같습니다. WebDriver는 WebDriver JSON Wire Protoco라는 프로토콜을 사용하여 브라우저 (Chrome/Firefox/Safari/IE)와 통신하거나 메시지를 보내고, 여기서의 chrome Driver 는 Chromium 과의 통신을 위한 WebDriver의 유선 프로토콜을 구현하는 독립된 실행가능한 서버입니다. 참고자료 : stackoverflow: How does chromedriver.exe work on a core and fundamental level
+ChromeDriver 2.32 uses Chrome 61 and works well with headless Chrome.
+
+(selenium 에서 headlessChrome 설치 및 사용에 대한 자세한 설명입니다 )[https://developers.google.com/web/updates/2017/04/headless-chrome]
+
+
+헤드리스 브라우저들을 사용할 수 있는 API를 제공하는 라이브러리들을 몇가지 추렸습니다. 
 
 - Selenium
 - Playwright
 - Puppeteer
 - Cypress
-- Python-Webkit
 - CasperJS
 
-더 많은 브라우저 드라이버 리스트는 [여기](https://reposhub.com/python/testing-codebases-and-generating-test-data/dhamaniasad-HeadlessBrowsers.html#articleHeader2)를 참조하시면 됩니다.
+더 많은 라이브러리 리스트는 [여기](https://reposhub.com/python/testing-codebases-and-generating-test-data/dhamaniasad-HeadlessBrowsers.html#articleHeader2)를 참조하시면 됩니다.
 
 ## Selenium  
 ---  
