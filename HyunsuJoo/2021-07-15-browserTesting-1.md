@@ -81,7 +81,7 @@ await browser.close();
 })();
 ```
 
-3. 헤드리스 크롬 브라우저는 또한 Selenium이라는 툴을 통해서도 가능합니다. Selenium 의 경우 WebDriver 를 통해서 브라우저를 제어 할 수 있습니다. Selenium WebDriver란 다양한 브라우저를 자동화 테스트 할 수 있도록 도와주는 테스트 프레임워크 입니다. 그래서 각 브라우저에는 응용프로그램이 실행되는 각각의 드라이버 들이 있습니다.[더 자세한 설명은 이 분 설명이 좋은것 같습니다](https://testmanager.tistory.com/103). WebDriver는 WebDriver JSON Wire Protoco라는 프로토콜을 사용하여 브라우저 (Chrome/Firefox/Safari/IE)와 통신하거나 메시지를 보내고, 여기서의 chrome Driver 는 Chromium 과의 통신을 위한 WebDriver의 유선 프로토콜을 구현하는 독립된 실행가능한 서버입니다. [참고자료 : stackoverflow: How does chromedriver.exe work on a core and fundamental level](https://sqa.stackexchange.com/questions/28358/how-does-chromedriver-exe-work-on-a-core-and-fundamental-level)
+3. 헤드리스 크롬 브라우저는 또한 Selenium이라는 툴을 통해서도 가능합니다. Selenium 의 경우 WebDriver 를 통해서 브라우저를 제어 할 수 있습니다. Selenium WebDriver란 다양한 브라우저를 자동화 테스트 할 수 있도록 도와주는 테스트 프레임워크 입니다.[더 자세한 설명은 이 분 설명이 좋은것 같습니다](https://testmanager.tistory.com/103). WebDriver는 WebDriver JSON Wire Protoco라는 프로토콜을 사용하여 브라우저 (Chrome/Firefox/Safari/IE)와 통신하거나 메시지를 보내게 됩니다. 각 브라우저에는 응용프로그램이 실행되는 각각의 드라이버 들이 있습니다. headless chrome의 경우 chrome Driver 가 필요합니다. chrome Driver란 Chromium() 과의 통신을 위한 WebDriver의 유선 프로토콜을 구현하는 독립된 실행가능한 서버입니다. [참고자료 : stackoverflow: How does chromedriver.exe work on a core and fundamental level](https://sqa.stackexchange.com/questions/28358/how-does-chromedriver-exe-work-on-a-core-and-fundamental-level)
 
   [selenium 에서 headlessChrome 설치 및 사용에 대한 자세한 설명입니다](https://developers.google.com/web/updates/2017/04/headless-chrome)
 
@@ -113,7 +113,7 @@ Selenium은 헤드리스 브라우저 자동화도 지원합니다. SeleniumWebD
 **지원 언어**: `JavaScript`  
 **지원 브라우저**: chrome, firefox 
 
-이름에서 유추 할 수 있듯이, 웹페이지에서 일부 작업을 수행하기 위해 조작하는 꼭두각시입니다. Puppeteer는 Selenium의  일부 단점에 대한 Google의 대응으로써 Chrome DevTools팀의 아이디어로 진행된 프로젝트 입니다.   
+이름에서 유추 할 수 있듯이, 웹페이지에서 일부 작업을 수행하기 위해 조작하는 꼭두각시입니다. Puppeteer는 Selenium의 일부 단점에 대한 Google의 대응으로써 Chrome DevTools팀의 아이디어로 진행된 프로젝트 입니다.   
 
 Browser를 제어하는 방식이 셀레늄과는 다른 webdriver를 사용하지 않고 [DevTools프로토콜](https://chromedevtools.github.io/devtools-protocol/)을 통해 Chrome 또는  Chromium을 제어합니다.
 
@@ -132,7 +132,7 @@ Browser를 제어하는 방식이 셀레늄과는 다른 webdriver를 사용하�
 **지원 언어**: `JavaScript`, `TypeScript`, `Java`, `Python`, `C#`  
 **지원 브라우저**: Chrome, Friefox, Safari
 
-Playwright 과 Puppeteer은 이름도 비슷할 뿐더러 깃헙 컨트리뷰터를 보면 중복되는 사람들이 보입니다. 그래서인지 제공되는 API가 거의 비슷합니다. 구글에 속해있었던 pupeteer팀이 마이크로소프트사로 이직했습니다.TestTalks를 다루는 Test Guild와 마이크로소프트사의 Playwright JS team 프로그램 매니저인 Arjun Attam와의 인터뷰에서 Playwright는 Puppeteer와는 다른 철학을 가지고 있다고 말헸습니다. 그의 말에 따르면이 툴은 E2E(End to End) 테스트와 테스트를 하는 디벨로퍼 들을 위해 만들어졌습니다. Playwright 팀은 종단 간 테스트에서 여러 브라우저의 테스팅 지원에 대한 갭을 발견하였고, Chromium, Webkit, Firefox를 지원하게 하였습니다(Puppeteer의 한계를 개선). 다양한 브라우저를 지원해주는 장점이 있지만 selenium에 비해선 브라우저의 다양한 버전을 지원하진 못합니다.  
+Playwright 과 Puppeteer은 이름도 비슷할 뿐더러 깃헙 컨트리뷰터를 보면 중복되는 사람들이 보입니다. 그래서인지 제공되는 API가 거의 비슷합니다. 구글에 속해있었던 pupeteer팀이 마이크로소프트사로 이직했습니다.TestTalks를 다루는 Test Guild와 마이크로소프트사의 Playwright JS team 프로그램 매니저인 Arjun Attam와의 인터뷰에서 Playwright는 Puppeteer와는 다른 철학을 가지고 있다고 말헸습니다. 그의 말에 따르면이 툴은 E2E(End to End) 테스트와 테스트를 하는 디벨로퍼 들을 위해 만들어졌습니다. Playwright 팀은 종단 간 테스트에서 여러 브라우저의 테스팅 지원에 대한 갭을 발견하였고, Chrome, Safari, Firefox를 지원하게 하였습니다(Puppeteer의 한계를 개선). 다양한 브라우저를 지원해주는 장점이 있지만 selenium에 비해선 브라우저의 다양한 버전을 지원하진 못합니다.  
 
 Playwright가 puppteer 보다 테스트를 위해 지원된 도구란 점을 알 수 있는 것은 테스트 러너를 지원하는 점과 codeless 테스트 자동화입니다. 테스트 코드를 작성하다 보면 반복적인 일들을 하게 되는데, 코드 없이 테스트 시나리오에 맞춰 브라우저에서 시행하는 것을 레코딩 하면 그것이 코드로 변환됩니다. 저도 영상으로만 봐서 얼마만큼 정확하게 코드로 변환할진 모르겠지만 정말 잘 된다면 생산성을 가속화 하는데 한몫할 것 같습니다. 또한 API를 직관적 만들어 낮은 러닝커브에도 접근할 수 있도록 하였습니다. Playwright는 selenium의 커뮤니티보단 작지만, 버그나 사용자들의 이용 편의성을 위해 slack 채널에서 매우 활동적으로 활동하고 있습니다.(물어보면 답변이 금방 옵니다!) 
 playwright은 selenium의 커뮤니티보단 작지만, 버그나 사용자들의 이용 편의성을 위해 slack 채널에서 매우 활동적으로 활동하고 있습니다.(물어보면 답변이 금방 옵니다!) 
@@ -147,3 +147,4 @@ playwright은 selenium의 커뮤니티보단 작지만, 버그나 사용자들�
 - [What is the Microsoft Playwright JS Automation (2021 Tutorial)](https://testguild.com/what-is-microsoft-playwright-js/)
 - [A list of (almost) all headless web browsers in existence](https://reposhub.com/python/testing-codebases-and-generating-test-data/dhamaniasad-HeadlessBrowsers.html#articleHeader2)
 - [Puppeteer - No Strings Attached](https://yogendra.me/2017/10/28/puppeteer-no-strings-attached/)
+- [[Browser] 브라우저 렌더링](https://beomy.github.io/tech/browser/browser-rendering/)
