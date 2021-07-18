@@ -15,7 +15,7 @@
  그 중에서 keep-alive와 관련된 내용을 찾아보면 TCP의 단점으로 대표되는 주제가 [지연시작(TCP혼잡제어)](https://evan-moon.github.io/2019/11/26/tcp-congestion-control/)과 [TIME_WAIT 문제](https://www.youtube.com/watch?v=MBgEhSUOlXo&t=359s)가 있다.   
  (다른분들이 잘 정리해놓은 내용이 있어 자세한 내용은 링크 참고)
 
- 이러한 TCP의 단점으로 인해 매회 요청시 잦은 지연시작이 발생하여 네트워크 속도가 저하되고, 커넥션 해제 중 TIME_WAIT 문제의 빈도수가 높아지게 된다. 또한, 요청 수에 따른 커넥션 생성은 CPU 사용률 증가 문제도 발생하게 된다. 
+ 커넥션 유지 옵션(Keep-alive)를 사용하지 않았을 때, 이러한 TCP의 단점으로 인하여 매회 요청시 잦은 지연시작이 발생하여 네트워크 속도가 저하되고, 커넥션 해제 중 TIME_WAIT 문제의 빈도수가 높아지게 된다. 또한, 요청 수에 따른 커넥션 생성은 CPU 사용률 증가 문제도 발생하게 된다. 
 
 위와 같은 문제점을 보완하기 위하여 여러 요청에 대해 단일 커넥션을 유지(재사용)하기 위한 기술인 Keep-alive 혹은 Persistent Connection 기술이 나오게 되었다.
 ```bash
