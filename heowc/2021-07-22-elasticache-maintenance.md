@@ -1,18 +1,17 @@
-> 최근 AWS에서 사용할 수 있는 Redis Service인 ElastiCache를 사용하면서 유지관리 기간(Maintenance)에 걸리면서 생긴 이슈를 해결한 방법에 대해서 알아보고자 합니다.
-
+> 최근 AWS의 Redis Service인 ElastiCache를 사용하면서 겪었던 유지관리 기간(Maintenance)에 대한 이슈 해결과정을 적어보고자 합니다.
 
 ### Maintenance 이란?
 
 > https://aws.amazon.com/ko/elasticache/elasticache-maintenance/
 
-보안 패치나 안정성을 위해 이용자가 지정한 시기에 노드를 교체하거나 클러스터가 다운되거나 특정 샤드의 노드들이 변경됩니다. 문서상에선 몇 초의 다운타임이 발생한다고 합니다.
+보안 패치나 안정성을 위해 이용자가 지정한 시기에 노드를 교체하거나 클러스터가 다운되거나 특정 샤드의 노드들이 변경됩니다. 문서상에선 몇 초의 다운타임이 발생한다고 하는데요.
 
 <br>
 
-_제가 경험한 바로는 약간 틀린 점(?)은 있었습니다._
+_제가 경험한 바로는 약간 틀린 점(?)이 있었습니다._
 
 
-### 스펙
+### 환경
 
 - Redis Server: AWS ElastiCache Cluster
 - Redis Client: lettuce `5.3.7`
@@ -21,7 +20,7 @@ _제가 경험한 바로는 약간 틀린 점(?)은 있었습니다._
 
 ### Maintenance 대응하기
 
-노드가 변경되거나 재배치된다면, lettuce client에서 [각 노드들을 캐싱하고 있는 것(Partitions)](https://lettuce.io/core/release/api/io/lettuce/core/cluster/models/partitions/Partitions.html)을 리로드해야 하기 때문에 이에 맞는 [옵션](https://lettuce.io/core/release/reference/#redis-cluster.refreshing-the-cluster-topology-view)은 다음과 같습니다.
+Maintenance는 요일과 시간대(1시간 간격)를 지정해두면, AWS에서 event 알림과 함께 Maintenance 스케줄을 잡습니다. (물론, 갑작스럽게 스케줄이 잡히고 그러진 않습니다.) 이 때, 클러스터가 내려가거나 샤드의 노드들이 변경되거나 재배치하게 되는데요. lettuce client에서는 [각 노드들을 캐싱하고 있는 정보들(Partitions)](https://lettuce.io/core/release/api/io/lettuce/core/cluster/models/partitions/Partitions.html)을 리로드해야 하기 때문에 이에 맞는 [추가 옵션](https://lettuce.io/core/release/reference/#redis-cluster.refreshing-the-cluster-topology-view)이 필요합니다.
 
 <br>
 
@@ -33,8 +32,8 @@ private static LettuceClientConfiguration lettuceClientConfiguration() {
             ClusterClientOptions.builder()
                                 .topologyRefreshOptions(
                                     ClusterTopologyRefreshOptions.builder()
-                                                                 .enablePeriodicRefresh(...) //
-                                                                 .enableAllAdaptiveRefreshTriggers() //
+                                                                 .enablePeriodicRefresh(...) // <--
+                                                                 .enableAllAdaptiveRefreshTriggers() // <--
                                                                  .build())
                                 .timeoutOptions(...)
                                 .build();
@@ -64,13 +63,17 @@ aws에서는 `aws-cli`를 통해 [`test-failover`](https://docs.aws.amazon.com/c
 
 ### 깔끔하지 않은 결론...
 
-`aws-cli`를 통해 `test-failover`를 실행하면 클러스터가 내려갑니다. 해당 갭은 1분 정도 되는데요. 위 문서에서 얘기한 **몇 초의 다운타임보다 많은 시간이 소요**됨을 알 수 있습니다. 이를 해결 할 방법은 딱히 없는 걸로 보여 '서비스 운영에서 있어 다운타임을 최소화 했다(10분에서 1분으로...)' 라는 것에 의의를 두고 해당 이슈를 마무리 짓기로 했습니다.
+`aws-cli`를 통해 `test-failover`를 실행하면 클러스터가 내려갑니다. 해당 갭은 1분 정도 되는데요. 위 문서에서 얘기한 **몇 초의 다운타임보다 많은 시간이 소요**됨을 알 수 있습니다. 이를 해결할 방법은 딱히 없는 걸로 보여 '서비스 운영에서 있어 다운타임을 최소화 했다'라는 것에 의의를 두고 해당 이슈를 마무리 짓기로 했습니다. 기존에서는 10분정도의 다운타임이 발생했습니다.
+
+<br>
+
+다만, 클러스터가 내려가는게 아닌 샤드의 노드들이 변경되거나 재배치되는 것은 다운타임이 아예 없었습니다.
 
 > 혹시 다른 방법이 있으면 공유해주시면 감사하겠습니다 :)
 
 ### 마무리...?!
 
-옵션을 추가하고 배포를 몇 번 해보니, 배포 중 다음 에러로그와 함께 애플리케이션 서버가 내려가지 않는 현상이 발생합니다.
+옵션을 추가하고 배포를 몇 번 해보니, 배포 중 다음 에러로그와 함께 애플리케이션 서버가 내려가지 않는 현상이 발생합니다. 해당 버전은 lettuce `5.1.1`에서 발생했습니다.
 
 ```text
 ERROR: Failed to submit a listener notification task. Event loop shut down?
@@ -87,8 +90,7 @@ java.util.concurrent.RejectedExecutionException: event executor terminated
 ...
 ```
 
-그리고 `jstack`을 확인해보니, 해당 애플리케이션 서버에 thread 중 `WAITING`이 존재하는 것을 알 수 있었습니다.
-해당 stack은 shutdown시에 쓰레드 경합이 발생하면서 생긴 문제로 보였는데요. (아쉽게도... 로그가 유실되어 첨부하지 못 했습니다.) 이는 lettuce 저장소 [issue#989](https://github.com/lettuce-io/lettuce-core/issues/989)를 통해 바로 해결할 수 있었습니다. 
+`jstack`을 확인해보니, 해당 애플리케이션 서버에 thread 중 `WAITING`이 존재하는 것을 알 수 있었습니다. 해당 stack은 shutdown시에 쓰레드 경합이 발생하면서 생긴 문제로 보였는데요. (아쉽게도... 로그가 유실되어 첨부하지 못 했습니다.) 이는 lettuce 저장소 [issue#989](https://github.com/lettuce-io/lettuce-core/issues/989)를 통해 바로 해결할 수 있었습니다. 
 
 <br>
 
@@ -102,6 +104,8 @@ private boolean isEventLoopActive() {
     return !eventExecutors.isShuttingDown();
 }
 ```
+
+저희는 이것을 `5.2.0`에 해결된 것으로 보였으나, 그냥 마이너 최신버전(`5.3.7`)까지 올려서 테스트 해보기로 했습니다. 다행히 배포시에 위 현상이 해결되어 안정적인 스무스하게(?) 배포할 수 있었습니다.
 
 ### 참고
 
