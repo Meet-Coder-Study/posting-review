@@ -63,7 +63,7 @@ const adminContext = await browser.newContext();
 
 ### 3. Pages   
 
-Page란 쉽게 이야기 하자면 웹브라우저에서  각각의 tab  또는 팝업을 가리키며, Browser context는 여러개의 페이지를 가질 수 잇습니다. 원하는 url로 이동하고 페이지 컨텐츠와 상호작용하는데 이용됩니다.
+Page란 쉽게 이야기 하자면 웹브라우저에서  각각의 tab  또는 팝업을 가리키며, Browser context는 여러개의 페이지를 가질 수 있습니다. 원하는 url로 이동하고 페이지 컨텐츠와 상호작용하는데 이용됩니다.
 
 ```javascript
 // Create a page.
@@ -113,11 +113,6 @@ await page.click('#free-month-promo >> text=Sign Up');
 [Playwright Selectors API](https://playwright.dev/docs/api/class-selectors)
 
 
-```javascript 
-//npx playwright codegen <웹 페이지 주소>
-npx playwright codegen wikipedia.org
-
-```
 
 ### 5. Auto-waiting
 
