@@ -1,7 +1,8 @@
 > source 는 [Github](https://github.com/leechoongyon/spring-bootb-batch-multi-datasource-example) 에 있습니다.
 
-## spring batch multi datasource jpa 정리
+## spring batch multi datasource, transaction jpa 정리
 - spring batch 에서 2개 이상의 다른 데이터 베이스에 접근하는 예제를 정리했습니다.
+- 또한, 2개 이상의 다른 데이터 베이스를 어떠한 방식을 통해 트랜잭션 묶어서 처리하는지에 대해서도 정리했습니다.
 - 이 예제에서는 h2, MySQL 을 jpa 를 통해 저장하는 예제를 정리했습니다.
 
 ## data source 세팅 부분
