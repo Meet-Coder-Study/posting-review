@@ -36,17 +36,18 @@
 - 세그먼트: 샤드의 데이터들을 가지고 있는 '물리적'인 파일
   - 세그먼트는 불변의 특성을 가짐
   - Elasticsearch에서 update/delete는 실제로 데이터롤 변경/삭제하는 것이 아니라 기존 데이터를 불용처리를 하는 것
+![elasticsearch-segment-work-process](./images/elasticsearch-segment-work-process.jpeg)
   - 삭제하지 않고 불용처리하기 때문에 세그먼트의 크기는 커짐
-  - 백그라운데서 세그먼트를 병합하고 불용처리한 데이터를 삭제
-![elasticsearch-segment-merge](./images/elasticsearch-segment-merge.jpeg)
+  - 백그라운드에서 세그먼트를 병합(merge)하고 불용처리한 데이터를 삭제 (세그먼트 병합 작업)
+![elasticsearch-segment-merge](./images/elasticsearch-segment-merge.jpg)
     
 
 ## 4. 프라이머리 샤드와 레플리카 샤드
-- 프라이머리 샤드: 원본 샤드
+- 프라이머리 샤드(Primary Shard): 원본 샤드
   - 한 번 정하면 변경 불가
   - 변경하려면 reindex(=인덱스를 다시 생성하거나 복사) 해야 함
   - ex) 3으로 설정할 경우 3개로 나누어서 저장
-- 레플리카 샤드: 복제본 샤드
+- 레플리카 샤드(Replica Shard): 복제본 샤드
   - 운영 중에도 변경 가능
   - ex) 1로 설정할 경우 원본에 추가로 복제본 1개를 생성 (원본+복제본=총2개)
 ```bash
@@ -84,7 +85,7 @@ PUT /${index-name}/_settings
     - 인입되는 문서의 데이터 타입이 예측 가능하거나 엄격하게 제한하고 싶을 경우
     - 다음과 같이 정적 매핑 설정 가능
 ```bash
-GET /${index-name}
+PUT /${index-name}
 {
   "mappings": {
     "properties": {
@@ -95,12 +96,10 @@ GET /${index-name}
   }
 }
 ```
-    
-  - 동적 매핑(Dynamic Mapping): 데이터 타입을 정의하지 않고 색인(인입)시 데이터 타입을 결정하는 것. ~~(아몰랑. 일단 데이터 넣고 생각해볼래)~~
+  - 동적 매핑(Dynamic Mapping): 데이터 타입을 정의하지 않고 색인(인입)시 데이터 타입을 결정하는 것. ~~(아몰랑~ 일단 데이터 넣고 생각해볼래~)~~
     - 인입되는 문서의 데이터 타입의 필드의 예측이 어려울 때. ~~(혹은 귀찮을 때?)~~ 
   - 정적 매핑이 동적 매핑보다 색인 성능이 더 좋다. (데이터 인입에 소요되는 시간이 더 적다.)
 
 ## 참고
 - [기초부터 다지는 ElasticSearch 운영 노하우](http://www.yes24.com/Product/Goods/96520155)
 - [Elasticsearch 공식 문서](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
-- [시작하세요! 엘라스틱서치 Github](https://github.com/wikibook/elasticsearch)
