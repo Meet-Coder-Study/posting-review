@@ -23,7 +23,7 @@ public Main {
 }
 ```
 
-해당 코드는 잘 동작할까요? 
+해당 코드는 잘 동작할까요? 🤔
 
 ...
 
@@ -43,13 +43,10 @@ Exception in thread "main" java.lang.IllegalArgumentException: URI is not hierar
 
 ```java
 public File(URI uri) {
-
-    ...
-
+    // ...
     if (uri.isOpaque())
             throw new IllegalArgumentException("URI is not hierarchical");
-
-    ...
+    // ...
 ```
 
 위 코드로만 보자면, `uri.isOpaque()`가 true로 나왓다는 것을 알 수 있는데요. 다시 `isOpaque()`를 따라가 보도록 하겠습니다.
@@ -72,7 +69,7 @@ public File(URI uri) {
 
 `URI`가 불투명한지(?)를 알려주는 메소드인데요. 필드에 path가 비어있는 경우 true가 됩니다.
 
-아직까지... 왜 `path`가 비었는지 의아합니다. 저 `path`가 어떻게 채워지는걸까요? 우선, 이를 알아보기 이전에 각기 상황에서 URI가 어떻게 나오는지 알아보겠습니다.
+아직까지... 왜 `path`가 비었는지 의아합니다. 저 `path`가 어떻게 채워지는걸까요? 우선, 이를 알아보기 이전에 각기 상황에서 `URI`가 어떻게 나오는지 알아보겠습니다.
 
 #### IDE에서 실행시
 
@@ -82,11 +79,9 @@ public File(URI uri) {
 
 > jar:file:{프로젝트 경로}/target/example-1.0-SNAPSHOT.jar!/**test.txt**
 
-앞서 확인해본 바에 의하면, IDE에서 실행한 경우에는 빌드툴에 의해 만들어진 특정 디렉토리를 바라보게됩니다. 반면에, jar로 패키징하게되면 jar안에 경로를 바라보게 되죠.
+앞서 확인해본 바에 의하면, IDE에서 실행한 경우에는 빌드툴에 의해 만들어진 특정 디렉토리를 바라보게됩니다. 반면에, jar로 패키징하게되면 jar안에 경로를 바라보게 되죠. 이런 차이를 알고서 다시 코드를 확인해보도록 하겠습니다. `URI`를 만드는 코드를 따라가보면 (더 딥하게 얘기하진 않겠지만) 조건이 충족하지 않아 `path`에 값이 할당되는 않는 것을 알 수 있었습니다.
 
-이런 차이를 알고서 다시 코드를 확인해보도록 하겠습니다. `URI`를 만드는 코드를 따라가보면 (더 딥하게 얘기하진 않겠지만) 조건이 충족하지 않아 `path`에 값이 할당되는 않는 것을 알 수 있었습니다.
-
-(아마도, `RFC2396`에서 명시한 구문과 상이한 부분때문에 그런게 아닐까 싶습니다만... - `//authority]<path>[?<query>`)
+(아마도, `RFC2396`에서 명시한 구문과 상이한 부분때문에 그런게 아닐까 싶습니다만... 🤔 - `//authority]<path>[?<query>`)
 
 ```java
 // URI.java
@@ -109,7 +104,7 @@ void parse(boolean rsa) throws URISyntaxException {
         if (at(p, n, '/')) {
             p = parseHierarchical(p, n); // <-- 이 부분에서 path 셋팅합니다.
         } else {
-    ...
+    // ...
 ```
 
 https://www.ietf.org/rfc/rfc2396.txt
@@ -126,11 +121,11 @@ https://stackoverflow.com/a/10144757/8096208
 
 > it is not a file!
 
-코멘트를 조금 생각해보면, 이미 jar로 패키징된 하나의 파일 안에 존재하기 때문에 시스템 입장에서(?), 이를 파일이라고 칭하기엔 조금 어렵기 때문에 그런거 아닐까 싶습니다.
+코멘트를 조금 생각해보면, 이미 jar로 패키징된 하나의 파일 안에 존재하기 때문에 시스템 입장에서(?), 이를 또 하나의 파일이라고 칭하기엔 조금 어렵기 때문에 그런거 아닐까 싶습니다 🤔
 
 #### 방법 2
 
-문득, Spring에서 resource에 위치한 파일을 가져오기 위해 `ResourceUtils.getFile(...)`을 사용했던 경험이 생각났습니다. 스프링에서는 어떻게 처리하고 있을까요?
+문득, Spring에서 resource에 위치한 파일을 가져오기 위해 `ResourceUtils.getFile(...)`을 사용했던 경험이 생각났습니다. 그렇다면 스프링에서는 어떻게 처리하고 있을까요?
 
 ```java
 // https://github.com/spring-projects/spring-framework/blob/main/spring-core/src/main/java/org/springframework/util/ResourceUtils.java#L214...L228
@@ -138,7 +133,7 @@ return new File(toURI(resourceUrl).getSchemeSpecificPart());
 ```
 
 위에 보시는 바와 같이, **`.getSchemeSpecificPart()` 라는 메소드**가 보입니다. 이것도 전부 설명하긴 힘드므로 간단히 얘기하면, 내부 로직 중에 `path`에 값을 할당해주는 부분이 있습니다.
-(이것만 보면, jdk 코드도 흠... 낄끔하지 않은 것 같네요.)
+(이것만 보면, jdk 코드도 흠... 낄끔하지 않은 것 같네요 😂)
 
 ```java
 // URI.java
@@ -165,10 +160,10 @@ public String getRawSchemeSpecificPart() {
         } else {
             part = s.substring(start, end);
         }
-    ...
+    // ...
 ```
 
-이렇게 리소스 내의 파일 핸들링에 대한 차이점 및 해결책을 알아보았습니다.
+이렇게 리소스 내의 파일 핸들링에 대한 차이점 및 해결책을 알아보았습니다. (자.. 이제 버그를 수정하러 가야겠야겠습니다 🤣)
 
 ### 참고
 
