@@ -19,7 +19,7 @@ Spring Config Server를 이용하면 `/actuator/refresh`, `/actuator/busrefresh`
 ```
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-config-server")
-    implementation(org.springframework.boot:spring-boot-starter-actuator)
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 }
 ```
 
