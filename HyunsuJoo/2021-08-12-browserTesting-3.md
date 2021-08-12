@@ -1,10 +1,13 @@
 # 브라우저 테스팅 자동화 적용기(입문) -3
 
-- 이번에 소개된 환경세팅이 꼭 best practice는 아닐 수 있습니다.   
+- 이번에 소개된 환경 세팅이 꼭 best practice이 아님을 알려드립니다.   
 
-## Typescript + Playwright + Jest 환경설정
+## Typescript + Playwright + Jest 환경설정  
 
-**Jest를 선택하기 까지**
+
+**Jest를 선택하기 까지**  
+  
+  
 가장 안정적이고 널리 알려진 Mocha와의 성능차이를 비교한 가운데, 테스팅 속도 또한 의견이 분분 하였습니다. 사실 저희 프로젝트에 맞는 결정적 요인이 내려지지 않았습니다.(아마도 저의 지식부족이 아닌가 싶습니다). 점유율을 확인 후, JEST가 높은 가운데  테스트를 작성하는 개발자 및 프로젝트의 특성을 고려하여 얻을 수 있는 이점으로 선택하였습니다. (혹시 경험이 있으시거나 고려할 사항들이 있다면 알려주시면 감사하겠습니다!)
 
 1. 테스트 스크립트를 작성하면서 cli에서 내장된 코드 커버리지를 확인할 수 있다는 점.
@@ -72,25 +75,26 @@ module.exports = {
 }
 ```
 
-- `transform` : Jest는 프로젝트 코드를 JavaScript로  실행하지만 Node.js에서 지원하지 않는 유형들 (Typescript, Vue)의 경우 transform의 구성 옵션을 통해 JavaScirpt로 변환합니다. 
+* `transform` : Jest는 프로젝트 코드를 JavaScript로  실행하지만 Node.js에서 지원하지 않는 유형들 (Typescript, Vue)의 경우 transform의 구성 옵션을 통해 JavaScirpt로 변환합니다. 
 
-- `testTimeout`: playwright-jest 에선 playwright 을 실행하는데 시간이 걸리기 때문에, 5초에서 15초 정도를 기존의 jest설정을 재정의 하는데 `testTimeout` 으로 다시 설정할 수 있다고 합니다. [jest-playwright 참조](https://github.com/playwright-community/jest-playwright)
-
-제가 실제 겪은 `BeforeAll`에서 테스트를 running 하지 못하고 timeout 이 되는 경우가 있었습니다. 
-`thrown: "Exceeded timeout of 15000 ms for a hook.
+* `testTimeout`: playwright-jest 에선 playwright 을 실행하는데 시간이 걸리기 때문에, 5초에서 15초 정도를 기존의 jest설정을 재정의 하는데 `testTimeout` 으로 다시 설정할 수 있다고 합니다. [jest-playwright 참조](https://github.com/playwright-community/jest-playwright)
+ 
+  * 제가 실제 겪은 `BeforeAll`에서 테스트를 running 하지 못하고 timeout이 되는 경우가 있었습니다.
+    `thrown: "Exceeded timeout of 15000 ms for a hook.
     Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."`
 
-- `testEnvironmentOptions` : playwright의 환경설정을 할 수 있습니다.  
+* `testEnvironmentOptions` : playwright의 환경설정을 할 수 있습니다.  
 
 
 ### 4. TypeScript Configuration
-ts.config.json 파일 환결 설정 입니다. 
+최소한의 설정을 담은 ts.config.js 입니다.  
+  
 ```typescript
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ESNext", 
     "module": "commonjs",
-    "strict": true,
+    "strict": true, 
     "forceConsistentCasingInFileNames": true,
     "types": [
         "@types/jest",
@@ -119,7 +123,7 @@ ts.config.json 파일 환결 설정 입니다.
   ...
 }
 
-```
+```  
 
 ## 디버깅 방법
 
