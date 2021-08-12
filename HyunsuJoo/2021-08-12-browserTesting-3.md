@@ -1,6 +1,8 @@
 # 브라우저 테스팅 자동화 적용기(입문) -3
 
-- 이번에 소개된 환경 세팅이 꼭 best practice이 아님을 알려드립니다.   
+- 이번에 소개된 환경 세팅이 꼭 best practice이 아님을 알려드립니다.
+
+
 
 ## Typescript + Playwright + Jest 환경설정  
 
@@ -13,9 +15,11 @@
 1. 테스트 스크립트를 작성하면서 cli에서 내장된 코드 커버리지를 확인할 수 있다는 점.
 2. Playwright 커뮤니티에서 jest와 함께 사용할수 있는 프레임워크 지원
 3. Jest 또한 Typescript 를 지원
-4. 테스트를 실행하는 파일/디렉토리에 대한 지정이 유동적 (실행하려는 파일을 regex로 구분하므로 통합테스트나, 웹 접근성 테스트 시 구별하여 따로테스트 가능)
+4. 테스트를 실행하는 파일/디렉토리에 대한 지정이 유동적 (실행하려는 파일을 regex로 구분하므로 통합테스트나, 웹 접근성 테스트 시 구별하여 따로 테스트 실행 가능)
 5. 테스트케이스를 병렬로 실행 (가장 느린 테스트를 먼저 실행) -> 효율적.  
+
 <img src="./images/stackshare.png" width="530" height="350">
+
 이미지 발췌 : [npmtrends](https://www.npmtrends.com/jest-vs-mocha)
 
 현재 버전
@@ -47,11 +51,16 @@ npm install -D jest jest-playwright-preset playwright
 [출처: JEST 공식문서](https://jestjs.io/docs/getting-started)
 
 
+
 ### 3. JEST configuration
+
 Jest 의 환경설정은 `package.json` 또는 jest.config.ts 처럼 파일을 root 디렉토리 내에 생성해도 됩니다.
-[configuration 공식문서 참조](https://jestjs.io/docs/configuration) 
+[configuration 공식문서 참조](https://jestjs.io/docs/configuration)  
+
  
 저는 좀 더 다양한 환경설정이 필요할 것 같아 파일을 따로 생성하였습니다.
+
+
 ```typescript
 
 module.exports = {
@@ -79,6 +88,7 @@ module.exports = {
 
 * `testTimeout`: playwright-jest 에선 playwright 을 실행하는데 시간이 걸리기 때문에, 5초에서 15초 정도를 기존의 jest설정을 재정의 하는데 `testTimeout` 으로 다시 설정할 수 있다고 합니다. [jest-playwright 참조](https://github.com/playwright-community/jest-playwright)
  
+
   * 제가 실제 겪은 `BeforeAll`에서 테스트를 running 하지 못하고 timeout이 되는 경우가 있었습니다.
     `thrown: "Exceeded timeout of 15000 ms for a hook.
     Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."`
@@ -86,7 +96,9 @@ module.exports = {
 * `testEnvironmentOptions` : playwright의 환경설정을 할 수 있습니다.  
 
 
-### 4. TypeScript Configuration
+### 4. TypeScript Configuration  
+
+ 
 최소한의 설정을 담은 ts.config.js 입니다.  
   
 ```typescript
@@ -110,6 +122,8 @@ module.exports = {
 
 
 ```
+
+[strict에 대한 이펙티브 타입스립트 정리 글](https://github.com/sooster910/EffectiveTypeScript/tree/main/src/item02)
 
 
 ### 5. package.json
@@ -194,21 +208,21 @@ describe("GitHub", () => {
 ```
 
 위의 스크립트와 함께 `PWDEBUG=1 npm run test`을 실행시킨 후, 
-Record 버튼을 누르게 되면, 녹화모드로 스크립트가 새로 만들어집니다.
+Record 버튼을 누르게 되면, 녹화모드로 스크립트가 새로 만들어집니다.  
+
 <img src="./images/recording1.png" width="720" height="380">
 
 
-오른쪽의 브라우저에서 원하는 이벤트를 하게 되면 코드가 생성됩니다. 
+오른쪽의 브라우저에서 원하는 이벤트를 하게 되면 코드가 생성됩니다.  
+
+
 <img src="./images/recording2.png" width="720" height="380">
 
 
-이 부분이 유용하다고 느낀점은, 제가 이것을 사용하기 전까진 promise race condition 부분을 처리하느라 코드를 vscode 디버깅을 돌리고, promise return 값을 확인하고 다시 스크립트를 작성 해야 했었는데, 이 부분가지 Promise.all로 자동 생성해 주었습니다. 
+이 부분이 유용하다고 느낀점은, 제가 이것을 사용하기 전까진 promise race condition 부분을 처리하느라 코드를 vscode 디버깅을 돌리고, promise return 값을 확인하고 다시 스크립트를 작성 해야 했었는데, Promise.all로 자동 생성하여 race condition이 일어나는 경우의 수를 줄여줄 수 있는 것 같습니다.  
 
+<img src="./images/recording3.png" width="720" height="380"> 
 
-<img src="./images/recording3.png" width="720" height="380">
-
-
-이 부분은 랜덤으로 성공이 되거나 실패가 되는 테스트 케이스에서 promise가 pending으로 계속 되어 있는 상태에 다른 이벤트가 실행이 되어 버려 원하는 값을 얻지 못했을 경우 테스트가 실패하거나, 또는 비동기 호출이 해결이 나지 못해(pending) timeout되는 경우의 수를 줄여줄 수 있는 것 같습니다. 
 
 이상 개발 환경 설정 및 디버깅 편이었습니다.
 
