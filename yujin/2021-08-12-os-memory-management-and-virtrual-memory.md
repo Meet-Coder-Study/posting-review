@@ -4,7 +4,7 @@
 
 ![image](https://user-images.githubusercontent.com/38436013/128971630-c80eb39d-d0d4-41e1-8824-915a9bcc2731.png)
 
-HW가 관리(CPU) : 레지스터, 캐시 !
+HW가 관리(CPU) : 레지스터, 캐시 !!
 
 SW가 관리(OS) : 메인메모리, 보조기억장치
 
