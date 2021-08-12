@@ -5,16 +5,16 @@
 ## Typescript + Playwright + Jest 환경설정
 
 **Jest를 선택하기 까지**
-가장 안정적이고 널리 알려진 Mocha와의 성능차이를 비교한 가운데, 테스팅 속도 또한 의견이 분분 하였습니다. 사실 저희 프로젝트에 맞는 결정적 요인이 내려지지 않았습니다.(아마도 저의 지식부족이 아닌가 싶습니다). 점유율을 확인 후, JEST가 높은 가운데  테스트를 작성하는 개발자 및 프로젝트의 특성을 고려하여 얻을 수 있는 이점으로 선택하였습니다.
+가장 안정적이고 널리 알려진 Mocha와의 성능차이를 비교한 가운데, 테스팅 속도 또한 의견이 분분 하였습니다. 사실 저희 프로젝트에 맞는 결정적 요인이 내려지지 않았습니다.(아마도 저의 지식부족이 아닌가 싶습니다). 점유율을 확인 후, JEST가 높은 가운데  테스트를 작성하는 개발자 및 프로젝트의 특성을 고려하여 얻을 수 있는 이점으로 선택하였습니다. (혹시 경험이 있으시거나 고려할 사항들이 있다면 알려주시면 감사하겠습니다!)
 
 1. 테스트 스크립트를 작성하면서 cli에서 내장된 코드 커버리지를 확인할 수 있다는 점.
 2. Playwright 커뮤니티에서 jest와 함께 사용할수 있는 프레임워크 지원
 3. Jest 또한 Typescript 를 지원
 4. 테스트를 실행하는 파일/디렉토리에 대한 지정이 유동적 (실행하려는 파일을 regex로 구분하므로 통합테스트나, 웹 접근성 테스트 시 구별하여 따로테스트 가능)
 5. 테스트케이스를 병렬로 실행 (가장 느린 테스트를 먼저 실행) -> 효율적.  
+<img src="./images/stackshare.png" width="530" height="350">
+이미지 발췌 : [npmtrends](https://www.npmtrends.com/jest-vs-mocha)
 
-![stackshare](./images/stackshare.png)  
-이미지 발췌 : [npmtrends](https://www.npmtrends.com/jest-vs-mocha) 
 현재 버전
 `jest 27.0`
 
@@ -83,8 +83,8 @@ module.exports = {
 - `testEnvironmentOptions` : playwright의 환경설정을 할 수 있습니다.  
 
 
-4. TypeScript Configuration
-ts.config.json 파일 지정 입니다. 
+### 4. TypeScript Configuration
+ts.config.json 파일 환결 설정 입니다. 
 ```typescript
 {
   "compilerOptions": {
@@ -123,13 +123,13 @@ ts.config.json 파일 지정 입니다.
 
 ## 디버깅 방법
 
-1. Run in headed mode 
+**1.** Run in headed mode 
 
 ```typescript
 await chromium.launch({ headless: false, slowMo: 100 }); // or firefox, webkit
 ```
 
-2. Playwright Inspector
+**2.** Playwright Inspector
 
 저같은 경우는 selector에 많이 할애 했기 때문에 inspector를 통해 찾거나 간단한 스크립트 작성으로 이용 하였습니다. 
 
@@ -190,16 +190,19 @@ describe("GitHub", () => {
 ```
 
 위의 스크립트와 함께 `PWDEBUG=1 npm run test`을 실행시킨 후, 
-Record 버튼을 누르게 되면, 녹화모드로 스크립트가 새로 만들어집니다. 
-![recording](./images/recording1.png)  
+Record 버튼을 누르게 되면, 녹화모드로 스크립트가 새로 만들어집니다.
+<img src="./images/recording1.png" width="720" height="380">
+
 
 오른쪽의 브라우저에서 원하는 이벤트를 하게 되면 코드가 생성됩니다. 
-![recording](./images/recording2.png)  
+<img src="./images/recording2.png" width="720" height="380">
+
 
 이 부분이 유용하다고 느낀점은, 제가 이것을 사용하기 전까진 promise race condition 부분을 처리하느라 코드를 vscode 디버깅을 돌리고, promise return 값을 확인하고 다시 스크립트를 작성 해야 했었는데, 이 부분가지 Promise.all로 자동 생성해 주었습니다. 
 
 
-![recording](./images/recording3.png)  
+<img src="./images/recording3.png" width="720" height="380">
+
 
 이 부분은 랜덤으로 성공이 되거나 실패가 되는 테스트 케이스에서 promise가 pending으로 계속 되어 있는 상태에 다른 이벤트가 실행이 되어 버려 원하는 값을 얻지 못했을 경우 테스트가 실패하거나, 또는 비동기 호출이 해결이 나지 못해(pending) timeout되는 경우의 수를 줄여줄 수 있는 것 같습니다. 
 
