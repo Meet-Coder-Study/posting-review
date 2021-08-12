@@ -1,6 +1,6 @@
 # 브라우저 테스팅 자동화 적용기(입문) -3
 
-- 제가 한 환경세팅이 best practice가 아닐 수 있습니다.  
+- 이번에 소개된 환경세팅이 꼭 best practice는 아닐 수 있습니다.   
 
 ## Typescript + Playwright + Jest 환경설정
 
