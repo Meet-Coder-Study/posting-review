@@ -1,17 +1,17 @@
 # 브라우저 테스팅 자동화 적용기(입문) -3
 
+- 제가 한 환경세팅이 best practice가 아닐 수 있습니다.  
 
 ## Typescript + Playwright + Jest 환경설정
 
 **Jest를 선택하기 까지**
-가장 안정적이고 널리 알려진 Mocha와의  성능차이를 비교한 가운데, 테스팅 속도 또한 의견이 분분 하였습니다. 사실 저로써는 저희 프로젝트에서는 결정적 요인이 내려지지 않았습니다.(아마도 저의 지식부족이 아닌가 싶습니다.)하지만 선택은 해야했고, 이 테스트를 작성할 사람은 주로 저이기 때문에 프론트엔드 개발에서 React를 사용하는 저로써는 Jest를 그냥 지나갈 순 없었습니다.
-트렌드를 뒷받침 할 프로젝트의 고려 요인들 입니다.
+가장 안정적이고 널리 알려진 Mocha와의 성능차이를 비교한 가운데, 테스팅 속도 또한 의견이 분분 하였습니다. 사실 저희 프로젝트에 맞는 결정적 요인이 내려지지 않았습니다.(아마도 저의 지식부족이 아닌가 싶습니다). 점유율을 확인 후, JEST가 높은 가운데  테스트를 작성하는 개발자 및 프로젝트의 특성을 고려하여 얻을 수 있는 이점으로 선택하였습니다.
 
-1. 테스트 스크립트를 작성하면서 cli 에서 내장된 코드 커버리지를 확인할 수 있다는 점.
-2. Playwright 커뮤니티에서 jest와 함께 사용할수 있는 프레임워크 지원 .
+1. 테스트 스크립트를 작성하면서 cli에서 내장된 코드 커버리지를 확인할 수 있다는 점.
+2. Playwright 커뮤니티에서 jest와 함께 사용할수 있는 프레임워크 지원
 3. Jest 또한 Typescript 를 지원
 4. 테스트를 실행하는 파일/디렉토리에 대한 지정이 유동적 (실행하려는 파일을 regex로 구분하므로 통합테스트나, 웹 접근성 테스트 시 구별하여 따로테스트 가능)
-5. 테스트케이스를 병렬로 실행 (가장 느린 테스트를 먼저 실행)  
+5. 테스트케이스를 병렬로 실행 (가장 느린 테스트를 먼저 실행) -> 효율적.  
 
 ![stackshare](./images/stackshare.png)  
 이미지 발췌 : [npmtrends](https://www.npmtrends.com/jest-vs-mocha) 
@@ -198,11 +198,19 @@ Record 버튼을 누르게 되면, 녹화모드로 스크립트가 새로 만들
 
 이 부분이 유용하다고 느낀점은, 제가 이것을 사용하기 전까진 promise race condition 부분을 처리하느라 코드를 vscode 디버깅을 돌리고, promise return 값을 확인하고 다시 스크립트를 작성 해야 했었는데, 이 부분가지 Promise.all로 자동 생성해 주었습니다. 
 
+
 ![recording](./images/recording3.png)  
 
+이 부분은 랜덤으로 성공이 되거나 실패가 되는 테스트 케이스에서 promise가 pending으로 계속 되어 있는 상태에 다른 이벤트가 실행이 되어 버려 원하는 값을 얻지 못했을 경우 테스트가 실패하거나, 또는 비동기 호출이 해결이 나지 못해(pending) timeout되는 경우의 수를 줄여줄 수 있는 것 같습니다. 
+
+이상 개발 환경 설정 및 디버깅 편이었습니다.
+
 ---
+
 참고자료 
 
 * [Getting started with Playwright with Jest and TypeScript](https://www.carlrippon.com/getting-started-with-playwright/)
 
 * [Start UI tests with Playwright + Jest + Typescript](https://dilshani.medium.com/start-ui-tests-with-playwright-jest-typescript-8dcbf4646bcb)
+
+* [Playwright 공식문서](https://playwright.dev/)
