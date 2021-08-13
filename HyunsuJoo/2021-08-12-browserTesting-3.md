@@ -93,8 +93,18 @@ module.exports = {
     `thrown: "Exceeded timeout of 15000 ms for a hook.
     Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."`
 
-* `testEnvironmentOptions` : playwright의 환경설정을 할 수 있습니다.  
+* `launchOptions`
+  * `healess` : `false` 일 경우, browser를 오픈하여 스크립트대로 동작하는 것을 볼 수 있습니다. `true` 일 때는 브라우저를 띄우는 비용이 들지 않는 만큼 빠른 테스팅 속도를 냅니다. 
 
+  * `slowMo` : `headless` 가 `false`일 때, ms 단위로 브라우저의 이벤트들이 천천히 일어납니다. 디버깅시 각 이벤트마다 어떻게 일어나는지 볼 때 유용합니다. 
+
+  **`slowMo:0 (default)` vs `slowMo:250`**  headful 브라우저가 wikipedia에서 javascript 텍스트를 입력하는 스크립트를 실행해 보았습니다. 
+
+<img src="./images/noSlowMo.gif"/>
+
+<img src="./images/slowMo.gif"/> 
+
+개발 모드에서는 `headless:false` 와 `slowMo`를 사용하되, 프로덕션 모드에서는 `headless:true` 설정으로 빠른 실행 속도를 가지는게 좋을 것 같습니다.  
 
 ### 4. TypeScript Configuration  
 
