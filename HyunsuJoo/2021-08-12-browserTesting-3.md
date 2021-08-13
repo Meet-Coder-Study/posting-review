@@ -100,9 +100,9 @@ module.exports = {
 
   **`slowMo:0 (default)` vs `slowMo:250`**  headful 브라우저가 wikipedia에서 javascript 텍스트를 입력하는 스크립트를 실행해 보았습니다. 
 
-<img src="./images/noSlowMo.gif"/>
+<img src="./images/noSlowMo.gif" width="530" height="350"/>
 
-<img src="./images/slowMo.gif"/> 
+<img src="./images/slowMo.gif" width="530" height="350"/> 
 
 개발 모드에서는 `headless:false` 와 `slowMo`를 사용하되, 프로덕션 모드에서는 `headless:true` 설정으로 빠른 실행 속도를 가지는게 좋을 것 같습니다.  
 
