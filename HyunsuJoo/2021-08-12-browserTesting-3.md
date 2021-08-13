@@ -99,7 +99,7 @@ module.exports = {
 ### 4. TypeScript Configuration  
 
  
-최소한의 설정을 담은 ts.config.js 입니다.  
+최소한의 설정을 담은 tsconfig.json 입니다.  
   
 ```typescript
 {
