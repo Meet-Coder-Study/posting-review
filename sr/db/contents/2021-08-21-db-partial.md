@@ -123,6 +123,13 @@ WHERE ROWNUM <= 3;
 
 ![인덱스 생성과 튜닝 후 쿼리](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.009.jpeg)
 
+![인덱스를 통한 부분 범위 처리](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.012.jpeg)
+
+- **"인덱스를 통한 효율적인 부분 범위 처리가 가능하다"** 라는 말의 뜻?
+	- B-tree 인덱스의 구조를 보면 인덱스의 첫 번째 컬럼인 **STOCK_CD 컬럼**을 우선으로 인덱스 유니크 스캔
+	- 그리고 인덱스의 두 번째 컬럼인 **TRD_DTM 컬럼**에 대해서 범위 검색으로 필요한 부분만 검색 후 테이블 랜덤 액세스로 데이터를 가져온다.
+
+
 > **페이징 처리 튜닝 후 실행 계획**
 
 ![튜닝 후 쿼리 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.010.jpeg)
