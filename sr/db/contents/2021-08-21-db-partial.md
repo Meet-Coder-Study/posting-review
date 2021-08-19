@@ -62,7 +62,7 @@ WHERE ROWNUM <= 3;
 - 인덱스의 주요 특징은 데이터가 정렬된 상태로 저장되어 있다는 것이다.
 - 인덱스의 특징과 부분 범위 처리의 원리가 결합되면 최댓값과 최솟값을 가져올 때 극적인 성능 향상을 이루어 낼 수 있다.
 
-### 테이블 설계 및 최댓값 / 최솟값 스캔 튜닝 전 쿼리
+### 테이블 설계 및 최댓값 / 최솟값 스캔 튜닝 전
 
 > **ERD 및 튜닝 전 쿼리**
 
@@ -73,12 +73,16 @@ WHERE ROWNUM <= 3;
 ![최댓값과 최솟값 스캔 튜닝 전 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.004.jpeg)
 
 - **SQL 문제점**
-	- 인덱스 범위 스캔을 하지 않고 인덱스 양 끝의 최댓값과 최솟값만 스캔하면 의도한 대로 결과를 도출할 수 있다.
-	- 해당 SQL문은 TB_ORD_DAY_PK 인덱스를 인덱스 범위 스캔하게 된다.
+	- **인덱스 범위 스캔**을 하지 않고 인덱스 양 끝의 **최댓값**과 **최솟값**만 스캔하면 의도한 대로 결과를 도출할 수 있음에도 인덱스 스캔을 하여 비효율적인 스캔을 한 문제
+	- 해당 SQL문은 `TB_ORD_DAY_PK 인덱스`를 **인덱스 범위 스캔**하여 불필요한 cost 소비하였다.
 
-### 최댓값 / 최솟값 스캔 튜닝 후 쿼리
+### 최댓값 / 최솟값 스캔 튜닝 후
+
+> **최댓값과 최솟값 스캔 튜닝 후 쿼리**
 
 ![최댓값과 최솟값 스캔 튜닝 후 쿼리](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.005.jpeg)
+
+> **최댓값과 최솟값 스캔 튜닝 후 실행 계획**
 
 ![최댓값과 최솟값 스캔 튜닝 후 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.006.jpeg)
 
@@ -97,7 +101,7 @@ WHERE ROWNUM <= 3;
 - 인덱스를 이용하여 해당 범위의 시작으로 간 후(`인덱스 수직 탐색`) 원하는 데이터만 가져오는 기법(**인덱스 범위 스캔**)이다.
 - 부분 범위 처리를 이용한 페이징 처리가 되지 않고 모든 범위를 스캔한 후 특정 데이터만 가져오게 된다면 시스템은 걷잡을 수 없이 큰 부하를 일으키게 된다.
 
-### 페이징 처리 튜닝 전 쿼리
+### 페이징 처리 튜닝 전
 
 > **ERD 및 튜닝 전 쿼리**
 
@@ -108,13 +112,17 @@ WHERE ROWNUM <= 3;
 ![튜닝 전 쿼리 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.008.jpeg)
 
 - **SQL의 문제점**
-	- STOCK_CD의 TRD_DTM 기준 최근의 데이터 중에서 21번째부터 30번째의 데이터만 가져오는 SQL
+	- **STOCK_CD**의 **TRD_DTM** 기준 최근의 데이터 중에서 21번째부터 30번째의 데이터만 가져오는 SQL
 	- 30건 중 10건의 데이터만 가져오는데도 불구하고 적절한 인덱스가 존재하지 않아서 테이블 전체를 **테이블 풀 스캔**하고 **정렬 작업**까지 수행한 후에야 그 중에서 10건만을 가져오게 된다.
 	- 즉, 전체 범위 처리를 하고 페이징 처리한 매우 비효율적인 SQL이다.
 	- 이러한 SQL문이 OLTP 환경에서 빈번하게 수행되는 경우 DBMS 전체 성능에 매우 큰 지장을 주게 된다.
 	
-### 페이징 처리 튜닝 후 쿼리
+### 페이징 처리 튜닝 후
+
+> **페이징 처리 튜닝 후 쿼리**
 
 ![인덱스 생성과 튜닝 후 쿼리](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.009.jpeg)
+
+> **페이징 처리 튜닝 후 실행 계획**
 
 ![튜닝 후 쿼리 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.010.jpeg)
