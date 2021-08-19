@@ -80,8 +80,12 @@ public void purchase(OrderAndPath orderAndPath) {
 ## 3. 메서드 분리하기
 위의 예에서는 파라미터를 하나로 묶기 보다는 메서드를 분리하는 것이 더 적절하다.  
 즉 파일을 업로드하는 메서드와, 구매를 진행하는 메서드를 각각 만드는 것이다.
+이를 통해 메서드의 역할을 분명히 하고 파라미터 수를 줄일 수 있다. 
 
 ```java
 uploadImage(Path filePath);
 purchase(order);
 ```
+
+## 4. 빌더 패턴을 메서드에 적용하기
+
