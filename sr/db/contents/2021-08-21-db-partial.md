@@ -133,3 +133,38 @@ WHERE ROWNUM <= 3;
 > **페이징 처리 튜닝 후 실행 계획**
 
 ![튜닝 후 쿼리 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.010.jpeg)
+
+
+
+## 커버링 인덱스
+
+---
+
+- 만약 사용하는 인덱스로 SELECT 질의에 대한 결과를 모두 얻을수 있는 상황이라면, 데이터 페이지에 저장되어 있는 레코드를 읽어오지 않아도 인덱스의 키의 값만으로도 결과를 얻을 수 있다.
+- 이처럼 인덱스가 하나의 질의를 모두 커버가 가능한 경우 **커버링 인덱스(Covering Index)** 라 한다.
+
+- **커버링 인덱스의 장점**
+	- 데이터 페이지를 읽지 않는다는 점
+	- 해당 쿼리에 대한 빈도가 높은 경우 인덱스가 버퍼에 캐시 되어있을 가능성이 높아 디스크 I/O를 줄일 수 있다는 점
+	- 정렬 연산을 대체 할 수 있다는 장점
+		- 인덱스 스캔으로 생성한 결과 집합은 인덱스 컬럼 순으로 정렬된 상태이므로 ORDER BY절이나 GROUP BY절에 의한 정렬 연산을 생략하도록 질의를 작성할 수 있다.
+
+### 페이징 처리 커버링 인덱스 튜닝
+
+> **페이징 처리 - 커버링 인덱스 생성**
+
+![페이징 처리 - 커버링 인덱스](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.013.jpeg)
+
+- 조회 쿼리에 포함된 컬럼이 모두 포함되어 있는 인덱스를 생성
+	- 인덱스의 순서와 컬럼의 정렬에 대한 설정도 중요
+
+> **페이징 처리 - 커버링 인덱스 실행 계획**
+
+![페이징 처리 - 커버링 인덱스 실행 계획](https://github.com/SeokRae/TIL/blob/master/database/images/oracle/partial_range_process/partial_range_process.014.jpeg)
+
+- SELECT, WHERE, ORDER BY, GROUP BY 등등 쿼리에 속한 컬럼이 모두 포함된 인덱스로 쿼리를 조회하는 경우 실행계획에 테이블에 접근하는 내용이 사라진다.
+- 결국 데이터 파일에 접근하는 비용이 감소되어 효율적인 조회가 가능하다.
+
+## 추가 참고
+
+- [성능 향상을 위한 SQL 작성법](https://d2.naver.com/helloworld/1155)
