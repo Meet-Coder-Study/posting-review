@@ -5,7 +5,7 @@
 - Kent C. Dodds 님의 [Static vs Unit vs Integration vs E2E Testing for Frontend Apps](https://kentcdodds.com/blog/static-vs-unit-vs-integration-vs-e2e-tests)을 읽고 추가적으로 더 필요한 부분과 같이 정리한 글입니다. 저의 이해도를 높이기 위해 보충 설명이 되어 있는 부분들도 있으므로 정확한 원서를 참고 부탁드립니다.  
 
 
-<img src="./images/testing-trophy.png" width="600" height="380">
+<img src="./images/testing-trophy.jpeg" width="600" height="380">
 
 이 테스트 트로피가 무엇인지, 왜 이 분류가 중요한지, 아니면 중요하지 않은지에 대해 이야기 합니다. 
 
