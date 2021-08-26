@@ -23,7 +23,7 @@
 트로피의 아래로부터 테스팅 피라미드 흐름을 따라가 보겠습니다.
 ### Static 
 
-- 위 트로피 그림은 Martin Fowler의 테스트 피라미드 에서 정전 분석 툴이 중요하다고 생각해 Kent.C분이 테스트 트로피로 새로 만들었습니다.
+- 위 트로피 그림은 Martin Fowler의 테스트 피라미드를 바탕으로 추가로 정적 분석 툴이 중요하다고 생각해 Kent.C분이 테스트 트로피로 새로 만들었습니다.
 
 - TypeScript, ESLint, Flow와 같은 정적 분석 툴은 실제 런타임보다 이른 시점에 버그를 찾아낼 수 있습니다. 
 - 그리고 그만큼 오류를 찾는 데도 빨리 찾기 때문에 비용이 들지 않습니다.
@@ -173,9 +173,10 @@ describe('todo app', () => {
 
 
 --
-참고자료
- [Write tests. Not too many. Mostly integration-Kent C. Dodds](https://kentcdodds.com/blog/write-tests)
+참고자료  
 
-[FrontEndMasters React Testing](https://frontendmasters.com/courses/testing-react/testing-trophy/)
+* [Write tests. Not too many. Mostly integration-Kent C. Dodds](https://kentcdodds.com/blog/write-tests)
+
+* [FrontEndMasters React Testing](https://frontendmasters.com/courses/testing-react/testing-trophy/)
 
 
