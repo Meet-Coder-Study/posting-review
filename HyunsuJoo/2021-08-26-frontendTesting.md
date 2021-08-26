@@ -1,5 +1,5 @@
 
-# 프론트엔드에서의  테스트 
+# Front End App을 위한 정적검사 vs 단위 vs 통합 vs E2E 테스트 
 
 
 
