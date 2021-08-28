@@ -332,7 +332,15 @@ PUT
 > - 동사(Verb)로 된 리소스 경로를 사용함
 > - 리소스를 변경하는 모든 작업(생성, 수정, 삭제)는 POST로 둔다.
 > - 생성은 /new, 수정은 /edit, 삭제는 /delete 로 설계한다.
-> - 예를 들어, 회원 수정 폼은 GET /members/edit 으로 두고, 회원 수정 API를 POST /members/{id}/edit 로 맞추어 준다.
+> 
+컨트롤 URI 설계 예제
+- 회원 목록 GET /members
+- 회원 등록 폼 -> GET /members/new
+- 회원 등록 API -> POST /members/new (또는, /members)
+- 회원 조회 API -> GET /members/{id}
+- 회원 수정 폼 -> GET /members/{id}/edit
+- 회원 수정 API -> POST /members/{id}/edit
+- 회원 삭제 API -> POST /members/{id}/delete
 
 
 
