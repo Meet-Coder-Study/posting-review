@@ -4,9 +4,9 @@ description: Partitioning Tune
 
 # Partitioning
 
-![표지](https://github.com/SeokRae/TIL/tree/master/infra/middleware/database/images/oracle/parallel_processing/partitioning.001.jpeg)
+![표지](https://github.com/SeokRae/TIL/blob/master/infra/middleware/database/images/oracle/partitioning/partitioning.001.jpeg)
 
-![Keyword Graph](https://github.com/SeokRae/TIL/tree/master/infra/middleware/database/images/oracle/parallel_processing/partitioning.002.jpeg)
+![Keyword Graph](https://github.com/SeokRae/TIL/blob/master/infra/middleware/database/images/oracle/partitioning/partitioning.002.jpeg)
 
 ## Intro
 
