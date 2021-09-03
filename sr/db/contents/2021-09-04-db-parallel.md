@@ -4,9 +4,9 @@ description: Partial Range Processing Tune
 
 # Partial Range Processing
 
-![표지](https://github.com/SeokRae/TIL/tree/master/infra/middleware/database/images/oracle/parallel_processing/parallel_processing.001.jpeg)
+![표지](https://github.com/SeokRae/TIL/blob/master/infra/middleware/database/images/oracle/parallel_processing/parallel_processing.001.jpeg)
 
-![Keyword Graph](https://github.com/SeokRae/TIL/tree/master/infra/middleware/database/images/oracle/parallel_processing/parallel_processing.002.jpeg)
+![Keyword Graph](https://github.com/SeokRae/TIL/blob/master/infra/middleware/database/images/oracle/parallel_processing/parallel_processing.002.jpeg)
 
 ## 병렬 처리
 
