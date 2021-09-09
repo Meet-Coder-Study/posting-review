@@ -25,12 +25,13 @@ noImplicitAny는 변수들이 미리 정의된 타입을 가져야 하는지 여
 no + implicitAny ⇒ 설정 : 암묵적인 any를 쓰지 않는다. true/ false 
 
 #### **`noimplicitAny :false`**  
-<img src="./images/noImplicity_1.png" width="400" height="100">
+
+<img width="400" height="100" alt="noImplicity_1" src="https://user-images.githubusercontent.com/26635607/132691365-f66c69f4-60e9-4c2a-a754-f202c5f0b1a4.png">
 
 실행결과 : NaN
 
 #### **`noimplicitAny :true`**
-<img src="./images/noImplicity_2.png" width="400" height="100">
+<img width="400" height="100" alt="noImplicity_2" src="https://user-images.githubusercontent.com/26635607/132691375-fb8d6c75-31fb-46de-8f9f-1aa4fbf5e803.png">
 
 
 컴파일 오류를 미리 vscode에서  타입스크립트가 추론한 함수의 타입으로 
@@ -67,11 +68,10 @@ const x : number = null;
 
 - **`strictNullChecks :false`**
 
-<img src="./images/strictNullChecks_false.png" width="300" height="80">
-
+<img width="300" height="80" alt="structNullChecks_false" src="https://user-images.githubusercontent.com/26635607/132690813-d23a13fb-fd61-4ce6-9352-b0646e551454.png">
 
 - **`strictNullChecks :true`**
-<img src="./images/strictNullChecks_true.png" width="300" height="80">
+<img width="300" height="80" alt="strictNullChecks_true" src="https://user-images.githubusercontent.com/26635607/132690808-c18434e9-1d33-4017-82fb-59f9ca9674d9.png">
 
 undefined 또한 같은 오류를 냅니다.
 
@@ -91,7 +91,7 @@ el.textContent = 'Ready';
 
 ```
 
-<img src="./images/strictNullChecks_04.png" width="400" height="100">
+<img width="400" width="100" alt="strictNullChecks_04" src="https://user-images.githubusercontent.com/26635607/132690804-7d027b0d-1ce2-4d9c-9939-7170f6d3d119.png">
 
 타입스크립트가 추론한 `el` 의 타입은,
 - status라는 id를 가진 엘리먼트가 없으면 `null`,
@@ -110,7 +110,7 @@ if(el){
 }
 
 ```
-<img src="./images/strictNullChecks_06.png" width="200" height="50">
+<img width="200" height="50" alt="strictNullChecks_06" src="https://user-images.githubusercontent.com/26635607/132690806-bd7e7f40-36d6-4301-be8e-8ac8d3840700.png">
 
 * Non-null assertion 사용으로 el은 확실히 null 또는 undefined 가 아님을 가정합니다.
 
@@ -120,7 +120,7 @@ if(el){
 el.!textContent = 'Ready'; //✅
 
 ```
-<img src="./images/strictNullChecks_05.png" width="200" height="50">
+<img width="200" height="50" alt="stricNullChecks_05" src="https://user-images.githubusercontent.com/26635607/132690803-80a3d85f-c006-4f35-97c5-d5f6eddf58f0.png">
 
 
 
