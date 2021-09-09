@@ -132,7 +132,7 @@ el.!textContent = 'Ready'; //✅
 
 `strictNullChecks` 은 `undefined는 객체가 아닙니다`라는 런타임오류를 방지하기 위해 사용하는 것이 좋습니다. 
 
-`strict:true`라는 설정을 하게되면 noImplicitAny와 strictNullChecks 설정으로 대체 할 수 있습니다. 
+`strict:true`라는 설정을 하게되면 noImplicitAny와 strictNullChecks 설정을 대체 할 수 있습니다. 
 
 ---
 참고자료  
