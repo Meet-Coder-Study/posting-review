@@ -1,6 +1,6 @@
 # 아이템 2. 타입스크립트 설정 이해하기 
 
-- 댄 밴더캄의 이펙티브 타입스크립트 도서의 아이템2.타입스킓트 설정 이해하기 파트를 읽고 정리한 내용입니다. 
+- 댄 밴더캄의 이펙티브 타입스크립트 도서의 아이템2.타입스크립트 설정 이해하기 파트를 읽고 정리한 내용입니다. 
 
 ```typescript
 function add(a,b){
@@ -24,12 +24,12 @@ noImplicitAny는 변수들이 미리 정의된 타입을 가져야 하는지 여
 
 no + implicitAny ⇒ 설정 : 암묵적인 any를 쓰지 않는다. true/ false 
 
-**`noimplicitAny :false`**
+#### **`noimplicitAny :false`**  
 <img src="./images/noImplicity_1.png" width="400" height="100">
 
 실행결과 : NaN
 
-**`noimplicitAny :true`**
+#### **`noimplicitAny :true`**
 <img src="./images/noImplicity_2.png" width="400" height="100">
 
 
@@ -54,7 +54,7 @@ add(10,2); // 12
 - 새 프로젝트를 시작할 때 설정하는 것을 추천- 가독성, 생산성 향상
 - 자바스크립트를 타입스크립트로 전환하는 상황에는 설정해제
 
-(뒷부분에도 나오겠지만 참고로 any의 지양성에 대해 다루고 있는데, any타입을 지양해야한다는 관점에서는 아마 noImplicitAny를 true 로 하는게 좋은것 같습니다.)
+(책의 뒷부분에서 any의 지양성에 대해 다루고 있는데, any타입을 지양해야한다는 관점에서는 아마 noImplicitAny를 true 로 하는게 좋은것 같습니다.)
 
 ## ✔️ strictNullChecks
 
@@ -110,7 +110,7 @@ if(el){
 }
 
 ```
-<img src="./images/strictNullChecks_06.png" width="400" height="80">
+<img src="./images/strictNullChecks_06.png" width="200" height="50">
 
 * Non-null assertion 사용으로 el은 확실히 null 또는 undefined 가 아님을 가정합니다.
 
@@ -120,15 +120,15 @@ if(el){
 el.!textContent = 'Ready'; //✅
 
 ```
-<img src="./images/strictNullChecks_05.png" width="400" height="70">
+<img src="./images/strictNullChecks_05.png" width="200" height="50">
 
 
 
 
 
 `.!` 에 대해 궁금하시다면,
-[Non-null assersion operator 도입 TypeScript 2.9 공식문서](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator) 
-[Non-null Assertion Operator (Postfix!) 개선안 TypeScript 3.9 공식문서](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html#parsing-differences-in-optional-chaining-and-non-null-assertions) 참고입니다.
+[Non-null assersion operator 도입 TypeScript 2.9 공식문서](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator) 과 
+[Non-null Assertion Operator (Postfix!) 개선안 TypeScript 3.9 공식문서](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html#parsing-differences-in-optional-chaining-and-non-null-assertions) 참고 링크 입니다.
 
 `strictNullChecks` 은 `undefined는 객체가 아닙니다`라는 런타임오류를 방지하기 위해 사용하는 것이 좋습니다. 
 
