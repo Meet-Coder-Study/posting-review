@@ -1,34 +1,32 @@
 # 미리 알았으면 좋을 Ansible 테크닉들
 > 원문: [Five Ansible Techniques I Wish I’d Known Earlier](https://zwischenzugs.com/2021/08/27/five-ansible-techniques-i-wish-id-known-earlier/)
 
-If you’ve ever spent ages waiting for an Ansible playbook to get through a bunch of tasks so yours can be tested, then this article is for you.
+[Ansible Playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)에서 수많은 task를 테스트할 때마다 많은 시간을 들이고 있다면 이 글은 당신에게 도움이 될 것입니다. 
 
-[Ansible Playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)에서 테스트하려는 목적의 task를 실행하기 위해서 기다리는 항상 오래기다리셨다면 이 글은 당신에게 도움이 될 것입니다. 
-
-Ansible은 때때로 디버깅하는데에 지루하고 개발하는 과정이 모호할 수 있습니다. 예를 들어 내가 사용하려는 변수는 어떤 것을 배열로 만들어서 찾아야하는지와 같은 상황이 있습니다. 그래서 저는 이 과정을 빠르게 하고 동작하는 내부에서는 어떠한 일들이 일어나고 있는지 이해할 수 있는 방법을 찾기 시작했습니다.
+Ansible을 활용하여 디버깅하는 것은 때때로 지루하고 그 과정이 모호할 수 있습니다. (예를 들어 내가 사용하려는 변수는 어떤 것으로부터 값을 추출하여 배열로 만들어서 찾아야하는지 같은 상황이 여기에 해당합니다.) 그래서 저는 이 과정을 빠르게 할 수 있는 방법과 동작하는 내부에서는 어떠한 일들이 일어나고 있는지 이해할 수 있는 방법을 찾기 시작했습니다.
 
 결과적으로는 다음과 같이 도움을 줄 수 있는 5가지 도구 혹은 테크닉을 찾았고 이를 공유합니다.
 
-이 팁들은 사용하기 쉬운 것에서 어려운 것 순으로 나열하였습니다.
+이 팁들은 사용하기 쉬운 것에서 어려운 것 순으로 나열되어 있습니다.
 
 ## 1) --step 옵션
-가장 쉽게 적용하고 따라할 수 있는 테크닉입니다. `--step` 옵션을 `ansible-playbook` 명령어에 추가하면 다음과 같은 명령 프롬프트가 나타납니다.
+가장 쉽게 적용하고 따라할 수 있는 테크닉입니다. [--step 옵션](https://docs.ansible.com/ansible/latest/user_guide/playbooks_startnstep.html#step-mode)을 `ansible-playbook` 명령어에 추가하면 다음과 같은 명령 프롬프트가 나타납니다.
 ```bash
 PLAY [Your play name] ****************************************************************************************
 Perform task: TASK: Your task name (N)o/(y)es/(c)ontinue:
 ```
 
-각 태스크마다 태스크를 실행할지(`yes`), 실행하지 않을지(`no`, 기본값), 혹은 나머지 태스크를 모두 실행할지(`continue`)를 선택할 수 있습니다.
+각 태스크마다 태스크를 실행할지(`yes`), 실행하지 않을지(`no`, 기본값), 혹은 현재부터 나머지 모두 실행할지(`continue`)를 선택할 수 있습니다.
 
 나머지 태스크를 모두 `yes`로 실행하고 싶을 때 `continue` 옵션은 유용합니다. 참고로 `continue`를 선택하면 해당 play의 나머지 태스크를 실행하는 것이지 playbook의 나머지 태스크를 실행하는 것은 아닙니다.  
-(역주: [ansible의 구성요소는 playbook > play > task 층위를 가집니다.](https://devops.stackexchange.com/a/9833) 예를 들어 nginx를 설치하는 play와 nginx를 실행하는 play를 하나의 playbook에 넣었을 경우 continue를 선택한 task가 속한 play가 nginx 설치일 겨우 nginx 실행하는 play 실행하기 전까지만 실행합니다.)
+(역주: [ansible의 구성요소는 playbook > play > task 층위를 가집니다.](https://devops.stackexchange.com/a/9833) 예를 들어 nginx를 설치하는 play에 이어서 nginx를 실행하는 play를 하나의 playbook에 넣었을 경우 continue를 선택한 task가 속한 play가 nginx 설치일 겨우 nginx 실행하는 play 실행하기 전까지만 실행합니다.)
 
 엔터키를 눌러서 `yes`를 손쉽게 입력할 수 있으나 태스크가 많을 경우 본인이 확인하려는 태스크를 지나칠 수도 있으니 주의해야 합니다.
 
-개인적인 생각으로는 ansible이 오픈소스 프로젝트라서 `back`, `skip` 기능을 누군가 추가해주면 좋겠습니다.
+개인적인 생각으로는 ansible이 오픈소스 프로젝트이므로 `back`, `skip` 기능을 누군가 추가해주면 좋겠습니다.
 
 ## 2) 인라인 로깅
-고전적인(old-fashioned) 로그를 표시하여 변수를 손쉽게 확인하는 방법도 있습니다. 다음의 코드는 호스트 변수들을 json 형태로 가독성 있게 출력합니다.
+고전적인 형식의(old-fashioned) 로그를 표시하여 변수를 손쉽게 확인하는 방법도 있습니다. 다음의 코드는 호스트 변수들을 json 형태로 가독성 있게 출력합니다.
 ```yaml
 # playbook 파일에 다음의 play를 추가합니다.
 - name: dump all
@@ -62,7 +60,7 @@ Perform task: TASK: Your task name (N)o/(y)es/(c)ontinue:
 ```
 
 ## 3) ansible-lint
-다른 대부분의 linter와 마찬가지로 [ansible-lint](https://ansible-lint.readthedocs.io/en/latest/)를 활용하여 문제를 찾거나 [안티패턴](https://ko.wikipedia.org/wiki/%EC%95%88%ED%8B%B0%ED%8C%A8%ED%84%B4)이 있는지 확인할 수 있습니다.
+다른 대부분의 linter와 마찬가지로 [ansible-lint](https://ansible-lint.readthedocs.io/en/latest/)를 활용하여 코드상의 문제를 찾거나 [안티패턴](https://ko.wikipedia.org/wiki/%EC%95%88%ED%8B%B0%ED%8C%A8%ED%84%B4)이 있는지 확인할 수 있습니다.
 
 `ansible-lint` 실행결과는 다음과 같은 형식을 취하고 있습니다.
 ```yaml
@@ -72,7 +70,7 @@ roles/rolename/tasks/main.yml:8: risky-file-permissions File permissions unset o
 [.ansible-lint 파일을 활용하여 필요시 특정 에러나 경고를 무시하도록 규칙을 설정할 수 있습니다.](https://ansible-lint.readthedocs.io/en/latest/default_rules.html)
 
 ## 4) ansible-console
-[ansible-console](https://docs.ansible.com/ansible/latest/cli/ansible-console.html)을 활용하면 ansible 개발에 드는 시간을 상당히 줄일 수 있지만 아쉽게도 활용방법에 대한 정보가 많이 없는 것 같아서 보다 구체적으로 설명을 드리려고 합니다.
+[ansible-console](https://docs.ansible.com/ansible/latest/cli/ansible-console.html)을 활용하면 ansible 개발에 드는 시간을 상당히 줄일 수 있지만 아쉽게도 활용방법에 대한 정보가 많이 없는 것 같아서 구체적으로 설명을 하고자 합니다.
 
 ```bash
 $ ansible-console -i hosts.yml
@@ -116,7 +114,7 @@ imiell@all (1)[f:5]$ help become_user
 Given a username, set the user that plays are run by when using become
 ```
 
-모듈(module)의 경우 전체적인 설명과 파라미터 정보를 볼 수 있습니다.
+모듈(module)의 경우 전체적인 설명과 함께 파라미터 정보를 볼 수 있습니다.
 ```bash
 imiell@all (1)[f:5]$ help shell
 Execute shell commands on targets
@@ -142,9 +140,9 @@ basquiat | SUCCESS | rc=0 >>
 skipped, since /tmp/asd exists
 ```
 
-특히 실행하고자 하는 호스트가 여러 개인 경우 여러 호스트를 대상으로 한 번에 명령어를 실행하기 좋은 방법입니다.
+실행하고자 하는 호스트가 여러 개인 경우 여러 호스트를 대상으로 한 번에 명령어를 실행할 수 있습니다.
 
-실행하고자 하는 호스트를 구체적으로 지정하고 싶은 경우 `cd` 명령어를 사용하면 하나의 호스트, 그룹 혹은 여러개의 그룹과 호스트를 선택할 수 있습니다. (디렉토리를 이동하는 것처럼 호스트를 변경한다고 보면 됩니다.)
+실행하고자 하는 호스트를 구체적으로 지정하고 싶은 경우 `cd` 명령어를 사용하면 하나의 호스트, 그룹 혹은 여러개의 그룹과 호스트를 선택할 수 있습니다. 기본값은 `all`입니다. (디렉토리를 이동하는 것처럼 호스트를 변경한다고 보면 됩니다.)
 ```yaml
 # basquiat이라는 호스트에만 실행하도록 변경
 imiell@all (4)[f:5]$ cd basquiat
