@@ -1,4 +1,4 @@
-#소환사 전적 검색 Api만들기
+# 소환사 전적 검색 Api만들기
 
 ```
 Api를 만든 과정에 대한 글입니다.  
@@ -161,14 +161,15 @@ public interface SummonerRepository extends JpaRepository<Summoner, Long> {
     Summoner findBySummonerName(String summonerName);
 }
 ```
+그리고 DB에 잘 저장 되는 것을 확인 했다. 
+![](./images/summoner%20DB.png)
+![](./images/matches%20DB.png)
 
 ## 회고
-간단한 Api작업이라고 생각했지만 아쉬운것은 많았다.
-일단 퀄리티가 별로다.  
-아쉬운것을 정리 해보면  
+간단한 Api작업이었지만 아쉬운것은 많았다.  
+정리 해보면  
 1. Jpa에 대해서 잘모른다.  (공부할건 많은데 너무 생각 없이 지냈구나..)
-2. Rate Limit를 해결 하지 못했다.  
-3. 내가 만든 Api가 어떻게 작동하는지 세세하게 모른다.  
+2. Rate Limit를 해결 하지 못했다.
 
 이 세 부분이 아쉬웠다.  
 혼자 하는것이 쉽지 않다는 것을 알고 있었지만.  
