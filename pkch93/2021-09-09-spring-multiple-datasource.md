@@ -349,7 +349,7 @@ public class LegacyMemberController {
 }
 ```
 
-`/member`로 `POST` 요청을 하면 MySQL의 Member 테이블에 nickname이 `member`인 데이터가 insert 되고 `/legacy/member`로 `POST` 요청을 하면 Postgresql의 legacymember 테이블에 nicknamedl `legacy-member`인 데이터가 insert 된다.
+`/member`로 `POST` 요청을 하면 MySQL의 Member 테이블에 nickname이 `member`인 데이터가 insert 되고 `/legacy/member`로 `POST` 요청을 하면 Postgresql의 legacymember 테이블에 nickname이 `legacy-member`인 데이터가 insert 된다.
 
 ```text
 src
