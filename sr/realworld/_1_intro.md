@@ -40,7 +40,7 @@ FrontEnd 와 BackEnd 개발자가 생존할 수 있도록 [Medium.com](http://Me
     - 테스트 코드 없이 구현된 상품이 PMF(Product-market fit)를 찾을 가능성이 훨씬 높다.
 
 ```text
-모든 경우에 `TDD 또는 테스트 코드 == orver-engineering`가 통용되는 것은 아니다.
+모든 경우에 `TDD 또는 테스트 코드 == over-engineering`가 통용되는 것은 아니다.
 ```
 
 ### 2. API 스펙을 통해 어떤 것을 구현해야 하는지 알아보기
