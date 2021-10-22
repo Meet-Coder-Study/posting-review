@@ -66,16 +66,17 @@
 마지막으로 넷플릭스는 규칙과 절차에 너무 얽매이는 상황을 경계하였다. 많은 규정에 대한 제한을 없애기는 힘들지만 규정이 신속한 의사결정과 성과를 저해하는 요소가 있다면 규정을 좀더 유연하게 수정하거나 없앨 수 있는 여지는 항상 두어야한다고 생각한다.
 
 ## 참고
-- https://content.v.daum.net/v/5f5f27e95803646c206786cd
-- https://bravenamme.github.io/2020/07/21/msa-netflix/
-- https://www.samsungsds.com/kr/insights/msa_and_netflix.html
-- https://bravenamme.github.io/2020/07/21/msa-netflix/
-- http://www.yes24.com/Product/Goods/92275597
-- https://brunch.co.kr/@pliossun/170
-- https://sangmusang.tistory.com/193
-- https://www.futurekorea.co.kr/news/articleView.html?idxno=139427
-- https://hellohyunil.tistory.com/2260
-- http://www.casenews.co.kr/news/articleView.html?idxno=3945
-- https://m.blog.naver.com/mindlikewind/222118817928
-- https://3rdscholar.tistory.com/78
-- https://www.superookie.com/contents/5e12adee8b129f585d742211
+- [규칙 없음 넷플릭스, 지구상 가장 빠르고 유연한 기업의 비밀](http://www.yes24.com/Product/Goods/92275597)
+- [넷플릭스가 6개월마다 '키퍼 테스트'하는 이유
+  ](https://content.v.daum.net/v/5f5f27e95803646c206786cd)
+- [MSA and Netflix OSS](https://bravenamme.github.io/2020/07/21/msa-netflix/)
+- [넷플릭스로 알아보는 MSA](https://www.samsungsds.com/kr/insights/msa_and_netflix.html)
+- [MSA and Netflix OSS](https://bravenamme.github.io/2020/07/21/msa-netflix/)
+- [넷플릭스, '규칙 없음'](https://brunch.co.kr/@pliossun/170)
+- [당신만 몰랐던 넷플릭스(Netflix) 기업문화의 비밀, No Rule Rules!!](https://sangmusang.tistory.com/193)
+- [[서평] 규칙 없음.... 넷플릭스, 지구상 가장 빠르고 유연한 기업의 비밀](https://www.futurekorea.co.kr/news/articleView.html?idxno=139427)
+- [넷플릭스 "규칙없음" 책 요약](https://hellohyunil.tistory.com/2260)
+- ['넷플릭스가 '규칙 없음'일 수 있는 이유, 인재밀도와 투명한 피드백에서 찾다'](http://www.casenews.co.kr/news/articleView.html?idxno=3945)
+- [규칙 없음 (넷플릭스, 지구상 가장 빠르고 유연한 기업의 비밀)-리드 헤이스팅스, 에린 마이어](https://m.blog.naver.com/mindlikewind/222118817928)
+- [통제가 아닌 맥락으로 리드하라, 규칙 없음 - 리드 헤이스팅스, 에린 메이어](https://3rdscholar.tistory.com/78)
+- [평균 연봉 3억 7천만 원? 넷플릭스의 기업문화](https://www.superookie.com/contents/5e12adee8b129f585d742211)
