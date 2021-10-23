@@ -39,7 +39,7 @@ FrontEnd 와 BackEnd 개발자가 생존할 수 있도록 [Medium.com](http://Me
     - 초기 스타트업의 MVP의 목표를 반영한다는 목표는 시장에 상품의 적합성을 찾는 것이 주된 목표이기 때문에 해당 조건이 충족되기 전까지는 TDD나 테스트를 적용하지 않는 것이 맞다고 판단한다.
     - 테스트 코드 없이 구현된 상품이 PMF(Product-market fit)를 찾을 가능성이 훨씬 높다.
 
-```text
+```markdown
 모든 경우에 `TDD 또는 테스트 코드 == over-engineering`가 통용되는 것은 아니다.
 ```
 
