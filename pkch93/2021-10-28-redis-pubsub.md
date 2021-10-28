@@ -29,13 +29,13 @@ Redis PubSub이 메세지의 신뢰성을 보장하지는 하지만 빠른 응�
 
 단, Redis PubSub에서는 클러스터 구성이 독이 될 수 있다.
 
-![](https://user-images.githubusercontent.com/30178507/139267496-8af31c5e-6491-4142-9827-8130e50b6200.png)
+<img width="500" alt="스크린샷 2021-10-28 오후 10 40 03" src="https://user-images.githubusercontent.com/30178507/139269176-55753b84-965f-4946-9d24-99a65d053e58.png">
 
 Redis PubSub에서 클러스터를 구성할 경우 위와 같은 형태로 이뤄진다.
 
 Subscriber는 클러스터의 단일 노드에 연결이 되는데 채널에 등록된 모든 Subscriber에 메세지가 전송됨을 보장하기 위해서 Publisher에게서 메세지를 받을 때 클러스터의 노드들에 메세지를 복사하여 전달한다. 복사하여 전달하는만큼 부하가 더 심해진다.
 
-![](https://user-images.githubusercontent.com/30178507/139267858-56565671-9ffb-4b52-a3a6-90185647dc5b.png)
+<img width="500" alt="스크린샷 2021-10-28 오후 10 40 03" src="https://user-images.githubusercontent.com/30178507/139267858-56565671-9ffb-4b52-a3a6-90185647dc5b.png">
 
 위 캡처와 같이 노드가 추가될수록 성능이 떨어지는 것을 볼 수 있다.
 
