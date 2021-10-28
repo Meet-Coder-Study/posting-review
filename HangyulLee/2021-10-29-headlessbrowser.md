@@ -41,7 +41,8 @@ $ chrome --headless --screenshot={파일경로.png} {웹주소}
   - 파일명 없이 `--screenshot`만 하면 'screenshot.png'로 저장된다.
   - 화면 뷰 너비 설정하는 플래그 `--window-size=412,732`나, 스크롤바를 숨기는 플래그 `--hide-scrollbars` 등으로 원하는 형태로 스크린샷을 찍을 수 있다.
   - windows 환경에서 실행할 때는 `--disable-gpu`를 플래그로 작성해야 한다.
-  - 아래는 헤드리스 브라우저로 찍은 스크린샷이다. ![하나나의 블로그](./images/headless-screenshot.png =300)
+  - 아래는 헤드리스 브라우저로 찍은 스크린샷이다. 
+![하나나의 블로그](./images/headless-screenshot.png =300)
 
 - Chrome 팀이 개발한 Node 라이브러리 Puppeteer을 통해서도 Node.js 환경에서도 헤드리스 브라우저를 통한 작업을 수행할 수 있다.
   - 프로젝트 폴더에 puppeteer 패키지를 설치하고 import한다.
