@@ -13,12 +13,14 @@ GUI로 쉽게 상호작용할 수 있는데 왜 굳이 이런 브라우저가 �
 
 ### 헤드리스 브라우저의 사용
 - 브라우저 테스트를 돌리거나 웹페이지의 스크린샷을 뜨는 등의 자동화 작업을, 화면을 필요로 하지 않거나 화면이 없는 상황에서 수행하는 경우
-- 동적으로 생성된 정보를 크롤링하거나 검색하는 경우: 동적으로 생성하여 제공된 데이터를 반영한 화면를 크롤링해야 보다 정확히 해당 웹페이지를 찾아내고 유저에게 제공할 수 있다. 이 때문에 Chrome Search 팀에서는 [서치엔진이 헤드리스 브라우저를 통해 AJAX 페이지도 효과적으로 크롤링하도록](https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable) 했다.
+- 동적으로 생성된 정보를 크롤링하거나 검색하는 경우
+  - 동적으로 생성하여 제공된 데이터를 반영한 화면를 크롤링해야 보다 정확히 해당 웹페이지를 찾아내고 유저에게 제공할 수 있다. 
+  - 이 때문에 Chrome Search 팀에서는 [서치엔진이 헤드리스 브라우저를 통해 AJAX 페이지도 효과적으로 크롤링하도록](https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable) 했다.
 
 ### 헤드리스 브라우저들
 - PhantomJS가 대표적이었으나 지금은 Chrome이나 Firefox에서는 자체적인 헤드리스 브라우저를 제공하면서 2017년 이후 지원되지 않는다.
 - Chrome 팀이 개발한 Node 라이브러리 Puppeteer을 통해 Node.js 환경에서 헤드리스 브라우저를 통한 작업을 수행할 수 있다.
-- 이 곳에서 [현존 헤드리스 브라우저 목록(by username 'dhamaniasad')](http://dhamaniasad.github.io/HeadlessBrowsers/)을 확인할 수 있다.
+- [이 곳](http://dhamaniasad.github.io/HeadlessBrowsers/)에서 현존 헤드리스 브라우저 목록(by username 'dhamaniasad')을 확인할 수 있다.
 
 ### 참고자료
 - [Wikipedia: Headless Browser](https://en.wikipedia.org/wiki/Headless_browser)
