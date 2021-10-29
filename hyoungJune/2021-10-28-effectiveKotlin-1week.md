@@ -25,6 +25,8 @@
  하지만, 코틀린은 내가 팀에 참여한 뒤로 처음 사용을 하고 있어서 전체적인 맥락만 체크해줄 뿐, 코틀린 API에 대해서 자세한 체크를 해주거나, 받을 수 없는 상태였다.
  
  대표적인 예시는 apply, let, run, also, with를 어느 순간에 적절히 사용할 것인가이다.
+ 
+ ![](https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-M7_opr2RFh9Acog0_8H%2Fuploads%2Fh6Ud2nTuPcoB9WjYUdgL%2Fimage.png?alt=media&token=516d028f-712d-4c41-8507-534f784e1768)
 
 이러한 상황 속에서 계속 의문만 커져갔다. 
 
