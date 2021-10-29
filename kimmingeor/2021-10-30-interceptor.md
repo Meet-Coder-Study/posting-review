@@ -31,6 +31,9 @@ HandlerInterceptorAdaptor (추상 클래스)
 인터페이스에는 이 메서드들이 default 메서드로 정의되어 있어서 추상 클래스처럼 골라쓸 수 있다.
 
 
+<br>
+<br>
+<br>
 
 
 
@@ -68,7 +71,9 @@ DispatcherServlet 클래스의 doDispatch 메서드의 일부
     ```
 
 
-
+<br>
+<br>
+<br>
 
 
 ### RequestBody, ResponseBody 는 한번만 읽을 수 있다.
@@ -77,13 +82,13 @@ http 요청, 응답을 자바 객체로 만들 때, 무엇을 사용할까.
 
 직렬화, 역직렬화 즉 `InputStream`, `OutputStream` 일 것이다.
 
-
+<br>
 
 인터셉터에서 사용하는 `HttpServletRequest`, `HttpServletResponse` 도 마찬가지다.
 
 내부에 스트림을 가지고 있으면서, 읽고 쓰는 작업을 한다.
 
-
+<br>
 
 아래는 `HttpServletRequest` 의 최상위 인터페이스 `ServletRequest` 의 일부이다.
 
@@ -100,7 +105,7 @@ public ServletInputStream getInputStream() throws IOException;
 - getRead() 메서드도 같은 역할을 한다.
 - getInputStream() / getRead() 중 하나라도 이미 실행되었다면 예외를 발생시킨다. (2번 실행될 수 없음.)
 
-
+<br>
 
 아래는 `HttpServletResponse` 의 최상위 인터페이스 `ServletResponse` 의 일부이다.
 
@@ -121,7 +126,9 @@ public ServletOutputStream getOutputStream() throws IOException;
 이 스트림들은 ServletRequest, ServletResponse 객체 안에서 가져가기 때문에, 만약 인터셉터에서 이를 이용해 body 를 읽어버린다면 이후 Controller 단에서 읽을 수 없는 문제가 생긴다.
 
 
-
+<br>
+<br>
+<br>
 
 
 하지만 아래와 같은 요구사항은 충분히 생길 수 있다.
@@ -133,7 +140,9 @@ public ServletOutputStream getOutputStream() throws IOException;
 요약하자면, 인터셉터에서 공통적으로 요청/응답을 가로채 body 값을 꺼내 사용하고 싶은데, 한번밖에 못 읽는다면 어떻게 해야할까~ 이다.
 
 
-
+<br>
+<br>
+<br>
 
 
 ## 방법 1) Wrapping
@@ -142,17 +151,17 @@ public ServletOutputStream getOutputStream() throws IOException;
 
 body 값을 인터셉터에서 쓸 때는, 캐싱된 값을 꺼내 쓰면 될 일이다.
 
-
+<br>
 
 `HttpServletRequest` 를 Wrapping 한 클래스를 만들어서,
 
 캐시역할을 하는 필드를 만들고, 스트림을 초기화해주는 메서드를 만들면 된다.
 
-
+<br>
 
 스프링은 친절하게도 이 역할을 하는 `ContentCachingRequestWrapper` 라는 클래스가 있다.
 
-
+<br>
 
 인터셉터의 preHandle() 에서 request 를 래핑해 사용한 뒤 넘겨주면 될까?
 
@@ -259,7 +268,7 @@ class MyDataCommonInterceptor(
 > ```
 
 
-
+<br><br><br>
 
 
 ## 방법 2) **RequestBodyAdviceAdapter**
@@ -270,11 +279,11 @@ body 는 이미지가 될 수 있고, 동영상이 될 수 있다.
 
 즉 헤더와는 달리 크기가 무제한이다. 이를 캐싱해 두고 있다는 것은 메모리상 부하를 줄 수 있는 상황이 생길 수 있다는 것이다. (성능 이슈가 있을 수 있다.)
 
-
+<br><br>
 
 `RequestBodyAdviceAdapter` 를 사용하면 RequestBody 가 @RequestBody 가 붙은 객체로 맵핑될 때 따로 작업을 처리 할 수 있다.
 
-
+<br><br>
 
 ```java
 @RestControllerAdvice
@@ -298,7 +307,7 @@ class MyRequestAdvice : RequestBodyAdvice {
 }
 ```
 
-
+<br>
 
 afterBodyRead() 메서드를 보면 인자로 body 객체가 있다.
 
@@ -306,7 +315,7 @@ afterBodyRead() 메서드를 보면 인자로 body 객체가 있다.
 
 
 
-
+<br><br><br>
 
 
 
@@ -316,11 +325,11 @@ afterBodyRead() 메서드를 보면 인자로 body 객체가 있다.
 
 인터셉터의 postHandle 의 response 인자를 이용해서 setHeader 를 할 생각이었다.
 
-
+<br>
 
 하지만 재대로 적용이 되지 않았고, 이 해결 방법을 공유해본다.
 
-
+<br>
 
 ```java
 postHandle 의 인자 HttpServletResponse 의 구현체 ResponseFacade 의 메서드
@@ -337,23 +346,23 @@ postHandle 의 인자 HttpServletResponse 의 구현체 ResponseFacade 의 메�
     }
 ```
 
-
+<br>
 
 위를 보면 isCommited() 를 검사하고 있다.
 
-
+<br>
 
 HttpServletResponse 의 경우 헤더가 작성이 될 때 commited 여부를 기록해 놓는다.
 
 그래서 postHandle 에서 setHeader() 를 하려고 하면 동작이 되지 않는다.
 
 
-
+<br><br>
 
 
 이 떄는 위 RequestBodyAdviceAdapter 와 대응되는 `ResponseBodyAdvice` 를 사용하면 된다.
 
-
+<br>
 
 ```java
 @RestControllerAdvice
@@ -380,7 +389,7 @@ class MyDataResponseAdvice : ResponseBodyAdvice<Any?> {
 
 
 
-
+<br><br><br>
 
 
 
