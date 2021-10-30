@@ -72,7 +72,7 @@ ConcurrentMap 에 저장된 데이터는 해당 Map 이 제거될 때까지 영�
 
 반면에 캐시는 evict 로직이 Auto 로 동작하게끔 구성이 된다고 한다.
 
-그리고 Caffeine Cache 는 eviction policy 로 Window TinyLfu 라는 것을 사용하는데 이걸 사용함으로 써 최적의 적중률(near-optimal hit rate)을 보여준다고 한다.
+그리고 Caffeine Cache 는 eviction policy 로 Window TinyLfu 라는 것을 사용하는데 이것을 사용함으로써 최적의 적중률(near-optimal hit rate)을 보여준다고 한다.
 
 Window TinyLfu 에 대하여 궁금하다면 [해당 링크](https://www.fatalerrors.org/a/caffeine-cache-details.html) 를 읽어보길 바란다.
 
