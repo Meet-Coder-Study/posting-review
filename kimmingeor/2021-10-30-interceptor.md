@@ -56,10 +56,10 @@ DispatcherServlet 클래스의 doDispatch 메서드의 일부
 - 필터는 서블릿 컨테이너단에서 요청과 응답을 가로채는것에 비해,인터셉터는 위 코드와 같이 DispatcherServlet 단에서 실행된다.
 
     - 따라서, 예외처리 역시 Spring Container 내에서 이루어진다.
-        - @ControllerAdivsor & @ExceptionHandler 로 처리 가능.
+        - @ControllerAdvisor & @ExceptionHandler 로 처리 가능.
     - 반면 필터는 에러페이지를 만들어서 처리해야 한다.
 
-- preHandle, postHandle, afterCompletion 메서드를 보면 handler 라는 인지가 들어온다.
+- preHandle, postHandle, afterCompletion 메서드를 보면 handler 라는 인자가 들어온다.
 
     - 이는 Controller 에 @RequestMapping 으로 매핑된 메서드의 정보다.
 
@@ -327,7 +327,7 @@ afterBodyRead() 메서드를 보면 인자로 body 객체가 있다.
 
 <br>
 
-하지만 재대로 적용이 되지 않았고, 이 해결 방법을 공유해본다.
+하지만 제대로 적용이 되지 않았고, 이 해결 방법을 공유해본다.
 
 <br>
 
@@ -360,7 +360,7 @@ HttpServletResponse 의 경우 헤더가 작성이 될 때 commited 여부를 �
 <br><br>
 
 
-이 떄는 위 RequestBodyAdviceAdapter 와 대응되는 `ResponseBodyAdvice` 를 사용하면 된다.
+이 때는 위 RequestBodyAdviceAdapter 와 대응되는 `ResponseBodyAdvice` 를 사용하면 된다.
 
 <br>
 
