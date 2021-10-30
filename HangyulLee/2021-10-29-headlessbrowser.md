@@ -10,21 +10,19 @@
 ### 헤드리스 브라우저의 의의
 
 - GUI로 쉽게 상호작용할 수 있는데 왜 굳이 이런 브라우저가 있는 것일까? GUI가 필요 없거나, GUI를 쓸 수 없는 상황 때문일 것이다. 
-  - 전자의 경우는 웹크롤링이 대표적이다. 해당 웹페이지가 제공하는 데이터만이 관심사일 뿐, 그 데이터가 어떤 모양으로 렌더링되는지는 내 알 바가 아니기 때문에 헤드리스 브라우저를 사용하여 더 빠르게 데이터만을 가져올 수 있다. 
-  - 후자는 GUI가 없는 기계에서 웹에 접근해야 하는 경우이다. 데스크탑이 아니라 서버사이드에서 별도의 화면 없이 웹 화면 상의 작업을 해야 할 때는 헤드리스 브라우저를 통해 가능하다.
+- 전자의 경우는 웹크롤링이 대표적이다. 해당 웹페이지가 제공하는 데이터만이 관심사일 뿐, 그 데이터가 어떤 모양으로 렌더링되는지는 내 알 바가 아니기 때문에 헤드리스 브라우저를 사용하여 더 빠르게 데이터만을 가져올 수 있다. 
+  - 뿐만 아니라 헤드리스 브라우저는 Javascript로 동적 생성되는 정보나 AJAX로 변경된 정보에도 접근할 수 있다. 
+  - 동적으로 생성하여 제공된 데이터를 반영한 화면을 크롤링해야, 보다 정확히 해당 내용을 가진 웹페이지를 찾아내고 유저에게 제공할 수 있기 때문에 구글 Chrome Search 팀에서는 [서치엔진이 헤드리스 브라우저를 통해 AJAX 페이지를 비롯하여 최종 state를 반영한 HTML 코드도 효과적으로 크롤링하도록](https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable) 했다.
 
-- 뿐만 아니라 헤드리스 브라우저는 Javascript로 동적 생성되는 정보나 AJAX로 변경된 정보에도 접근할 수 있다. 
-  - 구글은 서치엔진이 헤드리스 브라우저를 통해 AJAX 상호작용 결과를 비롯하여 최종 state를 반영한 HTML 코드를 크롤링한다고 하기도 했다.
+- 후자는 GUI가 없는 기계에서 웹에 접근해야 하는 경우이다. 
+  - 데스크탑이 아니라 서버사이드에서 별도의 화면 없이 웹 화면 상의 작업을 해야 할 때는 헤드리스 브라우저를 통해 가능하다.
+  - 브라우저 테스트를 돌리거나 웹페이지의 스크린샷을 뜨는 등의 자동화 작업이 있다고 한다.
+  - E2E(End to End) 테스트를 위해 [Cypress](https://www.cypress.io/)나 Puppeteer + Jest 형태로 많이 쓰인다고 한다.
 
-### 헤드리스 브라우저의 사용
-- 브라우저 테스트를 돌리거나 웹페이지의 스크린샷을 뜨는 등의 자동화 작업을, 화면을 필요로 하지 않거나 화면이 없는 상황에서 수행하는 경우
-- 동적으로 생성된 정보를 크롤링하거나 검색하는 경우
-  - 동적으로 생성하여 제공된 데이터를 반영한 화면을 크롤링해야, 보다 정확히 해당 내용을 가진 웹페이지를 찾아내고 유저에게 제공할 수 있다. 
-  - 이 때문에 Chrome Search 팀에서는 [서치엔진이 헤드리스 브라우저를 통해 AJAX 페이지도 효과적으로 크롤링하도록](https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable) 했다.
 
 ### 헤드리스 브라우저의 종류
 - PhantomJS가 대표적이었으나 지금은 Chrome이나 Firefox에서 자체적인 헤드리스 브라우저를 제공하면서, 2017년 이후 지원되지 않는다.
-- [이 곳](http://dhamaniasad.github.io/HeadlessBrowsers/)에서 현존 헤드리스 브라우저 목록(by username 'dhamaniasad')을 확인할 수 있다.
+- [이 곳](http://dhamaniasad.github.io/HeadlessBrowsers/)에서 현존 헤드리스 브라우저 목록을 확인할 수 있다.
 
 ### 헤드리스 브라우저 활용해보기
 - 크롬을 실행시키는 shell command에 --headless 라는 플래그를 붙이고 실행할 명령어를 또다른 플래그로 입력한다. 
@@ -65,7 +63,7 @@ const puppeteer = require('puppeteer');
 ### 느낀 점
 - 다양한 상황을 위한 웹 환경이 있다는 것이 신기했다.
 - 아직은 스크린샷 말고는 할 게 없었지만... 나중에 다른 작업들에 활용해보면 좋겠다.
-
+- Special thanks to 블로그 포스팅 스터디 6기를 통해 새로운 정보(E2E 테스트)와 피드백을 받았다. 
 
 ### 참고자료
 - [Wikipedia: Headless Browser](https://en.wikipedia.org/wiki/Headless_browser)
@@ -75,3 +73,4 @@ const puppeteer = require('puppeteer');
 - [Chrome developers의 Headless Chrome 및 Puppeteer 사용법 안내 아티클 - Getting Started with Headless Chrome (2017)](https://developers.google.com/web/updates/2017/04/headless-chrome)
 - [Google Search Central Blog의 서치엔진 작동 원리 관련 아티클 - A proposal for making AJAX crawlable (2009)](https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable)
 - [현존 헤드리스 브라우저 목록(by username 'dhamaniasad')](http://dhamaniasad.github.io/HeadlessBrowsers/)
+- [Puppeteer로 E2E 테스트하기 팁](https://ui.toast.com/weekly-pick/ko_20200630)
