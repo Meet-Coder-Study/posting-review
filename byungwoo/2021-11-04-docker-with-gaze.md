@@ -68,7 +68,7 @@ Flask==1.1.2
 # ...
 Creating flask ... done
 ```
-curl 요청으르 날려서 응답을 확인합니다.
+curl 요청을 날려서 응답을 확인합니다.
 ```bash
 > curl localhost:5000 
 Hello, Docker!
