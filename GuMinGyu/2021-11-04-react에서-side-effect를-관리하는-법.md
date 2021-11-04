@@ -31,4 +31,4 @@ functional programming이 pure function들의 조합으로 프로그램을 구�
 
 책에서 나왔듯이 component에서 side effect가 발생하는 부분들 최대한 밖으로 밀어내야 합니다. container component로 side-effect를 모두 빼거나, custom hooks에서 처리하게 해야합니다. 만약 redux를 사용한다면 redux-saga에서 처리하게 해야합니다.
 
-이렇게 하면 component는 props에 대해 component rendering이 어떻게 렌더링될지 예상할 수 있고 테스트하기도 쉬워집니다. props에 따라 글자나 style의 결과만 테스트하면 됩니다.
+이렇게 하면 props에 대해 컴포넌트가 어떻게 렌더링될지 예상할 수 있고 테스트하기도 쉬워집니다. props에 따라 글자나 style의 결과만 테스트하면 됩니다.
