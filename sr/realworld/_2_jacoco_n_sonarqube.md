@@ -12,7 +12,7 @@ RealWorld에 뛰어들기 위한 준비..
 
 ### "나는 `아직도` 네가 지난 날에 작성한 코드가 어떤지 알고 있다."
 
-![포스터](images/_2_1.png)
+![포스터](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_1.png)
 
 개발을 하면서 내가 작성한 코드에 대해서 확신이 없었다. 그리고 더 좋은 방법이 있을거라 생각을 하지만 지금 당장은 구현하기에도 바쁘기 때문에 나중에 수정해야지 하고 진행하다가 잊어버리는 경우가 많다.
 
@@ -65,7 +65,7 @@ RealWorld에 뛰어들기 위한 준비..
 
 JaCoCo는 Java VM 기반 환경에서 코드 커버리지 분석을 위한 표준 기술을 제공한다.
 
-![Jacoco Reports](images/_2_2.png)
+![Jacoco Reports](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_2.png)
 
 현재 Jacoco Report로 본 RealWorld 프로젝트에 대한 코드 커버리지이다.
 
@@ -79,7 +79,7 @@ Jacoco는 테스트 코드를 작성할 때 코드를 분석할 기준을 정할
 
 `GitHub`에 올려둔 프로젝트를 `SonarCloud`로 연동하여 테스트 해볼 수 있으며 `CI 도구(Github Action)`와 연동하면 빌드에 대한   
 
-![SonarQube - Summary](images/_2_3.png)
+![SonarQube - Summary](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_3.png)
 
 > **코드 품질 기준 7가지**
 
@@ -98,4 +98,4 @@ Jacoco는 테스트 코드를 작성할 때 코드를 분석할 기준을 정할
 - **Size**
     - 소스코드 사이즈와 관련된 다양한 지표
 
-![SonarQube - Coverage](images/_2_4.png)
+![SonarQube - Coverage](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_4.png)
