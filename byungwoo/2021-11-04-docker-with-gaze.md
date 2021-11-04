@@ -18,8 +18,8 @@ gaze를 설치하고 `gaze *.txt -c "echo {{file}}"`으로 실행할 경우 해�
 
 ## python flask 프로젝트 구성
 python flask로 웹서비스를 개발한다고 가정하고 다음과 같이 간단하게 프로젝트를 구성합니다.
-```
-(/path/to/app) tree  
+```bash
+# 파일 구성   
 ├── Dockerfile
 ├── app.py
 ├── docker-compose.yml
@@ -58,6 +58,7 @@ services:
       - 5000:5000
 ```
 ```requirements.txt
+# requirements.txt
 Flask==1.1.2
 ```
 
