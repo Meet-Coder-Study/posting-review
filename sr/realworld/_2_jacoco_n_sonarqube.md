@@ -188,11 +188,11 @@ task testCoverage(type: Test) {
 
 GitHub와 연동하게 되는 경우 GitHub Actions와 쉽게 연동할 수 있도록 가이드를 제공하여 쉽게 설정할 수 있다.
 
-![SonarQube - Ci 연동](images/_2_5.png)
+![SonarQube - Ci 연동](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_5.png)
 
 SonarCloud를 연동하고 프로젝트를 진행하게 되면 PR을 날리면 GitHub Action이 동작하면서 빌드와 SonarQube에 대한 코드 커버리지 분석이 수행된다.
 
-![SonarQube - Actions](_2_6.png)
+![SonarQube - Actions](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_6.png)
 
 SonarCloud에서 볼 수 있는 내용들은 생각했던 것보다 많은 내용에 대해서 체크를 하고 있기 때문에 상세하게 분석하기 위해서는 테스트 코드 뿐만아니라 프로젝트의 구조에 대해서도 따로 공부해야 할 것 같다.
 
