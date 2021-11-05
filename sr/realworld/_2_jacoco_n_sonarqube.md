@@ -139,7 +139,7 @@ jacocoTestCoverageVerification {
 
 많이 작성한다고 해서 무조건 좋은 것은 아니지만 처음 도입할 때는 높은 커버리지를 목표로 하여 많은 테스트를 작성해보는 것이 좋다고 생각했다.
 
-> `JacocoTestReport`와 `JacocoTestCoverageVerification`
+> `JacocoTestReport`와 `JacocoTestCoverageVerification` 의 관계
 
 Jacoco를 사용할 때 주의해야 하는 점이 `JacocoTestReport`와 `JacocoTestCoverageVerification`의 순서이다.
 
@@ -180,13 +180,27 @@ task testCoverage(type: Test) {
 
 - [Gradle 프로젝트에 JaCoCo 설정하기](https://techblog.woowahan.com/2661/)
 
-### SonarQube
+### SonarCloud
 
-소나큐브는 프로그래밍 언어에서 버그, 냄새나는 코드, 보안 취약점 등을 분석할 수 있는 도구이다.
+소나큐브는 프로그래밍 언어에서 버그, 냄새나는 코드, 보안 취약점 등을 확인할 수 있는 정적 분석 도구이다.
 
-`GitHub`에 올려둔 프로젝트를 `SonarCloud`로 연동하여 테스트 해볼 수 있으며 `CI 도구(Github Action)`와 연동하면 빌드에 대한
+이러한 정적 분석 도구는 소스코드의 모든 부분에 대해서 확인할 수는 없지만 주로 개발 단계에서 소스 코드의 구조적인 문제나 실수를 찾아내는데 사용된다.
 
-![SonarQube - Summary](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_3.png)
+GitHub와 연동하게 되는 경우 GitHub Actions와 쉽게 연동할 수 있도록 가이드를 제공하여 쉽게 설정할 수 있다.
+
+![SonarQube - Ci 연동](images/_2_5.png)
+
+SonarCloud를 연동하고 프로젝트를 진행하게 되면 PR을 날리면 GitHub Action이 동작하면서 빌드와 SonarQube에 대한 코드 커버리지 분석이 수행된다.
+
+![SonarQube - Actions](_2_6.png)
+
+SonarCloud에서 볼 수 있는 내용들은 생각했던 것보다 많은 내용에 대해서 체크를 하고 있기 때문에 상세하게 분석하기 위해서는 테스트 코드 뿐만아니라 프로젝트의 구조에 대해서도 따로 공부해야 할 것 같다.
+
+프로젝트를 진행하면서 체크가 된 부분은 `Code Smells`와 `Vulnerabilities` 등이 있다.
+
+시큐리티를 적용하게 되면서 미처 생각하지 못했던 보안상 문제점을 발견하게 되면 `Vulnerabilities`에 문제가 되는 내용에 대해 커멘트와 해결방법 등을 제공하여 수정할 수 있도록 피드백을 제공한다.
+
+그리고 코드 주석, 테스트되지 않은 테스트 코드 등을 발견하게 되면 `Code Smells` 목록에 추가 되기 때문에 이를 확인하고 수정하게 되면 프로젝트를 더욱 깔끔하게 관리할 수 있다.
 
 > **코드 품질 기준 7가지**
 
@@ -204,5 +218,7 @@ task testCoverage(type: Test) {
     - 순환복잡도와 인지복잡도에 대한 측정
 - **Size**
     - 소스코드 사이즈와 관련된 다양한 지표
+    
+![SonarQube - Summary](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_3.png)
 
 ![SonarQube - Coverage](https://github.com/SeokRae/posting-review/blob/master/sr/realworld/images/_2_4.png)
