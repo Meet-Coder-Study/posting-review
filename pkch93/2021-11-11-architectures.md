@@ -1,6 +1,6 @@
 # Layered Architecture와 Hexagonal Architecture
 
-![get your hands dirty on clean architecture](https://user-images.githubusercontent.com/30178507/141300136-c4b2bf93-18e3-4670-920c-55716f85354a.png)
+<img width="500" alt="get your hands dirty on clean architecture" src="https://user-images.githubusercontent.com/30178507/141300136-c4b2bf93-18e3-4670-920c-55716f85354a.png">
 
 > 이 글은 `get Your Hands Dirty on Clean Architecture (Tom Hombergs 저)`의 1, 2장을 읽고 정리한 글입니다.
 
