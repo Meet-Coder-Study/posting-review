@@ -9,7 +9,7 @@
 
 ## Timer 구현
 
-```
+```typescript
 import { computed } from '@vue/composition-api';
 
 const useTimer = () => {
@@ -43,13 +43,13 @@ start(new Date());
 -   기본적으로 Date - Date를 지원하지 않습니다. 따라서 해당 Date를 숫자로 변환해주면 되는데, 숫자로 변환하면 Millisecneds가 나오게 됩니다. 따라서 위에서도 `/1000` 을 해준 이유가 다음과 같습니다.
 -   따라서 숫자로 변환해주면 됩니다.
 
-```
+```typescript
 const durateTime = +(new Date()) - +(new Date("2013-02-20T12:01:04.753Z"));
 ```
 
 -   위와 같이 `+` 를 이용해 숫자로 변환하면 되지만 이건 가독성이 낮습니다.
 
-```
+```typescript
 const durateTime = new Date().valueOf() - new Date("2013-02-20T12:01:04.753Z").valueOf();
 ```
 
@@ -57,7 +57,7 @@ const durateTime = new Date().valueOf() - new Date("2013-02-20T12:01:04.753Z").v
 
 ## padStart() 함수를 이용해 포맷을 맞춰보자.
 
-```
+```typescript
 const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
 ```
 
@@ -66,7 +66,7 @@ const zeroPad = (num: number, places: number) => String(num).padStart(places, '0
 -   현재 문자열의 시작을 다른 문자열로 채워, 주어진 길이를 만족하는 새로운 문자열을 반환하는 메서드입니다.
 -   채워넣는것은 문자열의 시작부터 적용됩니다.
 
-```
+```typescript
 'abc'.padStart(10);         // "       abc"
 'abc'.padStart(10, "foo");  // "foofoofabc"
 'abc'.padStart(6,"123465"); // "123abc"
@@ -78,7 +78,7 @@ const zeroPad = (num: number, places: number) => String(num).padStart(places, '0
 -   padString : 채워 넣은 문자열로 기본값은 공백(" ") 입니다.
 -   해당 메서드는 ECMAScript 2017부터 지원한 메서드로 지원하지 않는다면 아래 코드를 구현하면 됩니다.
 
-```
+```typescript
 if (!String.prototype.padStart) {
     String.prototype.padStart = function padStart(targetLength,padString) {
         targetLength = targetLength>>0; //truncate if number or convert non-number to 0;
