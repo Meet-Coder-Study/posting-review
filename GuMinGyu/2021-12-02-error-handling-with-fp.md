@@ -85,14 +85,6 @@ def safeDiv(x: Int, y: Int): Either[Exception, Int] =
   catch { case e: Exception => Left(e) }
 ```
 
-던져진 예외를 값을 변환한다는 이런 공통의 패턴을 추출한 Try 함수입니다.
-
-```scala
-def Try[A](a: => A): Either[Exception, A] =
-  try Right(a)
-  case { case e: Exception => Left(e) }
-```
-
 ## TypeScript에서 맛보기
 
 제가 직접 Either를 구현해보면 좋겠지만 ㅎ.ㅎ fp-ts 라이브러리를 이용해서 간단하게 password validation 로직을 구현해보겠습니다.
