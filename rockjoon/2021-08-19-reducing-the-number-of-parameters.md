@@ -89,3 +89,14 @@ purchase(order);
 
 ## 4. 빌더 패턴을 메서드에 적용하기
 
+주로 객체 생성에 쓰이는 빌더 패턴을 메서드에도 적용할 수 있다.  
+이 방법은 객체 생성 때와 마찬가지로, 매개변수가 많고 그 중 일부를 생략해도 될 때 효과적이다.  
+
+```java
+Car.factory()
+    .wheel(wheel)
+    .engine(engine)
+    .window(window)
+    .excute();
+// 마지막 excute()를 호출하여 필요한 유효성 검사 등을 실행한다.
+```
