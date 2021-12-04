@@ -3,6 +3,10 @@
 
 ## 실전
 
+![](https://blog.kakaocdn.net/dn/dvQv11/btrmXuTLQ2J/lKh4tO4PzX7Hhm0oMlQDF0/img.png)
+
+> 요번 블랙잭 미션은 신기하게도 리뷰어님과 많은 대화를 하게 된 미션이였다. 지금까지 만난 리뷰어님 중에서 가장 스파르타한 리뷰어님이였다.
+
 요번 Effective Kotlin을 들으면서 코틀린에 대해서 많은 것을 배웠고, 많은 실험을 해보았다. 하지만 가장 중요한 것은 실전에는 어떻게 적용을 해야 하는지에 대한 것이었다.
 
 어떻게 적용을 해야 할까 생각하다가, 아주 좋은 타이밍 때 한 로직에서 버그가 일어났고, 버그를 고치기 위해서는 많은 리팩토링을 해야 했었다.
@@ -37,6 +41,16 @@
 그리고 지금까지 코드 리뷰와 세미나를 진행한 것을 생각해 봤는데,  우리 팀은 객체지향 프로그래밍을 선호하는 게 아닌, 함수형 프로그래밍을 선호한다는 것을 알았다.  
   
 함수형 프로그래밍을 선호한다는 것은 팀의 스타일이 있었던 것이었고, 나는 보존되고 있었던 팀의 스타일을 깨는 행위를 했었던 것이었다.  
+
+![](https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-M7_opr2RFh9Acog0_8H%2Fuploads%2Fa4lBxZO7PaPI1HQ1OtzM%2Fx9791195149230.jpeg?alt=media&token=f8443366-b052-42e1-9d5a-89566758dcd1)
+
+> 1년차 시절 읽었던 람다의 힘은 나에게 자바 functioanl Programming의 교과서이다.
+
+![](https://blog.kakaocdn.net/dn/dRwZ0d/btrmWKih6L5/iea5RO5dSZESOTSTjSFiVk/img.png)
+
+> 처음 functional Progamming을 접했을 때 봤던 영상. 
+
+> 여전히 함수형 프로그래밍 영상은 자바스크립트 진영이 가장 많은 것 같다.
   
 깨달은 나는 합의점을 찾기 위해 위해 함수형 프로그래밍에 대한 영상부터 책을 다시 한번 보며 함수형 프로그래밍이 무엇인지에 대해서 다시 상기시키고, 지금의 나의 코드 스타일에 어떻게 합쳐야 할지 많은 시간을 썼다.
 
