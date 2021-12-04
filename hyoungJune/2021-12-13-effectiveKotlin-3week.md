@@ -69,6 +69,19 @@ Effective Kotlin 3번째 회고를 쓰고 나니, 하루하루가 우여곡절�
   
 이러한 모습이 바로 이 사람이 열심히 사는 증거물이 아닐까?
 
-그리고 이게 살이 되는 순간 엄청난 _퍼포먼스를_ 보이지 않을까 하고 말이다.
+그리고 이게 살이 되는 순간 엄청난 퍼포먼스를 보이지 않을까 하고 말이다.
 
+
+![](https://blog.kakaocdn.net/dn/b90jwB/btrmZHxyGEd/P13ySSZETtYaXG18MnlQj1/img.jpg)
+
+> 영웅의 여정 중에 시험과 실패의 과정을 걷고 있는 것 같다.
+
+
+## 출처
+
+
+
+- 람다의 힘 : http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791195149230
+- JavaScript로 함수형 프로그래밍 배우기 - Anjana Vakil - JSUnconf :  https://youtu.be/e-5obm1G_FY
+- 영웅의 여정 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=yandina&logNo=221916834778
 
