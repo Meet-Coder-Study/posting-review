@@ -106,26 +106,26 @@
 - 널리 사용되는 상용 및 오픈 소스 데이터베이스로(부터) 데이터 마이그레이션 가능
 - 동종 마이그레이션뿐 아니라 이기종 데이터베이스 플랫폼 간의 마이그레이션도 지원
 
-### [Athena](https://aws.amazon.com/ko/athena/)
+## [Athena](https://aws.amazon.com/ko/athena/)
 - Amazon Athena는 표준 SQL을 사용해 Amazon S3에 저장된 데이터를 간편하게 분석할 수 있는 대화식 쿼리 서비스
 - 서버리스 서비스이므로 실행한 쿼리에 대해서만 비용을 지불
 - Amazon S3에 저장된 데이터를 지정하고 스키마를 정의한 후 표준 SQL을 사용하여 쿼리를 시작
 - 데이터 분석 준비 작업인 복잡한 추출, 변형 및 로드(ETL) 작업을 할 필요가 없음
 - 누구나 SQL에 대한 지식만 가지고 있다면 대규모의 데이터세트도 빠르게 분석할 수 있음
 
-### [Lambda](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html)
+## [Lambda](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html)
 - 서버를 프로비저닝하거나 관리할 필요 없이 코드를 실행할 수 있음
-- 사용한 컴퓨팅 시간에 대해서만 요금을 지불하면 되고 코드가 실행되지 않을 때는 요금이 부과되지 않음
+- 호출한 함수에 대해서만 요금을 지불하면 되고 코드가 실행되지 않을 때는 요금이 부과되지 않음
 - 사실상 모든 유형의 애플리케이션 또는 백엔드 서비스를 실행할 수 있으며 이를 관리할 필요는 전혀 없음
 - 기타 AWS 서비스에서 자동으로 트리거되도록 설정하거나 코드를 어떤 웹 또는 모바일 앱에서도 직접 호출할 수 있음
 
-### [RedShift](https://aws.amazon.com/ko/redshift/)
+## [RedShift](https://aws.amazon.com/ko/redshift/)
 - 속도가 빠른 페타바이트 규모의 완전 관리형 데이터 웨어하우스
 - 간편하고 비용 효율적으로 모든 데이터를 기존 비즈니스 인텔리전스 도구를 사용하여 분석할 수 있게 해줌
 - 약정 없이 시간당 0.25 USD의 소규모로 시작하여 1년에 테라바이트당 1,000 USD 규모로 확장 가능
 - 일반적으로 3배 압축을 확인할 수 있으며 이를 통해 연간 압축되지 않은 테라바이트당 333 USD의 비용을 절감할 수 있음
 
-### [EMR (Elastic Map Reduce)](https://aws.amazon.com/ko/emr/)
+## [EMR (Elastic Map Reduce)](https://aws.amazon.com/ko/emr/)
 - 동적 확장 가능 EC2 인스턴스 전반에 걸쳐 대량의 데이터를 쉽고 빠르고 비용 효율적으로 처리할 수 있도록 지원하는 관리형 하둡 프레임워크를 제공
 - Apache Spark, HBase, Presto 및 Flink와 같이 널리 사용되는 분산 프레임워크를 실행하고, Amazon S3 및 Amazon DynamoDB와 같은 다른 AWS 데이터 스토어의 데이터와 상호 작용할 수 있음
 - 로그 분석, 웹 인덱싱, 데이터 변환(ETL), 기계 학습, 금융 분석, 과학적 시뮬레이션 및 생물 정보학을 비롯하여 광범위한 빅 데이터 사용 사례를 안전하고 안정적으로 처리
