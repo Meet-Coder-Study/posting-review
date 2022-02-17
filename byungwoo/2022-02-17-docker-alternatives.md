@@ -1,4 +1,4 @@
-# Docker Desktop 사용하지 않고 Docker 사용하기 
+# Docker Desktop의 대체재를 찾아보자 
 
 ## Docker Desktop 유료화
 [Docker Desktop이 유료화](https://www.docker.com/pricing)됨에 따라서 기업에서 데스크톱용 Docker를 사용하기 위해서는  
