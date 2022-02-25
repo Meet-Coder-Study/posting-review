@@ -198,5 +198,6 @@ amount에 10이라는 값을 주면서 우리는 1번부터 4번까지 완성했
 > Money rounding?
 
 > ETC.  
-> `Dependency and Duplication`  
-> Unlike most problems in life, where eliminating the symptoms only makes the problem pop up elsewhere in worse form, `eliminating duplication in programs eliminates dependency.` That's why the second rule appears in TDD. By eliminating duplication before we go on to the next test, we maximize our chance of being able to get the next test running with one and only one change.
+> `Dependency and Duplication; 의존성과 중복된 코드`   
+> 증상을 제거했을 때 다른 곳에서 더 좋지 않은 문제들이 일어나는 실생활의 문제들과는 달리, 프로그램에서의 증상 제거는 의존성을 제거하는 것 과 같다.  
+> TDD의 두번째 룰이 'Duplication을 제거하라'인 이유는 다음 테스트를 작성하기 전에 중복된 코드를 제거함으로서, 다음 테스트 작성 시 `아주 작은` 코드 변화만으로 테스트를 성공시킬 수 있기 때문이다.
