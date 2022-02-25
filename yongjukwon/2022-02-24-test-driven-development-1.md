@@ -44,7 +44,7 @@
 
 |현재 지원하는 리포트|다양한 통화가 표기된 리포트| 환전율
 |:--:|:--:|:--:|
-|<table><tr><th>투자 대상</th><th>Shares</th><th>Price</th><th>Total</th></tr><tr><td>AAPL</td><td>1000</td><td>25</td><td>25000</td></tr><tr><td>MSFT</td><td>400</td><td>100</td><td>40000</td></tr></table>|<table> <tr><th>투자 대상</th><th>Shares</th><th>Price</th><th>Total</th></tr><tr><td>AAPL</td><td>1000</td><td>25 USD</td><td>25000 USD</td></tr><tr><td>MSFT</td><td>400</td><td>100 KRW</td><td>40000 KRW</td></tr><tr><td></td><td></td><td>Total</td><td>60000 USD</td></tr></table>|<table> <tr><th>From</th><th>To</th><th>Rate</th></tr><tr><td>KRW</td><td>USD</td><td>1.5</td></tr></table>|  
+|<table><tr><th>투자 대상</th><th>Shares</th><th>Price</th><th>Total</th></tr><tr><td>AAPL</td><td>1000</td><td>25</td><td>25000</td></tr><tr><td>MSFT</td><td>400</td><td>100</td><td>40000</td></tr></table>|<table> <tr><th>투자 대상</th><th>Shares</th><th>Price</th><th>Total</th></tr><tr><td>AAPL</td><td>1000</td><td>25 USD</td><td>25000 USD</td></tr><tr><td>MSFT</td><td>400</td><td>150 KRW</td><td>60000 KRW</td></tr><tr><td></td><td></td><td>Total</td><td>55000 USD</td></tr></table>|<table> <tr><th>From</th><th>To</th><th>Rate</th></tr><tr><td>KRW</td><td>USD</td><td>1.5</td></tr></table>|  
 
 새로운 리포트를 지원하기 위해 어떤 기능들이 필요할까?
 
@@ -200,4 +200,4 @@ amount에 10이라는 값을 주면서 우리는 1번부터 4번까지 완성했
 > ETC.  
 > `Dependency and Duplication; 의존성과 중복된 코드`   
 > 증상을 제거했을 때 다른 곳에서 더 좋지 않은 문제들이 일어나는 실생활의 문제들과는 달리, 프로그램에서의 증상 제거는 의존성을 제거하는 것 과 같다.  
-> TDD의 두번째 룰이 'Duplication을 제거하라'인 이유는 다음 테스트를 작성하기 전에 중복된 코드를 제거함으로서, 다음 테스트 작성 시 `아주 작은` 코드 변화만으로 테스트를 성공시킬 수 있기 때문이다.
+> TDD의 두번째 룰이 'Duplication을 제거하라'인 이유는 다음 테스트를 작성하기 전에 중복된 코드를 제거함으로써, 다음 테스트 작성 시 `아주 작은` 코드 변화만으로 테스트를 성공시킬 수 있기 때문이다.
