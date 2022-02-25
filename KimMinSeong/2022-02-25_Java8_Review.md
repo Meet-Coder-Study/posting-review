@@ -27,7 +27,7 @@ Java 개발자 중 가장 많은 사람들이 사용하며 모던 자바로 불�
 어떤 데이터에 대해 조건에 따라 값을 다르게 가져오려는 경우 Java7에서는 각각의 케이스에 대해 작성해야 했습니다.<br>
 이 경우 조건이 많아질 수록 작성해야 하는 중복된 부분이 많아지게 됩니다.<br>
 
-```
+``` java
 // 초록 사과를 가져오기 위한 filterGreenApples 메서드
 public static List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<Apple>();
@@ -55,7 +55,7 @@ public static List<Apple> filterHeavyApples(List<Apple> inventory) {
 
 Java8에서는 Predicate라는 개념이 추가되어 중복되는 부분에 대해 간결하게 표현이 가능해졌습니다.
 
-```
+``` java
 // 조건부분만 구현
 public static boolean isGreenApple(Apple apple) {
     return AppleColor.GREEN.getColor().equals(apple.getColor());
@@ -84,7 +84,7 @@ filterApples(inventory, Apple::isHeavyApple);
 
 또는 람다 표현식(lambda expression)을 이용하여 표현할 수 있게 되었습니다
 
-```
+``` java
 filterApples(inventory, (Apple a) -> GREEN.equals(a.getColor()));
 filterApples(inventory, (Apple a) -> a.getWeight() > 150);
 ```
@@ -95,7 +95,7 @@ filterApples(inventory, (Apple a) -> a.getWeight() > 150);
 기존 for, foreach를 사용하여 데이터를 가공하던 부분을 스트림 API를 사용하여 가독성과 성능을 향상 시켰습니다. <br>
 또한 **파이프라인** 이라는 게으른 형식의 연산을 사용하여 기존 Collection를 사용할 때 보다 간결하게 코드를 작성 할 수 있게 되었습니다.
 
-```
+``` java
 /*
 * 1. 통화별로 트랜잭션을 그룹화한 다음에 해당 통화로 일어난 모든 트랜잭션 합계를 계산하시오(Map<Currency, Integer>)
 * 2. 트랜잭션을 비싼 트랜잭션과 저렴한 트랜잭션 두 그룹으로 분류하시오(Map<Boolean, List<Transaction>>)
@@ -122,7 +122,7 @@ Map<Currency, List<Transaction>> transactionsByCurrencies2 = transactions.stream
 Java5의 Future 인터페이스를 구현한 CompletableFuture가 추가되었습니다.  
 Future를 사용하는 경우 현실의 복잡한 로직을 구현하기 어려운 문제가 있었습니다.
 
-```
+``` java
 ExecutorService executorService = Executors.newCachedThreadPool(); 
 Future<Double> future = executorService.submit(new Callable<Double>() { 
     public Double call() { 
@@ -146,7 +146,7 @@ try {
 CompletableFuture는 람다표현식과 파이프라인 메소드를 이용하여 다양한 비동기 작업을 처리할 수 있습니다. <br>
 또한 기존 Future와 관련한 공통 디자인 패턴을 함수형 프로그래밍으로 간결하게 표현할 수 있도록 다양한 메서드를 지원합니다.
 
-```
+``` java
 public List<String> findPricesFuture(String product) {
     List<CompletableFuture<String>> priceFutures =
             shops.stream()
@@ -170,7 +170,7 @@ public Future<Double> getPrice(String price) {
 T 형식의 값을 반환하거나 Optional.empty(값이 없음)라는 정적 메서드를 반환할 수 있는 Optional<T> 클래스가 추가되었습니다.  
 값이 없을 때 에러를 발생시킬 수 있는 null 대신 정해진 데이터 형식을 제공할 수 있습니다.
 
-```
+``` java
 // BEFORE
 String name = null;
 if(insurance != null){
@@ -186,7 +186,7 @@ Optional<String> name = optInsurance.map(Insurance::getName);
 ### 5. 디폴트 메서드(default method)
 인터페이스에서 새로운 기능을 추가했을 때 사용자가 추가된 기능에 대해 구현하지 않아도 되도록 디폴드 메서드를 지원합니다.
 
-```
+``` java
 // 상속과 관련된 문제가 있음..
 public interface A {
       default void hello {
