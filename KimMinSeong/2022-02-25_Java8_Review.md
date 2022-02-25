@@ -25,14 +25,14 @@ Java 개발자 중 가장 많은 사람들이 사용하며 모던 자바로 불�
 ### 1. 동작 파라미터화(람다와 메서드 참조)
 
 어떤 데이터에 대해 조건에 따라 값을 다르게 가져오려는 경우 Java7에서는 각각의 케이스에 대해 작성해야 했습니다.<br>
-이 경우 조건이 많아질 수록 작성해야 하는 중복된 부분이 많아지게 됩니다.<br>
+이 경우 조건이 많아질 수록 중복으로 작성해야 하는 부분이 많아지게 됩니다.<br>
 
 ``` java
 // 초록 사과를 가져오기 위한 filterGreenApples 메서드
-public static List<Apple> filterGreenApples(List<Apple> inventory) {
+public List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<Apple>();
         for (Apple apple : inventory) {
-            if (AppleColor.GREEN.getColor().equals(apple.getColor())) {
+            if (GREEN.equals(apple.getColor())) {
                 result.add(apple);
             }
         }
@@ -41,7 +41,7 @@ public static List<Apple> filterGreenApples(List<Apple> inventory) {
 }
 
 // 무거운 사과를 가져오기 위한 filterHeavyApples 메서드
-public static List<Apple> filterHeavyApples(List<Apple> inventory) {
+public List<Apple> filterHeavyApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<Apple>();
         for (Apple apple : inventory) {
             if (apple.getWeight() > 150) {
@@ -56,37 +56,43 @@ public static List<Apple> filterHeavyApples(List<Apple> inventory) {
 Java8에서는 Predicate라는 개념이 추가되어 중복되는 부분에 대해 간결하게 표현이 가능해졌습니다.
 
 ``` java
-// 조건부분만 구현
-public static boolean isGreenApple(Apple apple) {
-    return AppleColor.GREEN.getColor().equals(apple.getColor());
-}
-public static boolean isHeavyApple(Apple apple) {
-    return apple.getWeight() > 150;
-}
-
-// ApplePredicate를 파라미터로 받는다
-public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate p) {
-    List<Apple> result = new ArrayList<>();
-
-    for(Apple apple : inventory) {
-        if(p.test(apple)) {
-            result.add(apple);
-        }
-    }
-
-    return result;
+// Apple에 Predicate의 test에 해당하는 isGreenApple, isHeavyApple 구현
+public class Apple {
+	public boolean isGreenApple() {
+		return GREEN.equals(color);
+	}
+	public boolean isHeavyApple() {
+		return weight > 150;
+	}
 }
 
-// Predicate는 다음과 같이 Apple::isGreenApple, Apple::isHeavyApple 형식으로
-filterApples(inventory, Apple::isGreenApple);
-filterApples(inventory, Apple::isHeavyApple);
+// Predicate를 파라미터로 받는다
+public List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> applePredicate) {
+	List<Apple> result = new ArrayList<>();
+	for(Apple apple : inventory) {
+		if(applePredicate.test(apple)) {
+			result.add(apple);
+		}
+	}
+
+	return result;	
+}
+
+// stream의 filter를 이용하면 더 간결하게 표현 가능
+public List<Apple> filterApplesForStream(List<Apple> inventory, Predicate<Apple> applePredicate) {
+	return inventory.stream().filter(applePredicate::test).collect(Collectors.toList());
+}
+
+// 다른 결과를 가져올 수 있음
+List<Apple> greenApples = filterApples(inventory, Apple::isGreenApple);
+List<Apple> heavyApples = filterApples(inventory, Apple::isHeavyApple);
 ```
 
 또는 람다 표현식(lambda expression)을 이용하여 표현할 수 있게 되었습니다
 
 ``` java
-filterApples(inventory, (Apple a) -> GREEN.equals(a.getColor()));
-filterApples(inventory, (Apple a) -> a.getWeight() > 150);
+List<Apple> redApples = filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+List<Apple> heavyApples2 = filterApples(inventory, (Apple apple) -> apple.getWeight() > 150);
 ```
 
   
