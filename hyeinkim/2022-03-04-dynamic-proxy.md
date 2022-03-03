@@ -136,7 +136,7 @@ class PostServiceTest {
 
 여기에 `InvocationHandler`가 생겼는데 이는 부가기능을 invoke 안에 한 번만 구현하면 이 Handler를 거친 메서드들은 모두 해당 부가기능이 수행된다. 타겟 인터페이스에 100개가 넘는 메서드가 있어도 일일히 부가기능을 구현하지 않아도 된다. 
 
-![InvocationHandler](./images/invocationHandler.png)
+![InvocationHandler](./images/invocation-handler.png)
 
 - Dynamic Proxy
     - Proxy Factory에 의해 런타임 시 다이나믹하게 만들어지는 오브젝트
@@ -249,7 +249,8 @@ public class TimeMethodInterceptor implements MethodInterceptor {
 
 InvocationHandler와 유사한 역할을 한다고 보면 된다. 부가기능을 수행하고, 메서드를 위임할 수 있다. 
 
-![MethodInterceptor](./images/methodInterceptor.png)
+![MethodInterceptor](./images/method-interceptor.png)
+
 [이미지 출처 : CGLIB MethodInterceptor](https://frameworks.readthedocs.io/en/latest/spring/aop/cglib.html)
 
 
