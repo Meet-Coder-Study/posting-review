@@ -144,8 +144,8 @@ GitHub repo에 labels를 셋팅해야 합니다. auto에서 사용하는 label�
   ```
 
   - `major`: 버전의 첫 번째 숫자 증가 `v1._._`
-  - `patch` `bug`: 버전의 두 번째 숫자 증가 `v_.1._`
-  - `minor`: 버전의 세 번째 숫자 증가 `v_._.1`
+  - `minor` `bug`: 버전의 두 번째 숫자 증가 `v_.1._`
+  - `patch`: 버전의 세 번째 숫자 증가 `v_._.1`
 
 - Changelog Labels - 버전에는 영향이 없지만 변경된 부분을 changelog에 반영하는 label들, 해당 라벨들은 커스터마이징이 가능합니다.
   ```json
@@ -208,17 +208,19 @@ VERSION=`auto version`
 if [ ! -z "$VERSION" ]; then
   ## Fetch tags
   git fetch --tags
+
   ## Update Changelog
+  auto version
   auto changelog
 
   ## Publish App
-  npm version $VERSION -m "Bump version to: %s [skip ci]"
   expo publish --non-interactive
 
   ## Create GitHub Release
   git push --follow-tags --set-upstream origin $branch
   auto release
 fi
+
 ```
 
 > 예시에서는 React-Native 배포 프로세스라 expo를 사용합니다.
