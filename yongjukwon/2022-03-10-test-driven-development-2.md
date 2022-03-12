@@ -34,7 +34,7 @@
         @Test
         public void testMultiplication() {
           Dollar five = Dollar(5);
-          assertEquals(new Dollar(10), five.times(2);)
+          assertEquals(new Dollar(10), five.times(2));
         }
 
         // Constant
@@ -90,7 +90,7 @@
 
     비유적으로 우리는 두 개 이상의 예시가 있을 경우에만 코드를 보편화(generalize)시킨다. 그 전 테스트와 코드 사이의 중복은 무시한다. 두번째 예시가 더 보편화된 해결 방법을 필요로 할 때만 코드를 보편화 시킨다.
 
-      ```java
+    ```java
       // Fake it, no generalizing
       public boolean equals(Object object) {
         return true;
@@ -118,9 +118,4 @@
         return amount == dollar.amount;
       }
     ```
-
-
-
-
-
-
+    
