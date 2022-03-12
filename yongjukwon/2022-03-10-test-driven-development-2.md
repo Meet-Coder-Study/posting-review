@@ -31,6 +31,7 @@
       최종 코드를 가지기 전까지 상수(constant)를 반환하고 점차 변수(variable)들로 변환시킨다.
 
       ```java
+        @Test
         public void testMultiplication() {
           Dollar five = Dollar(5);
           assertEquals(new Dollar(10), five.times(2);)
@@ -55,7 +56,26 @@
 
 2. 명확한 구현을 사용해라 (Use Obvious Implementation)
 
-    실제 구현을 입력한다.
+    작성하는 테스트가 문제 없이 진행 되고, 다음 implementation이 명확할 경우에는 바로 구현한다. (물론 테스트를 계속 돌리며 내게 명확한 구현이 컴퓨터에게도 명확한지 확인하면서☺️) 만약, 테스트가 실패하면 다시 Faking implementation 으로 돌아가서 리팩토링한다.
+
+    ```java
+    @Test
+    public void testArea() {  
+        Square s = new Square(2.0);
+        assertEquals(4.0, s.area());
+    }
+
+    private double side;
+
+    public Square(double side) {
+      this.side = side;
+    }
+
+    public double area() { 
+      return side * side;
+    }
+
+    ```    
 
 3. 삼각측량 (Triangulation)  
 
@@ -67,15 +87,16 @@
     <br />
     <br />
     <br />
-  
+
     비유적으로 우리는 두 개 이상의 예시가 있을 경우에만 코드를 보편화(generalize)시킨다. 그 전 테스트와 코드 사이의 중복은 무시한다. 두번째 예시가 더 보편화된 해결 방법을 필요로 할 때만 코드를 보편화 시킨다.
 
-    ```java
+      ```java
       // Fake it, no generalizing
       public boolean equals(Object object) {
         return true;
       }
 
+      @Test
       public void testEquality() {
         //First example
         assertTrue(new Dollar(5).equals(new Dollar(5)));
@@ -83,6 +104,7 @@
 
       // Writing the second example..
 
+      @Test
       public void testEquality() {
         //First example
         assertTrue(new Dollar(5).equals(new Dollar(5)));
