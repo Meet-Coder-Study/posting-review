@@ -82,7 +82,7 @@
     <img src="./images/triangluation.png" width="200" style="float: left; margin-right: 20px;">  
     만약 두 기지국 사이의 거리를 알고 있고 라디오 신호가 오는 방향을 알고 있다면, 우리는 신호의 범위와 방향을 계산할 수 있는 충분한 정보를 가지고 있다는 뜻이다. 이 계산을 삼각측량이라고 한다.
 
-    [Picture: 'Basic Overview: Tracking Radio Signals']("https://hvdnnotebook.blogspot.com/2018/11/basic-overview-tracking-radio-signals.html)
+    [Picture: 'Basic Overview: Tracking Radio Signals'](https://hvdnnotebook.blogspot.com/2018/11/basic-overview-tracking-radio-signals.html)
 
     <br />
     <br />
