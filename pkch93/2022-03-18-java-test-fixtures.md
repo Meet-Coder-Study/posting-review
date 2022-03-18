@@ -76,7 +76,7 @@ void post() {
           Collections.emptyList()
   );
 
-	// ...
+  // ...
 }
 ```
 
@@ -98,7 +98,7 @@ void post2() {
           List.of(hashTag)
   );
 
-	// ...
+  // ...
 }
 ```
 
@@ -261,16 +261,15 @@ public class HotPostFactory {
 ```
 
 > 테스트용이므로 `java/test` 내에 선언한다.
-> 
 
 위와 같이 생성하면 다른 테스트 클래스에서도 인기글 테스트 픽스처를 손쉽게 생성할 수 있다.
 
 ```java
 @Test
 void hotPost {
-	Post hotPost = HotPostFactory.createHotPost();
+  Post hotPost = HotPostFactory.createHotPost();
 
-	// ...
+  // ...
 }
 ```
 
@@ -282,33 +281,33 @@ void hotPost {
 ├── domain
 │   ├── build.gradle
 │   └── src
-│        └── main
-│        │   └── edu
-│        │       └── pkch
-│        │           └── domain
-│        │               ├── Post.java
-│        │               ├── Comment.java
-│        │               ├── HashTag.java
-│        │
-|		 └── test
-│            └── edu
-│                └── pkch
-│                     └── domain
-│                     │       ├── PostTest.java
-│                     │       ├── HotPostTest.java
-│                     │
-│                     └── support
-│                             ├── HotPostFactory.java
+│       └── main
+│       │   └── edu
+│       │       └── pkch
+│       │           └── domain
+│       │               ├── Post.java
+│       │               ├── Comment.java
+│       │               ├── HashTag.java
+│       │
+|       └── test
+│           └── edu
+│               └── pkch
+│                   └── domain
+│                   │   ├── PostTest.java
+│                   │   ├── HotPostTest.java
+│                   │
+│                   └── support
+│                       ├── HotPostFactory.java
 │
 │
 ├── test-support
-    ├── build.gradle
-    └── src
-         └── main
-		         └── edu
-			            └── pkch
-		                    └── support
-						            ├── HotPostFactory.java
+    ├── build.gradle
+    └── src
+        └── main
+            └── edu
+                └── pkch
+                    └── support
+                        ├── HotPostFactory.java
 ```
 
 위와 같이 `test-support`라는 테스트 모듈을 정의해서 타모듈에서 사용할 수 있도록 만들수있다.
@@ -342,29 +341,29 @@ plugins {
 
 위와 같이 플러그인 설정하면 testFixtures라는 SourceSet이 자동으로 생성되며 testFixtures 폴더 하위에 테스트 더미를 작성할 수 있다.
 
-```groovy
+```
 ├── domain
-		├── build.gradle
-		└── src
-		     └── main
-				 │    └── edu
-         │       └── pkch
-         │           └── domain
-         │               ├── Post.java
-         │               ├── Comment.java
-         │               ├── HashTag.java
-         │
-		 └── test
-         │     └── edu
-         │        └── pkch
-         │            └── domain
-         │                 ├── PostTest.java
-         │                 ├── HotPostTest.java
-		 └── testFixtures
-				└── edu
-                └── pkch
-                     └── domain
-	                         ├── HotPostFactory.java    
+    ├── build.gradle
+    └── src
+        └── main
+        │    └── edu
+        │       └── pkch
+        │           └── domain
+        │               ├── Post.java
+        │               ├── Comment.java
+        │               ├── HashTag.java
+        │
+        └── test
+        │     └── edu
+        │        └── pkch
+        │            └── domain
+        │               ├── PostTest.java
+        │               ├── HotPostTest.java
+        └── testFixtures
+              └── edu
+                └── pkch
+                    └── domain
+                        ├── HotPostFactory.java    
 ```
 
 `java-test-fixtures` 플러그인을 추가하면 `src/testFixtures` 하위에 테스트 픽스처를 생성할 수 있다.
@@ -376,7 +375,7 @@ plugins {
 ```groovy
 // build.gradle
 dependencies {
-	testImplementation testFixtures(project(":domain"))
+  testImplementation testFixtures(project(":domain"))
 }
 ```
 
