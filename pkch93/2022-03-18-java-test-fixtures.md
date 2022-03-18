@@ -9,7 +9,7 @@ java-test-fixtures는 gradle 5.6부터 추가된 플러그인이다.
 
 test를 작성하다보면 테스트를 위한 더미데이터를 만드는 것도 리소스를 소모한다. 테스트 더미 데이터를 어디에서 관리할 지를 정하는 것도 큰 리소스이다.
 
-`src/main`에서 테스트 더미를 관리하면 해당 모듈을 의존하는 다른 모듈에서 모르고 사용할 가능성도 있고 `src/test`는 다른 모듈에서 의존할 방법이 없으므로 중복해서 더미 데이터를 만들수 밖에 없다. (또는 테스트 더미용 모듈을 만들어서 관리할수는 있다.
+`src/main`에서 테스트 더미를 관리하면 해당 모듈을 의존하는 다른 모듈에서 모르고 사용할 가능성도 있고 `src/test`는 다른 모듈에서 의존할 방법이 없으므로 중복해서 더미 데이터를 만들수 밖에 없다. (또는 테스트 더미용 모듈을 만들어서 관리할수는 있다.)
 
 ```java
 public class Post {
@@ -310,12 +310,12 @@ void hotPost {
                         ├── HotPostFactory.java
 ```
 
-위와 같이 `test-support`라는 테스트 모듈을 정의해서 타모듈에서 사용할 수 있도록 만들수있다.
+위와 같이 `test-support`라는 테스트 모듈을 정의하면 타 모듈에서 사용할 수 있다.
 
 ```groovy
 // build.gradle
 dependencies {
-	testImplementation project(":test-support")
+  testImplementation project(":test-support")
 }
 ```
 
@@ -379,7 +379,7 @@ dependencies {
 }
 ```
 
-t위와 같이 `testImplementation`으로 테스트에서 사용이 가능하다.
+위와 같이 `testImplementation`으로 테스트에서 사용이 가능하다.
 
 ## test-fixtures jar
 
