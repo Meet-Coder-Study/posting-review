@@ -29,7 +29,6 @@ a# How Flutter works?
 
 [Back to top](#top)  
 ## <a id="1"></a>`1. Flutter의 세 가지 요소` 
-<p style="display: none">## `1. Flutter's Three Trees`</p>
 
 ### 1-1. Widget
   - Element의 configuration을 
