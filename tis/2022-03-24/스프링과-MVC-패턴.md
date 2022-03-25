@@ -40,71 +40,71 @@ MVC 패턴 도입 하지 않은 서블릿은 비즈니스 로직을 실행하는
 
 ### MVC 패턴을 적용하지 않은 서블릿
     
-    ```java
-    @WebServlet(name = "memberFormServlet", urlPatterns = "/servlet/members/new-form")
-    public class MemberFormServlet extends HttpServlet {
-    
-        private MemberRepository memberRepository = MemberRepository.getInstance();
-    
-        @Override
-        protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            response.setContentType("text/html");
-            response.setCharacterEncoding("utf-8");
-    
-            PrintWriter writer = response.getWriter();
-            writer.write("<!DOCTYPE html>\n" +
-                    "<html>\n" +
-                    "<head>\n" +
-                    " <meta charset=\"UTF-8\">\n" +
-                    " <title>Title</title>\n" +
-                    "</head>\n" +
-                    "<body>\n" +
-                    "<form action=\"/servlet/members/save\" method=\"post\">\n" +
-                    " username: <input type=\"text\" name=\"username\" />\n" +
-                    " age: <input type=\"text\" name=\"age\" />\n" +
-                    " <button type=\"submit\">전송</button>\n" +
-                    "</form>\n" +
-                    "</body>\n" +
-                    "</html>\n");
-        }
+```java
+@WebServlet(name = "memberFormServlet", urlPatterns = "/servlet/members/new-form")
+public class MemberFormServlet extends HttpServlet {
+
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+
+        PrintWriter writer = response.getWriter();
+        writer.write("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                " <meta charset=\"UTF-8\">\n" +
+                " <title>Title</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<form action=\"/servlet/members/save\" method=\"post\">\n" +
+                " username: <input type=\"text\" name=\"username\" />\n" +
+                " age: <input type=\"text\" name=\"age\" />\n" +
+                " <button type=\"submit\">전송</button>\n" +
+                "</form>\n" +
+                "</body>\n" +
+                "</html>\n");
     }
-    ```
+}
+```
     
 
 ### MVC 패턴을 적용한 서블릿
-    
-- 컨트롤러
-    
-    ```java
-    @WebServlet(name = "mvcMemberFormServlet", urlPatterns = "/servlet-mvc/members/new-form")
-    public class MvcMemberFormServlet extends HttpServlet {
-    
-        @Override
-        protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String viewPath = "/WEB-INF/views/new-form.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-            dispatcher.forward(request,response);
-        }
-    }
-    ```
-    
-- 뷰 파일
 
-    ```html
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <html>
-    <head>
-        <title>Title</title>
-    </head>
-    <body>
-    <form action="save" method="post">
-        username: <input type="text" name="username" />
-        age: <input type="text" name="age" />
-        <button type="submit">전송</button>
-    </form>
-    </body>
-    </html>
-    ```
+컨트롤러
+    
+```java
+@WebServlet(name = "mvcMemberFormServlet", urlPatterns = "/servlet-mvc/members/new-form")
+public class MvcMemberFormServlet extends HttpServlet {
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String viewPath = "/WEB-INF/views/new-form.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request,response);
+    }
+}
+```
+
+뷰 파일
+
+```html
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<form action="save" method="post">
+    username: <input type="text" name="username" />
+    age: <input type="text" name="age" />
+    <button type="submit">전송</button>
+</form>
+</body>
+</html>
+```
         
 
 ## MVC 패턴 한계
