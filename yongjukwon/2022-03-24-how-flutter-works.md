@@ -97,7 +97,7 @@ Padding( // Widget (configs: padding, child)
 <br />
 <br />
 
-### `Example 1`
+### `Example 2`
 
 ```dart
   void main() => runApp(
