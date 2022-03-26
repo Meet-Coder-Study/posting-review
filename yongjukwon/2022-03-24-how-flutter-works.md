@@ -31,7 +31,7 @@ a# How Flutter works?
 ## <a id="1"></a>`1. Flutter의 세 가지 요소` 
 
 ### 1-1. Widget
-  - Element의 configuration을 
+  - Element의 configuration
   <!-- - Describes the configuration for an Element -->
   <!-- - Holds the configuration that you provide for the UI   -->
 
