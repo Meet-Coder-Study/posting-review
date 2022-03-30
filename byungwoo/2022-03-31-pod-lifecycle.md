@@ -1,4 +1,4 @@
-# Kubernetes Pod Lifecycle 
+# 쿠버네티스 파드 라이프사이클 (Kubernetes Pod Lifecycle) 
 
 [파드(Pod)](https://kubernetes.io/ko/docs/concepts/workloads/pods/)는 쿠버네티스(Kubernetes의)에서 생성하고 관리할 수 있는 배포 가능한 가장 작은 컴퓨팅 단위입니다.
 
