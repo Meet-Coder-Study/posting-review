@@ -99,13 +99,15 @@ render() {
 ```java
 render() {
   return (
-    <>
-      Some text.
-      <h2>A heading</h2>
-      More text.
-      <h2>Another heading</h2>
-      Even more text.
-    </>
+<dl>
+  {props.items.map(item => (
+    // Without the `key`, React will fire a key warning
+    <Fragment key={item.id}>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>
+    </Fragment>
+  ))}
+</dl>
   );
 }
 ```
