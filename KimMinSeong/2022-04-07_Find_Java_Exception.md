@@ -49,7 +49,7 @@ brew tap adoptopenjdk/openjdk
 추가로 이제 자바 버전을 변경할 수 있도록 해야합니다.  
 ~/.bash\_profile을 변경해주라는 블로그 글들이 많았지만 제 컴퓨터에는 해당 파일이 없었습니다.  
 알고보니 제가 현재 쓰는 쉘이 bash가 아닌 zsh 였습니다.  
-\`본인 컴퓨터의 쉘 종류를 정확히 알고 있어야 한다\`는 배움을 하나 얻었습니다.  
+`본인 컴퓨터의 쉘 종류를 정확히 알고 있어야 한다`는 배움을 하나 얻었습니다.  
 
 ~/.zshrc 파일을 열어 아래와 같이 버전을 변경할 수 있는 내용를 alias로 지정해주었습니다  
 (jdk의 경우 조금씩 경로가 다를 수 있으므로 현재 설치한 jdk가 어떤 jdk인지 체크해주어야 합니다)
@@ -65,10 +65,10 @@ jdk 버전도 두개 설치했고, 버전을 alias로 변경할 수 있는 기�
 2) 모듈 우클릭 > Open Module Settings  
   (1) Project의 SDK와 language level 17로 변경  
   (2) Modules의 해당 모듈에 대해 language level 17로 변경  
-  (3) SDKs에서 자바 17로 설정
+  (3) SDKs에서 자바17로 설정
 
 
-설정을 완료한 뒤 자바 17에서 preview로 나온 기능이지만 switch의 패턴 매칭 기능을 작성해보았습니다.
+설정을 완료한 뒤 자바17에서 preview로 나온 기능이지만 switch의 패턴 매칭 기능을 작성해보았습니다.
 
 ```java
 public class HelloJava17 {
