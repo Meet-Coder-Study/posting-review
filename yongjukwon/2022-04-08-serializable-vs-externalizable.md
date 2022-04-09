@@ -21,7 +21,7 @@
   - Java Object는 클래스나 그 클래스의 부모 클래스가 `java.io.Serialzable`나 `java.io.Externalizable`을 implement했을 때 Serialization이 가능하다.
 
   <!-- - When an object is serialized, information that identifies its class is recorded in the serialized stream. However, the class's definition("class file") itself is not recorded.  -->
-  - Object가 Serialize 될 떄 어떤 클래스가 저장되었는지에 대한 정보가 serialized stream에 함꼐 기록이 된다. 하지만 클래스의 definition(class file) 자체를 저장하지는 않는다.  
+  - Object가 Serialize 될 때 어떤 클래스가 저장되었는지에 대한 정보가 serialized stream에 함께 기록이 된다. 하지만 클래스의 definition(class file) 자체를 저장하지는 않는다.  
 
     ```Java
     import java.io.Serializable;
@@ -187,7 +187,6 @@
             this.name = (String) in.readObject();
             this.address = (String) in.readObject();
             this.number = in.readInt();
-            System.out.println("number: " + number);
         }
     }
 
