@@ -8,7 +8,7 @@
 
 ## 아키텍처
 
-![Untitled](images/Untitled.png)
+![Untitled](images/img_1.png)
 
 1. 쿼리 평가 엔진
     - 쿼리 평가 엔진에서 사용자로부터 입력받은 SQL 구문을 분석하고, 기억장치에 데이터 접근 순서를 결정한다.
@@ -59,7 +59,7 @@ DBMS가 데이터를 유지하기 위해 사용하는 메모리는 데이터 캐
 
 ## 시스템 특성에 따른 트레이드 오프
 
-![Untitled](images/Untitled%203.png)
+![Untitled](images/img.png)
 
 ### 데이터 캐시와 로그 버퍼의 크기
 
