@@ -115,7 +115,7 @@
 
     e.g.
     ```Java
-      // It must be static, vinal and of type long
+      // It must be static, final and of type long
       (any access modifier) static final long serialVersionUID = 42L;
     ```
 
