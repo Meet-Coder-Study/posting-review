@@ -71,6 +71,7 @@ kind-worker2         Ready    <none>                 6d22h   v1.23.4
 
 ## 구성 요소의 분산 특성
 - 구성 요소들은 모두 개별 프로세스로 실행
+
 ![img_17.png](images/k9s-components.png)
 ```bash
 # 컨트롤 플레인 구성요소 조회
