@@ -161,7 +161,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 - API 서버에서만 낙관적 잠금을 사용하여 클러스터 상태를 업데이트 →  오류 발생 최소화 및 일관성 유지
 
 **클러스터링된 etcd의 일관성 보장**
+
 ![img_17.png](images/etcd-raft.png)
+
 - [Raft 합의 알고리즘](https://dinonotes.com/archives/909) 사용하여 일관성 보장
 
 **etcd 인스턴스 수가 홀수인 이유**
@@ -173,7 +175,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 - 클러스터 상태 조회/변경을 위한 RESTful API로 CRUD 인터페이스 제공
 - 오브젝트를 etcd에 저장을 전적으로 담당하기 때문에 잘못 설정된 오브젝트를 저장하거나 동시에 업데이트 되는 것을 방지
 - kubectl을 사용하여 리소스 생성시 API 서버로 HTTP POST 요청을 전달하며 다음과 같은 절차를 거쳐서 리소스 유효성을 검사하고 etcd에 저장
+
 ![img_17.png](images/k8s-api-server.png)
+
 - 위와 같이 여러 단계를 거쳐서 검증된 요청에 대해서만 etcd에 저장
 
 **API 서버가 리소스 변경을 클라이언트에 통보하는 방법**
@@ -181,7 +185,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 - 여러 클라이언트는 API 서버에 HTTP 연결을 맺고 변경사항을 감지
 - 오브젝트가 갱신될 때마다 API 서버는 감시하고 있는 연결된 모든 클라이언들에게 새로운 버전을 보냄
 - 아래의 그림은 특정 클라이언트가 감시 요청(GET /pods?watch=true)을 보낸 상태에서 오브젝트가 갱신되면(POST /pods/) API 서버가 갱신된 오브젝트를 감시하는 모든 관찰자에게 전달하는 과정
+
 ![img_17.png](images/k8s-api-server-watch.png)
+
 - kubectl은 리소스 변경을 감시할 수 있는 API 서버의 클라이언트 중 하나
 - 감시 메커니즘: 대표적으로 `kubetl get pods --watch` 옵션이 있으며 파드의 생성/수정/삭제 통보를 API 서버로부터 받을 수 있음
 
@@ -190,7 +196,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 - 선택된 노드에 파드를 실행하도록 직접 지시하지는 않고 API 서버로 파드의 정의를 갱신하고 API 서버는 kubelet에 파드가 스케줄링 된 것을 통보
 
 **기본 스케줄링 알고리즘**
+
 ![img_17.png](images/k8s-scheduling-algorithm.png)
+
 - 파드를 스케줄링 할 수 있는 노드 목록을 필터링
 - 수용 가능한 노드의 우선순위에 따라서 노드 선택 (동점일 경우 라운드-로빈)
 
@@ -222,7 +230,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 
 **컨트롤러의 역할과 동작 방식**
 - API 서버에서 리소스(디플로이먼트, 서비스 등)가 변경되는 것을 감시하고 변경(오브젝트 생성/갱신/삭제) 작업을 수행
+
 ![img_17.png](images/k8s-controller.png)
+
 - 컨트롤러는 조정루프(control loop, reconcile loop)를 컨트롤러 매니저로부터 이벤트 목록을 정기적으로 수신하여 실제 상태를 원하는 상태로 조정하고 새로운 상태를 리소소의 상태를 기록
 - 컨트롤러는 서로 직접 통신하지 않으며 서로의 존재조차 모름
 - 컨트롤러는 API 서버로만 오브젝트를 제어하며 kubelet의 존재도 모름
@@ -240,7 +250,9 @@ root         180       1  0 Apr09 pts/0    01:06:04 /usr/bin/kubelet --bootstrap
 **API 서버 없이 정적 파드 실행 (static pod)**
 - kubelet은 특정 로컬 디렉터리 내에 있는 매니페스트 기반으로 정적 파드 실행할 수 있음 (컨트롤 플레인 구성 요소들은 정적 파드임)
 - 왜 정적 파드를 왜 사용할까? → 정적 파드는 컨트롤 플레인에 의존적이지 않기 때문에 node에 컨트롤 플레인 구성 요소를 배포하는데 사용
+
 ![img_17.png](images/static-pod.png)
+
 - 위의 그림에서 containerA,B는 API서버를 통해서 kubelet이 실행하고 정적파드 containerC는 kubelet이 직접 실행함
 
 ## kube-proxy
