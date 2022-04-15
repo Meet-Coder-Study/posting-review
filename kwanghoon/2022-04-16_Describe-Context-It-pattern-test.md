@@ -2,7 +2,9 @@
 ## Describe - Context - It 패턴
 Describe - Context - It 패턴은 BDD 테스트 코드 작성 패턴 중 하나이다.
 
-해당 패턴의 장점은 Given-When-Then 처럼 상황을 설명하기 보다는 테스트 대상을 중심으로 설명할 수 있다는 점이다.
+해당 패턴의 장점은 테스트 대상 중심으로 설명할 수 있다는 점이다.
+
+Java 에서 많이 사용하는 Given-When-Then 패턴은 대상 중심 보다는 상황 중심으로 서술하게 된다.
 
 <br>
 
@@ -34,7 +36,7 @@ assertThat(result).isEqualTo(500);
 ## Junit5 의 @Nested 를 사용하자
 Describe - Context - It 패턴을 사용하여 테스트를 작성하면 아래와 같은 결과를 얻을 수 있다.
 
-![image](https://user-images.githubusercontent.com/60383031/163583897-f494ca8a-c7f3-4a58-9c59-5cc4552979d2.png)
+<img width="700" src="https://user-images.githubusercontent.com/60383031/163583897-f494ca8a-c7f3-4a58-9c59-5cc4552979d2.png">
 
 
 자바 코드로 어떻게 테스트를 작성하면 되는지 알아보자.
