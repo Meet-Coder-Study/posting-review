@@ -82,12 +82,6 @@ Matcher의 종류는 생각보다 많기 때문에 공식문서에서 찾아서 
 
 [](https://kotest.io/docs/assertions/core-matchers.html)
 
-Core Matchers | Kotest
-
-Matchers provided by the kotest-assertions-core module.
-
-kotest.io
-
 ## Kotest의 인스펙터
 
 컬렉션 함수에 대한 확장 함수로, 그룹에 대해 테스트할 경우 사용이 된다.
