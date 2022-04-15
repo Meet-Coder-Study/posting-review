@@ -13,16 +13,16 @@
 
 Kotest는 여러 명세 스타일이 있습니다. 이러한 명세 스타일은 Kotest에 대한 부분도 있고, 여러 언어에 맞춘 테스트 스타일도 제공을 해줍니다.
 
-[Fun       Spec](https://kotest.io/docs/framework/testing-styles.html#fun-spec)     : ScalaTest
-      [Describe    Spec](https://kotest.io/docs/framework/testing-styles.html#describe-spec)    : Javascript frameworks and RSpec
-      [Should    Spec](https://kotest.io/docs/framework/testing-styles.html#should-spec)    : A Kotest original
-      [String    Spec](https://kotest.io/docs/framework/testing-styles.html#string-spec):    A Kotest original
-      [Behavior    Spec](https://kotest.io/docs/framework/testing-styles.html#behavior-spec):    BDD frameworks
-      [Free    Spec](https://kotest.io/docs/framework/testing-styles.html#free-spec):    ScalaTest
-      [Word    Spec](https://kotest.io/docs/framework/testing-styles.html#word-spec):    ScalaTest
-      [Feature    Spec](https://kotest.io/docs/framework/testing-styles.html#feature-spec):    Cucumber
-      [Expect    Spec](https://kotest.io/docs/framework/testing-styles.html#expect-spec):    A Kotest original
-      [Annotation    Spec](https://kotest.io/docs/framework/testing-styles.html#annotation-spec):    JUnit
+- [Fun       Spec](https://kotest.io/docs/framework/testing-styles.html#fun-spec)     : ScalaTest
+-  [Describe    Spec](https://kotest.io/docs/framework/testing-styles.html#describe-spec)    : Javascript frameworks and RSpec
+-  [Should    Spec](https://kotest.io/docs/framework/testing-styles.html#should-spec)    : A Kotest original
+-  [String    Spec](https://kotest.io/docs/framework/testing-styles.html#string-spec):    A Kotest original
+-  [Behavior    Spec](https://kotest.io/docs/framework/testing-styles.html#behavior-spec):    BDD frameworks
+-  [Free    Spec](https://kotest.io/docs/framework/testing-styles.html#free-spec):    ScalaTest
+-  [Word    Spec](https://kotest.io/docs/framework/testing-styles.html#word-spec):    ScalaTest
+-  [Feature    Spec](https://kotest.io/docs/framework/testing-styles.html#feature-spec):    Cucumber
+-  [Expect    Spec](https://kotest.io/docs/framework/testing-styles.html#expect-spec):    A Kotest original
+-  [Annotation    Spec](https://kotest.io/docs/framework/testing-styles.html#annotation-spec):    JUnit
 
 이러한 명세 스타일을 사용하기 위해서는 클래스에서 상속받아 사용을  해야 합니다.  요번 포스팅에서는 Kotest Original인 String Spec, Should Spec, Expect Spec, Behavior Spec, Annotation Spece에 대해서만 설명하도록 하겠습니다.
 
@@ -56,7 +56,7 @@ ExpectSpec은 context()를 통하여 계층을 표현할 수 있다. 계층을 �
 
 ### 4. BehaviorSpec
 
-BehaviorSpec은 BDD(행동 주도 개발)을 뜻한다.  **given() / Given(), `when`(), When(), then()/Then()**이라는 함수로 구분되는 세 가지 수준으로 제공한다.
+BehaviorSpec은 BDD(행동 주도 개발)을 뜻한다.  **given() / Given(), `when`(), When(), then()/Then()** 이라는 함수로 구분되는 세 가지 수준으로 제공한다.
 
 ![](https://blog.kakaocdn.net/dn/00OQP/btrzvbVvlWX/wEYTGmiKkxROaoFiNx4QMK/img.png)
 
@@ -92,10 +92,10 @@ kotest.io
 
 컬렉션 함수에 대한 확장 함수로, 그룹에 대해 테스트할 경우 사용이 된다.
 
-forAll() / forNone() : 모든 원소가 만족하는지, 만족하지 않는지 테스트한다.
-forExactly(n) : 정확히 n개의 원소가 만족하는지 검사한다.
-forAtLeast(n)/forAtMost(n) : 최소 n개를 만족하는지, 최대 n개를 만족하는지  테스트한다.
-forSome() : 만족하는 원소가 존재하는지 검사하고, 모든 원소가 만족하지 않음을 검사한다.
+- forAll() / forNone() : 모든 원소가 만족하는지, 만족하지 않는지 테스트한다.
+- forExactly(n) : 정확히 n개의 원소가 만족하는지 검사한다.
+- forAtLeast(n)/forAtMost(n) : 최소 n개를 만족하는지, 최대 n개를 만족하는지  테스트한다.
+- forSome() : 만족하는 원소가 존재하는지 검사하고, 모든 원소가 만족하지 않음을 검사한다.
 
   
 
