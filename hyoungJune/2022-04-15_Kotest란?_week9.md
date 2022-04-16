@@ -7,7 +7,7 @@
 ## Kotest 란?
 
 -   코틀린을 위한 오픈 소스 테스트 프레임워크이다.
--   multi-plaform test framework로 Test-framework, Assertions Library, Property Testing을 독립적으로 사용할 수 있다.
+-   multi-platform test framework로 Test-framework, Assertions Library, Property Testing을 독립적으로 사용할 수 있다.
 
 ## Kotest의 명세 스타일
 
