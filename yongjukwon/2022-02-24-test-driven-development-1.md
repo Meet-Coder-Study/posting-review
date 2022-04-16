@@ -13,9 +13,9 @@
 
 - Rules for Development with TDD
 
-- 작성한 automated test 가 실패했을 경우에만 새 코드를 작성 (코드 작성 전 실패하는 automated test 작성)
+  1. 작성한 automated test 가 실패했을 경우에만 새 코드를 작성 (코드 작성 전 실패하는 automated test 작성)
 
-- 중복코드 제거
+  2. 중복코드 제거
 
 - TDD는 프로그래밍 중 결정과 피드백 사이의 자각하는 과정이자 그 사이의 갭을 메꿔주는 기술이다
 
