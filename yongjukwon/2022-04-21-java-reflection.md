@@ -85,6 +85,7 @@ class Demo {
         Test test = new Test();
 
         Class cls = test.getClass();
+        //Class class = Class.forName("main.java.reflection.Test");
         System.out.println("The name of class is " + cls.getName());
         // The name of class is main.java.reflection.Test
 
@@ -182,7 +183,7 @@ class Demo {
 
 <!-- ***Reflection*** is commonly used by programs which require the ability to examine or modify the runtime behaviour of applications running in the Java virtual machine. This is a relatively advanced feature and should be used only by developers who have a strong grasp of the fundamentals of the language. With that caveat in mind, reflection is a powerful technique and can enable applications to perform operations which would otherwise be impossible. -->
 
-***Reflection***은 위에서 설명했듯이 런타임 속성들을 분석하거나 수정할 떄 사용된다. 상당히 고급(어려운?) 기능이기 때문에 Java의 핵심, 근본(fundamental)을 잘 알고 있는 개발자들만 사용해야 한다. 경각심을 가지고 사용한다면, ***reflection***은 굉장한 기술이고 ***reflection***이 아니면 할 수 없는 기능들을 사용 가능하게 만든다.
+***Reflection***은 위에서 설명했듯이 런타임 속성들을 분석하거나 수정할 때 사용된다. 상당히 고급(어려운?) 기능이기 때문에 Java의 핵심, 근본(fundamental)을 잘 알고 있는 개발자들만 사용해야 한다. 경각심을 가지고 사용한다면, ***reflection***은 굉장한 기술이고 ***reflection***이 아니면 할 수 없는 기능들을 사용 가능하게 만든다.
 
 <!-- ***Extensibility Features***   -->
 - ***확장성***
