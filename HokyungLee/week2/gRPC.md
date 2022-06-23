@@ -1,4 +1,4 @@
-# gRPC**: A modern open source high performance RPC framework**
+# **gRPC: A modern open source high performance RPC framework**
 
 ## 1. Monolithic to Microservices : Data Exchange
 
@@ -133,7 +133,7 @@ Realtime communication : 웹은 일반적으로 클라이언트에서 서버로 
 
 
 
-## *Appendix
+## **Appendix**
 
 ### 1. Protocol Buffer
 
