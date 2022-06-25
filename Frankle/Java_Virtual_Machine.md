@@ -56,9 +56,6 @@ Native Applications(하드웨어와 운영체제에 종속된 프로그램), C, 
 ### 9) Native Method Libraries
 Execution Engine에 필요한  Native Libraries(C, C++) 모음입니다.
 
-# 마무리
-다음 포스팅에서는 JVM Memory의 영역들과 GC(Garbage Collector)에 대해 다뤄보겠습니다.
-
 # 참고 자료
 - https://en.wikipedia.org/wiki/Java_virtual_machine
 - https://www.holaxprogramming.com/2013/07/16/java-jvm-runtime-data-area/
