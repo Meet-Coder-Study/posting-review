@@ -1,3 +1,5 @@
+## 
+
 ### 결론부터 이야기하면 이벤트스토어를 활용해 내가 원하는 View 를 만들어 내기란 여전히 턱없이 내공이 부족하다.
 
 
@@ -16,13 +18,11 @@
 
 사내에서 이벤트라는 용어를 설명하면서 사용한 그림을 가져왔습니다.
 
-![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h3jqbwt0tqj21oi0u0jtj.jpg)
+![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h3k7jdltd3j21by0r2n1b.jpg)
 
-![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h3jqbxfujyj21oi0u0jtj.jpg)
+![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h3k7jm4nawj21by0qqq73.jpg)
 
-
-
-![img](https://blog.kakaocdn.net/dn/Bcot8/btrFFzo8mSE/ZbExLgnEqxMxLnhdefk9S1/img.png)
+![img](https://tva1.sinaimg.cn/large/e6c9d24egy1h3k7khydxmj21c40qsq5k.jpg)
 
 
 
@@ -32,14 +32,15 @@
 
 이것이 가져다는 주는 이점은 무엇일까?
 
-\1. 바로 위에서 언급한 과거 내역을 확인할 수 있다는 것
+1. 바로 위에서 언급한 과거 내역을 확인할 수 있다는 것
 
-\2. 언제든 내가 만들고자 하는 뷰를 만들어 낼 수 있다.
+2. 언제든 내가 만들고자 하는 뷰를 만들어 낼 수 있다.
 
-\3. 커뮤니케이션의 핵심 도구가 될 수 있다.
+3. 커뮤니케이션의 핵심 도구가 될 수 있다.
 
-\4. 개발 패러다임을 변경함으로써, Mental Shift 가 될 수 있다 (x축으로만 생각하다가 y축으로 생각하기?)
+4. 개발 패러다임을 변경함으로써, Mental Shift 가 될 수 있다 (x축으로만 생각하다가 y축으로 생각하기?)
 
+5....
 
 
 이렇게 좋음에도 불구하고 왜 많은 회사는 이벤트스토어을 적용하는 것을 대단히 힘들어할까?
