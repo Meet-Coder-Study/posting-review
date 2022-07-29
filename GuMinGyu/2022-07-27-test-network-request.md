@@ -2,7 +2,8 @@
 title: test network request
 ---
 
-요즘 https://github.com/mswjs/msw 과 같은 api mocking 라이브러리들이 떠오르는 것 같다. 테스트를 하거나 개발을 하려고 했으나 backend api 배포가 되지않아 개발 병목이 걸린경우 많이 사용하는데 최근에 e2e 테스트의 모든 network request를 mocking하여 사용하는 곳을 본적이 있어 제 생각을 정리해보았습니다.
+요즘 https://github.com/mswjs/msw 과 같은 api mocking 라이브러리들이 떠오르는 것 같다. 테스트를 하거나 개발을 하려고 했으나 backend api 배포가 되지않아 개발 병목이 걸린경우 많이 사용한다.
+나의 경우 unit 테스트는 당연히 mock data를 사용하지만, e2e 테스트는 항상 real-server를 찌른다.(dev server) 하지만 e2e 테스트에서도 mocking 해서 사용하는 경우가 있다는 이야기를 들어 이번에 조금 고민해 보았다.
 
 # e2e 테스트에서 api mocking 하는게 옳은가?
 
