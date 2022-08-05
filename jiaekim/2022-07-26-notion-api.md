@@ -24,9 +24,9 @@
 2. 해당 링크에서 자신의 계정으로 로그인하면 아래와 같이 ‘내 API 통합'이라는 창이 뜨면 `새 API 통합 만들기`버튼을 클릭한다.
 3. 버튼을 클릭하면 내가 해당 API 토큰에 부여할 권한들을 선택할 수 있다. 자격정보에 콘텐츠 읽기 , 업데이트, 입력, 댓글 읽기, 댓글 삽입 등의 권한을 부여할 수 있다. 기본 정보인 이름과 권한을 작성하고 API 통합 유형은 ‘프라이빗 API 통합'을 선택한다.
 
-![Untitled](https://user-images.githubusercontent.com/37948906/180998180-66ffa56a-bf93-47ea-a21f-35b9eb83e66d.png)
+<img width="400" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998180-66ffa56a-bf93-47ea-a21f-35b9eb83e66d.png">
 
-![Untitled 1](https://user-images.githubusercontent.com/37948906/180998142-20c2dc59-0a9f-484f-be2e-bce7588522b0.png)
+<img width="400" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998142-20c2dc59-0a9f-484f-be2e-bce7588522b0.png">
 
 1. 위와 같이 변경사항을 저장한 뒤 나오면 아래와 같은 형식의 API 토큰이 발급된다. 해당 토큰을 잘 복사해둔다.
 
@@ -36,7 +36,7 @@ secret_UnKXXXAtcXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 1. 이제 토큰이 정상적으로 생성되었고 우리의 Application과 연결할 수 있게 되었다.
 
-![Untitled 2](https://user-images.githubusercontent.com/37948906/180998155-94acc82e-a61e-4c67-80ac-e1cbbeb457c9.png)
+<img width="400" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998155-94acc82e-a61e-4c67-80ac-e1cbbeb457c9.png">
 
 ## 2.2 간단한 데이터베이스 생성하고 API와 통합하기
 
@@ -44,9 +44,12 @@ secret_UnKXXXAtcXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 데이터베이스 인라인은 페이지 내에 데이터베이스를 생성하는 것이고, 전체 페이지는 새로운 페이지로 만드는 것이다. 지금은 ‘전체 페이지'를 선택하여 생성한다.
 
-![Untitled 3](https://user-images.githubusercontent.com/37948906/180998163-8f6d3fed-df96-4c44-809a-986064b6ae72.png)
+<img width="400" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998163-8f6d3fed-df96-4c44-809a-986064b6ae72.png">
 
-![Untitled 4](https://user-images.githubusercontent.com/37948906/180998166-05b15611-2bdb-4d9c-b84c-157fbf10d5db.png)
+<br>
+
+<img width="600" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998166-05b15611-2bdb-4d9c-b84c-157fbf10d5db.png">
+
 
 데이터베이스를 생성하는 방법은 이미 잘 사용하고 있는 기능이라고 생각하고 자세한 내용은 생략한다. 만약 필요하다면 아래 블로그의 데이터베이스 생성 파트를 참고하자.
 
@@ -54,11 +57,14 @@ secret_UnKXXXAtcXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 1. 나의 데이터베이스를 방금 만들었던 API 통합을 선택하여 공유한다.
 
+
 <img width="524" alt="Untitled 5" src="https://user-images.githubusercontent.com/37948906/180998168-4bf9bec5-5ca5-4c76-89d6-f384ec6b9c84.png">
 
 1. 정상적으로 추가되었다면 아래와 같이 API 통합이 가능하게 된다. API를 통해 데이터베이스 편집 기능을 사용할 수 있게 하려면 편집 허용으로 선택한다.
 
+
 <img width="535" alt="Untitled 6" src="https://user-images.githubusercontent.com/37948906/180998171-1cd3ff0e-3463-4bcf-ab64-e109deee107c.png">
+
 
 1. 생성한 데이터베이스의 ID를 복사한다.
 
@@ -70,11 +76,9 @@ https://www.notion.so/**aa939347XXXXXXXXc4ad7b4**?v=938f55b6dd6b46da923a30dc260b
 
 Database ID
 
-```kotlin
+```sh
 **aa939347XXXXXXXXc4ad7b4**
 ```
-
-[https://www.notion.so/aa939347233444dab2444c9a8c4ad7b4?v=938f55b6dd6b46da923a30dc260be82a](https://www.notion.so/aa939347233444dab2444c9a8c4ad7b4)
 
 ## 3. 본격적으로 어플리케이션에서 API 호출하기
 
@@ -82,7 +86,7 @@ Database ID
 
 노션 공식 홈페이지에서 추천해주는 방법 중 하나인 JS 노션 클라이언트를 이용해서 노션 API를 활용해 보자. 먼저 방금 만들었던 노션의 토큰(키) 값과 데이터베이스 아이디를 아래와 같이 변수로 지정해둔다.
 
-```kotlin
+```sh
 $ mkdir notion-example
 $ cd notion-example
 $ export NOTION_KEY=secret_UnXXXXXXkKPXXXXXXX
@@ -93,11 +97,11 @@ $ export NOTION_DATABASE_ID=aa939347233444daXXXXX
 
 `index.js`
 
-```
+```sh
 $ vi index.js
 ```
 
-```kotlin
+```javascript
 import { Client } from "@notionhq/client"
 
 const notion = new Client({ auth: process.env.NOTION_KEY })
@@ -134,11 +138,11 @@ addItem("Clean-Code-Architecture")
 
 `package.json`
 
-```
+```sh
 $ vi package.json
 ```
 
-```kotlin
+```json
 {
   "name": "notion-example",
   "type": "module",
@@ -153,7 +157,7 @@ $ vi package.json
 
 ### 3.4 node 설치하고 실행하기
 
-```json
+```sh
 $ npm install
 
 added 13 packages, and audited 14 packages in 3s
@@ -166,7 +170,7 @@ npm notice Run npm install -g npm@8.15.0 to update!
 npm notice
 ```
 
-```kotlin
+```sh
 $ node index.js
 {
   object: 'page',
@@ -200,7 +204,7 @@ $ node index.js
     
     만약 데이터베이스를 정상적으로 공유하지 않았다면 아래와 같은 에러가 발생하므로 다시 확인한다.
     
-    ```json
+    ```sh
     $ node index.js
     @notionhq/client warn: request fail {
       code: 'object_not_found',
@@ -246,11 +250,11 @@ POST POST https://api.notion.com/v1/databases/{database-id}/query
 
 위와 같은 URL에 다양한 필터를 사용해서 검색을 할 수 있다. 예를 들면 ‘read’라는 체크 박스를 생성해두고 읽은 책들의 리스트만 가져오는 필터를 통해 해당 리스트를 조회할 수 있다. 헤더에는 아까 환경설정에서 생성해둔 값들을 넣는다.
 
-```json
+```javascript
 POST https://api.notion.com/v1/databases/aa939347233444dab2444c9a8c4ad7b4/query
 ```
 
-```json
+```javascript
 **Header**
 Authorization: {{NOTION_API_KEY}}
 Notion-Version: {{NOTION_OLD_VERSION}}
