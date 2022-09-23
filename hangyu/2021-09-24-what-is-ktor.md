@@ -5,50 +5,57 @@
 -  그러면 코틀린으로 개발할 수 있는 프레임워크에 대한 검토가 필요해 지는 경우인데요 
 
 - 일단 Kotlin 공식문서에 나와 있는 리스트입니다 
-	1. Spring - 생략 
-	2. Vert.x
+	1. [Spring](https://spring.io/) - 생략 
+	1. [Vert.x](https://vertx.io/)
 		1.  reactive Web applications on the JVM
-	3. Ktor 
+	2. [Ktor](https://ktor.io/) 
 		1. built by JetBrains for creating Web applications in Kotlin
-		2. 유정훈님 Ktor 톺아보기
-	4. Micronaut 
+	3. [Micronaut](https://micronaut.io/) 
 		1. modern JVM-based full-stack framework for building modular, easily testable microservices and serverless applications
-	5. Javalin
+	4. [Javalin](https://javalin.io/)
 		1. very lightweight web framework for Kotlin and Java which supports WebSockets, HTTP2, and async requests
 
 - 추가로 검색시 상위에 나오는 내용들을 봤습니다 
 (이러이러한게 있다 정도로만 보면 될 듯)
 
-  1. 5 Best Kotlin Server-side Frameworks - 2019/12/04
-  2. 10 Best Kotlin Web Frameworks - 2019/12/20
+  1. [5 Best Kotlin Server-side Frameworks - <b>2019/12/04</b>](https://javalin.io/)
+   
+  2. [10 Best Kotlin Web Frameworks - <b>2019/12/20</b>](https://www.dunebook.com/best-kotlin-web-frameworks/)
 
+<br/>
+<br/>
 
 ![image](./images/2022-09-24/point.png)
 
-현재 필요한 부분은 대량 적립을 처리하기 위한 AWS SQS의 Listener Worker 로서 제공되는 API는 없고 Message를 받아 처리 하기만 하면되는 순수한 Worker 입니다 
+<br/>
+<br/>
 
-외부에 공개 되는 부분이 없어 인증 단계도 필요 없고 자기 할 일만 하면 되는 것으로 Full-stack framwork 인 Micronaut 는 제외하기로 했습니다 
+### 현재 필요한 부분은 대량 적립을 처리하기 위한 AWS SQS의 Listener Worker 로서 제공되는 API는 없고 Message를 받아 처리 하기만 하면되는 순수한 Worker 입니다 
 
-그리고 레이어 아키텍처로 응집도와 결합도에 대한 고민 안 하려고 Spring boot 보다는 다른 간단한 녀석을 우선적으로 고려하기로 했습니다 
+### 외부에 공개 되는 부분이 없어 인증 단계도 필요 없고 자기 할 일만 하면 되는 것으로 Full-stack framwork 인 Micronaut 는 제외하기로 했습니다 
 
-Javalin 도 제외하기로 했습니다 WebSocket 이나 HTTP2는 현재 고려 대상이 아닙니다 
+### 그리고 레이어 아키텍처로 응집도와 결합도에 대한 고민 안 하려고 Spring boot 보다는 다른 간단한 녀석을 우선적으로 고려하기로 했습니다 
+
+### Javalin 도 제외하기로 했습니다 WebSocket 이나 HTTP2는 현재 고려 대상이 아닙니다 
+
+### 아래의 2가지를 고려해보기로 했습니다
 
 - Vert.x
   - https://github.com/eclipse-vertx/vert.x - Fork: 1.9K Star: 12.8K
     - https://github.com/vert-x3/vertx-lang-kotlin - Fork: 61 Star: 255
-  - Vert.X in Action - 수 년전부터 출판된 책도 있음
-  - Vertex-awesome - 화려한? third party library
-  - Eclipse Foundation - 바람과 함께 사라질 것 같지는 않음
-  - Kotlin 버전의 NodeJS 로 보임 - event driven 방식 
+  - [Vert.X in Action](https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=vert.x&x=0&y=0) - 수 년전부터 출판된 책도 있음
+  - [Vertex-awesome](https://github.com/vert-x3/vertx-awesome/blob/master/README.md?fbclid=IwAR18GlHNpQJxQi_RuPZeeY4pq9N2svBNRH2MhFsdlLasf22Ie0zsm959taE#dependency-injection) - 화려한? third party library
+  - [Eclipse Foundation](https://www.eclipse.org/) - 바람과 함께 사라질 것 같지는 않음
+  - Kotlin 버전의 NodeJS 동작방식으로 보임 - event driven 방식 
 - Ktor
   - https://github.com/ktorio/ktor - Fork: 802 Star: 9.7K 
-  - Jetbrains 가 버리지 않으면 사라질 것 같지 않음 
+  - <b>Jetbrains</b> 가 버리지 않으면 사라질 것 같지 않음 
 
-단순 스펙만 보면 Vert.x 가 더 대기업 같이 있어보이고 event-loop / non-blocking 의 적은 리소스로 더 많은 동시성을 처리할 수 있을 것 같아 더 좋을 수 있을 것 같습니다 
+### 단순 스펙만 보면 Vert.x 가 더 대기업 같이 있어보이고 event-loop / non-blocking 의 적은 리소스로 더 많은 동시성을 처리할 수 있을 것 같아 더 좋을 수 있을 것 같습니다 
 
-뭔가 답정너 인 것 같긴 한데 결론은 중소기업인 Ktor 가 더 적합할 수 있다고 판단되었습니다
+### 뭔가 답정너 인 것 같긴 한데 결론은 중소기업인 Ktor 가 더 적합할 수 있다고 판단되었습니다
 
-이유는 github 에서 가장 처음 문구를 보고 생각하게 되었는데요 
+### 이유는 github 에서 가장 처음 문구를 보고 생각하게 되었는데요 
 
 - Vert.x
   - This is the repository for Kotlin language support for Vert.x 3. 
@@ -65,20 +72,22 @@ Javalin 도 제외하기로 했습니다 WebSocket 이나 HTTP2는 현재 고려
 
 위에서 언급했듯이 단순한 Worker 가 필요한 상황이고 가볍게 구현하고 끝낼 생각이라 개발시간과 조사시간을 적게 들일 녀석을 찾고 있어서 현재 필요한 부분이 Ktor 로 충분할 수 있을 것 같다는 판단이 되었기 때문입니다 
 
-그리고 재미난 글 하나를 발견했는데요 - 클리앙 - Ktor 소감 (2021/07/18)
+그리고 재미난 글 하나를 발견했는데요 - [클리앙 - Ktor 소감 (2021/07/18)](https://www.clien.net/service/board/cm_app/16328562)
 
 요약하자면 아래의 내용입니다
 
-	1. 구동속도는 Webflux 와 비교해보면 Ktor 가 압도적으로 빠르다 
-	2. Spring은 필요한 기능은 거의 다 찾으면 있는데 Ktor 는 상황에 따라 직접 구현해서 써야 할 수 있다 
-	3. Spring 에서는 DI를 표준처럼 쓰는 것을 Ktor 에서는 Koin 이라는 모듈로 비슷하게 할 수는 있다 
-   ![image](./images/2022-09-24/koin.png)
+## 1. 구동속도는 Webflux 와 비교해보면 Ktor 가 압도적으로 빠르다 
+## 2. Spring은 필요한 기능은 거의 다 찾으면 있는데 Ktor 는 상황에 따라 직접 구현해서 써야 할 수 있다 
+## 3. Spring 에서는 DI를 표준처럼 쓰는 것을 Ktor 에서는 Koin 이라는 모듈로 비슷하게 할 수는 있다 
+   
+![image](./images/2022-09-24/koin.png)
     
-    4. Webflux 나 Ktor 나 비동기 기반을 base로 처리한다 (이 부분이 결정적으로 좋았음) 
-    5. ORM으로 exposed / ktorm 이 있고 exposed는 liquibase 처럼 DB 형상관리가 쉬워 보인다 
-		- 하지만 둘 다 JDBC 기반이라 동기식으로 database 처리 해야 해서 R2DBC 미 지원이 아쉽다 
+## 4. Webflux 나 Ktor 나 비동기 기반을 base로 처리한다 (이 부분이 결정적으로 좋았음) 
+## 5. ORM으로 exposed / ktorm 이 있고 exposed는 liquibase 처럼 DB 형상관리가 쉬워 보인다 
+   1. 하지만 둘 다 JDBC 기반이라 동기식으로 database 처리 해야 해서 R2DBC 미 지원이 아쉽다 
 
-작고 간단하게 라는 방향성을 가지고 갔기 때문에 일단 구현해보기로 했고 필요한 모듈이 있는지도 가볍게 찾아 봤습니다. 
+
+### 작고 간단하게 라는 방향성을 가지고 갔기 때문에 일단 구현해보기로 했고 필요한 모듈이 있는지도 가볍게 찾아 봤습니다. 
 
 1. AWS SQS SDK
    1. https://github.com/JaidenAshmore/java-dynamic-sqs-listener
