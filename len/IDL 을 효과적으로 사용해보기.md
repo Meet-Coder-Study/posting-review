@@ -1,3 +1,12 @@
+IDL
+
+**https://github.com/LenKIM/idl-demo**
+
+IDL-client
+
+**https://github.com/LenKIM/idl-demo-client**
+
+
 우리가 가진 문제점은 아래 질문에서 시작됩니다.
 
 '우리 어떤 이벤트를 발행하고 있지?'
