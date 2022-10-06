@@ -31,7 +31,7 @@ const Component = () => {
 
 상위 컴포넌트의 리렌더링이 발생하면 하위 컴포넌트도 리렌더링된다.
 
-```tsx`
+```tsx
 // ParentComponent
 import React, { useState, useEffect } from "react";
 
