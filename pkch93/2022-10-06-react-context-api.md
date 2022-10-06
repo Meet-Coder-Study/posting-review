@@ -2,9 +2,7 @@
 
 `useContext`는 부모-자식 간의 컴포넌트에서 props를 전달하지 않고도 상태를 관리할 수 있도록 도와준다. 이를 통해 Props Drilling을 방지할 수 있다.
 
-> Props Drilling 참고
->  
-> [Prop Drilling](https://www.notion.so/Prop-Drilling-5a0c77487cdb4b83b1671bd5a13d6a98)
+> [Props Drilling 참고](https://slog.website/post/13)
 
 
 ## useContext 사용하기
