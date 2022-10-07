@@ -185,9 +185,12 @@ Http status 는 200,400,500 3개만 있는게 아니에요.. 우리 다같이 �
 이 다음에는 Error Response Format 과 Error Logging 에 대해 정리합니다 
 
 
-
-
-
+[작성에 사용 된 글 들]
+- https://pathas.tistory.com/215
+- https://sanghaklee.tistory.com/61
+- https://stackoverflow.com/questions/9930695/rest-api-404-bad-uri-or-missing-resource
+- https://laeshiny.medium.com/get-%EC%9A%94%EC%B2%AD-%EC%8B%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B0%80-%EC%97%86%EC%9C%BC%EB%A9%B4-200-or-404-4ab7430084af
+- https://cheese10yun.github.io/checked-exception/
 
 
 
