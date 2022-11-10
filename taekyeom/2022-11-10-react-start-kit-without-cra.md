@@ -50,7 +50,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: process.env.mode,
+  mode: 'development',
   entry: { react_app: "./src/index.js" },
   // 번들링이 시작되는 파일
   output: {
