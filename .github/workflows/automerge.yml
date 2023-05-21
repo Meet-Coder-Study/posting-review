@@ -2,7 +2,7 @@ name: automerge
 on:
   # https://crontab.guru
   schedule:
-    - cron: '0 0 * * SUN'
+    - cron: '0 0 * * SAT'
 jobs:
   automerge:
     runs-on: ubuntu-latest
