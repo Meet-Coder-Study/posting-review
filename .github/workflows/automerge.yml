@@ -1,6 +1,6 @@
 name: automerge
 on:
-  # https://crontab.guru
+  # CURL Test URL: https://crontab.guru
   schedule:
     - cron: '0 0 * * SAT'
 jobs:
