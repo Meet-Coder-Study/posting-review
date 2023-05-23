@@ -224,7 +224,7 @@ public class AbstractAggregateRoot<A extends AbstractAggregateRoot<A>> {
 
 다양한 방법이 있다. dirty checking이 일어나는 로직에 AOP를 걸어준다던가, 커스텀 어노테이션을 추가해주던가. 하지만 근본적으로 `ApplicationEventPublisher`를 사용하기에 이를 전역적으로 사용할 수 있게 static 변수에 담아주는 로직을 선택했다.
 
-내용은 ‘도메인주도개발 시작하기’ 책의 예제를 가져왔다.
+내용은 ‘도메인주도개발 시작하기’ 책의 예제를 코틀린으로 구현했다.
 
 ```kotlin
 object Events {
@@ -260,7 +260,7 @@ class Member(
     @Column(columnDefinition = "varchar(20)")
     var nickname: String? = null,
     val email: String? = null
-) : AbstractAggregateRoot<Member>() {
+) {
 
     fun updateNickname(newNickname: String) {
         this.nickname = newNickname
