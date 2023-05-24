@@ -30,7 +30,7 @@ DOM 트리와는 비슷하지만, 시각적인 표현을 제외한 더 적은 �
 접근성 트리로 구성된 페이지는 대략 다음과 같이 오래된 웹 페이지와 같은 형태가 된다.
 
 <image
-  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-accessibility-tree/images/chrome-accessibility-tree.gif"
+  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-accessibility-tree/images/1990s-style-web-page.png"
   alt="1990s-style-web-page"
 />
 
