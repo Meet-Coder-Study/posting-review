@@ -156,7 +156,7 @@ save와 delete 메서드를 사용할 때 프록시 객체는 `EventPublishingMe
 
 # `AbstractAggregateRoot<T>` 객체 사용
 
-`AbstractAggregateRoot<T>` 를 상속받은 Entity는 간단한 reigsterEvent() 메서드만으로도 이벤트를 발행할 수 있다.
+`AbstractAggregateRoot<T>` 를 상속받은 Entity는 간단한 registerEvent() 메서드만으로도 이벤트를 발행할 수 있다.
 
 ```kotlin
 @Entity
