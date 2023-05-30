@@ -4,7 +4,7 @@
 
 Spring Data Common 에서 Repository를 추상화해서 통해 얻고자 하는 목표는 다양한 영속성 저장소(RDBMS, NoSQL 등등..)에 대한 데이터 접근 계층을 구현할 때 필요한 상용구 코드의 양을 크게 줄이는 것 입니다.(Connection과 관련된 코드 등등..)
 
-<img width="400" height="400" alt="noImplicity_1" src="JongWukH/images/Untitled.png">
+![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled.png)
 
 ## Repository
 
@@ -65,7 +65,7 @@ public interface PagingAndSortingRepository<T, ID>  {
 
 ## Repository Pattern
 
-<img width="400" height="400" alt="noImplicity_1" src="JongWukH/images/Untitled 1.png">
+![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled%201.png)
 
 Repository Pattern은 데이터 접근과 조작에 집중한 영속성 계층(구현 기술)과 도메인 계층을 분리시키는 것을 의미합니다.
 
@@ -75,11 +75,11 @@ Domain의 관점에서는 Repository라는 추상화된 객체에서 데이터�
 
 그렇다면 Spring Data Jpa 에서 제공하는 JpaRepository의 상속관계는 어떻게될까요?
 
-<img width="400" height="400" alt="noImplicity_1" src="JongWukH/images/Untitled 2.png">
+![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled%202.png)
 
 위 그림의 Repository가 가장 고 수준 모듈이며, JpaRepository는 저 수준 모듈 입니다.(기능 구현이 가장 많이 되어 있습니다) 가장 저 수준 모듈에 속해 있는, `JpaRepository` 는 추후 Jpa를 사용하는 것이 아닌 MonggoDB를 사용한다 던지 등의, 데이터베이스 사용의 변화가 있을 시에, 가장 하위 수준의 모듈만 변경되면 되기 때문에, 외부 환경의 변화에도 상위 Repository와, CrudRepository, PagingAndSortingRepository는 모든 데이터 접근 및 조작 모듈에서 공통으로 사용하는 부분이기에 변화가 이루어지지 않아도 된다는 장점이 있습니다.
 
-<img width="400" height="400" alt="noImplicity_1" src="JongWukH/images/Untitled 3.png">
+![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled%203.png)
 
 그림과 같이 Spring Common Module에 속한 Repository, CrudRepository, PagingAndSortingRepository를 통해 그 하위 저장소로 Jpa,Mongo,Graph등등 어떤것을 사용하게 되더라도, 저 수준 모듈의 변화에 고 수준 모듈이 영향받지 않는 다는 점을 알 수 있습니다.
 
