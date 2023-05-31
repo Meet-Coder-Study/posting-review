@@ -77,7 +77,7 @@ Domain의 관점에서는 Repository라는 추상화된 객체에서 데이터�
 
 ![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled%202.png)
 
-위 그림의 Repository가 가장 고 수준 모듈이며, JpaRepository는 저 수준 모듈 입니다.(기능 구현이 가장 많이 되어 있습니다) 가장 저 수준 모듈에 속해 있는, `JpaRepository` 는 추후 Jpa를 사용하는 것이 아닌 MonggoDB를 사용한다 던지 등의, 데이터베이스 사용의 변화가 있을 시에, 가장 하위 수준의 모듈만 변경되면 되기 때문에, 외부 환경의 변화에도 상위 Repository와, CrudRepository, PagingAndSortingRepository는 모든 데이터 접근 및 조작 모듈에서 공통으로 사용하는 부분이기에 변화가 이루어지지 않아도 된다는 장점이 있습니다.
+위 그림의 Repository가 가장 고 수준 모듈이며, JpaRepository는 저 수준 모듈 입니다.(기능 구현이 가장 많이 되어 있습니다) 가장 저 수준 모듈에 속해 있는, `JpaRepository` 는 추후 Jpa를 사용하는 것이 아닌 MongoDB를 사용한다던지 등의, 데이터베이스 사용의 변화가 있을 시에, 가장 하위 수준의 모듈만 변경되면 되기 때문에, 외부 환경의 변화에도 상위 Repository와, CrudRepository, PagingAndSortingRepository는 모든 데이터 접근 및 조작 모듈에서 공통으로 사용하는 부분이기에 변화가 이루어지지 않아도 된다는 장점이 있습니다.
 
 ![image](https://github.com/aorri2/posting-review/blob/aorri2/JongWukH/images/Untitled%203.png)
 
