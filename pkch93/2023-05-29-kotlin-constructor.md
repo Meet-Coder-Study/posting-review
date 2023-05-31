@@ -31,9 +31,9 @@ class Post(
 
 ```kotlin
 class Post
-	private constructor (
-		val title: String,
-		val content: String
+private constructor (
+    val title: String,
+    val content: String
 )
 ```
 
@@ -46,7 +46,7 @@ class PhoneNumber(
     private val value: String
 ) {
     companion object {
-		private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
+	    private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
     }
 
     init {
@@ -70,7 +70,7 @@ class PhoneNumber(
 
     init {
         if (!REGEX.matcher(value).matches()) {
-						println("${value}는 유효한 번호입니다.")
+			println("${value}는 유효한 번호입니다.")
             throw IllegalArgumentException("전화번호 형식과 맞지 않습니다.")
         }
     }
@@ -125,7 +125,7 @@ class PostDto(post: Post) {
 
 ```kotlin
 class PostDto
-	private constructor(
+private constructor(
   val title: String
   val content: String
 ) {
@@ -139,7 +139,7 @@ secondary constructor에 로직 수행이 필요하다면 중괄호 `{}` 내에 
 
 ```kotlin
 class PostDto
-	private constructor(
+private constructor(
   val title: String
   val content: String
 ) {
