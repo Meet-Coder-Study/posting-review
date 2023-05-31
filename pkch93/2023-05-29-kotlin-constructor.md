@@ -46,7 +46,7 @@ class PhoneNumber(
     private val value: String
 ) {
     companion object {
-				private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
+		private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
     }
 
     init {
@@ -64,8 +64,8 @@ class PhoneNumber(
     private val value: String
 ) {
     companion object {
-				private val KOREA_INTERNATIONAL_NUMBER = 82
-				private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
+		private val KOREA_INTERNATIONAL_NUMBER = 82
+		private val REGEX: Pattern = Pattern.compile("^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
     }
 
     init {
@@ -75,11 +75,11 @@ class PhoneNumber(
         }
     }
 
-		val internationalPhoneNumber = "${PhoneNumber.KOREA_INTERNATIONAL_NUMBER}+ ${value}".also(::println)
+    val internationalPhoneNumber = "${PhoneNumber.KOREA_INTERNATIONAL_NUMBER}+ ${value}".also(::println)
 
-		init {
-			println("국제번호는 ${internationalPhoneNumber}입니다.")
-		}
+    init {
+        println("국제번호는 ${internationalPhoneNumber}입니다.")
+    }
 }
 ```
 
@@ -143,9 +143,9 @@ class PostDto
   val title: String
   val content: String
 ) {
-  constructor(post: Post): this(post.title, post.content) {
-		println("${title} - ${content}")
-	}
+    constructor(post: Post): this(post.title, post.content) {
+        println("${title} - ${content}")
+    }
 }
 ```
 
