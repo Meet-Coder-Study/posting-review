@@ -83,7 +83,7 @@ Domain의 관점에서는 Repository라는 추상화된 객체에서 데이터�
 
 그림과 같이 Spring Common Module에 속한 Repository, CrudRepository, PagingAndSortingRepository를 통해 그 하위 저장소로 Jpa, Mongo, Graph 등등 어떤 것을 사용하게 되더라도, 저 수준 모듈의 변화에 고 수준 모듈이 영향받지 않는다는 점을 알 수 있습니다.
 
-이처럼 Spring data common 모듈과 그 하위 Jpa,Mongo 모듈을 살펴보면서 스프링에서 어떻게 DIP를 적용하고 있을지에 대해 관련한 코드나, 상속 관계등을 살펴 보았습니다.
+이처럼 Spring data common 모듈과 그 하위 Jpa, Mongo 모듈을 살펴보면서 스프링에서 어떻게 DIP를 적용하고 있을지에 대해 관련한 코드나, 상속 관계 등을 살펴 보았습니다.
 
 스프링에서는 DIP를 통해, 스프링을 사용하는 개발자가 하위 수준의 Jpa또는 Mongo, Graph등 데이터 저장 기술의 변화에 애플리케이션의 핵심 로직인 도메인 영역이 영향받지 않도록 구현할 수 있도록 구현을 해놓은 것이 아닐까 라고 생각했습니다.
 
