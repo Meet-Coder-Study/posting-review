@@ -46,3 +46,7 @@ export { Usage };
 
 - 큰 JSX: 이 패턴은 JSX 행의 수를 늘릴 것이며, 특히 린터(EsLint)나 코드 포맷터(Prettier)를 사용하는 경우 단일 컴포넌트의 규모에서는 큰 문제처럼 보이지 않지만, 전체적인 관점에서 보면 큰 차이가 생길 수 있습니다.
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*Gl77TWP-Hnp0AmaLx5aS9Q.png)
+
+## 추가 자료
+[patterns.dev](https://www.patterns.dev/posts/compound-pattern)
+[ketncdodds blog](https://kentcdodds.com/blog/compound-components-with-react-hooks)
