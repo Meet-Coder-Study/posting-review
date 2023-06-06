@@ -1,7 +1,8 @@
 name: automerge
 on:
+  # CURL Test URL: https://crontab.guru
   schedule:
-    - cron: '0 13 * * 1'
+    - cron: '0 0 * * SAT'
 jobs:
   automerge:
     runs-on: ubuntu-latest
