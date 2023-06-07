@@ -40,8 +40,6 @@ Java와 마찬가지로 Kotlin에서도 인터페이스에 abstract 메서드가
 
 단, Java 같이 바로 람다로 정의할 수는 없다.
 
-단, Java 같이 바로 람다로 정의할 수는 없다.
-
 ```kotlin
 val multiple: Function<Int, Int> = (x) -> x * 2 
 ```
