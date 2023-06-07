@@ -75,7 +75,7 @@ CPU는 메모리에 저장된 데이터를 읽어들이면서 자주 사용하�
 **L1, L2, L3 캐싱**
 
 - L1: CPU 칩 내에서 일어나는 캐싱. 최소화되고 가장 빠른 캐싱. 보통 8~64KB 정도의 용량을 가지고 있다.
-- L2: L1보다 저장소가 크고 느림. 일반적으로 CPU랑 분리된 칩에 위치. CPU 제품마다 다르지만 L2 캐시는 CPU 다이(회로판, 승현님은 아시려나,,)에 별도의 칩으로 내장. 64kb ~ 4MB 정도 사용.
+- L2: L1보다 저장소가 크고 느림. 일반적으로 CPU랑 분리된 칩에 위치. CPU 제품마다 다르지만 L2 캐시는 CPU 다이(회로판)에 별도의 칩으로 내장. 64kb ~ 4MB 정도 사용.
 - L3: L2 캐시보다 크고 느림. 종종 multiple CPU cores 사이에서 공유. 요즈음 프로세서는 L3 캐시 메모리를 안들고 있는 추세. L2로도 충분히 커버 가능. L3 캐시는 CPU가 아닌 메인보드에 내장되는 경우가 많다고 함.
 
 L1, L2 에 사용되는 SRAM은 우리가 아는 메인 메모리 DRAM에 비해 상당히 비싸다고 합니다. 그래서 많은 용량을 가지고 있지 않습니다.
@@ -87,7 +87,7 @@ L1, L2 에 사용되는 SRAM은 우리가 아는 메인 메모리 DRAM에 비해
 ![image](https://github.com/eastperson/TIL/assets/66561524/e7f9b85a-f917-43dd-8386-eb773cae31a3)
 https://ded9.com/what-is-virtual-memory-disadvantages-advantages-and-methods-of-doing/
 
-이 때 가상적으로 주어진 주소를 Virtual Address라고 하며 시렞 메모리상의 주소를 physical address라고 합니다. 가상 주소는 메모리관리장치인 MMU(그림상 Translation)을 통해 실제 주소로 변환되며 사용자는 실제 주소를 알 필요가 없습니다.
+이 때 가상적으로 주어진 주소를 Virtual Address라고 하며 실제 메모리상의 주소를 physical address라고 합니다. 가상 주소는 메모리관리장치인 MMU(그림상 Translation)을 통해 실제 주소로 변환되며 사용자는 실제 주소를 알 필요가 없습니다.
 
 가운데에 있는 가상 메모리(Virtual Memory)에는 가상 주소와 실제 주소가 매핑되어 있고 프로세스의 주소 정보가 들어있는 ‘페이지 테이블’로 관리가 되고 속도 향상을 위해 TLB(Translation Lookaside Buffer)를 사용합니다.
 
