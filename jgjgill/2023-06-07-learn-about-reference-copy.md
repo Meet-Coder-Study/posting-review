@@ -20,7 +20,7 @@ category: 'development'
 ## 얕은 복사
 
 **얕은 복사**에서는 [Object.assign()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 혹은 [스프레드 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)를 사용할 수 있다.
-하지만 얕은 복사는 깊게 중첩된 속성에서 `reference`인 값이 사용되는 경우 원본과 복사본 모두 영향을 받게 되어 예상되로 동작하지 않아 문제가 발생한다.
+하지만 얕은 복사는 깊게 중첩된 속성에서 `reference`인 값이 사용되는 경우 원본과 복사본 모두 영향을 받게 되어 예상대로 동작하지 않아 문제가 발생한다.
 
 ```js
 const theOriginal = {
