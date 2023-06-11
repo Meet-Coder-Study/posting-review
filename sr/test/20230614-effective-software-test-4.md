@@ -56,6 +56,7 @@
 
 ![테스트 대상과 격리](20230614-images/dependency-isolation-class.png)
 
+
 - 장점
 
 1. 더 큰 제어권을 갖는다.
