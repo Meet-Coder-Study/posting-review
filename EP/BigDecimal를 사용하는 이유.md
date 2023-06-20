@@ -15,10 +15,6 @@
 
 특정 비트를 기준으로 정수와 소수점을 구분하는 방법으로 고정적으로 정해놓은 방법
 
-## 고정소수점
-
-특정 비트를 기준으로 정수와 소수점을 구분하는 방법으로 고정적으로 정해놓은 방법
-
 ![image](https://user-images.githubusercontent.com/66561524/189508129-efb7e872-2e8f-45b7-bce2-ac7c525be536.png)
 
 ![image](https://user-images.githubusercontent.com/66561524/189508132-07213285-f2e0-489f-9845-0c72f41d88d7.png)
