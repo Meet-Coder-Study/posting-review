@@ -26,7 +26,7 @@ String foo = (String) list.get(0); // 컴파일 에러 발생
 
 # 공변성, 반공병성, 무변성
 
-제네릭을 알아보기 위해서는 공변성(covariance), 반공병성(countervaraince), 무변성(invariant)을 이해해야 합니다. 일단 다음과 같은 객체들의 예시를 확인해보겠습니다.
+제네릭을 알아보기 위해서는 공변성(covariance), 반공변성(countervaraince), 무변성(invariant)을 이해해야 합니다. 일단 다음과 같은 객체들의 예시를 확인해보겠습니다.
 
 우선 공통적인 단어인 변성(variance)에 대해서 알아보겠습니다. 변성은 타입의 계층 관계(Type Hierarchy)에서 서로 다른 타입 간에 어떤 관계가 있는지를 나타내는 개념입니다. 제네릭(Generic)을 사용할 때 기저 타입(Base Type)이 같고 타입 인자(Type argument)가 다른 경우 서로 어떤 관계가 있는지를 나타내는 것이라고 보면 됩니다.
 
@@ -53,7 +53,7 @@ public class RussianBlueCat extends Cat{}
 ![](https://velog.velcdn.com/images/eastperson/post/829d88fc-efb9-4712-ad76-2fcba503c385/image.png)
 
 
-위의 예시에서 `Cat`은 `Animal`의 하위 타입이고 `Cat`이 `Animal`을 대체해서 사용할 수 있다는 것을 알 수 있습니다. 이는 **리스코프 치환 원칙(Liskov Substitution Principle)** 에 해당합니다. 상위 타입이 사용되는 곳에는 언제나 하위 타입의 인스턴스를 넣어도 동작할 수 있어야 합니다. 
+위의 예시에서 `Cat`은 `Animal`의 하위 타입이고 `Cat`이 `Animal`을 대체해서 사용할 수 있다는 것을 알 수 있습니다. 이는 **리스코프 치환 원칙(Liskov Substitution Principle)** 에 해당합니다. 상위 타입이 사용되는 곳에는 언제나 하위 타입의 인스턴스를 넣어도 동작할 수 있어야 합니다. 이러한 성질을 '공변성'이라고 합니다.
 
 `List<Cat>`에서 `List`는 기저 타입, `Cat`은 타입 인자입니다. 따라서 `List<Animal>`에서 `Cat` 타입의 객체를 추가할 수 있습니다. 그런데 `List<Cat>`은 `List<Animal>`의 하위 타입일까요? 그렇지 않습니다. 이는 제네릭 타입이 무공변이기 때문입니다.
 
