@@ -131,7 +131,8 @@ List<? extends Animal> list3 = new ArrayList<Cat>();
 List<? extends Animal> list4 = new ArrayList<RussianBlueCat>();
 ```
 
-![](https://velog.velcdn.com/images/eastperson/post/7da51480-1208-4790-89d1-e1e19cd107fb/image.png)
+![image](https://github.com/eastperson/posting-review/assets/66561524/832f10aa-23de-4e98-84f0-0f3a1d0c6983)
+
 
 
 
