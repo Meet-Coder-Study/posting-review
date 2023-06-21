@@ -47,4 +47,4 @@ Cloud Native Computing Foundation(CNCF)에서 주관하고 있으며, K와 s 사
 
 
 ### 참고자료
-[쿠버네티스란 무엇인가? | kubernetes.io] (https://kubernetes.io/ko/docs/concepts/overview/)
+[쿠버네티스란 무엇인가? | kubernetes.io](https://kubernetes.io/ko/docs/concepts/overview/)
