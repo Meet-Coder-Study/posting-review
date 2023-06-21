@@ -157,39 +157,3 @@ List<? super Cat> list4 = new ArrayList<RussianBlueCat>(); // 컴파일 에러
 
 이렇게 제네릭 타입은 변성을 적용하여 타입 안전(type-safe)과 
 프 치환 원칙을 동반하였습니다.
-
-# Reference
-
-- [Java Generics Interview Questions (+Answers)](https://www.baeldung.com/java-generics-interview-questions)
-
-- [[Java] Generic Type erasure란 무엇일까?](https://devlog-wjdrbs96.tistory.com/263)
-
-- [Variance in programming languages](https://rubber-duck-typing.com/posts/2018-05-01-variance-in-programming-languages.html)
-
-- [Java Generics - Lower and Upper bound](http://egloos.zum.com/ryukato/v/1182733)
-
-- [JVM 언어 의 공변](https://wjdtn7823.tistory.com/88)
-
-- [Type Erasure](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
-
-- [Generic Type Erasure는 어떻게 타입캐스팅을 하는건가요?](https://woodcock.tistory.com/37)
-
-- [Java 제네릭 - Raw Type을 쓰면 안되는 이유](http://happinessoncode.com/2018/02/08/java-generic-raw-type/)
-
-- [가변성(Variance) 알아보기 - 공변, 무공변, 반공변](https://sungjk.github.io/2021/02/20/variance.html)
-
-- [JAVA 제네릭 배열을 생성하지 못하는 이유](https://pompitzz.github.io/blog/Java/whyCantCreateGenericsArray.html#_1-%E1%84%87%E1%85%A2%E1%84%8B%E1%85%A7%E1%86%AF%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A9%E1%86%BC%E1%84%87%E1%85%A7%E1%86%AB-%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%80%E1%85%A9%E1%86%BC%E1%84%87%E1%85%A7%E1%86%AB)
-
-- [제네릭, 그리고 변성(Variance)에 대한 고찰 (1) - Java](https://asuraiv.tistory.com/16)
-
-- [자바의 변성 - 공변/무공변/반공변, 사용지점 변성과 선언 지점 변성](https://scshim.tistory.com/531)
-
-- [객체지향 개발 5대 원칙 (SOLID)](https://velog.io/@lsb156/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EA%B0%9C%EB%B0%9C-5%EB%8C%80-%EC%9B%90%EC%B9%99-SOLID)
-
-- [공변성, 반공변성, 무공변성이란?](https://velog.io/@lsb156/covariance-contravariance)
-
-- [[java] 배열(Array)과 컬렉션 제네릭의 차이](https://sabarada.tistory.com/123?category=815130)
-
-- [Java 배열과 리스트의 공변성과 반공변성, 무공변성](https://junroot.github.io/programming/Java-%EB%B0%B0%EC%97%B4%EA%B3%BC-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EA%B3%B5%EB%B3%80%EC%84%B1%EA%B3%BC-%EB%B0%98%EA%B3%B5%EB%B3%80%EC%84%B1,-%EB%AC%B4%EA%B3%B5%EB%B3%80%EC%84%B1/)
-
-- [[Java] Generic Type erasure란 무엇일까?](https://devlog-wjdrbs96.tistory.com/263)
