@@ -40,7 +40,7 @@ HTML을 구성하는 노드는 여러 가지가 존재한다. **`Element`는 `No
 ### Document
 
 <Image
-  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-dom/images/node.png"
+  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-dom/images/document.png"
   alt="document"
 />
 
@@ -71,8 +71,8 @@ ul.append(fragment)
 ### Attr
 
 <Image
-  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-dom/images/node.png"
-  alt="document"
+  src="https://raw.githubusercontent.com/jgjgill/blog/main/contents/development/learn-about-dom/images/attr.png"
+  alt="attr"
 />
 
 `Attr` 인터페이스는 요소의 속성을 객체로 나타낸다. **Attribute**로도 혼용해서 사용하는 것 같다.
