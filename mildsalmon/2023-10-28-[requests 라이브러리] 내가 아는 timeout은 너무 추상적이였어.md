@@ -1,3 +1,5 @@
+> https://blex.me/@mildsalmon/requests-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EB%82%B4%EA%B0%80-%EC%95%84%EB%8A%94-timeout%EC%9D%80-%EB%84%88%EB%AC%B4-%EC%B6%94%EC%83%81%EC%A0%81%EC%9D%B4%EC%98%80%EC%96%B4
+
 # 1. python에서의 HTTP 통신 그리고 timeout
 
 python에서 HTTP 통신을 하기 위해서 보통 requests 라이브러리를 사용한다.
