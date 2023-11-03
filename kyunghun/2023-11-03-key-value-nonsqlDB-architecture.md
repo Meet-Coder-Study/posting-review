@@ -1,4 +1,4 @@
-# Key-Value DB 설계
+# Key-Value DB 설계하기
 key-value 저장소는 Non Sql DB로 저장되는 모든 값은 고유 식별자를 키로 가지고 있습니다.  
 널리 알려진 것으로 Redis, 아마존 다이나모 등이 있습니다.
 ## 문제 이해 및 설계 범위 확정
