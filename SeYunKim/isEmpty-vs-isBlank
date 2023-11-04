@@ -1,0 +1,127 @@
+## 서론
+
+- String 타입에서 해당 값이 빈 문자열인지 체크하는 메서드가 두개가 있다.
+- isEmpty와 isBlank의 차이점을 알고, 각각 어느 상황에 써야 하는지 이해하는 시간을 가져보려고 한다.
+- 일단 결론부터 말하자면 **whiteSpace(공백)과 tap(탭)까지 포함해서 빈 문자열로 인정할것인가** 이다.
+
+## isEmpty
+
+- 실제 자바 구현체를 보면 아래와 같다.
+
+```java
+/**
+* Returns {@code true} if, and only if, {@link #length()} is {@code 0}.
+*
+* @return {@code true} if {@link #length()} is {@code 0}, otherwise
+* {@code false}
+*
+* @since 1.6
+*/
+@Override
+public boolean isEmpty() {
+    return value.length == 0;
+}
+```
+
+- Java 1.6에서 처음으로 도입된 메서드이다.
+- `length` 는 해당 String의 글자수를 의미하며, 해당 글자수가 0 즉, 빈 문자열인 경우에 true를 반환하겠다라는 의미이다.
+- 학습테스트 코드를 통해 한번 학습해보면 아래와 같다.
+
+```java
+@Test
+void isEmptyTest() {
+    assertThat("".isEmpty()).isTrue();
+    assertThat("a".isEmpty()).isFalse();
+    assertThat(" ".isEmpty()).isFalse();
+}
+```
+
+- 참고로 assertj에서도 해당 메서드와 동일한 expected 메서드를 제공합니다.
+
+```java
+@Test
+void isEmptyTest() {
+    assertThat("").isEmpty();
+    assertThat("a").isNotEmpty();
+    assertThat(" ").isNotEmpty();
+}
+```
+
+### isBlank
+
+- 실제 자바 구현체를 보면 아래와 같다.
+
+```java
+/**
+ * Returns {@code true} if the string is empty or contains only
+ * {@linkplain Character#isWhitespace(int) white space} codepoints,
+ * otherwise {@code false}.
+ *
+ * @return {@code true} if the string is empty or contains only
+ *         {@linkplain Character#isWhitespace(int) white space} codepoints,
+ *         otherwise {@code false}
+ *
+ * @see Character#isWhitespace(int)
+ *
+ * @since 11
+ */
+public boolean isBlank() {
+    return indexOfNonWhitespace() == length();
+}
+```
+
+- Java 11버전에서 처음 도입된 메서드입니다.
+- 여기서 중요한건 indexOfNonWhitespace() 메서드입니다.
+    
+    ```java
+    public static int indexOfNonWhitespace(byte[] value) {
+      int length = value.length >> 1;
+      int left = 0;
+      while (left < length) {
+          int codepoint = codePointAt(value, left, length);
+          if (codepoint != ' ' && codepoint != '\t' && !Character.isWhitespace(codepoint)) {
+              break;
+          }
+          left += Character.charCount(codepoint);
+      }
+      return left;
+    }
+    ```
+    
+- 코드가 여러워 보이겠지만, `' '` 이나 `\t` (탭)을 제거하고 나온 첫번째 문자의 인덱스가 문자열의 길이와 같은지를 체크하는 로직입니다.
+- 이건 알고리즘적으로 for문을 돌면서 하나하나씩 체크할수 없기 때문에 빠르게 탐색할수 있는 방법을 찾은거 같습니다.
+- 따라서 isBlank의 로직은 공백과 탭을 제거한 첫번째 문자열의 인덱스와 문자의 길이가 같으면 문자열에 공백 문자만 있거나 문자열이 전혀 없음을 의미하는것입니다. 결국 모든 문자를 while로 했을때 총 길이의 갯수가 count되니깐 그렇습니다.
+- 이것도 Junit5를 이용해 학습테스트 코드로 한번 사용법을 배워보겠습니다.
+
+```java
+@Test
+void isEmptyTest() {
+    assertThat("".isBlank()).isTrue();
+    assertThat(" ".isBlank()).isTrue();
+    assertThat("\t".isBlank()).isTrue();
+    assertThat("a".isBlank()).isFalse();
+}
+```
+
+- 아까와 달리 `" "` , `\t` 이 있는 경우엔 True인걸 알수 있습니다.
+- 역시 isBlank도 assertJ에서 쉽게 확인할수 있는 expect 메서드를 만들어 두었습니다.
+
+```java
+@Test
+void isEmptyTest() {
+    assertThat("").isBlank();
+    assertThat(" ").isBlank();
+    assertThat("\t").isBlank();
+    assertThat("a").isNotBlank();
+}
+```
+
+cf) Java 11전에 사용하기 위해선 아래와 같이 사용하면 됩니다.
+
+```java
+assertThat(" ".trim().isEmpty()).isTrue()
+```
+
+## 결론
+
+- **isBlank와 isEmpty는 whiteSpace(공백)과 tap(탭) 까지 포함해서 빈 문자열로 인정할것인가? 공백만 있는 경우에 isblank는 true, isEmpty는 false이다.**
