@@ -6,6 +6,9 @@
 
 메시지를 송신하는 클라이언트는 로직이 실패한 경우 다시 동일한 요청을 보내는 재시도 전략이 필요한데요. 하지만 이러한 재시도 전략을 단순하게 반복 로직으로 처리하면 어떻게 될까요? 
 
+![image](https://github.com/eastperson/posting-review/assets/66561524/49f81c11-1d86-49da-9412-78bff8dd9a83)
+https://www.tylercrosse.com/ideas/exponential-backoff
+
 외부 시스템과의 네트워크 장애로 인해 30초 정도 요청을 처리할 수 있는 경우, 5초의 타임아웃으로 인해 5회 재시도를 하게 되면 보내는 클라이언트와 요청을 받는 수신 서버에서는 해당 요청에 대해 5배나 부하가 더해집니다. 무분별한 재시도가 아니라 전략적으로 재시도 간의 기간을 설정하여 이러한 상황에 대해서 대비할 수 있어야 합니다. 대표적인 재시도 전략으로 **지수 백오프(Exponential backoff)** 를 먼저 알아보겠습니다.
 
 
@@ -72,3 +75,23 @@ https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
 
 AWS Blog에서 포스팅한 성능 테스트에서는 위와 같이 FullJitter의 성능을 확인할 수 있습니다.
 
+# Reference
+
+- [Better Retries with Exponential Backoff and Jitter | Baeldung](https://www.baeldung.com/resilience4j-backoff-jitter)
+
+- [좀 더 우아한 Retry (Expenential Backoff with Jitter)](https://velog.io/@jazz_avenue/좀-더-우아한-Retry-Expenential-Backoff-with-Jitter)
+
+- [Exponential Backoff And Jitter | Amazon Web Services](https://aws.amazon.com/ko/blogs/architecture/exponential-backoff-and-jitter/)
+
+- [[기타] Retry 전략에 대해서(Exponential Backoff, Jitter)](https://jungseob86.tistory.com/12)
+
+- [The Hardest Part of Microservices: Calling Your Services - Java Code Geeks](https://www.javacodegeeks.com/2017/04/hardest-part-microservices-calling-services.html)
+
+- [Exponential Backoff and Jitter ⏳](https://www.tylercrosse.com/ideas/exponential-backoff)
+
+- [Exponential backoff](https://nick.groenen.me/notes/exponential-backoff/)
+
+- [Understanding Retry Pattern With Exponential Back-Off and Circuit Breaker Pattern - DZone](https://dzone.com/articles/understanding-retry-pattern-with-exponential-back)
+[Retry strategy  |  Cloud Storage  |  Google Cloud](https://cloud.google.com/storage/docs/retry-strategy)
+[Retry pattern - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry)
+[메시지 전달 전략과 두 장군 문제(Message Delivery Semantics and Two Generals’ Problem)](https://medium.com/monday-9-pm/메시지-전달-전략과-두-장군-문제-message-delivery-semantics-and-two-generals-problem-f8f1c7646c0b)
