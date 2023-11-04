@@ -44,7 +44,7 @@ https://www.tylercrosse.com/ideas/exponential-backoff
 
 ## **Thundering herd problem**
 
-[Thundering herd problem](https://nick.groenen.me/notes/thundering-herd/)은 전통적으로는 이벤트가 발생할 때, 이벤트를 기다리는 많은 프로세스가 깨어나는데 하나의 프로세스만 이벤트를 처리할 수 있을 때 발생하는 문제를 뜻합니다. 하지만 분산환경에서는 클라이언트 서버간의 관계에서 아래의 경우에 적용됩니다.
+[Thundering herd problem](https://nick.groenen.me/notes/thundering-herd/)은 컴퓨터 공학적으로는 이벤트가 발생할 때, 이벤트를 기다리는 많은 프로세스가 깨어나는데 하나의 프로세스만 이벤트를 처리할 수 있을 때 발생하는 문제를 뜻합니다. 이를 확장하여 분산환경에서는 클라이언트 서버간의 관계에서 아래의 경우에 적용됩니다.
 
 - 잠금/뮤텍스가 해제될 때 여러 프로세스가 깨어나는 경우
 - 서버에서 연결이 끊긴 클라이언트가 모두 동시에 재연결을 시도하는 경우
