@@ -23,7 +23,7 @@ Spark의 RDD(Resilient Distributed Dataset)는 불변성(immutability)을 가지
 
 하나의 action은 모든 기록된 transformation의 lazy evaluation을 발동시킨다.
 
-![action](./images/Pasted image 20230916215036.png)
+![action](./images/1_action.png)
 
 Spark 연산 중 transformation 연산은 orderBy(), groupBy(), filter(), select(), join()이 있다. action 연산은 show(), take(), count(), collect(), save()가 있다.
 
