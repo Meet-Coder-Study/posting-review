@@ -13,7 +13,7 @@
 
 ### **1.1 Orchestator 컨테이너 생성**
 
-먼저, Orchestator 컨테이너를 생성합니다. Orchestrator는 MySQL 복제 토폴로지 관리를 위한 [오픈소스](https://github.com/openark/orchestrator) 입니다. 도구입니다. 이를 통해 MySQL 복제 구성의 상태를 모니터링하고, 자동 복구, 복제 톨폴로지 변경 등의 작업을 수행할 수 있습니다.
+먼저, Orchestator 컨테이너를 생성합니다. Orchestrator는 MySQL 복제 토폴로지 관리를 위한 [오픈소스](https://github.com/openark/orchestrator) 입니다. 도구입니다. 이를 통해 MySQL 복제 구성의 상태를 모니터링하고, 자동 복구, 복제 토폴로지 변경 등의 작업을 수행할 수 있습니다.
 
 ```shell
 docker run -i -t --name orchestrator -h orchestrator \
