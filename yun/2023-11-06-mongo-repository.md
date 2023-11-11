@@ -30,7 +30,7 @@ class MemberCustomRepositoryImpl(private val mongoTemplate: MongoTemplate) : Mem
 3. **`MemberCustomRepository`** - 사용자 정의 쿼리를 위한 인터페이스로, 실제 사용자 정의 로직을 위한 메소드의 시그니처를 포함할 수 있습니다.
 4. **`MemberCustomRepositoryImpl`** - `MemberCustomRepository`의 구현체로, 실제 사용자 정의 쿼리 로직을 실행하는 메소드를 포함합니다. `MongoTemplate`을 주입받아 MongoDB의 복잡한 작업을 처리하는 데 사용됩니다.
 
-이 구성을 통해, 애플리케이션은 MongoDB에 대한 데이터 액세스를 추상화하고 효율적으로 관리할 수 있으며, 사용자 정의 저장소를 통해 비즈니스 로직에 맞는 복잡한 데이터 접근 패턴을 구현할 수 있어 애플리케이션의 유연성을 증가시키고 코드의 관리를 간소화합니다.
+이 구성을 통해, 애플리케이션은 MongoDB에 대한 데이터 액세스를 추상화하고 효율적으로 관리할 수 있으며, `MemberRepository를` 통해 비즈니스 로직에 맞는 복잡한 데이터 접근 패턴을 구현할 수 있어 애플리케이션의 유연성을 증가시키고 코드의 관리를 간소화합니다.
 
 ### MemberCustomRepositoryImpl 구현
 
@@ -152,4 +152,4 @@ class MemberCustomRepositoryImpl(mongoTemplate: MongoTemplate) : MemberCustomRep
 }
 ```
 
-`MemberCustomRepositoryImpl` 클래스는 `MongoCustomRepositorySupport` 추상 클래스를 상속받아, MongoDB와의 데이터 교환을 더 효율적으로 관리하는 특수한 저장소 구현을 제공합니다. `MongoCustomRepositorySupport`는 몽고디비의 `mongoTemplate`와 작업할 클래스 타입을 받아 초기화합니다. 이는 사용자 정의 저장소 구현에 필수적인 기반 구조를 제공하여 보일러플레이트 코드를 줄이고 코드의 재사용성을 향상시킵니다.
+`MemberCustomRepositoryImpl` 클래스는 `MongoCustomRepositorySupport` 추상 클래스를 상속받아, MongoDB와의 데이터 교환을 더 효율적으로 관리하는 특수한 저장소 구현을 제공합니다. `MongoCustomRepositorySupport`는 몽고디비의 `mongoTemplate`와 작업할 클래스 타입을 받아 초기화합니다. 이는 `MemberRepository` 구현에 필수적인 기반 구조를 제공하여 보일러플레이트 코드를 줄이고 코드의 재사용성을 향상시킵니다.
