@@ -81,13 +81,13 @@ title: 이달의 민족
 ---
 classDiagram
     Shop *-- CouponBook
-		Shop *-- RoyalCustomers
-		RoyalCustomers *-- Member
+    Shop *-- RoyalCustomers
+    RoyalCustomers *-- Member
     Member *-- CouponBook
-		CouponBook *-- Coupon
-		FixDiscountCoupon --|> Coupon
-		RateDiscountCoupon --|> Coupon
-		ShopOwner *-- Shop
+    CouponBook *-- Coupon
+    FixDiscountCoupon --|> Coupon
+    RateDiscountCoupon --|> Coupon
+    ShopOwner *-- Shop
 
     class CouponBook{
 			-List~Coupon~ coupons
