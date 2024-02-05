@@ -76,6 +76,7 @@
 객체를 만드려면 역시 어떤 책임을 가져 행위를 하는지 고민해보고 다음과 같이 정리했다.
 
 ```mermaid
+
 ---
 title: 이달의 민족
 ---
@@ -97,7 +98,6 @@ classDiagram
     }
 
     class Coupon{
-			-Shop shop
 			-String name
 			-String description
 			-Enum couponType
@@ -121,28 +121,38 @@ classDiagram
 			+receiveCoupon(Coupon coupon) void
     }
 
-		class ShopOwner{
-			-Shop shop
-			+handOutCouponToRoyalCustomersInShop(Shop shop) void
-			+publishCouponInShop(Shop shop, Coupon coupon) void
-		}
+    class ShopOwner{
+        -Shop shop
+        +handOutCouponToRoyalCustomersInShop(Coupon coupon) void
+        +publishCouponInShop(Coupon coupon) void
+        +addRoyalCustomerInShop(Member member...) void
+        +showPublishedCouponsInShop() List~Coupon~
+        +showHandOutCouponBookInShop() CouponBook
+        +showRoyalCustomersInShop() List~Member~
+    }
 
-		class Shop{
-			-String shopName
-			-CouponBook publishedCoupons
-			-CouponBook usedCouponBook
-			-RoyalCustomers royalCustomers
-			+publishCoupon(Coupon coupon) void
-			+alreadyUsedCoupon(Coupon coupon) boolean
-			+handOutPublishedCoupon(Coupon coupon) Coupon
-			+handOutCouponToRoyalCustomers(Coupon coupon) void
-			+showPublishedCoupon() CouponBook
-		}
+    class Shop{
+        -String shopName
+        -CouponBook publishedCoupons
+        -CouponBook handOutCouponBook
+        -CouponBook usedCouponBook
+        -RoyalCustomers royalCustomers
+        +publishCoupon(Coupon coupon) void
+        +handOutCouponToRoyalCustomers(Coupon coupon) void
+        +alreadyUsedCoupon(Coupon coupon) boolean
+        +useCoupon(Coupon coupon) Coupon
+        +addRoyalCustomer(Member member...) void
+        +showPublishedCoupons() List~Coupon~
+        +showHandOutCoupons() List~Coupon~
+        +showRoyalCustomers() List~Member~
+    }
 
-		class RoyalCustomers{
-			-List~Member~ members
-			+handOutCoupon(Coupon coupon) void
-		}
+    class RoyalCustomers{
+        -List~Member~ members
+        +handOutCoupon(Coupon coupon) void
+        +addMember(Member member) void
+        +showRoyalCustomers() List~Member~
+    }
 
 ```
 
@@ -200,6 +210,7 @@ erDiagram
 		long member_id
 		long coupon_id
 		string status
+		boolean isUsed
 	}
 
 	royal_member }o--|| member : contain
