@@ -39,7 +39,7 @@ public interface StoreClient {
 - Spring WebFlux는 반응형 프로그래밍(Reactive Programing) 방식을 통해 ‘이벤트 기반의 비동기식 애플리케이션’을 구축할 수 있는 프레임워크임.
 - 반응형 스트림(Reactive Stream) - Publisher-Subscriber 패턴으로 데이터를 처리함.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/7960517c-d800-4f90-ad44-7cda15f11a41/3f5eb803-cc5c-4a29-a92a-8bd53baaa636/image.png)
+![image](https://github.com/user-attachments/assets/ee337870-8ac9-4bd6-b89c-9375d4b39da9)
 
 - 반응형 스트림 처리 과정
     1. subscribe
@@ -107,7 +107,6 @@ public interface IcecreamServiceApi {
 ```
 
 ## 6. 참고자료
-
 - https://docs.spring.io/spring-framework/reference/web/webflux.html
 - https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html
 - https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign
