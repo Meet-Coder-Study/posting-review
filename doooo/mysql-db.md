@@ -1,0 +1,1 @@
+[MySQL DB 다중화](https://velog.io/@doogang/MySQL-DB-%EB%8B%A4%EC%A4%91%ED%99%94)
