@@ -4,13 +4,13 @@ Kotlin의 코루틴을 이용한 비동기 프로그래밍은 성능을 크게 �
 
 ![](https://raw.githubusercontent.com/cheese10yun/blog-sample/master/kotlin-coroutine/images/result_005.png)
 
-300ms가 발생하는 API 요청을 100번 반복하는 시나리오를 가정해봅시다. 동기적으로 처리하면 100번의 요청을 처리하는 데 30초가 걸립니다.
+`300ms`가 발생하는 API 요청을 100번 반복하는 시나리오를 가정해봅시다. 동기적으로 처리하면 100번의 요청을 처리하는 데 30초가 걸립니다.
 
 ```kotlin
 class OrderClient {
     fun getOrder(orderRequest: OrderRequest): ResponseResult<OrderResponse> {
         return runBlocking {
-            delay(300) // 300ms 지연, 실제 API를 호출하지 않고 시간만 지연 
+            delay(300) // `300ms` 지연, 실제 API를 호출하지 않고 시간만 지연 
             ResponseResult.Success(OrderResponse(orderRequest.productId))
         }
     }
@@ -20,7 +20,7 @@ fun getOrderSync(orderRequests: List<OrderRequest>): List<OrderResponse> {
     return orderRequests
         .map {
             orderClient
-                .getOrder(it) // 300ms 지연
+                .getOrder(it) // `300ms` 지연
                 .onFailure { log.error("Failure: $it") }
                 .onSuccess { log.info("Success: $it") }
                 .getOrThrow()
@@ -28,7 +28,7 @@ fun getOrderSync(orderRequests: List<OrderRequest>): List<OrderResponse> {
 }
 ```
 
-위 코드에서 `OrderClient`의 `getOrder` 함수는 각 호출마다 300ms가 소요된다고 가정합니다. 일반적인 API 호출의 경우 300ms 응답속도는 빠른 편에 속합니다. 하지만 100번을 호출 한다고 가정하면 총 소요 시간은 100 * 300ms = 30,000ms, 즉 30초가 됩니다.
+위 코드에서 `OrderClient`의 `getOrder` 함수는 각 호출마다 `300ms`가 소요된다고 가정합니다. 일반적인 API 호출의 경우 `300ms` 응답속도는 빠른 편에 속합니다. 하지만 100번을 호출 한다고 가정하면 총 소요 시간은 100 * `300ms` = 30,000ms, 즉 30초가 됩니다.
 
 ```kotlin
 
@@ -72,7 +72,7 @@ suspend fun getOrderFlow(orderRequests: List<OrderRequest>): List<OrderResponse>
 }
 ```
 
-위 코드에서 getOrderFlow 함수는 orderRequests 리스트를 플로우로 변환하고, flatMapMerge를 사용하여 각 요청을 병렬로 처리합니다. 각 요청은 코루틴 내에서 300ms 동안 지연된 후 결과를 반환합니다. 이 방식으로 100개의 요청을 동시에 처리하면, 전체 처리 시간은 가장 오래 걸리는 요청 하나의 시간인 300ms로 줄어듭니다.
+위 코드에서 getOrderFlow 함수는 orderRequests 리스트를 플로우로 변환하고, flatMapMerge를 사용하여 각 요청을 병렬로 처리합니다. 각 요청은 코루틴 내에서 `300ms` 동안 지연된 후 결과를 반환합니다. 이 방식으로 100개의 요청을 동시에 처리하면, 전체 처리 시간은 가장 오래 걸리는 요청 하나의 시간인 `300ms`로 줄어듭니다.
 
 ### 성능 테스트
 
@@ -91,7 +91,7 @@ fun getOrderFlow(): Unit = runBlocking {
     }
 ```
 
-이론상 100개의 요청을 동시에 처리하면 300ms 정도의 시간이 소요되어야 하지만, 실제로는 2,228ms가 소요됩니다. 이는 다음과 같은 요인들로 인한 것입니다.
+이론상 100개의 요청을 동시에 처리하면 `300ms` 정도의 시간이 소요되어야 하지만, 실제로는 2,228ms가 소요됩니다. 이는 다음과 같은 요인들로 인한 것입니다.
 
 1. **코루틴 생성과 컨텍스트 전환 오버헤드**
     - 코루틴을 생성하고 실행할 때 발생하는 오버헤드는 무시할 수 없는 시간 지연을 초래할 수 있습니다.
