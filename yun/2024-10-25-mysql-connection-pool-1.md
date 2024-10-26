@@ -230,7 +230,7 @@ spring:
 
 ![](https://raw.githubusercontent.com/cheese10yun/blog-sample/master/kotlin-coroutine/images/mysql-connection-pool-6.png)
 
-테스트 결과는 아래와 같습니다:
+테스트 결과는 아래와 같습니다.
 
 ```plaintext
 totalConnections : 10
