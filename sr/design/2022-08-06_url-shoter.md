@@ -10,7 +10,7 @@ URL 단축은 긴 URL에 대해 더 짧은 Alias를 만드는 데 사용된다.
 
 기존
 ```http
-https://www.educative.io/courses/grokking-the-system-design-interview/m2ygV4E81AR
+https://www.designgurus.io/course-play/grokking-the-system-design-interview/doc/designing-a-url-shortening-service-like-tinyurl
 ```
 
 TinyURL
@@ -332,4 +332,4 @@ url은 영구적으로 남아있도록 관리 해야 할까? 아니면 제거해
 Cassandra와 같은 NoSQL의 와이드 컬럼 데이터베이스에 데이터를 저장하고 있다는 점을 감안할 떄 테이블 저장 권한의 키는 해시가 될 것이다. 컬럼에는 URL을 볼 수 있는 권한이 있는 사용자의 userId가 저장될 것이다.
 
 
->참고 - https://www.educative.io/courses/grokking-the-system-design-interview
+>참고 - https://www.designgurus.io/course/grokking-the-system-design-interview
